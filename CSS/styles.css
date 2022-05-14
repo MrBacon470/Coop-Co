@@ -4,12 +4,29 @@
 }
 
 :root {
-    --color: #ff0000;
+    --background-color: #393c3c;
 }
 
 /*Globals*/
 * {
     font-family: 'Roboto Mono';
+    background-color: var(--background-color);
+    color: whitesmoke;
+}
+
+button {
+    background-color: var(--background-color);
+    border-width: 2px;
+    border-color: whitesmoke;
+    border-style: solid;
+    border-radius: 5px;
+    transition-duration: 0.5s;
+}
+button:hover {
+    background-color: white;
+    color: var(--background-color);
+    
+    transition-duration: 0.5s;
 }
 
 /*Classes*/

@@ -2,33 +2,11 @@ const D = x => new Decimal(x)
 //create all the variables in a data object for saving
 function getDefaultObject() {
     return {
-        enlisted: [D(0),D(0),D(0),D(0)],
-        officers: [D(0),D(0),D(0),D(0)],
-        equipment: [D(0),D(0),D(0),D(0)],
-        funds: D(7.5e4),
-        approval: D(50),
-        lobbyLevel: D(0),
-        armyName: undefined,
-        currentEnemy: {
-            name: "",
-            enlisted: [D(0),D(0),D(0),D(0)],
-            officers: [D(0),D(0),D(0),D(0)],
-            equipment: [D(0),D(0),D(0),D(0)],
-        },
-        medals: D(0),
-        wins: D(0),
-        promotionUpgrades: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-        autoActive: [false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-        achievement: [false,false,false,false,false,false,false,false,false,false,false,false,false,
-        false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
-        false,false,false,false,false],
-        buyAmounts: [0,0,0],
-        acquireAutoReq: D(0),
-        level: 0,
+        eggs: [],
         time: Date.now(),
         currentTab: 1,
         settingsToggles: [true],
-        currentUpdate: 'v0.0.7',
+        currentUpdate: 'v0.0.0',
         devSpeed: 1,
     }
 }
@@ -42,11 +20,6 @@ function load() {
     let savedata = JSON.parse(window.localStorage.getItem(saveName))
     if(savedata === null || savedata === undefined) savedata = getDefaultObject()
     else if (savedata !== undefined) fixSave(data, savedata)
-    if(data.armyName === undefined) {
-        createPrompt('Name your Army!',0)
-        createAlert('Welcome to Incremental Army!','This game is still in very early development so expect bugs and bad balancing.<br>Anyways once you hide this popup you will be able to name your army.','349348')
-    }
-        
     if(data.currentUpdate !== getDefaultObject().currentUpdate){
         createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog for details`,"812626")
         data.currentUpdate = getDefaultObject().currentUpdate

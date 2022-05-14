@@ -40,7 +40,7 @@ function createPrompt(a,b) {
     DOMCacheGetOrSet('promptContainer').style.display = 'block'
     switch(b) {
         case 0:
-            document.getElementById('promptButton').addEventListener('click', () => { nameArmy() })
+            //document.getElementById('promptButton').addEventListener('click', () => { nameArmy() })
             break
         case 1:
             document.getElementById('promptButton').addEventListener('click', () => { importSave() })
