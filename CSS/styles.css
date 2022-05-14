@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('RobotoMono-Medium.ttf');
+}
+
+:root {
+    --color: #ff0000;
+}
+
+/*Globals*/
+* {
+    font-family: 'Roboto Mono';
+}
+
+/*Classes*/
+.flexBox {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/*IDs*/
