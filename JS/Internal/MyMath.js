@@ -1,6 +1,7 @@
 function format(a) {
     if(data.settingsToggles[0]) {
-        const standardPrefix = ['K','M','B','T','q','Q','s','S','O','N','d','U','D','Td','qd','Qd','sd','Sd','Od','Nd','V','uV','dV','tV','qV','QV','sV','SV','OV','NV','TG']
+        const standardPrefix = ['K','M','B','T','Qa','Qi','Sx','Sp','O','N','Dc','UnDc','DuDc','TrDc','QaDc'
+        ,'QiDc','SxDc','SpDc','OcDc','NoDc','Vg','UnVg','DuVg','TrVg','QaVg','QiVg','SxVg','SpVg','OcVg','NoVg','TG']
         const standardReq = []
         for(let i = 0; i < standardPrefix.length; i++) {
             standardReq[i] = Decimal.pow(10,3+(3*i))
