@@ -29,7 +29,7 @@ button:hover {
     
     transition-duration: 0.5s;
 }
-
+img {height: 3.5em; width: 3.5em; background-color: whitesmoke;}
 /*Classes*/
 .flexBox {
     display:flex;
@@ -54,7 +54,6 @@ button:hover {
 .unlocked:hover {color: whitesmoke;border-color: #2f8126;background-color: #2f8126;}
 /*IDs*/
 #mainHeader {
-    position: absolute;
     width: 100%;
     height: 7vh;
     background-color: whitesmoke;
