@@ -1,12 +1,16 @@
 function format(a) {
     if(data.settingsToggles[0]) {
         const standardPrefix = ['K','M','B','T','q','Q','s','S','O','N','d','U','D','Td','qd','Qd','sd','Sd','Od','Nd','V','uV','dV','tV','qV','QV','sV','SV','OV','NV','TG']
-        for(let i = standardPrefix.length-1; i > -1; i--) {
-            if(i === standardPrefix.length-1 && a.div(Decimal.pow(10,i)).gte(1e3))
+        const standardReq = []
+        for(let i = 0; i < standardPrefix.length; i++) {
+            standardReq[i] = Decimal.pow(10,3+(3*i))
+        }
+        for(let i = standardReq.length-1; i > -1; i--) {
+            if(i === standardReq.length-1 && (a.div(standardReq[i]).gte(1e3)))
                 return formatSci(a)
-            if(a.gte(Decimal.pow(10,i)))
-                return `${formatSci(a.divide(Decimal.pow(10,i)))} ${standardPrefix[i]}`
-            if(a.lt(1e3))
+            if(a.gte(standardReq[i]))
+                return `${formatSci(a.divide(standardReq[i]))} ${standardPrefix[i]}`
+            if(a.lt(standardReq[0]))
                 return formatSci(a)
         }
     }
