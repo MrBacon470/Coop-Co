@@ -2,7 +2,9 @@ const D = x => new Decimal(x)
 //create all the variables in a data object for saving
 function getDefaultObject() {
     return {
-        eggs: [],
+        money: D(0),
+        soulEggs: D(0),
+        currentEgg: 0,
         time: Date.now(),
         currentTab: 1,
         settingsToggles: [true],
