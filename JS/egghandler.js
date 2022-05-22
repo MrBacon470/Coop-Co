@@ -10,6 +10,6 @@ const eggValue = [D(0.25),D(1.25),D(6.25),D(30),D(150),
 const eggImgIDs = ['egg','superfood','medical','rocketfuel','supermaterial','fusion','quantum',
     'immortality','tachyon','graviton','dilithium','prodigy','terraform','antimatter',
     'darkmatter','ai','nebula','universe','enlightenment']
-const eggNames = ['Egg','Superfood','Medical','Rocket Fuel','Super Material','Fusion',
+const eggNames = ['Regular','Superfood','Medical','Rocket Fuel','Super Material','Fusion',
     'Quantum','Immortality','Tachyon','Graviton','Dilithium','Prodigy','Terraform',
     'Antimatter','Dark Matter','AI','Nebula','Universe','Enlightenment']
