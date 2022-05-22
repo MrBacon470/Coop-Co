@@ -53,6 +53,13 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 .locked:hover {color: whitesmoke;border-color: #812626;background-color: #812626;}
 .unlocked {color:#2f8126;border-color: #2f8126;background-color: whitesmoke;}
 .unlocked:hover {color: whitesmoke;border-color: #2f8126;background-color: #2f8126;}
+
+.lockedResearch {color:whitesmoke;border-color: #812626;}
+.lockedResearch:hover {color: whitesmoke;border-color: #812626;background-color: #812626;}
+.unlockedResearch {color:whitesmoke;border-color: #2f8126;}
+.unlockedResearch:hover {color: whitesmoke;border-color: #2f8126;background-color: #2f8126;}
+.maxedResearch {color: whitesmoke;border-color: #267081;}
+.maxedResearch:hover {color: whitesmoke;border-color: #267081;background-color: #267081;}
 /*IDs*/
 #mainHeader {
     width: 100%;
