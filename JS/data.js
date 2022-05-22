@@ -6,7 +6,7 @@ function getDefaultObject() {
         soulEggs: D(0),
         currentEgg: 0,
         time: Date.now(),
-        currentTab: 1,
+        currentTab: 0,
         settingsToggles: [true],
         currentUpdate: 'v0.0.0',
         devSpeed: 1,
@@ -26,10 +26,7 @@ function load() {
         createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog for details`,"812626")
         data.currentUpdate = getDefaultObject().currentUpdate
     }
-    updateAutomators()
-    updatePromotionButtons()
-    DOMCacheGetOrSet(`setTog0`).innerHTML = data.settingsToggles[i] ? `Notation: Mixed Sci` : `Notation: Sci`
-    updateBuyAmounts()
+    DOMCacheGetOrSet(`setTog0`).innerHTML = data.settingsToggles[0] ? `Notation: Mixed Sci` : `Notation: Sci`
 }
 //fix saves
 function fixSave(main=getDefaultObject(), data) {
@@ -73,10 +70,7 @@ window.setInterval(function(){
 }, 10000);
 window.onload = function (){
     load()
-    tabChangeHTML()
-    scrollNextMessage()
-    generateEventHandlers()
-    console.log('Event Handlers Initialized...')
+    changeTab(data.currentTab)
 }
 //full reset
 function fullReset(){

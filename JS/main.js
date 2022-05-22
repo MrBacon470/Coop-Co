@@ -5,6 +5,14 @@ function mainLoop() {
 
 }
 
+function changeTab(i) {
+    const tabIDs = ['egg','research','contracts','settings']
+    data.currentTab = i
+    for(let i = 0; i < tabIDs.length; i++) {
+        DOMCacheGetOrSet(`${tabIDs[i]}Tab`).style.display = i === data.currentTab ? 'flex' : 'none'
+    }
+}
+
 window.setInterval(function() {
     mainLoop()
 },50)

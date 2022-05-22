@@ -27,32 +27,22 @@
     <div id="mainHeader" class="flexBox" style="flex-direction:row;align-items: center;align-self: center;">
         <img id="currentEgg" src="Imgs/egg.png">
         <button id="eggPromoteButton" style="margin:1vh;" class="locked">Promote to Next Egg</button>
-        <div class="flexBox" style="margin:1vh;" style="background-color:whitesmoke;color:black">
-            <h2 style="background-color:whitesmoke;color:black;width:100%;text-align:center;">$0.00</h2>
-            <h4 style="background-color:whitesmoke;color:black;width:100%;text-align:center;">Hatchery: 100%</h4>
-        </div>
+        <h2 id="moneyText" style="margin:1vh;background-color:whitesmoke;color:black;">$0.00</h2>
         <div style="margin:1vh;background-color:whitesmoke;color:black;">Chickens: 0</div>
         <button id="eggPromoteButton" style="margin:1vh;" class="locked">???</button>
     </div>
     <div id="game" class="flexBox" style="margin-top:1vh;align-self: center;">
         <div id="navBar" class="flexBox" style="flex-direction:row;align-items: center;">
-            <button style="margin:1vh;">Infrastructure</button>
-            <button style="margin:1vh;">Research</button>
-            <button style="margin:1vh;">Contracts</button>
-            <button style="margin:1vh;">Settings</button>
+            <button style="margin:1vh;" onclick="changeTab(0)">Eggs</button>
+            <button style="margin:1vh;" onclick="changeTab(1)">Research</button>
+            <button style="margin:1vh;" onclick="changeTab(2)">Contracts</button>
+            <button style="margin:1vh;" onclick="changeTab(3)">Settings</button>
         </div>
-        <div id="infraTab" class="flexBox">
-            <h3>Habitats</h3>
+        <div id="eggTab" class="flexBox">
+            <h3>Eggs</h3>
             <div class="flexBox" style="flex-direction:row">
-                <button>Hab-01</button>
-                <button>Hab-02</button>
+
             </div>
-            <div class="flexBox" style="flex-direction:row">
-                <button>Hab-03</button>
-                <button>Hab-04</button>
-            </div>
-            <h3>Transports</h3>
-            <button>Open Window</button>
         </div>
         <div id="researchTab" class="flexBox">
             <h3>Research</h3>
@@ -72,8 +62,13 @@
         <div id="contractsTab" class="flexBox">
             <h3>Contracts</h3>
         </div>
+        <div id="settingsTab" class="flexBox">
+            <div>
+                <button id="setTog0"></button>
+            </div>
+        </div>
     </div>
-    <button id="mainButton">Hold to Hatch</button>
+    <button id="mainButton">Click to Hatch +1 Chicken</button>
 </body>
     <script src="JS/Internal/BreakEternity.js"></script>
     <script src="JS/Internal/Cache.js"></script>
