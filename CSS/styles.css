@@ -29,7 +29,7 @@ button:hover {
     
     transition-duration: 0.5s;
 }
-img {height: 3.5em; width: 3.5em; background-color: whitesmoke;}
+img {height: 3.5em; width: 3.5em;}
 h1,h2,h3,h4 { margin-bottom: 1vh;}
 /*Classes*/
 .flexBox {

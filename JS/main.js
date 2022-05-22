@@ -2,7 +2,8 @@ let diff = 0;
 function mainLoop() {
     diff = (Date.now()-data.time)*data.devSpeed/1000
     data.time = Date.now()
-
+    data.money = data.money.add((eggValue[data.currentEgg].mul(diff)).times(data.chickens))
+    updateHTML()
 }
 
 function changeTab(i) {
@@ -13,16 +14,10 @@ function changeTab(i) {
     }
 }
 
-window.setInterval(function() {
-    mainLoop()
-},50)
+function toggle(i) {data.settingsToggles[i] = !data.settingsToggles[i]}
 
-/**
- * 
- * @param {*} a The Alert Title
- * @param {*} b The Alert Content
- * @param {*} c The Alert Border Color
- */
+
+
  function createAlert(a,b,c) {
     DOMCacheGetOrSet('alertContainer').style.border = `4px solid #${c}`
     DOMCacheGetOrSet('alertTitle').innerHTML = a
@@ -31,11 +26,6 @@ window.setInterval(function() {
     DOMCacheGetOrSet('alertContainer').style.display = 'block'
 }
 
-/**
- * 
- * @param {*} a Prompt Title
- * @param {*} b Function Switch
- */
 function createPrompt(a,b) {
     
     let old_element = document.getElementById("promptButton");
@@ -65,3 +55,7 @@ function closeModal(i) {
     }
     
 }
+
+window.setInterval(function() {
+    mainLoop()
+},50)

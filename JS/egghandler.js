@@ -7,7 +7,9 @@ const eggUnlockReq = [D(6.8e7),D(5.3e9),D(2.4e11),D(1.7e14),D(5e16),
 const eggValue = [D(0.25),D(1.25),D(6.25),D(30),D(150),
     D(700),D(3e3),D(1.25e4),D(5e4),D(1.75e5),D(5.25e5),
     D(1.5e6),D(1e7),D(1e9),D(1e11),D(1e12),D(1.5e13),D(1e14),D(0.0000001)]
-
-function updateMoney(x) {
-    data.money = data.money.plus(eggValue[data.currentEgg].times(x))
-}
+const eggImgIDs = ['egg','superfood','medical','rocketfuel','supermaterial','fusion','quantum',
+    'immortality','tachyon','graviton','dilithium','prodigy','terraform','antimatter',
+    'darkmatter','ai','nebula','universe','enlightenment']
+const eggNames = ['Egg','Superfood','Medical','Rocket Fuel','Super Material','Fusion',
+    'Quantum','Immortality','Tachyon','Graviton','Dilithium','Prodigy','Terraform',
+    'Antimatter','Dark Matter','AI','Nebula','Universe','Enlightenment']

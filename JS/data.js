@@ -3,8 +3,10 @@ const D = x => new Decimal(x)
 function getDefaultObject() {
     return {
         money: D(0),
+        chickens: D(0),
         soulEggs: D(0),
         currentEgg: 0,
+        unlockedEgg: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
         time: Date.now(),
         currentTab: 0,
         settingsToggles: [true],
@@ -26,7 +28,6 @@ function load() {
         createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog for details`,"812626")
         data.currentUpdate = getDefaultObject().currentUpdate
     }
-    DOMCacheGetOrSet(`setTog0`).innerHTML = data.settingsToggles[0] ? `Notation: Mixed Sci` : `Notation: Sci`
 }
 //fix saves
 function fixSave(main=getDefaultObject(), data) {
@@ -76,7 +77,6 @@ window.onload = function (){
 function fullReset(){
     exportSave()
     window.localStorage.removeItem(saveName)
-    prevAmount = D(0)
     location.reload()
 }
 function deleteSave(){

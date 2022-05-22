@@ -25,10 +25,10 @@
         </div>
     </div>
     <div id="mainHeader" class="flexBox" style="flex-direction:row;align-items: center;align-self: center;">
-        <img id="currentEgg" src="Imgs/egg.png">
+        <img id="currentEggImgHeader" style="background-color:whitesmoke" src="Imgs/egg.png">
         <button id="eggPromoteButton" style="margin:1vh;" class="locked">Promote to Next Egg</button>
         <h2 id="moneyText" style="margin:1vh;background-color:whitesmoke;color:black;">$0.00</h2>
-        <div style="margin:1vh;background-color:whitesmoke;color:black;">Chickens: 0</div>
+        <div id="chickensText" style="margin:1vh;background-color:whitesmoke;color:black;">Chickens: 0</div>
         <button id="eggPromoteButton" style="margin:1vh;" class="locked">???</button>
     </div>
     <div id="game" class="flexBox" style="margin-top:1vh;align-self: center;">
@@ -40,8 +40,16 @@
         </div>
         <div id="eggTab" class="flexBox">
             <h3>Eggs</h3>
-            <div class="flexBox" style="flex-direction:row">
-
+            <div class="flexBox" style="flex-direction:row;">
+                <div class="flexBox" style="flex-direction:row">
+                    <img id="currentEggImg" src="Imgs/egg.png">
+                    <h4 id="currentEggText">Current Egg: Regular</h4>
+                </div>
+                <p style="margin-left:1vw;margin-right:1vw;">======></p>
+                <div class="flexBox" style="flex-direction:row">
+                    <img id="nextEggImg" src="Imgs/question.png">
+                    <h4 id="nextEggText">Next Egg: Not Discovered</h4>
+                </div>
             </div>
         </div>
         <div id="researchTab" class="flexBox">
@@ -63,12 +71,18 @@
             <h3>Contracts</h3>
         </div>
         <div id="settingsTab" class="flexBox">
+            <div style="margin-bottom:1vh">
+                <button onclick="save()">Save Game</button>
+                <button onclick="exportSave()">Export Save</button>
+                <button onclick="createPrompt('Import Save',0)">Import Save</button>
+                <button onclick="fullReset()">Delete Save (Exports)</button>
+            </div>
             <div>
-                <button id="setTog0"></button>
+                <button onclick="toggle(0)" id="setTog0"></button>
             </div>
         </div>
     </div>
-    <button id="mainButton">Click to Hatch +1 Chicken</button>
+    <button id="mainButton" onclick="data.chickens = data.chickens.plus(1)">Click to Hatch +1 Chicken</button>
 </body>
     <script src="JS/Internal/BreakEternity.js"></script>
     <script src="JS/Internal/Cache.js"></script>
