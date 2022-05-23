@@ -36,5 +36,13 @@ function purchaseResearch(i) {
 function updateResearch() {
     for(let i = 0; i < commonResearchNames.length; i++)
         commonResearchCost[i] = commonResearchBaseCost[i].times(Decimal.pow(1.15, data.research[i]))
+    for(let i = 0; i < epicResearchNames.length; i++)
+        epicResearchCost[i] = epicResearchBaseCost[i].times(Decimal.pow(1.25, data.epicResearch[i]))
 }
 //Epic Section
+const epicResearchNames = ['Epic Internal Hatcheries','Lab Upgrade','Soul Food','Prestige Bonus','Epic Comfy Nests','Accounting Tricks']
+const epicResearchDescs = ['Increase Chicken Gain by 5%','Reduce Research Costs by 5%','Increase Soul Egg Bonus by 1%',
+    '+10% More Soul Eggs per Prestige','Egg Laying Rate +5%','Increase Egg Value by 5%']
+const epicResearchMaxLevel = [D(20),D(10),D(140),D(20),D(20),D(20)]
+const epicResearchBaseCost = [D(100),D(1e5),D(1e6),D(5e6),D(1e3),D(1e3)]
+let epicResearchCost = []

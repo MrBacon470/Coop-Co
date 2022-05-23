@@ -5,15 +5,17 @@ function getDefaultObject() {
         money: D(0),
         chickens: D(0),
         soulEggs: D(0),
+        bestSoulEggs: D(0),
         hasPrestiged: false,
         currentEgg: 0,
         unlockedEgg: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
         research: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
+        epicResearch: [D(0),D(0),D(0),D(0),D(0),D(0)],
         buyAmounts: [0],
         time: Date.now(),
         currentTab: 0,
         settingsToggles: [true],
-        currentUpdate: 'v0.0.0',
+        currentUpdate: 'v0.0.2',
         devSpeed: 1,
     }
 }

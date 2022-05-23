@@ -30,6 +30,16 @@ function updateHTML() {
         DOMCacheGetOrSet(`setTog0`).innerHTML = data.settingsToggles[0] ? `Notation: Mixed Sci` : `Notation: Sci`
     }
     else if(data.currentTab === 4) {
-        DOMCacheGetOrSet('soulEggText').innerHTML = `Soul Eggs: ${format(data.soulEggs)}<br>Earnings Boost: x${format(soulEggBoost)}`
+        DOMCacheGetOrSet('soulEggText').innerHTML = `Soul Eggs: ${format(data.soulEggs)}<br>Best Soul Eggs: ${format(data.bestSoulEggs)}<br>Earnings Boost: x${format(soulEggBoost)}`
+        for(let i = 0; i < epicResearchCost.length; i++)
+            if(data.epicResearch[i].lt(epicResearchMaxLevel[i]))
+                DOMCacheGetOrSet(`er${i}`).classList = data.money.gte(commonResearchCost[i]) ? 'prestige' : 'lockedResearch'
+            else
+                DOMCacheGetOrSet(`er${i}`).classList = 'maxedResearch'
+        for(let i = 0; i < epicResearchNames.length; i++) {
+            DOMCacheGetOrSet(`er${i}`).innerHTML = data.epicResearch[i].lt(epicResearchMaxLevel[i]) ? `${epicResearchNames[i]}<br>${epicResearchDescs[i]}<br>Level: ${format(data.epicResearch[i],0)}/${format(epicResearchMaxLevel[i],0)}<br>
+            Cost: ${format(epicResearchCost[i])} Soul Eggs` : `${epicResearchNames[i]}<br>${epicResearchDescs[i]}<br>Level: ${format(data.research[i],0)}/${format(epicResearchMaxLevel[i],0)}<br>
+            Cost: [MAXED]`
+        }
     }
 }

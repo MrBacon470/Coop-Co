@@ -2,8 +2,10 @@ let soulEggGain = D(0)
 let soulEggBoost = D(0)
 
 function updatePrestige() {
+    if(data.bestSoulEggs.lt(data.soulEggs)) data.bestSoulEggs = data.soulEggs
+    const soulAvg = (data.soulEggs.plus(data.bestSoulEggs)).div(2)
     soulEggGain = data.currentEgg >= 3 ? Decimal.floor(Decimal.sqrt(Decimal.sqrt(data.money))) : D(0)
-    soulEggBoost = D(1).plus(data.soulEggs.times(0.1))
+    soulEggBoost = D(1).plus(soulAvg.times(0.1))
 }
 
 function prestige() {
