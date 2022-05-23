@@ -5,6 +5,7 @@ function getDefaultObject() {
         money: D(0),
         chickens: D(0),
         soulEggs: D(0),
+        hasPrestiged: false,
         currentEgg: 0,
         unlockedEgg: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
         research: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],

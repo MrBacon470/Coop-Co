@@ -82,3 +82,5 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     color: var(--background-color);
     border-color: #dd3131;
 }
+.prestige {border-color:#8e3dcf;color: #8e3dcf;}
+.prestige:hover {border-color: #8e3dcf;color: #393c3c;background-color: #8e3dcf;}

@@ -24,18 +24,30 @@
             <br>
         </div>
     </div>
+    <div id="confirmContainer" class="modalContainer">
+        <div id="confirm" class="flexBox">
+            <h3 id="confirmTitle">Are you sure?</h3>
+            <p id="confirmContent" style="margin-bottom:1vh">New things have been added since last time</p>
+            <div class="flexBox" style="flex-direction: row;">
+                <button id="noConfirm" class="lockedResearch" style="margin-right:0.5vw">No!</button>
+                <button id="yesConfirm" class="unlockedResearch" style="margin-left:0.5vw">Yes!</button>
+            </div>
+            <br>
+        </div>
+    </div>
     <div id="mainHeader" class="flexBox" style="flex-direction:row;align-items: center;align-self: center;">
         <img id="currentEggImgHeader" style="background-color:whitesmoke" src="Imgs/egg.png">
         <button id="eggPromoteButton" style="margin:1vh;" class="locked" onclick="promoteEgg()">Promote to Next Egg</button>
         <h2 id="moneyText" style="margin:1vh;background-color:whitesmoke;color:black;">$0.00</h2>
         <div id="chickensText" style="margin:1vh;background-color:whitesmoke;color:black;">Chickens: 0</div>
-        <button id="eggPromoteButton" style="margin:1vh;" class="locked">???</button>
+        <button id="prestigeButton" style="margin:1vh;" class="locked" onclick="createConfirmation('prestige')">???</button>
     </div>
     <div id="game" class="flexBox" style="margin-top:1vh;align-self: center;">
         <div id="navBar" class="flexBox" style="flex-direction:row;align-items: center;">
             <button style="margin:1vh;" onclick="changeTab(0)">Eggs</button>
             <button style="margin:1vh;" onclick="changeTab(1)">Research</button>
             <button style="margin:1vh;" onclick="changeTab(2)">Contracts</button>
+            <button id="prestigeTabButton" class="prestige" style="margin:1vh;" onclick="changeTab(4)">Prestige</button>
             <button style="margin:1vh;" onclick="changeTab(3)">Settings</button>
         </div>
         <div id="eggTab" class="flexBox">
@@ -56,7 +68,6 @@
             <h3>Research</h3>
             <div class="flexBox" style="flex-direction:row">
                 <div style="margin:1vw;overflow: scroll;max-height: 50vh;display: flex;flex-direction: column;border: 2px solid whitesmoke;padding: 5px;">
-                    <h4>Common Research</h4>
                     <p>Tier I</p>
                     <button id="r0">Research-01</button>
                     <button id="r1">Research-02</button>
@@ -105,6 +116,14 @@
         </div>
         <div id="contractsTab" class="flexBox">
             <h3>Contracts</h3>
+            <p>Error 404: Not Found</p>
+        </div>
+        <div id="prestigeTab" class="flexBox">
+            <h3 style="color:#8e3dcf">Prestige</h3>
+            <div class="flexBox" style="flex-direction:row">
+                <img src="Imgs/soul.png">
+                <h4 id="soulEggText" style="color:#8e3dcf">Soul Eggs: 0.00</h4>
+            </div>
         </div>
         <div id="settingsTab" class="flexBox">
             <div style="margin-bottom:1vh">
@@ -119,6 +138,7 @@
             <div>
                 <h3>Changelog :O</h3>
                 <h4>Alpha Versions</h4>
+                <p>v0.0.2 - Prestige!</p>
                 <p>v0.0.1 - All Eggs, 28 "Common" Researches, Egg Promotion System</p>
             </div>
         </div>
@@ -134,4 +154,5 @@
     <script src="JS/update.js"></script>
     <script src="JS/egghandler.js"></script>
     <script src="JS/research.js"></script>
+    <script src="JS/prestige.js"></script>
 </html>
