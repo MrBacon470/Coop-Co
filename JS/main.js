@@ -2,7 +2,13 @@ let diff = 0;
 function mainLoop() {
     diff = (Date.now()-data.time)*data.devSpeed/1000
     data.time = Date.now()
-    data.money = data.money.add((eggValue[data.currentEgg].mul(diff)).times(data.chickens))
+    updateResearch()
+    updateEggValueBonus()
+    updateIntHatch()
+    updateLayRate()
+    currentEggValue = eggValue[data.currentEgg].times(eggValueBonus)
+    data.chickens = data.chickens.plus(chickenGain.times(diff/60))
+    data.money = data.money.add((currentEggValue.mul(diff)).times(data.chickens.times(layRate)))
     updateHTML()
 }
 

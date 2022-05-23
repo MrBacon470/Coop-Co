@@ -1,4 +1,4 @@
-function format(a) {
+function format(a,b = 2) {
     if(data.settingsToggles[0]) {
         const standardPrefix = ['K','M','B','T','Qa','Qi','Sx','Sp','O','N','Dc','UnDc','DuDc','TrDc','QaDc'
         ,'QiDc','SxDc','SpDc','OcDc','NoDc','Vg','UnVg','DuVg','TrVg','QaVg','QiVg','SxVg','SpVg','OcVg','NoVg','TG']
@@ -8,11 +8,11 @@ function format(a) {
         }
         for(let i = standardReq.length-1; i > -1; i--) {
             if(i === standardReq.length-1 && (a.div(standardReq[i]).gte(1e3)))
-                return formatSci(a)
+                return formatSci(a,b)
             if(a.gte(standardReq[i]))
-                return `${formatSci(a.divide(standardReq[i]))} ${standardPrefix[i]}`
+                return `${formatSci(a.divide(standardReq[i]),b)} ${standardPrefix[i]}`
             if(a.lt(standardReq[0]))
-                return formatSci(a)
+                return formatSci(a,b)
         }
     }
     else {

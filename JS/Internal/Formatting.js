@@ -43,11 +43,11 @@ function sumValues(x) {
 function formatSci(decimal, precision = 2) {
     decimal = new Decimal(decimal)
         if (isNaN(decimal)) return  '[ERROR]: NaN'
-        if (decimal.sign < 0) return "-" + format(decimal.neg(), precision)
+        if (decimal.sign < 0) return "-" + formatSci(decimal.neg(), precision)
         if (decimal.mag === Number.POSITIVE_INFINITY) return "Infinity"
         if (decimal.gte("eeee1000")) {
             let slog = decimal.slog()
-            if (slog.gte(1e6)) return "F" + format(slog.floor())
+            if (slog.gte(1e6)) return "F" + formatSci(slog.floor())
             else return Decimal.pow(10, slog.sub(slog.floor())).toStringWithDecimalPlaces(3) + "F" + commaFormat(slog.floor(), 0)
         } else if (decimal.gte("1e1000000")) return exponentialFormat(decimal, 0, false)
         else if (decimal.gte("1e10000")) return exponentialFormat(decimal, 0)

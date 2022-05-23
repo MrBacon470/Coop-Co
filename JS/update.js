@@ -8,7 +8,15 @@ function updateHTML() {
         updateEggPage()
     }
     else if(data.currentTab === 1) {
-
+        for(let i = 0; i < commonResearchCost.length; i++)
+            if(data.research[i].lt(commonResearchMaxLevel[i]))
+                DOMCacheGetOrSet(`r${i}`).classList = data.money.gte(commonResearchCost[i]) ? 'unlockedResearch' : 'lockedResearch'
+            else
+                DOMCacheGetOrSet(`r${i}`).classList = 'maxedResearch'
+        for(let i = 0; i < commonResearchNames.length; i++) {
+            DOMCacheGetOrSet(`r${i}`).innerHTML = `${commonResearchNames[i]}<br>${commonResearchDescs[i]}<br>Level: ${format(data.research[i],0)}/${format(commonResearchMaxLevel[i],0)}<br>
+            Cost: $${format(commonResearchCost[i])}`
+        }
     }
     else if(data.currentTab === 2) {
 
