@@ -7,7 +7,7 @@ function mainLoop() {
     updateIntHatch()
     updateLayRate()
     currentEggValue = eggValue[data.currentEgg].times(eggValueBonus)
-    data.chickens = data.chickens.plus(chickenGain.times(diff/6000))
+    data.chickens = data.chickens.plus(chickenGain.times(diff/60))
     data.money = data.money.add((currentEggValue.mul(diff)).times(data.chickens.times(layRate)))
     updateHTML()
 }

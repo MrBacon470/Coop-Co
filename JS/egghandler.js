@@ -52,6 +52,7 @@ function updateEggValueBonus() {
 }
 
 function updateIntHatch() {
+    chickenGain = D(0)
     chickenGain = chickenGain.plus(D(2).times(data.research[2]))
     chickenGain = chickenGain.plus(D(5).times(data.research[5]))
     chickenGain = chickenGain.plus(D(10).times(data.research[9]))
