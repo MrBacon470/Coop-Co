@@ -17,7 +17,7 @@ const commonResearchBaseCost = [D(0.5),D(1.16),D(1836),D(454986),D(1351894),D(16
     D(4.222e36),D(433.836e42),D(223.92e48),D(23.596e42),D(17.914e48),D(15.902e51),D(16.564e66),D(14.474e54)]
 let commonResearchCost = []
 for(let i = 0; i < commonResearchNames.length; i++) {
-    commonResearchCost[i] = commonResearchBaseCost[i].times(Decimal.pow(1.15, data.research[i]))
+    commonResearchCost[i] = (commonResearchBaseCost[i].sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.15, data.research[i]))
     DOMCacheGetOrSet(`r${i}`).innerHTML = `${commonResearchNames[i]}<br>${commonResearchDescs[i]}<br>Level: ${format(data.research[i],0)}/${format(commonResearchMaxLevel[i],0)}<br>
     Cost: $${format(commonResearchCost[i])}`
     DOMCacheGetOrSet(`r${i}`).classList = 'lockedResearch'
@@ -35,7 +35,7 @@ function purchaseResearch(i) {
 }
 function updateResearch() {
     for(let i = 0; i < commonResearchNames.length; i++)
-        commonResearchCost[i] = commonResearchBaseCost[i].times(Decimal.pow(1.15, data.research[i]))
+        commonResearchCost[i] = (commonResearchBaseCost[i].sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.15, data.research[i]))
     for(let i = 0; i < epicResearchNames.length; i++)
         epicResearchCost[i] = epicResearchBaseCost[i].times(Decimal.pow(1.25, data.epicResearch[i]))
 }
@@ -46,3 +46,20 @@ const epicResearchDescs = ['Increase Chicken Gain by 5%','Reduce Research Costs 
 const epicResearchMaxLevel = [D(20),D(10),D(140),D(20),D(20),D(20)]
 const epicResearchBaseCost = [D(100),D(1e5),D(1e6),D(5e6),D(1e3),D(1e3)]
 let epicResearchCost = []
+for(let i = 0; i < epicResearchNames.length; i++) {
+    epicResearchCost[i] = epicResearchBaseCost[i].times(Decimal.pow(1.25, data.epicResearch[i]))
+    DOMCacheGetOrSet(`er${i}`).innerHTML = `${epicResearchNames[i]}<br>${epicResearchDescs[i]}<br>Level: ${format(data.epicResearch[i],0)}/${format(epicResearchMaxLevel[i],0)}<br>
+    Cost: ${format(epicResearchCost[i])} Soul Eggs`
+    DOMCacheGetOrSet(`er${i}`).classList = 'lockedResearch'
+    DOMCacheGetOrSet(`er${i}`).onclick = () => purchaseEpicResearch(i)
+}
+function purchaseEpicResearch(i) {
+    const buyAmountNums = [1,5,10,20]
+    for(let j = 0; j < buyAmountNums[data.buyAmounts[1]]; j++) {
+        if(data.soulEggs.gte(epicResearchCost[i]) && data.epicResearch[i].lt(epicResearchMaxLevel[i])) {
+            data.soulEggs = data.soulEggs.sub(epicResearchCost[i])
+            data.epicResearch[i] = data.epicResearch[i].add(1)
+            updateHTML()
+        }
+    }
+}

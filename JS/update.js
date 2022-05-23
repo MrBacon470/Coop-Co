@@ -33,7 +33,7 @@ function updateHTML() {
         DOMCacheGetOrSet('soulEggText').innerHTML = `Soul Eggs: ${format(data.soulEggs)}<br>Best Soul Eggs: ${format(data.bestSoulEggs)}<br>Earnings Boost: x${format(soulEggBoost)}`
         for(let i = 0; i < epicResearchCost.length; i++)
             if(data.epicResearch[i].lt(epicResearchMaxLevel[i]))
-                DOMCacheGetOrSet(`er${i}`).classList = data.money.gte(commonResearchCost[i]) ? 'prestige' : 'lockedResearch'
+                DOMCacheGetOrSet(`er${i}`).classList = data.soulEggs.gte(epicResearchCost[i]) ? 'prestige' : 'lockedResearch'
             else
                 DOMCacheGetOrSet(`er${i}`).classList = 'maxedResearch'
         for(let i = 0; i < epicResearchNames.length; i++) {

@@ -9,7 +9,7 @@ function mainLoop() {
     updatePrestige()
     currentEggValue = eggValue[data.currentEgg].times(eggValueBonus)
     data.chickens = data.chickens.plus(chickenGain.times(diff/60))
-    data.money = data.money.add((currentEggValue.mul(diff)).times(data.chickens.times(layRate)))
+    data.money = data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff)).times(data.chickens.times(layRate)))
     updateHTML()
 }
 

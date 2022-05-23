@@ -52,6 +52,7 @@ function updateEggValueBonus() {
     eggValueBonus = data.research[24].gt(0) ? eggValueBonus.times((D(0.01).times(data.research[24])).plus(1)) : eggValueBonus.times(D(1))
     eggValueBonus = data.research[25].gt(0) ? eggValueBonus.times((D(.01).times(data.research[25])).plus(1)) : eggValueBonus.times(D(1))
     eggValueBonus = data.research[26].gt(0) ? eggValueBonus.times((D(10).times(data.research[26]))) : eggValueBonus.times(D(1))
+    eggValueBonus = data.epicResearch[5].gt(0) ? eggValueBonus.times((D(0.05).times(data.epicResearch[5])).plus(1)) : eggValueBonus.times(D(1))
 }
 
 function updateIntHatch() {
@@ -63,6 +64,7 @@ function updateIntHatch() {
     chickenGain = chickenGain.plus(D(5).times(data.research[15]))
     chickenGain = chickenGain.plus(D(50).times(data.research[19]))
     chickenGain = chickenGain.times(4)
+    chickenGain = chickenGain.times((D(0.05).times(data.epicResearch[0])).plus(1))
 }
 
 function updateLayRate() {
@@ -72,6 +74,7 @@ function updateLayRate() {
     layRate = data.research[10].gt(0) ? layRate.times((D(0.15).times(data.research[10])).plus(1)) : layRate.times(D(1))
     layRate = data.research[16].gt(0) ? layRate.times((D(0.1).times(data.research[16])).plus(1)) : layRate.times(D(1))
     layRate = data.research[27].gt(0) ? layRate.times((D(0.1).times(data.research[27])).plus(1)) : layRate.times(D(1))
+    layRate = data.epicResearch[4].gt(0) ? layRate.times((D(0.5).times(data.epicResearch[4])).plus(1)) : layRate.times(D(1))
 }
 
 function promoteEgg() {
