@@ -59,6 +59,7 @@ function updateIntHatch() {
     chickenGain = chickenGain.plus(D(25).times(data.research[13]))
     chickenGain = chickenGain.plus(D(5).times(data.research[15]))
     chickenGain = chickenGain.plus(D(50).times(data.research[19]))
+    chickenGain = chickenGain.times(4)
 }
 
 function updateLayRate() {
