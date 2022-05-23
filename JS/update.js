@@ -4,6 +4,7 @@ function updateHTML() {
     DOMCacheGetOrSet('chickensText').textContent = `Chickens: ${format(data.chickens)}`
     if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `Imgs/${eggImgIDs[data.currentEgg]}.png`) 
         DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `Imgs/${eggImgIDs[data.currentEgg]}.png`)
+    DOMCacheGetOrSet('eggPromoteButton').classList = data.money.gte(eggUnlockReq[data.currentEgg]) ? 'unlocked' : 'locked'
     if(data.currentTab === 0) {
         updateEggPage()
     }

@@ -26,7 +26,7 @@
     </div>
     <div id="mainHeader" class="flexBox" style="flex-direction:row;align-items: center;align-self: center;">
         <img id="currentEggImgHeader" style="background-color:whitesmoke" src="Imgs/egg.png">
-        <button id="eggPromoteButton" style="margin:1vh;" class="locked">Promote to Next Egg</button>
+        <button id="eggPromoteButton" style="margin:1vh;" class="locked" onclick="promoteEgg()">Promote to Next Egg</button>
         <h2 id="moneyText" style="margin:1vh;background-color:whitesmoke;color:black;">$0.00</h2>
         <div id="chickensText" style="margin:1vh;background-color:whitesmoke;color:black;">Chickens: 0</div>
         <button id="eggPromoteButton" style="margin:1vh;" class="locked">???</button>
@@ -112,8 +112,12 @@
                 <button onclick="createPrompt('Import Save',0)">Import Save</button>
                 <button onclick="fullReset()">Delete Save (Exports)</button>
             </div>
-            <div>
+            <div style="margin-bottom:1vh">
                 <button onclick="toggle(0)" id="setTog0"></button>
+            </div>
+            <div>
+                <h3>Changelog :O</h3>
+                <p>v0.0.1 - All Eggs, 28 "Common" Researches, Egg Promotion System</p>
             </div>
         </div>
     </div>

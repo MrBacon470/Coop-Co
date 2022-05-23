@@ -21,7 +21,7 @@ const eggNames = ['Regular','Superfood','Medical','Rocket Fuel','Super Material'
 function updateEggPage() {
     if(DOMCacheGetOrSet('currentEggImg').getAttribute('src') !== `Imgs/${eggImgIDs[data.currentEgg]}.png`) 
             DOMCacheGetOrSet('currentEggImg').setAttribute('src', `Imgs/${eggImgIDs[data.currentEgg]}.png`)
-        DOMCacheGetOrSet('currentEggText').innerHTML = `Current Egg: ${eggNames[data.currentEgg]}<br>Value: $${format(currentEggValue.times(eggValueBonus))}`
+        DOMCacheGetOrSet('currentEggText').innerHTML = `Current Egg: ${eggNames[data.currentEgg]}<br>Value: $${format(eggValue[data.currentEgg])} (x${format(eggValueBonus)})`
         if((DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/${eggImgIDs[data.currentEgg+1]}.png` && (data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggDiscoverReq[data.currentEgg]))) 
         || (DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/question.png` && (data.unlockedEgg[data.currentEgg] === false && data.money.lt(eggDiscoverReq[data.currentEgg]))))
             DOMCacheGetOrSet('nextEggImg').src = data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggDiscoverReq[data.currentEgg]) ? `Imgs/${eggImgIDs[data.currentEgg+1]}.png` : `Imgs/question.png`
@@ -67,4 +67,18 @@ function updateLayRate() {
     layRate = data.research[10].gt(0) ? layRate.times((D(0.15).times(data.research[10])).plus(1)) : layRate.times(D(1))
     layRate = data.research[16].gt(0) ? layRate.times((D(0.1).times(data.research[16])).plus(1)) : layRate.times(D(1))
     layRate = data.research[27].gt(0) ? layRate.times((D(0.1).times(data.research[27])).plus(1)) : layRate.times(D(1))
+}
+
+function promoteEgg() {
+    if(data.currentEgg === eggDiscoverReq.length) return
+    if(data.money.lt(eggUnlockReq[data.currentEgg])) return
+    data.unlockedEgg[data.currentEgg] = true
+    data.currentEgg++
+    for(let i = 0; i < data.research.length; i++)
+        data.research[i] = D(0)
+    eggValueBonus = D(1)
+    chickenGain = D(0)
+    layRate = D(1)
+    data.chickens = D(0)
+    data.money = D(0)
 }
