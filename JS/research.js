@@ -24,10 +24,13 @@ for(let i = 0; i < commonResearchNames.length; i++) {
     DOMCacheGetOrSet(`r${i}`).onclick = () => purchaseResearch(i)
 }
 function purchaseResearch(i) {
-    if(data.money.gte(commonResearchCost[i]) && data.research[i].lt(commonResearchMaxLevel[i])) {
-        data.money = data.money.sub(commonResearchCost[i])
-        data.research[i] = data.research[i].add(1)
-        updateHTML()
+    const buyAmountNums = [1,5,10,20]
+    for(let j = 0; j < buyAmountNums[data.buyAmounts[0]]; j++) {
+        if(data.money.gte(commonResearchCost[i]) && data.research[i].lt(commonResearchMaxLevel[i])) {
+            data.money = data.money.sub(commonResearchCost[i])
+            data.research[i] = data.research[i].add(1)
+            updateHTML()
+        }
     }
 }
 function updateResearch() {

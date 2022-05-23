@@ -15,8 +15,9 @@ function updateHTML() {
             else
                 DOMCacheGetOrSet(`r${i}`).classList = 'maxedResearch'
         for(let i = 0; i < commonResearchNames.length; i++) {
-            DOMCacheGetOrSet(`r${i}`).innerHTML = `${commonResearchNames[i]}<br>${commonResearchDescs[i]}<br>Level: ${format(data.research[i],0)}/${format(commonResearchMaxLevel[i],0)}<br>
-            Cost: $${format(commonResearchCost[i])}`
+            DOMCacheGetOrSet(`r${i}`).innerHTML = data.research[i].lt(commonResearchMaxLevel[i]) ? `${commonResearchNames[i]}<br>${commonResearchDescs[i]}<br>Level: ${format(data.research[i],0)}/${format(commonResearchMaxLevel[i],0)}<br>
+            Cost: $${format(commonResearchCost[i])}` : `${commonResearchNames[i]}<br>${commonResearchDescs[i]}<br>Level: ${format(data.research[i],0)}/${format(commonResearchMaxLevel[i],0)}<br>
+            Cost: [MAXED]`
         }
     }
     else if(data.currentTab === 2) {

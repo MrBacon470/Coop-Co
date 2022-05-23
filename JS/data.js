@@ -8,6 +8,7 @@ function getDefaultObject() {
         currentEgg: 0,
         unlockedEgg: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
         research: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
+        buyAmounts: [0],
         time: Date.now(),
         currentTab: 0,
         settingsToggles: [true],
