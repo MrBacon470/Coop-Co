@@ -60,6 +60,9 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 .unlockedResearch:hover {color: whitesmoke;border-color: #2f8126;background-color: #2f8126;}
 .maxedResearch {color: whitesmoke;border-color: #267081;}
 .maxedResearch:hover {color: whitesmoke;border-color: #267081;background-color: #267081;}
+
+.prestige {border-color:#8e3dcf;color: #8e3dcf;}
+.prestige:hover {border-color: #8e3dcf;color: #393c3c;background-color: #8e3dcf;}
 /*IDs*/
 #mainHeader {
     width: 100%;
@@ -82,5 +85,4 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     color: var(--background-color);
     border-color: #dd3131;
 }
-.prestige {border-color:#8e3dcf;color: #8e3dcf;}
-.prestige:hover {border-color: #8e3dcf;color: #393c3c;background-color: #8e3dcf;}
+#researchCol button {margin-bottom: 1vh;}
