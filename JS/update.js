@@ -38,7 +38,7 @@ function updateHTML() {
                 DOMCacheGetOrSet(`er${i}`).classList = 'maxedResearch'
         for(let i = 0; i < epicResearchNames.length; i++) {
             DOMCacheGetOrSet(`er${i}`).innerHTML = data.epicResearch[i].lt(epicResearchMaxLevel[i]) ? `${epicResearchNames[i]}<br>${epicResearchDescs[i]}<br>Level: ${format(data.epicResearch[i],0)}/${format(epicResearchMaxLevel[i],0)}<br>
-            Cost: ${format(epicResearchCost[i])} Soul Eggs` : `${epicResearchNames[i]}<br>${epicResearchDescs[i]}<br>Level: ${format(data.research[i],0)}/${format(epicResearchMaxLevel[i],0)}<br>
+            Cost: ${format(epicResearchCost[i])} Soul Eggs` : `${epicResearchNames[i]}<br>${epicResearchDescs[i]}<br>Level: ${format(data.epicResearch[i],0)}/${format(epicResearchMaxLevel[i],0)}<br>
             Cost: [MAXED]`
         }
     }
