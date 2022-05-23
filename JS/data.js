@@ -33,6 +33,11 @@ function load() {
         createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog for details`,"812626")
         data.currentUpdate = getDefaultObject().currentUpdate
     }
+    for(let i = 0; i < data.buyAmounts.length; i++) {
+        const numString = ['1','5','10','20']
+        DOMCacheGetOrSet(`ba${i}`).innerHTML = `Buy Amount: ${numString[data.buyAmounts[i]]}`
+        DOMCacheGetOrSet(`ba${i}`).onclick = () => {toggleBA(i)}
+    }
 }
 //fix saves
 function fixSave(main=getDefaultObject(), data) {

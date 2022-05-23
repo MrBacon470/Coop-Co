@@ -28,12 +28,6 @@ function toggleBA(i) {
     DOMCacheGetOrSet(`ba${i}`).innerHTML = `Buy Amount: ${numString[data.buyAmounts[i]]}`
 }
 
-for(let i = 0; i < data.buyAmounts.length; i++) {
-    const numString = ['1','5','10','20']
-    DOMCacheGetOrSet(`ba${i}`).innerHTML = `Buy Amount: ${numString[data.buyAmounts[i]]}`
-    DOMCacheGetOrSet(`ba${i}`).onclick = () => {toggleBA(i)}
-}
-
  function createAlert(a,b,c) {
     DOMCacheGetOrSet('alertContainer').style.border = `4px solid #${c}`
     DOMCacheGetOrSet('alertTitle').innerHTML = a
