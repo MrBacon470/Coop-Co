@@ -150,6 +150,7 @@
                     </div>
                 </div>
             </div>
+            <button id="mainButton" onclick="data.chickens = data.chickens.plus(1)">Click to Hatch +1 Chicken</button>
         </div>
         <div id="researchTab" class="flexBox tabHolder">
             <h3>Research</h3>
@@ -213,18 +214,23 @@
             </div>
             <button id="ba0">Buy Amount: 1</button>
             <div>All Research Bonuses Compound</div>
+            <div>
+                <button id="auto0"></button>
+                <button id="auto1"></button>
+            </div>
         </div>
         <div id="contractsTab" class="flexBox tabHolder">
             <h3>Contracts</h3>
             <p id="contractHiddenText">Unlock at Fusion Eggs</p>
             <div id="contractHolder">
-                <div id="contract0" class="flexBox" style="border: 2px solid whitesmoke;align-items:flex-start;padding:5px;border-radius: 5px;">
+                <div id="contract0" class="flexBox" style="border: 2px solid whitesmoke;align-items:flex-start;padding:2px;border-radius: 5px;">
                     <img id="contract0Img" src="Imgs/fusion.png">
                     <div id="contract0Content">
                         <h4 id="contract0Header">Contract-01</h4>
                         <p id="contract0Description">A Californian Energy Shortage means more demand for Fusion Eggs</p>
                         <p style="color:#dd3131">!When you start a contract you will do a prestige reset and be unable to leave the egg until<br>the contract is complete or cancelled!</p>
                     </div>
+                    <p id="contract0Goal"></p>
                     <p id="contract0Reward">Reward: 0.00 Soul Eggs</p>
                     <button id="contract0button">Accept</button>
                 </div>
@@ -235,6 +241,7 @@
                         <p id="contract1Description">A Californian Energy Shortage means more demand for Fusion Eggs</p>
                         <p style="color:#dd3131">!When you start a contract you will do a prestige reset and be unable to leave the egg until<br>the contract is complete or cancelled!</p>
                     </div>
+                    <p id="contract1Goal"></p>
                     <p id="contract1Reward">Reward: 0.00 Soul Eggs</p>
                     <button id="contract1button">Accept</button>
                 </div>
@@ -245,9 +252,9 @@
                         <p id="contract2Description">A Californian Energy Shortage means more demand for Fusion Eggs</p>
                         <p style="color:#dd3131">!When you start a contract you will do a prestige reset and be unable to leave the egg until<br>the contract is complete or cancelled!</p>
                     </div>
+                    <p id="contract2Goal"></p>
                     <p id="contract2Reward">Reward: 0.00 Soul Eggs</p>
                     <button id="contract2button">Accept</button>
-                    <button onclick="generateContract(2)">Purchase New Contract</button>
                 </div>
             </div>
         </div>
@@ -296,7 +303,7 @@
             </div>
         </div>
     </div>
-    <button id="mainButton" onclick="data.chickens = data.chickens.plus(1)">Click to Hatch +1 Chicken</button>
+    
 </body>
     <script src="JS/Internal/BreakEternity.js"></script>
     <script src="JS/Internal/Cache.js"></script>

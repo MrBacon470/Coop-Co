@@ -34,5 +34,6 @@ function generateContract(i) {
         contract.rewardIndex = index
         contract.reward = D(getRandomDecimal(D(1),D(5)))
     }
+    contract.goal = D(getRandomDecimal(D(1e6),D(1e33)))
     data.contracts[i] = contract
 }

@@ -71,7 +71,8 @@ function load() {
     }
     if(data.unlockedContracts === false) {
         for(let i = 0; i < 3; i++) {
-            data.contracts[i] = generateContract()
+            if(data.contracts[i] === defaultContract)
+                generateContract(i)
         }
     }
 }

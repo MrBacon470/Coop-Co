@@ -34,6 +34,7 @@ function updateHTML() {
                 DOMCacheGetOrSet(`contract${i}Header`).textContent = `Contract-0${i+1} | ${data.contracts[i].title}`
                 DOMCacheGetOrSet(`contract${i}Description`).textContent = data.contracts[i].description
                 DOMCacheGetOrSet(`contract${i}Reward`).textContent = `Reward: ${format(data.contracts[i].reward)} ${data.contracts[i].rewardType}`
+                DOMCacheGetOrSet(`contract${i}Goal`).textContent = `Goal: $${format(data.contracts[i].goal)}`
             }
         }
     }
