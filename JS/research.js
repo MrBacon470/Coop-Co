@@ -31,6 +31,8 @@ function purchaseResearch(i) {
             data.research[i] = data.research[i].add(1)
             updateHTML()
         }
+        else
+            break
     }
 }
 function updateResearch() {
@@ -61,5 +63,7 @@ function purchaseEpicResearch(i) {
             data.epicResearch[i] = data.epicResearch[i].add(1)
             updateHTML()
         }
+        else
+            break
     }
 }
