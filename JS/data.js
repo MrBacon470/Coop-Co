@@ -9,6 +9,7 @@ function getDefaultObject() {
         bestSoulEggs: D(0),
         hasPrestiged: false,
         unlockedContracts: false,
+        generatedContracts: false,
         contracts: [{
             title: '',
             description: '',
@@ -70,10 +71,13 @@ function load() {
         DOMCacheGetOrSet(`ba${i}`).innerHTML = `Buy Amount: ${numString[data.buyAmounts[i]]}`
         DOMCacheGetOrSet(`ba${i}`).onclick = () => {toggleBA(i)}
     }
-    for(let i = 0; i < 3; i++) {
-        if(data.contracts[i] === defaultContract)
+    if(data.generatedContracts === false){
+        for(let i = 0; i < 3; i++) {
             generateContract(i)
+        }
+        data.generatedContracts = true
     }
+    
 }
 //fix saves
 function fixSave(main=getDefaultObject(), data) {
