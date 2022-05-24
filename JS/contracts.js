@@ -42,7 +42,6 @@ function startContract(i) {
     for(let j = 0; j < data.contractActive.length; j++) {
         if(i === j && data.contractActive[j] === true) {
             data.contractActive[j] = false
-            data.soulEggs = data.soulEggs.plus(soulEggGain)
             for(let i = 0; i < data.research.length; i++)
                 data.research[i] = D(0)
             eggValueBonus = D(1)
@@ -82,7 +81,6 @@ function runContract(i) {
         }
         data.contractActive[i] = false
         generateContract(i)
-        data.soulEggs = data.soulEggs.plus(soulEggGain)
             for(let i = 0; i < data.research.length; i++)
                 data.research[i] = D(0)
             eggValueBonus = D(1)
