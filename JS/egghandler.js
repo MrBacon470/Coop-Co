@@ -89,6 +89,9 @@ function updateLayRate() {
 function promoteEgg() {
     if(data.currentEgg === eggDiscoverReq.length) return
     if(data.money.lt(eggUnlockReq[data.currentEgg])) return
+    for(let i = 0; i < data.contractActive.length; i++) {
+        if(data.contractActive[i] === true) return
+    }
     data.unlockedEgg[data.currentEgg] = true
     data.currentEgg++
     for(let i = 0; i < data.research.length; i++)
