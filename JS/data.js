@@ -37,6 +37,7 @@ function getDefaultObject() {
             goal: D(0),
             rewardIndex: 0
         }],
+        contractActive: [false,false,false],
         currentEgg: 0,
         unlockedEgg: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
         research: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
@@ -46,7 +47,7 @@ function getDefaultObject() {
         time: Date.now(),
         currentTab: 0,
         settingsToggles: [true],
-        currentUpdate: 'v0.0.2',
+        currentUpdate: 'v0.0.3',
         devSpeed: 1,
     }
 }
@@ -69,11 +70,9 @@ function load() {
         DOMCacheGetOrSet(`ba${i}`).innerHTML = `Buy Amount: ${numString[data.buyAmounts[i]]}`
         DOMCacheGetOrSet(`ba${i}`).onclick = () => {toggleBA(i)}
     }
-    if(data.unlockedContracts === false) {
-        for(let i = 0; i < 3; i++) {
-            if(data.contracts[i] === defaultContract)
-                generateContract(i)
-        }
+    for(let i = 0; i < 3; i++) {
+        if(data.contracts[i] === defaultContract)
+            generateContract(i)
     }
 }
 //fix saves

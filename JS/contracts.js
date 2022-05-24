@@ -27,13 +27,69 @@ function generateContract(i) {
     if(index <= 1) {
         contract.rewardType = 'Soul Eggs'
         contract.rewardIndex = index
-        contract.reward = D(getRandomDecimal(Decimal.round(data.soulEggs),Decimal.round(data.bestSoulEggs)))
+        contract.reward = D(getRandomDecimal(Decimal.round(data.soulEggs),Decimal.round(data.soulEggs.times(D(1.5)))))
     }
     else {
         contract.rewardType = 'Prophecy Eggs'
         contract.rewardIndex = index
         contract.reward = D(getRandomDecimal(D(1),D(5)))
     }
-    contract.goal = D(getRandomDecimal(D(1e6),D(1e33)))
+    contract.goal = D(getRandomDecimal(D(1e6),D(1e24)))
     data.contracts[i] = contract
+}
+
+function startContract(i) {
+    for(let j = 0; j < data.contractActive.length; j++) {
+        if(i === j && data.contractActive[j] === true) {
+            data.contractActive[j] = false
+            data.soulEggs = data.soulEggs.plus(soulEggGain)
+            for(let i = 0; i < data.research.length; i++)
+                data.research[i] = D(0)
+            eggValueBonus = D(1)
+            chickenGain = D(0)
+            layRate = D(1)
+            data.chickens = D(0)
+            data.money = D(0)
+            data.currentEgg = 0
+            return
+        }
+        if(data.contractActive[j] === true) return 
+    }
+        
+    data.contractActive[i] = true
+    data.soulEggs = data.soulEggs.plus(soulEggGain)
+    for(let i = 0; i < data.research.length; i++)
+        data.research[i] = D(0)
+    eggValueBonus = D(1)
+    chickenGain = D(0)
+    layRate = D(1)
+    data.chickens = D(0)
+    data.money = D(0)
+    data.currentEgg = data.contracts[i].eggIndex
+}
+for(let i = 0; i < data.contracts.length; i++)
+    DOMCacheGetOrSet(`contract${i}Button`).addEventListener('click', () => { startContract(i) })
+
+function runContract(i) {
+    if(data.money.gte(data.contracts[i].goal)) {
+        switch(data.contracts[i].rewardType) {
+            case 'Soul Eggs':
+                data.soulEggs = data.soulEggs.plus(data.contracts[i].reward)
+                break
+            case 'Prophecy Eggs':
+                data.prophecyEggs = data.prophecyEggs.plus(data.contracts[i].reward)
+                break
+        }
+        data.contractActive[i] = false
+        generateContract(i)
+        data.soulEggs = data.soulEggs.plus(soulEggGain)
+            for(let i = 0; i < data.research.length; i++)
+                data.research[i] = D(0)
+            eggValueBonus = D(1)
+            chickenGain = D(0)
+            layRate = D(1)
+            data.chickens = D(0)
+            data.money = D(0)
+            data.currentEgg = 0
+    }
 }

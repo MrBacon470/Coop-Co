@@ -35,6 +35,7 @@ function updateHTML() {
                 DOMCacheGetOrSet(`contract${i}Description`).textContent = data.contracts[i].description
                 DOMCacheGetOrSet(`contract${i}Reward`).textContent = `Reward: ${format(data.contracts[i].reward)} ${data.contracts[i].rewardType}`
                 DOMCacheGetOrSet(`contract${i}Goal`).textContent = `Goal: $${format(data.contracts[i].goal)}`
+                DOMCacheGetOrSet(`contract${i}Button`).textContent = data.contractActive[i] ? `Leave Contract` : `Start Contract`
             }
         }
     }
@@ -43,6 +44,7 @@ function updateHTML() {
     }
     else if(data.currentTab === 4) {
         DOMCacheGetOrSet('soulEggText').innerHTML = `Soul Eggs: ${format(data.soulEggs)}<br>Best Soul Eggs: ${format(data.bestSoulEggs)}<br>Earnings Boost: x${format(soulEggBoost)}`
+        DOMCacheGetOrSet('prophecyEggText').innerHTML = `Prophecy Eggs: ${format(data.prophecyEggs)}<br>Soul Boost: x${format(prophecyEggBoost)}`
         for(let i = 0; i < epicResearchCost.length; i++)
             if(data.epicResearch[i].lt(epicResearchMaxLevel[i]))
                 DOMCacheGetOrSet(`er${i}`).classList = data.soulEggs.gte(epicResearchCost[i]) ? 'prestige' : 'lockedResearch'

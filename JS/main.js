@@ -8,6 +8,10 @@ function mainLoop() {
     updateLayRate()
     updatePrestige()
     updateAutomation()
+    for(let i = 0; i < data.contractActive.length; i++) {
+        if(data.contractActive[i])
+            runContract(i)
+    }
     currentEggValue = eggValue[data.currentEgg].times(eggValueBonus)
     data.chickens = data.chickens.plus(chickenGain.times(diff/15))
     data.money = data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff)).times(data.chickens.times(layRate)))
