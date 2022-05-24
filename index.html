@@ -50,7 +50,7 @@
             <button id="prestigeTabButton" class="prestige" style="margin:1vh;" onclick="changeTab(4)">Prestige</button>
             <button style="margin:1vh;" onclick="changeTab(3)">Settings</button>
         </div>
-        <div id="eggTab" class="flexBox">
+        <div id="eggTab" class="flexBox tabHolder">
             <h3>Eggs</h3>
             <div class="flexBox" style="flex-direction:row;">
                 <div class="flexBox" style="flex-direction:row">
@@ -63,7 +63,7 @@
                     <h4 id="nextEggText">Next Egg: Not Discovered</h4>
                 </div>
             </div>
-            <div class="flexBox">
+            <div class="flexBox tabHolder">
                 <h4>Discovered Eggs</h4>
                 <div class="flexBox" style="flex-direction:row">
                     <div class="flexBox">
@@ -151,7 +151,7 @@
                 </div>
             </div>
         </div>
-        <div id="researchTab" class="flexBox">
+        <div id="researchTab" class="flexBox tabHolder">
             <h3>Research</h3>
             <div class="flexBox" style="flex-direction:row;margin: 1vh;">
                 <div id="researchCol" style="flex-direction:column;display: flex;align-items: center;margin: 4px;">
@@ -214,7 +214,7 @@
             <button id="ba0">Buy Amount: 1</button>
             <div>All Research Bonuses Compound</div>
         </div>
-        <div id="contractsTab" class="flexBox">
+        <div id="contractsTab" class="flexBox tabHolder">
             <h3>Contracts</h3>
             <p id="contractHiddenText">Unlock at Fusion Eggs</p>
             <div id="contractHolder">
@@ -251,7 +251,7 @@
                 </div>
             </div>
         </div>
-        <div id="prestigeTab" class="flexBox">
+        <div id="prestigeTab" class="flexBox tabHolder">
             <h3 style="color:#8e3dcf">Prestige</h3>
             <div class="flexBox" style="flex-direction:row">
                 <img src="Imgs/soul.png">
@@ -267,13 +267,17 @@
                 <button id="er4"></button>
                 <button id="er5"></button>
             </div>
+            <div style="display:flex;flex-direction:row;align-items:center;margin-bottom: 1vh;">
+                <button id="er6"></button>
+                <button id="er7"></button>
+            </div>
             <button id="ba1">Buy Amount: 1</button>
             <div class="flexBox" style="flex-direction:row">
                 <img src="Imgs/prophecy.png">
                 <h4 id="prophecyEggText" style="color:#cdcf3d">Prophecy Eggs: 0.00</h4>
             </div>
         </div>
-        <div id="settingsTab" class="flexBox">
+        <div id="settingsTab" class="flexBox tabHolder">
             <div style="margin-bottom:1vh">
                 <button onclick="save()">Save Game</button>
                 <button onclick="exportSave()">Export Save</button>
@@ -305,4 +309,5 @@
     <script src="JS/research.js"></script>
     <script src="JS/prestige.js"></script>
     <script src="JS/contracts.js"></script>
+    <script src="JS/automation.js"></script>
 </html>

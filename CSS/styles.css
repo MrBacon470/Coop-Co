@@ -49,6 +49,9 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     border-radius: 3px;
     border: 4px solid #812626;
 }
+.tabHolder {padding:1vw 1vh 1vw 1vh;}
+
+
 .locked {color:#812626;border-color: #812626;background-color: whitesmoke;}
 .locked:hover {color: whitesmoke;border-color: #812626;background-color: #812626;}
 .unlocked {color:#2f8126;border-color: #2f8126;background-color: whitesmoke;}
@@ -63,6 +66,8 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 
 .prestige {border-color:#8e3dcf;color: #8e3dcf;}
 .prestige:hover {border-color: #8e3dcf;color: #393c3c;background-color: #8e3dcf;}
+.prestigeHeader {border-color:#8e3dcf;color: #8e3dcf;background-color: whitesmoke;}
+.prestigeHeader:hover {border-color: #8e3dcf;color: whitesmoke;background-color: #8e3dcf;}
 /*IDs*/
 #mainHeader {
     width: 100%;
