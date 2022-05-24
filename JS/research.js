@@ -26,6 +26,7 @@ for(let i = 0; i < commonResearchNames.length; i++) {
 function purchaseResearch(i) {
     const buyAmountNums = [1,5,10,20]
     for(let j = 0; j < buyAmountNums[data.buyAmounts[0]]; j++) {
+        updateResearch()
         if(data.money.gte(commonResearchCost[i]) && data.research[i].lt(commonResearchMaxLevel[i])) {
             data.money = data.money.sub(commonResearchCost[i])
             data.research[i] = data.research[i].add(1)
@@ -58,6 +59,7 @@ for(let i = 0; i < epicResearchNames.length; i++) {
 function purchaseEpicResearch(i) {
     const buyAmountNums = [1,5,10,20]
     for(let j = 0; j < buyAmountNums[data.buyAmounts[1]]; j++) {
+        updateResearch()
         if(data.soulEggs.gte(epicResearchCost[i]) && data.epicResearch[i].lt(epicResearchMaxLevel[i])) {
             data.soulEggs = data.soulEggs.sub(epicResearchCost[i])
             data.epicResearch[i] = data.epicResearch[i].add(1)
