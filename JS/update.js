@@ -5,7 +5,7 @@ function updateHTML() {
     if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `Imgs/${eggImgIDs[data.currentEgg]}.png`) 
         DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `Imgs/${eggImgIDs[data.currentEgg]}.png`)
     DOMCacheGetOrSet('eggPromoteButton').classList = data.money.gte(eggUnlockReq[data.currentEgg]) ? 'unlocked' : 'locked'
-    DOMCacheGetOrSet('eggPromoteButton').style.display = data.currentEgg.gte(eggNames.length-1) ? 'none' : 'inline-block'
+    DOMCacheGetOrSet('eggPromoteButton').style.display = data.currentEgg >= eggNames.length-1 ? 'none' : 'inline-block'
     DOMCacheGetOrSet('prestigeTabButton').style.display = data.hasPrestiged === true ? 'block' : 'none'
     DOMCacheGetOrSet('prestigeButton').classList = data.currentEgg < 3 ? 'locked' : 'prestigeHeader'
     DOMCacheGetOrSet('prestigeButton').innerHTML = data.currentEgg < 3 ? 'Reach Rocket Fuel Eggs' : `Prestige: +${format(soulEggGain)} Soul Eggs`
