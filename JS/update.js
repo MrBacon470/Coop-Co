@@ -26,6 +26,12 @@ function updateHTML() {
     else if(data.currentTab === 2) {
         if(data.unlockedContracts === false && data.currentEgg >= 5)
             data.unlockedContracts = true
+            if(data.generatedContracts === false && data.unlockedContracts === true){
+                for(let i = 0; i < 3; i++) {
+                    generateContract(i)
+                }
+                data.generatedContracts = true
+            }
         DOMCacheGetOrSet('contractHiddenText').style.display = data.unlockedContracts === false ? 'block' : 'none'
         DOMCacheGetOrSet('contractHolder').style.display = data.unlockedContracts === true ? 'block' : 'none'
         if(data.unlockedContracts === true) {

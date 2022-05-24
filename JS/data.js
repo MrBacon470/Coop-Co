@@ -71,13 +71,6 @@ function load() {
         DOMCacheGetOrSet(`ba${i}`).innerHTML = `Buy Amount: ${numString[data.buyAmounts[i]]}`
         DOMCacheGetOrSet(`ba${i}`).onclick = () => {toggleBA(i)}
     }
-    if(data.generatedContracts === false){
-        for(let i = 0; i < 3; i++) {
-            generateContract(i)
-        }
-        data.generatedContracts = true
-    }
-    
 }
 //fix saves
 function fixSave(main=getDefaultObject(), data) {
