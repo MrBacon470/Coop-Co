@@ -37,6 +37,8 @@ function updateEggPage() {
             DOMCacheGetOrSet('nextEggImg').setAttribute('src', `Imgs/enlightenment.png`)
         DOMCacheGetOrSet('nextEggText').innerHTML = `The Final Egg`
     }
+    for(let i = 0; i < data.unlockedEgg.length; i++)
+        DOMCacheGetOrSet(`eggHold${i}`).style.display = data.unlockedEgg[i] === true ? 'flex' : 'none'
 }
 
 function updateEggValueBonus() {
