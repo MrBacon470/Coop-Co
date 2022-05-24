@@ -9,6 +9,34 @@ function getDefaultObject() {
         bestSoulEggs: D(0),
         hasPrestiged: false,
         unlockedContracts: false,
+        contracts: [{
+            title: '',
+            description: '',
+            image: '',
+            eggIndex: 0,
+            reward: D(0),
+            rewardType: '',
+            goal: D(0),
+            rewardIndex: 0
+        },{
+            title: '',
+            description: '',
+            image: '',
+            eggIndex: 0,
+            reward: D(0),
+            rewardType: '',
+            goal: D(0),
+            rewardIndex: 0
+        },{
+            title: '',
+            description: '',
+            image: '',
+            eggIndex: 0,
+            reward: D(0),
+            rewardType: '',
+            goal: D(0),
+            rewardIndex: 0
+        }],
         currentEgg: 0,
         unlockedEgg: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
         research: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
@@ -39,6 +67,11 @@ function load() {
         const numString = ['1','5','10','20']
         DOMCacheGetOrSet(`ba${i}`).innerHTML = `Buy Amount: ${numString[data.buyAmounts[i]]}`
         DOMCacheGetOrSet(`ba${i}`).onclick = () => {toggleBA(i)}
+    }
+    if(data.unlockedContracts === false) {
+        for(let i = 0; i < 3; i++) {
+            data.contracts[i] = generateContract()
+        }
     }
 }
 //fix saves

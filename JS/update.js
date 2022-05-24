@@ -28,6 +28,14 @@ function updateHTML() {
             data.unlockedContracts = true
         DOMCacheGetOrSet('contractHiddenText').style.display = data.unlockedContracts === false ? 'block' : 'none'
         DOMCacheGetOrSet('contractHolder').style.display = data.unlockedContracts === true ? 'block' : 'none'
+        if(data.unlockedContracts === true) {
+            for(let i = 0; i < data.contracts.length; i++) {
+                DOMCacheGetOrSet(`contract${i}Img`).setAttribute('src', data.contracts[i].image)
+                DOMCacheGetOrSet(`contract${i}Header`).textContent = `Contract-0${i+1} | ${data.contracts[i].title}`
+                DOMCacheGetOrSet(`contract${i}Description`).textContent = data.contracts[i].description
+                DOMCacheGetOrSet(`contract${i}Reward`).textContent = `Reward: ${format(data.contracts[i].reward)} ${data.contracts[i].rewardType}`
+            }
+        }
     }
     else if(data.currentTab === 3) {
         DOMCacheGetOrSet(`setTog0`).innerHTML = data.settingsToggles[0] ? `Notation: Mixed Sci` : `Notation: Sci`
