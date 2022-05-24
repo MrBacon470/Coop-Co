@@ -24,7 +24,10 @@ function updateHTML() {
         }
     }
     else if(data.currentTab === 2) {
-
+        if(data.unlockedContracts === false && data.currentEgg >= 5)
+            data.unlockedContracts = true
+        DOMCacheGetOrSet('contractHiddenText').style.display = data.unlockedContracts === false ? 'block' : 'none'
+        DOMCacheGetOrSet('contractHolder').style.display = data.unlockedContracts === true ? 'block' : 'none'
     }
     else if(data.currentTab === 3) {
         DOMCacheGetOrSet(`setTog0`).innerHTML = data.settingsToggles[0] ? `Notation: Mixed Sci` : `Notation: Sci`
