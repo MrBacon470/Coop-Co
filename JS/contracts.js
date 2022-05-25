@@ -18,7 +18,8 @@ const defaultContract = {
 
 function generateContract(i) {
     let contract = Object.assign({}, defaultContract)
-    let index = getRandom(0, contractEggImgs.length-1)
+    let index = getRandom(0, contractEggImgs.length)
+    if(index > contractEggImgs.length - 1) index = contractEggImgs.length - 1
     contract.title = contractTitles[index]
     contract.description = contractDescs[index]
     contract.image = `Imgs/${contractEggImgs[index]}.png`
