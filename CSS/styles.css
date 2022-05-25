@@ -65,7 +65,7 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 .maxedResearch:hover {color: whitesmoke;border-color: #267081;background-color: #267081;}
 
 .prestige {border-color:#8e3dcf;color: #8e3dcf;}
-.prestige:hover {border-color: #8e3dcf;color: #393c3c;background-color: #8e3dcf;}
+.prestige:hover {border-color: #8e3dcf;color: whitesmoke;background-color: #8e3dcf;}
 .prestigeHeader {border-color:#8e3dcf;color: #8e3dcf;background-color: whitesmoke;}
 .prestigeHeader:hover {border-color: #8e3dcf;color: whitesmoke;background-color: #8e3dcf;}
 /*IDs*/
