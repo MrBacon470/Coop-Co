@@ -48,7 +48,7 @@ function getDefaultObject() {
         time: Date.now(),
         currentTab: 0,
         settingsToggles: [true],
-        currentUpdate: 'v0.0.3',
+        currentUpdate: 'v1.0.0',
         devSpeed: 1,
     }
 }
@@ -62,10 +62,16 @@ function load() {
     let savedata = JSON.parse(window.localStorage.getItem(saveName))
     if(savedata === null || savedata === undefined) savedata = getDefaultObject()
     else if (savedata !== undefined) fixSave(data, savedata)
+    if(data.currentUpdate !== getDefaultObject().currentUpdate) {
+        createAlert('Update!','Your save is from a Beta Testing release of Coop Co<br>It has been deleted since many balancing things have changed','#ff0000')      
+        deleteSave()
+    }    
+    /*
     if(data.currentUpdate !== getDefaultObject().currentUpdate){
         createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog for details`,"812626")
         data.currentUpdate = getDefaultObject().currentUpdate
     }
+    */
     for(let i = 0; i < data.buyAmounts.length; i++) {
         const numString = ['1','5','10','20']
         DOMCacheGetOrSet(`ba${i}`).innerHTML = `Buy Amount: ${numString[data.buyAmounts[i]]}`
