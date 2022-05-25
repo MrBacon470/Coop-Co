@@ -90,3 +90,8 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     border-color: #dd3131;
 }
 #researchCol button {margin-bottom: 1vh;}
+@media only screen and (max-width: 480px) {
+    #researchHolder {
+        overflow: scroll;
+    }
+}

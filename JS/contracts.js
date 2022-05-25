@@ -29,7 +29,7 @@ function generateContract(i) {
         contract.rewardType = 'Soul Eggs'
         contract.rewardIndex = index
         const soulAvg = (data.soulEggs.plus(data.bestSoulEggs)).div(2)
-        contract.reward = getRandomDecimal(Decimal.round(data.soulEggs),Decimal.round(soulAvg)).times(0.5)
+        contract.reward = getRandomDecimal(Decimal.round(data.soulEggs),Decimal.round(soulAvg)).times(eggValue[contract.eggIndex].times(0.5))
     }
     else {
         contract.rewardType = 'Prophecy Eggs'
