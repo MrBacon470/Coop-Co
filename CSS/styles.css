@@ -77,13 +77,12 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 }
 #mainButton {
     position: fixed;
-    width: 55%;
+    width: 50%;
     height: auto;
     font-size: 1.5em;
     top: 95%;
-    left: 25%;
     border-color: #dd3131;
-    color:#dd3131;
+    color: #dd3131;
 }
 #mainButton:hover {
     background-color: #dd3131;

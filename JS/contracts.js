@@ -27,14 +27,16 @@ function generateContract(i) {
     if(index <= 1) {
         contract.rewardType = 'Soul Eggs'
         contract.rewardIndex = index
-        contract.reward = D(getRandomDecimal(Decimal.round(data.soulEggs),Decimal.round(data.soulEggs.times(D(1.5)))))
+        const soulAvg = (data.soulEggs.plus(data.bestSoulEggs)).div(2)
+        contract.reward = getRandomDecimal(Decimal.round(data.soulEggs),Decimal.round(soulAvg)).times(0.5)
     }
     else {
         contract.rewardType = 'Prophecy Eggs'
         contract.rewardIndex = index
         contract.reward = D(getRandomDecimal(D(1),D(5)))
     }
-    contract.goal = D(getRandomDecimal(D(1e6),D(1e24)))
+    contract.goal = getRandomDecimal(D(1e6),D(1e24))
+    contract.goal = contract.goal.times(eggValue[contract.eggIndex])
     data.contracts[i] = contract
 }
 
