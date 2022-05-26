@@ -78,6 +78,14 @@ function createConfirmation(a) {
             document.getElementById('noConfirm').addEventListener('click', () => {closeModal(2)})
             document.getElementById('yesConfirm').addEventListener('click', () => {prestige();closeModal(2)})
             break
+        case 'reset':
+            document.getElementById('confirmContainer').style.border = `4px solid #812626`
+            document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to reset your game?'
+            document.getElementById('confirmContent').innerHTML = 'This will export your savefile to the clipboard but delete your save game in local storage.'
+            document.getElementById('confirm').style.display = 'block'
+            document.getElementById('confirmContainer').style.display = 'block'
+            document.getElementById('noConfirm').addEventListener('click', () => {closeModal(2)})
+            document.getElementById('yesConfirm').addEventListener('click', () => {fullReset();closeModal(2)})
     }
 }
 function closeModal(i) {
