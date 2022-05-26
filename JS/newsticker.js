@@ -19,7 +19,9 @@ newsArray = [//always true
     ['Communism Doesn\'t Work','true'],['Anti-Eggers continue protests at the FDA stating "They put hormones into our eggs!" Which, while entirely true, doesn\'t mean they have to say it, that\'s just mean.','true'],['What kind of chicken makes Universe Eggs?','true'],
     ['Salt the fried eggs before frying but the boiled eggs after boiling','true'],['Inflation continues to rise as the country struggles to give people enough money to buy more eggs.','true'],['If you like games like this, please go anywhere else but the Reddit to find more like it!','true'],
     ['Yes, we know what we are. No, we\'re not gonna put a rick roll link, that\'s just childish.','true'],['No chickens?','true'],['If you get rid of everything when you prestige, why do people still buy regular eggs???','true'],['Join the discord for one free egg.','true'],
-    ['It takes 3000 grains to produce an egg','true'],
+    ['It takes 3000 grains to produce an egg','true'],['New Coop Co update! Changelog 420.69: Added 4,736th egg along with new prestige, Going Outside! This prestige will reset the game and give you no boosts!','true'],['There is 50% chance for the egg to be a dinosaur egg: it either is or is not','true'],
+    ['Is it truly an egg or are you just imagining an egg on the screen?','true'],['🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚','true'],['You think YOU can do it better? Alright then. GitHub is in the settings menu. Go ahead. Make it better.','true'],
+    
 
 ];}
 
