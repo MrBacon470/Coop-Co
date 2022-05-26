@@ -45,7 +45,7 @@ function getDefaultObject() {
         time: Date.now(),
         currentTab: 0,
         settingsToggles: [true,true],
-        currentUpdate: 'v1.0.6',
+        currentUpdate: 'v1.0.7',
         devSpeed: 1,
     }
 }
@@ -66,7 +66,7 @@ function load() {
     }
     //Update 1.0.0 Saves to Current Version
     if(data.currentUpdate !== getDefaultObject().currentUpdate){
-        createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details`,"812626")
+        createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details<br>Contracts Have Been Regenerated this Update`,"812626")
         data.currentUpdate = getDefaultObject().currentUpdate
         if(data.unlockedContracts === true){
             for(let i = 0; i < 3; i++) {
