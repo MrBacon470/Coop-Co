@@ -6,7 +6,10 @@ function updateHTML() {
         DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `Imgs/${eggData[data.currentEgg].id}.png`)
     DOMCacheGetOrSet('eggPromoteButton').classList = data.money.gte(eggData[data.currentEgg].unlockReq) ? 'unlocked' : 'locked'
     DOMCacheGetOrSet('eggPromoteButton').style.display = data.currentEgg >= eggData.length-1 || contractActive() ? 'none' : 'inline-block'
-    DOMCacheGetOrSet('eggPromoteButton').style.setProperty("--x",data.money.div(eggData[data.currentEgg].unlockReq).times(100).min(100).toString()+"%")
+    const previousEggUnlockReq = eggData[data.currentEgg].unlockReq.max(1)
+    const currentEggUnlockReq = eggData[data.currentEgg+1].unlockReq
+    const eggUnlockProgress = data.money.div(previousEggUnlockReq).max(1).log10().div(currentEggUnlockReq.div(previousEggUnlockReq).log10())
+    DOMCacheGetOrSet('eggPromoteButton').style.setProperty("--x", eggUnlockProgress.mul(100).max(0).min(100).toString() + '%')
     DOMCacheGetOrSet('prestigeTabButton').style.display = data.hasPrestiged === true ? 'block' : 'none'
     DOMCacheGetOrSet('prestigeButton').classList = data.currentEgg < 3 ? 'locked' : 'prestigeHeader'
     DOMCacheGetOrSet('prestigeButton').style.display = contractActive() ? 'none' : 'block'
