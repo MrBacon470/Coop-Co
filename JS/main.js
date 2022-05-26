@@ -50,7 +50,7 @@ function createPrompt(a,b) {
     let new_element = old_element.cloneNode(true);
     old_element.parentNode.replaceChild(new_element, old_element);
     DOMCacheGetOrSet('promptInput').value = ''
-    DOMCacheGetOrSet('promptContainer').style.border = `4px solid whitesmoke`
+    DOMCacheGetOrSet('promptContainer').style.border = "4px solid whitesmoke"
     DOMCacheGetOrSet('promptTitle').innerHTML = a
     DOMCacheGetOrSet('prompt').style.display = 'block'
     DOMCacheGetOrSet('promptContainer').style.display = 'block'

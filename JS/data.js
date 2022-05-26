@@ -106,6 +106,7 @@ function exportSave(){
     exportedDataText.setSelectionRange(0, 99999);
     document.execCommand("copy");
     document.body.removeChild(exportedDataText);
+    createAlert('Copied!','The save has been copied to your clipboard!','#2f8126')
 }
 function importSave(){
     let importedData = DOMCacheGetOrSet('promptInput').value

@@ -47,7 +47,7 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     z-index: 6969;
     padding: 5px;
     border-radius: 3px;
-    border: 4px solid #812626;
+    border: 4px solid;
 }
 .tabHolder {padding:1vw 1vh 1vw 1vh;}
 
