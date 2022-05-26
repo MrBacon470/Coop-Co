@@ -118,11 +118,14 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 }
 button#eggPromoteButton{
   --x: 0%;
+  --y: 0%;
   background: linear-gradient(
     90deg,
     rgba(0,255,0,0.2) 0%,
     rgba(0,255,0,0.2) var(--x),
-    rgba(255,0,0,0.2) var(--x),
+    rgba(255,165,0,0.2) var(--x),
+    rgba(255,165,0,0.2) var(--y),
+    rgba(255,0,0,0.2) var(--y),
     rgba(255,0,0,0.2) 100% 
   );
 }
