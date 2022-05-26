@@ -1,139 +1,139 @@
 let currentEggValue = D(0)
 let eggValueBonus = D(1)
 let chickenGain = D(0)
-let layRate = D(1)
+let layRate = D(1)     
 const eggData = [
   {
     id:"egg",
     name:"Regular",
-    discoverReq:D(1e7),
-    unlockReq:D(6.8e7),
+    discoverReq:D(0),
+    unlockReq:D(0),
     value:D(0.25)
   },
   {
     id:"superfood",
     name:"Superfood",
-    discoverReq:D(8.4e8),
-    unlockReq:D(5.3e9),
+    discoverReq:D(1e7),
+    unlockReq:D(6.8e7),
     value:D(1.25)
   },
   {
     id:"medical",
     name:"Medical",
-    discoverReq:D(3.8e10),
-    unlockReq:D(2.4e11),
+    discoverReq:D(8.4e8),
+    unlockReq:D(5.3e9),
     value:D(6.25)
   },
   {
     id:"rocketfuel",
     name:"Rocket Fuel",
-    discoverReq:D(2.7e13),
-    unlockReq:D(1.7e14),
+    discoverReq:D(3.8e10),
+    unlockReq:D(2.4e11),
     value:D(30)
   },
   {
     id:"supermaterial",
     name:"Super Material",
-    discoverReq:D(8e15),
-    unlockReq:D(5e16),
+    discoverReq:D(2.7e13),
+    unlockReq:D(1.7e14),
     value:D(150)
   },
   {
     id:"fusion",
     name:"Fusion",
-    discoverReq:D(3.6e18),
-    unlockReq:D(2.3e19),
+    discoverReq:D(8e15),
+    unlockReq:D(5e16),
     value:D(700)
   },
   {
     id:"quantum",
     name:"Quantum",
-    discoverReq:D(1.5e22),
-    unlockReq:D(9.4e22),
+    discoverReq:D(3.6e18),
+    unlockReq:D(2.3e19),
     value:D(3e3)
   },
   {
     id:"immortality",
     name:"Immortality",
-    discoverReq:D(2.7e25),
-    unlockReq:D(1.7e26),
+    discoverReq:D(1.5e22),
+    unlockReq:D(9.4e22),
     value:D(1.25e4)
   },
   {
     id:"tachyon",
     name:"Tachyon",
-    discoverReq:D(1.5e29),
-    unlockReq:D(9.8e29),
+    discoverReq:D(2.7e25),
+    unlockReq:D(1.7e26),
     value:D(5e4)
   },
   {
     id:"graviton",
     name:"Graviton",
-    discoverReq:D(7.6e32),
-    unlockReq:D(4.8e33),
+    discoverReq:D(1.5e29),
+    unlockReq:D(9.8e29),
     value:D(1.75e5)
   },
   {
     id:"dilithium",
     name:"Dilithium",
-    discoverReq:D(2.5e36),
-    unlockReq:D(1.6e37),
+    discoverReq:D(7.6e32),
+    unlockReq:D(4.8e33),
     value:D(5.25e5)
   },
   {
     id:"prodigy",
     name:"Prodigy",
-    discoverReq:D(3.2e39),
-    unlockReq:D(2e40),
+    discoverReq:D(2.5e36),
+    unlockReq:D(1.6e37),
     value:D(1.5e6)
   },
   {
     id:"terraform",
     name:"Terraform",
-    discoverReq:D(2e43),
-    unlockReq:D(1.3e44),
+    discoverReq:D(3.2e39),
+    unlockReq:D(2e40),
     value:D(1e7)
   },
   {
     id:"antimatter",
     name:"Antimatter",
-    discoverReq:D(1.9e47),
-    unlockReq:D(1.2e48),
+    discoverReq:D(2e43),
+    unlockReq:D(1.3e44),
     value:D(1e9)
   },
   {
     id:"darkmatter",
     name:"Dark Matter",
-    discoverReq:D(5.1e51),
-    unlockReq:D(3.2e52),
+    discoverReq:D(1.9e47),
+    unlockReq:D(1.2e48),
     value:D(1e11)
   },
   {
     id:"ai",
     name:"AI",
-    discoverReq:D(3.2e55),
-    unlockReq:D(2e56),
+    discoverReq:D(5.1e51),
+    unlockReq:D(3.2e52),
     value:D(1e12)
   },
   {
     id:"nebula",
     name:"Nebula",
-    discoverReq:D(6.4e59),
-    unlockReq:D(4e60),
+    discoverReq:D(3.2e55),
+    unlockReq:D(2e56),
     value:D(1.5e13)
   },
   {
     id:"universe",
     name:"Universe",
-    discoverReq:D(5.7e64),
-    unlockReq:D(3.6e65),
+    discoverReq:D(6.4e59),
+    unlockReq:D(4e60),
     value:D(1e14)
   },
   {
     id:"enlightenment",
     name:"Enlightenment",
-    discoverReq:D(1e309),
-    unlockReq:D(1e309),
+    discoverReq:D(5.7e64),
+    unlockReq:D(3.6e65),
     value:D(0.0000001)
   }
 ]

@@ -5,7 +5,9 @@ newsArray = [//always true
     ['Cluck Cluck',"true"],['Egg is the next mechanic',"true"],['Well obviously the chicken came first. There\'s the button right there.',"true"],['where do we store all these chickens',"true"],
     ['I don\'t think this will meet FDA standards.',"true"],['literally no one ever: we control timelines for more eggs',"true"],['Logically, none of these upgrades should work.','true'],
     ['you know this kinda reminds me of antimatter dimensions. i mean, think about it, there are big numbers early on, there\'s a prestige function, i mean, c\'mon this is such a copy! shame on you.','true'],
-    ['You would think that immortality would be cooler than an AI, but you would be wrong.','true']
+    ['You would think that immortality would be cooler than an AI, but you would be wrong.','true'],['There are so many types of eggs, so why are soul eggs any different?','true'],['prophecy eggs are not giving prophecies 0/10','true'],
+    ['I don\'t remember THIS in the game, is this a copy?!','true'],['What do you mean Idle Games have time walls?!?','true'],['use alt+f4 to instantly promote to the next egg','true'],['Is there an echo in here?','true'],
+    
 
 ];}
 
