@@ -2,13 +2,15 @@ function updateHTML() {
     //Globals
     DOMCacheGetOrSet('moneyText').textContent = `$${format(data.money)}`
     DOMCacheGetOrSet('chickensText').textContent = `Chickens: ${format(data.chickens)}`
-    if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `Imgs/${eggImgIDs[data.currentEgg]}.png`) 
-        DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `Imgs/${eggImgIDs[data.currentEgg]}.png`)
-    DOMCacheGetOrSet('eggPromoteButton').classList = data.money.gte(eggUnlockReq[data.currentEgg]) ? 'unlocked' : 'locked'
-    DOMCacheGetOrSet('eggPromoteButton').style.display = data.currentEgg >= eggNames.length-1 ? 'none' : 'inline-block'
+    if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `Imgs/${eggData[data.currentEgg].id}.png`) 
+        DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `Imgs/${eggData[data.currentEgg].id}.png`)
+    DOMCacheGetOrSet('eggPromoteButton').classList = data.money.gte(eggData[data.currentEgg].unlockReq) ? 'unlocked' : 'locked'
+    DOMCacheGetOrSet('eggPromoteButton').style.display = data.currentEgg >= eggData.length-1 || contractActive() ? 'none' : 'inline-block'
+    DOMCacheGetOrSet('eggPromoteButton').style.setProperty("--x",data.money.div(eggData[data.currentEgg].unlockReq).times(100).min(100).toString()+"%")
     DOMCacheGetOrSet('prestigeTabButton').style.display = data.hasPrestiged === true ? 'block' : 'none'
     DOMCacheGetOrSet('prestigeButton').classList = data.currentEgg < 3 ? 'locked' : 'prestigeHeader'
-    DOMCacheGetOrSet('prestigeButton').innerHTML = data.currentEgg < 3 ? 'Reach Rocket Fuel Eggs' : `Prestige: +${format(soulEggGain)} Soul Eggs`
+    DOMCacheGetOrSet('prestigeButton').style.display = contractActive() ? 'none' : 'block'
+    DOMCacheGetOrSet('prestigeButton').textContent = data.currentEgg < 3 ? 'Reach Rocket Fuel Eggs' : `Prestige: +${format(soulEggGain)} Soul Eggs`
     if(data.currentTab === 0) {
         updateEggPage()
     }

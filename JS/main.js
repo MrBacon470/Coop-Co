@@ -14,12 +14,12 @@ function mainLoop() {
         if(data.contractActive[i])
             runContract(i)
     }
-    currentEggValue = eggValue[data.currentEgg].times(eggValueBonus)
+    currentEggValue = eggData[data.currentEgg].value.times(eggValueBonus)
     data.chickens = data.chickens.plus(chickenGain.times(diff/15))
     data.money = data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff)).times(data.chickens.times(layRate)))
     updateHTML()
-    if(DOMCacheGetOrSet('faviconLink').getAttribute('href') !== `Imgs/${eggImgIDs[data.currentEgg]}.png`)
-        DOMCacheGetOrSet('faviconLink').href = `Imgs/${eggImgIDs[data.currentEgg]}.png`
+    if(DOMCacheGetOrSet('faviconLink').getAttribute('href') !== `Imgs/${eggData[data.currentEgg].id}.png`)
+        DOMCacheGetOrSet('faviconLink').href = `Imgs/${eggData[data.currentEgg].id}.png`
 }
 
 function changeTab(i) {

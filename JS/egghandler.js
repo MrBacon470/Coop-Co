@@ -1,38 +1,158 @@
-const eggDiscoverReq = [D(1e7),D(8.4e8),D(3.8e10),D(2.7e13),D(8e15),
-    D(3.6e18),D(1.5e22),D(2.7e25),D(1.5e29),D(7.6e32),D(2.5e36),D(3.2e39),
-    D(2e43),D(1.9e47),D(5.1e51),D(3.2e55),D(6.4e59),D(5.7e64)]
-const eggUnlockReq = [D(6.8e7),D(5.3e9),D(2.4e11),D(1.7e14),D(5e16),
-    D(2.3e19),D(9.4e22),D(1.7e26),D(9.8e29),D(4.8e33),D(1.6e37),D(2e40),
-    D(1.3e44),D(1.2e48),D(3.2e52),D(2e56),D(4e60),D(3.6e65)]
-const eggValue = [D(0.25),D(1.25),D(6.25),D(30),D(150),
-    D(700),D(3e3),D(1.25e4),D(5e4),D(1.75e5),D(5.25e5),
-    D(1.5e6),D(1e7),D(1e9),D(1e11),D(1e12),D(1.5e13),D(1e14),D(0.0000001)]
 let currentEggValue = D(0)
 let eggValueBonus = D(1)
 let chickenGain = D(0)
 let layRate = D(1)
-const eggImgIDs = ['egg','superfood','medical','rocketfuel','supermaterial','fusion','quantum',
-    'immortality','tachyon','graviton','dilithium','prodigy','terraform','antimatter',
-    'darkmatter','ai','nebula','universe','enlightenment']
-const eggNames = ['Regular','Superfood','Medical','Rocket Fuel','Super Material','Fusion',
-    'Quantum','Immortality','Tachyon','Graviton','Dilithium','Prodigy','Terraform',
-    'Antimatter','Dark Matter','AI','Nebula','Universe','Enlightenment']
+const eggData = [
+  {
+    id:"egg",
+    name:"Regular",
+    discoverReq:D(1e7),
+    unlockReq:D(6.8e7),
+    value:D(0.25)
+  },
+  {
+    id:"superfood",
+    name:"Superfood",
+    discoverReq:D(8.4e8),
+    unlockReq:D(5.3e9),
+    value:D(1.25)
+  },
+  {
+    id:"medical",
+    name:"Medical",
+    discoverReq:D(3.8e10),
+    unlockReq:D(2.4e11),
+    value:D(6.25)
+  },
+  {
+    id:"rocketfuel",
+    name:"Rocket Fuel",
+    discoverReq:D(2.7e13),
+    unlockReq:D(1.7e14),
+    value:D(30)
+  },
+  {
+    id:"supermaterial",
+    name:"Super Material",
+    discoverReq:D(8e15),
+    unlockReq:D(5e16),
+    value:D(150)
+  },
+  {
+    id:"fusion",
+    name:"Fusion",
+    discoverReq:D(3.6e18),
+    unlockReq:D(2.3e19),
+    value:D(700)
+  },
+  {
+    id:"quantum",
+    name:"Quantum",
+    discoverReq:D(1.5e22),
+    unlockReq:D(9.4e22),
+    value:D(3e3)
+  },
+  {
+    id:"immortality",
+    name:"Immortality",
+    discoverReq:D(2.7e25),
+    unlockReq:D(1.7e26),
+    value:D(1.25e4)
+  },
+  {
+    id:"tachyon",
+    name:"Tachyon",
+    discoverReq:D(1.5e29),
+    unlockReq:D(9.8e29),
+    value:D(5e4)
+  },
+  {
+    id:"graviton",
+    name:"Graviton",
+    discoverReq:D(7.6e32),
+    unlockReq:D(4.8e33),
+    value:D(1.75e5)
+  },
+  {
+    id:"dilithium",
+    name:"Dilithium",
+    discoverReq:D(2.5e36),
+    unlockReq:D(1.6e37),
+    value:D(5.25e5)
+  },
+  {
+    id:"prodigy",
+    name:"Prodigy",
+    discoverReq:D(3.2e39),
+    unlockReq:D(2e40),
+    value:D(1.5e6)
+  },
+  {
+    id:"terraform",
+    name:"Terraform",
+    discoverReq:D(2e43),
+    unlockReq:D(1.3e44),
+    value:D(1e7)
+  },
+  {
+    id:"antimatter",
+    name:"Antimatter",
+    discoverReq:D(1.9e47),
+    unlockReq:D(1.2e48),
+    value:D(1e9)
+  },
+  {
+    id:"darkmatter",
+    name:"Dark Matter",
+    discoverReq:D(5.1e51),
+    unlockReq:D(3.2e52),
+    value:D(1e11)
+  },
+  {
+    id:"ai",
+    name:"AI",
+    discoverReq:D(3.2e55),
+    unlockReq:D(2e56),
+    value:D(1e12)
+  },
+  {
+    id:"nebula",
+    name:"Nebula",
+    discoverReq:D(6.4e59),
+    unlockReq:D(4e60),
+    value:D(1.5e13)
+  },
+  {
+    id:"universe",
+    name:"Universe",
+    discoverReq:D(5.7e64),
+    unlockReq:D(3.6e65),
+    value:D(1e14)
+  },
+  {
+    id:"enlightenment",
+    name:"Enlightenment",
+    discoverReq:D(1e309),
+    unlockReq:D(1e309),
+    value:D(0.0000001)
+  }
+]
 
 function updateEggPage() {
-    if(data.currentEgg < eggDiscoverReq.length) {
-            if(DOMCacheGetOrSet('currentEggImg').getAttribute('src') !== `Imgs/${eggImgIDs[data.currentEgg]}.png`) 
-                    DOMCacheGetOrSet('currentEggImg').setAttribute('src', `Imgs/${eggImgIDs[data.currentEgg]}.png`)
-                DOMCacheGetOrSet('currentEggText').innerHTML = `Current Egg: ${eggNames[data.currentEgg]}<br>Value: $${format(eggValue[data.currentEgg])} (x${format(eggValueBonus)})<br>$${format(((currentEggValue.times(soulEggBoost))).times(data.chickens.times(layRate)))}/s<br>Egg Laying Rate: x${format((layRate))}<br>Chicken Gain: ${format(chickenGain)} Chickens/min`
-                if((DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/${eggImgIDs[data.currentEgg+1]}.png` && (data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggDiscoverReq[data.currentEgg]))) 
-                || (DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/question.png` && (data.unlockedEgg[data.currentEgg] === false && data.money.lt(eggDiscoverReq[data.currentEgg]))))
-                    DOMCacheGetOrSet('nextEggImg').src = data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggDiscoverReq[data.currentEgg]) ? `Imgs/${eggImgIDs[data.currentEgg+1]}.png` : `Imgs/question.png`
-                DOMCacheGetOrSet('nextEggText').innerHTML = data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggDiscoverReq[data.currentEgg]) ?
-                `Next Egg: ${eggNames[data.currentEgg+1]}<br>Unlock At: $${format(eggUnlockReq[data.currentEgg])}<br>Value: $${format(eggValue[data.currentEgg+1])}` : `Next Egg: Not Discovered<br>Discover at $${format(eggDiscoverReq[data.currentEgg])}`  
+    if(data.currentEgg < eggData.length-1) {
+            if(DOMCacheGetOrSet('currentEggImg').getAttribute('src') !== `Imgs/${eggData[data.currentEgg].id}.png`) 
+                    DOMCacheGetOrSet('currentEggImg').setAttribute('src', `Imgs/${eggData[data.currentEgg].id}.png`)
+                DOMCacheGetOrSet('currentEggText').innerHTML = `Current Egg: ${eggData[data.currentEgg].name}<br>Value: $${format(eggData[data.currentEgg].value)} (x${format(eggValueBonus)})<br>$${format(((currentEggValue.times(soulEggBoost))).times(data.chickens.times(layRate)))}/s<br>Egg Laying Rate: x${format((layRate))}<br>Chicken Gain: ${format(chickenGain)} Chickens/min`
+                if((DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/${eggData[data.currentEgg+1].id}.png` && (data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggData[data.currentEgg].discoverReq))) 
+                || (DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/question.png` && (data.unlockedEgg[data.currentEgg] === false && data.money.lt(eggData[data.currentEgg].discoverReq))))
+                    DOMCacheGetOrSet('nextEggImg').src = data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggData[data.currentEgg].discoverReq) ? `Imgs/${eggData[data.currentEgg+1].id}.png` : `Imgs/question.png`
+                DOMCacheGetOrSet('nextEggText').innerHTML = data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggData[data.currentEgg].discoverReq) ?
+                `Next Egg: ${eggData[data.currentEgg+1].name}<br>Unlock At: $${format(eggData[data.currentEgg].unlockReq)}<br>Value: $${format(eggData[data.currentEgg+1].value)}` : `Next Egg: Not Discovered<br>Discover at $${format(eggData[data.currentEgg].discoverReq)}`  
     }
     else {
                 if(DOMCacheGetOrSet('currentEggImg').getAttribute('src') !== `Imgs/enlightenment.png`) 
                     DOMCacheGetOrSet('currentEggImg').setAttribute('src', `Imgs/enlightenment.png`)
-                    DOMCacheGetOrSet('currentEggText').innerHTML = `Current Egg: ${eggNames[data.currentEgg]}<br>Value: $${format(eggValue[data.currentEgg])} (x${format(eggValueBonus)})<br>$${format(((currentEggValue.times(soulEggBoost))).times(data.chickens.times(layRate)))}/s<br>Egg Laying Rate: x${format((layRate))}<br>Chicken Gain: ${format(chickenGain)} Chickens/min`
+                    DOMCacheGetOrSet('currentEggText').innerHTML = `Current Egg: ${eggData[data.currentEgg].name}<br>Value: $${format(eggData[data.currentEgg].value)} (x${format(eggValueBonus)})<br>$${format(((currentEggValue.times(soulEggBoost))).times(data.chickens.times(layRate)))}/s<br>Egg Laying Rate: x${format((layRate))}<br>Chicken Gain: ${format(chickenGain)} Chickens/min`
                 if(DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/enlightenment.png`) 
                     DOMCacheGetOrSet('nextEggImg').setAttribute('src', `Imgs/enlightenment.png`)
                 DOMCacheGetOrSet('nextEggText').innerHTML = `The Final Egg`
@@ -88,8 +208,8 @@ function updateLayRate() {
 }
 
 function promoteEgg() {
-    if(data.currentEgg === eggDiscoverReq.length) return
-    if(data.money.lt(eggUnlockReq[data.currentEgg])) return
+    if(data.currentEgg === eggData.length-1) return
+    if(data.money.lt(eggData[data.currentEgg].unlockReq)) return
     for(let i = 0; i < data.contractActive.length; i++) {
         if(data.contractActive[i] === true) return
     }

@@ -9,7 +9,7 @@ function runAuto(a) {
                 purchaseResearch(i)
             break
         case 2:
-            if(data.money.gte(eggUnlockReq))
+            if(data.money.gte(eggData[data.currentEgg].unlockReq))
                 promoteEgg()
             break
     }

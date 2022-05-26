@@ -95,3 +95,16 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
         overflow: scroll;
     }
 }
+
+button#eggPromoteButton{
+  --x: 0%;
+  background: linear-gradient(
+    90deg,
+    rgba(0,255,0,0.2) 0%,
+    rgba(0,255,0,0.2) var(--x),
+    rgba(255,0,0,0.2) var(--x),
+    rgba(255,0,0,0.2) 100% 
+  );
+}
+button#eggPromoteButton.unlocked:hover{color: whitesmoke;border-color: #2f8126;background-color: #2f8126;}
+button#eggPromoteButton.locked:hover {color: whitesmoke;border-color: #812626;background-color: #812626;}
