@@ -14,7 +14,7 @@
     background-color: var(--background-color);
     color: whitesmoke;
 }
-
+body {user-select: none;}
 button {
     user-select: none;
     background-color: var(--background-color);

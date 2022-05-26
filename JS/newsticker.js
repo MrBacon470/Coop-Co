@@ -7,7 +7,8 @@ newsArray = [//always true
     ['you know this kinda reminds me of antimatter dimensions. i mean, think about it, there are big numbers early on, there\'s a prestige function, i mean, c\'mon this is such a copy! shame on you.','true'],
     ['You would think that immortality would be cooler than an AI, but you would be wrong.','true'],['There are so many types of eggs, so why are soul eggs any different?','true'],['prophecy eggs are not giving prophecies 0/10','true'],
     ['I don\'t remember THIS in the game, is this a copy?!','true'],['What do you mean Idle Games have time walls?!?','true'],['use alt+f4 to instantly promote to the next egg','true'],['Is there an echo in here?','true'],
-    ['Can\'t time skip your way out of this one.','true']
+    ['Can\'t time skip your way out of this one.','true'],['Story not included.','true'],['This is the game, egg inc. is the copy.','true'],['the egg is very egg','true'],['We here at News Inc. don\'t actually like eggs.','true'],
+    ['<a href="https://youtu.be/dQw4w9WgXcQ">Click here for free prophecy egg</a>','true'],['eggs! get your eggs here!','true']
 
 ];}
 
@@ -31,7 +32,7 @@ function scrollNextMessage() {
   scrollTimeouts = [];
 
   //set the text
-  s.textContent = newsArray[nextMsgIndex][0];
+  s.innerHTML = newsArray[nextMsgIndex][0];
 
   //get the parent width so we can start the message beyond it
   let parentWidth = s.parentElement.clientWidth;
