@@ -115,6 +115,11 @@ function importSave(){
         DOMCacheGetOrSet('promptContainer').style.display = 'none'
         return
     }
+    else if(importedData.toLowerCase() === '69' || importedData.toLowerCase() === '420'){
+        createAlert('Nice!','Nice','#ff0000')
+        DOMCacheGetOrSet('promptContainer').style.display = 'none'
+        return
+    }
     data = Object.assign(getDefaultObject(), JSON.parse(atob(importedData)))
     save()
     location.reload()

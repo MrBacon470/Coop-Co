@@ -11,7 +11,15 @@ newsArray = [//always true
     ['<a href="https://youtu.be/dQw4w9WgXcQ" target="_blank"]>Click here for free prophecy egg</a>','true'],['eggs! get your eggs here!','true'],['You mean you don\'t have 1e308 Soul Eggs? What, did you just start or something?','true'],
     ['1 star game sux!','true'],['Egg prices have dropped due to this one guy having one million chickens WTF!','true'],['Chicken nugget farmers have stolen some of your chickens!','true'],['What happened to all the chickens from the last farm?','true'],
     ['Game is no longer being worked on','true'],['Game is still being worked on','true'],['One of your chickens crossed the road, you now have one less chicken.','true'],[`If I had a nickel for every chicken you had right now, I\'d have ${format(data.chickens)} nickles.`,'true'],
-    ['EGGS!!!','true'],['If you ever feel worthless, just remember that you\'re worth 2,200,000 regular eggs.','true'],
+    ['EGGS!!!','true'],['If you ever feel worthless, just remember that you\'re worth 2,200,000 regular eggs.','true'],['BREAKING NEWS: Please stop breaking the news it really hurts :(','true'],[`Hey, congrats on $${format(data.money)}!`,'true'],['Come back tomorrow for your daily egg news.','true'],
+    ['Why did the egg cross the road? Scientists are still trying to figure that one out.','true'],['the game isn\'t broken, you are','true'],['That sounds like a skill issue','true'],['The USDE were bribed.','true'],['how do people buy eggs that cost trillions of dollars?','true'],
+    ['BREAKING NEWS:  There are too many eggs','true'],['News Inc. is sad to announce that our former CEO has died of Ligma and has been replaced by Mike Hawk.','true'],['We egg on you to reach the top egg before taking Contracts','true'],
+    ['BREAKING NEWS: The eggs have come together to create a black hole of matter. This new development has, instead of causing farmer to stop creating chicken farms, caused farm production rates to skyrocket!','true'],
+    ['NEWS BREAKING: EGG INC WILL RISE AGAIN, YOU CAN NOT STOP US. WEghuiuofvjbsvuiosrfb Apologies for that, there\'s been a break in at the office. Have a good day.','true'],['Press Ctrl+D to add an egg onto your bar','true'],['Importing Cancer will not do anything. They have been blocked from national trade.','true'],
+    ['Communism Doesn\'t Work','true'],['Anti-Eggers continue protests at the FDA stating "They put hormones into our eggs!" Which, while entirely true, doesn\'t mean they have to say it, that\'s just mean.','true'],['What kind of chicken makes Universe Eggs?','true'],
+    ['Salt the fried eggs before frying but the boiled eggs after boiling','true'],['Inflation continues to rise as the country struggles to give people enough money to buy more eggs.','true'],['If you like games like this, please go anywhere else but the Reddit to find more like it!','true'],
+    ['Yes, we know what we are. No, we\'re not gonna put a rick roll link, that\'s just childish.','true'],['No chickens?','true'],['If you get rid of everything when you prestige, why do people still buy regular eggs???','true'],['Join the discord for one free egg.','true'],
+    ['It takes 3000 grains to produce an egg','true'],
 
 ];}
 
