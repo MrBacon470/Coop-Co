@@ -12,8 +12,7 @@ const defaultContract = {
     eggIndex: 0,
     reward: D(0),
     rewardType: '',
-    goal: D(0),
-    rewardIndex: 0
+    goal: D(0)
 }
 
 function generateContract(i) {
@@ -24,16 +23,14 @@ function generateContract(i) {
     contract.description = contractDescs[index]
     contract.image = `Imgs/${contractEggImgs[index]}.png`
     contract.eggIndex = contractEggIndex[index]
-    index = getRandom(0,4)
-    if(index <= 1) {
+    const random = getRandom(0,4)
+    if(random <= 1) {
         contract.rewardType = 'Soul Eggs'
-        contract.rewardIndex = index
         const soulAvg = (data.soulEggs.plus(data.bestSoulEggs)).div(2)
-        contract.reward = getRandomDecimal(Decimal.round(data.soulEggs),Decimal.round(soulAvg)).times(Decimal.sqrt(eggValue[contract.eggIndex].div(10 * (contract.eggIndex-1) === 0 ? 1 : 10 * (contract.eggIndex-1))).plus(1))
+        contract.reward = getRandomDecimal(Decimal.round(data.soulEggs),Decimal.round(soulAvg))
     }
     else {
         contract.rewardType = 'Prophecy Eggs'
-        contract.rewardIndex = index
         contract.reward = D(getRandomDecimal(D(1),D(5)))
     }
     contract.goal = getRandomDecimal(D(1e6),D(1e24))

@@ -17,8 +17,7 @@ function getDefaultObject() {
             eggIndex: 0,
             reward: D(0),
             rewardType: '',
-            goal: D(0),
-            rewardIndex: 0
+            goal: D(0)
         },{
             title: '',
             description: '',
@@ -26,8 +25,7 @@ function getDefaultObject() {
             eggIndex: 0,
             reward: D(0),
             rewardType: '',
-            goal: D(0),
-            rewardIndex: 0
+            goal: D(0)
         },{
             title: '',
             description: '',
@@ -35,8 +33,7 @@ function getDefaultObject() {
             eggIndex: 0,
             reward: D(0),
             rewardType: '',
-            goal: D(0),
-            rewardIndex: 0
+            goal: D(0)
         }],
         contractActive: [false,false,false],
         currentEgg: 0,
@@ -48,7 +45,7 @@ function getDefaultObject() {
         time: Date.now(),
         currentTab: 0,
         settingsToggles: [true],
-        currentUpdate: 'v1.0.1',
+        currentUpdate: 'v1.0.2',
         devSpeed: 1,
     }
 }
