@@ -6,7 +6,7 @@ function updatePrestige() {
     const soulAvg = (data.soulEggs.plus(data.bestSoulEggs)).div(2)
     soulEggGain = data.currentEgg >= 3 ? Decimal.floor(Decimal.sqrt(Decimal.sqrt(data.money)).times((D(0.1).times(data.epicResearch[3])).plus(1))) : D(0)
     prophecyEggBoost = D(1)
-    for(let i = 0; i < data.prophecyEggs; i++) {
+    for(let i = D(0); i.lt(data.prophecyEggs); i = i.plus(1)) {
         prophecyEggBoost = prophecyEggBoost.times(1.05)
     }
     soulEggBoost = D(1).plus(soulAvg.times(D(0.01).plus(D(0.01).times(data.epicResearch[2]))).times(prophecyEggBoost))

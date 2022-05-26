@@ -8,6 +8,8 @@ function mainLoop() {
     updateLayRate()
     updatePrestige()
     updateAutomation()
+    if(data.chickens.lt(1) && data.epicResearch[8].gte(epicResearchMaxLevel[8]))
+        data.chickens = D(1)
     for(let i = 0; i < data.contractActive.length; i++) {
         if(data.contractActive[i])
             runContract(i)
@@ -16,6 +18,8 @@ function mainLoop() {
     data.chickens = data.chickens.plus(chickenGain.times(diff/15))
     data.money = data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff)).times(data.chickens.times(layRate)))
     updateHTML()
+    if(DOMCacheGetOrSet('faviconLink').getAttribute('href') !== `Imgs/${eggImgIDs[data.currentEgg]}.png`)
+        DOMCacheGetOrSet('faviconLink').href = `Imgs/${eggImgIDs[data.currentEgg]}.png`
 }
 
 function changeTab(i) {

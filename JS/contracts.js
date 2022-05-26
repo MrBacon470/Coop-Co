@@ -1,5 +1,5 @@
 const contractEggImgs = ['fusion','ai','medical','superfood','immortality']
-const contractEggIndex = [5,15,2,1,6]
+const contractEggIndex = [5,15,2,1,7]
 const contractTitles = ['Energy Crisis','AI Boom','Pandemic','Supreme Diets','Fountain of Youth']
 const contractDescs = ['A Californian Energy Shortage means more demand for Fusion Eggs.','The AI Industry requires more AI Eggs for their projects.',
 'A Pandemic is covering the world, Medical Eggs are needed to save lives.','Dieting is back in fashion people need more Superfood Eggs.',
@@ -29,7 +29,7 @@ function generateContract(i) {
         contract.rewardType = 'Soul Eggs'
         contract.rewardIndex = index
         const soulAvg = (data.soulEggs.plus(data.bestSoulEggs)).div(2)
-        contract.reward = getRandomDecimal(Decimal.round(data.soulEggs),Decimal.round(soulAvg)).times(eggValue[contract.eggIndex].times(0.5))
+        contract.reward = getRandomDecimal(Decimal.round(data.soulEggs),Decimal.round(soulAvg)).times(Decimal.sqrt(eggValue[contract.eggIndex].div(10 * (contract.eggIndex-1) === 0 ? 1 : 10 * (contract.eggIndex-1))).plus(1))
     }
     else {
         contract.rewardType = 'Prophecy Eggs'

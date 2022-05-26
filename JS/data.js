@@ -42,13 +42,13 @@ function getDefaultObject() {
         currentEgg: 0,
         unlockedEgg: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
         research: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
-        epicResearch: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
-        autoActive: [false,false],
+        epicResearch: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
+        autoActive: [false,false,false],
         buyAmounts: [0,0],
         time: Date.now(),
         currentTab: 0,
         settingsToggles: [true],
-        currentUpdate: 'v1.0.0',
+        currentUpdate: 'v1.0.1',
         devSpeed: 1,
     }
 }
@@ -62,16 +62,21 @@ function load() {
     let savedata = JSON.parse(window.localStorage.getItem(saveName))
     if(savedata === null || savedata === undefined) savedata = getDefaultObject()
     else if (savedata !== undefined) fixSave(data, savedata)
-    if(data.currentUpdate !== getDefaultObject().currentUpdate) {
+    //Old Resets
+    if(data.currentUpdate === 'v0.0.0' || data.currentUpdate === 'v0.0.1' || data.currentUpdate === 'v0.0.2' || data.currentUpdate === 'v0.0.3') {
         createAlert('Update!','Your save is from a Beta Testing release of Coop Co<br>It has been deleted since many balancing things have changed','#ff0000')      
         deleteSave()
-    }    
-    /*
-    if(data.currentUpdate !== getDefaultObject().currentUpdate){
-        createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog for details`,"812626")
-        data.currentUpdate = getDefaultObject().currentUpdate
     }
-    */
+    //Update 1.0.0 Saves to Current Version
+    if(data.currentUpdate !== getDefaultObject().currentUpdate){
+        createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog for details<br>!Notice if you had contracts unlocked they were regenerated due to balancing`,"812626")
+        data.currentUpdate = getDefaultObject().currentUpdate
+        if(data.unlockedContracts === true){
+            for(let i = 0; i < 3; i++) {
+                generateContract(i)
+            }
+        }
+    }
     for(let i = 0; i < data.buyAmounts.length; i++) {
         const numString = ['1','5','10','20']
         DOMCacheGetOrSet(`ba${i}`).innerHTML = `Buy Amount: ${numString[data.buyAmounts[i]]}`
@@ -109,6 +114,7 @@ function importSave(){
     let importedData = DOMCacheGetOrSet('promptInput').value
     if(importedData.length <= 0 || importedData === undefined) {
         createAlert('Error!','No data was entered!','#ff0000')
+        DOMCacheGetOrSet('promptContainer').style.display = 'none'
         return
     }
     data = Object.assign(getDefaultObject(), JSON.parse(atob(importedData)))

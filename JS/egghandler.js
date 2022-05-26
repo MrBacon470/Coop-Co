@@ -20,23 +20,24 @@ const eggNames = ['Regular','Superfood','Medical','Rocket Fuel','Super Material'
 
 function updateEggPage() {
     if(data.currentEgg < eggDiscoverReq.length) {
-    if(DOMCacheGetOrSet('currentEggImg').getAttribute('src') !== `Imgs/${eggImgIDs[data.currentEgg]}.png`) 
-            DOMCacheGetOrSet('currentEggImg').setAttribute('src', `Imgs/${eggImgIDs[data.currentEgg]}.png`)
-        DOMCacheGetOrSet('currentEggText').innerHTML = `Current Egg: ${eggNames[data.currentEgg]}<br>Value: $${format(eggValue[data.currentEgg])} (x${format(eggValueBonus)})<br>$${format(((currentEggValue.times(soulEggBoost))).times(data.chickens.times(layRate)))}/s<br>Egg Laying Rate: x${format((layRate))}<br>Chicken Gain: ${format(chickenGain)} Chickens/min`
-        if((DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/${eggImgIDs[data.currentEgg+1]}.png` && (data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggDiscoverReq[data.currentEgg]))) 
-        || (DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/question.png` && (data.unlockedEgg[data.currentEgg] === false && data.money.lt(eggDiscoverReq[data.currentEgg]))))
-            DOMCacheGetOrSet('nextEggImg').src = data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggDiscoverReq[data.currentEgg]) ? `Imgs/${eggImgIDs[data.currentEgg+1]}.png` : `Imgs/question.png`
-        DOMCacheGetOrSet('nextEggText').innerHTML = data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggDiscoverReq[data.currentEgg]) ?
-        `Next Egg: ${eggNames[data.currentEgg+1]}<br>Unlock At: $${format(eggUnlockReq[data.currentEgg])}<br>Value: $${format(eggValue[data.currentEgg+1])}` : `Next Egg: Not Discovered<br>Discover at $${format(eggDiscoverReq[data.currentEgg])}`
+            if(DOMCacheGetOrSet('currentEggImg').getAttribute('src') !== `Imgs/${eggImgIDs[data.currentEgg]}.png`) 
+                    DOMCacheGetOrSet('currentEggImg').setAttribute('src', `Imgs/${eggImgIDs[data.currentEgg]}.png`)
+                DOMCacheGetOrSet('currentEggText').innerHTML = `Current Egg: ${eggNames[data.currentEgg]}<br>Value: $${format(eggValue[data.currentEgg])} (x${format(eggValueBonus)})<br>$${format(((currentEggValue.times(soulEggBoost))).times(data.chickens.times(layRate)))}/s<br>Egg Laying Rate: x${format((layRate))}<br>Chicken Gain: ${format(chickenGain)} Chickens/min`
+                if((DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/${eggImgIDs[data.currentEgg+1]}.png` && (data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggDiscoverReq[data.currentEgg]))) 
+                || (DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/question.png` && (data.unlockedEgg[data.currentEgg] === false && data.money.lt(eggDiscoverReq[data.currentEgg]))))
+                    DOMCacheGetOrSet('nextEggImg').src = data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggDiscoverReq[data.currentEgg]) ? `Imgs/${eggImgIDs[data.currentEgg+1]}.png` : `Imgs/question.png`
+                DOMCacheGetOrSet('nextEggText').innerHTML = data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggDiscoverReq[data.currentEgg]) ?
+                `Next Egg: ${eggNames[data.currentEgg+1]}<br>Unlock At: $${format(eggUnlockReq[data.currentEgg])}<br>Value: $${format(eggValue[data.currentEgg+1])}` : `Next Egg: Not Discovered<br>Discover at $${format(eggDiscoverReq[data.currentEgg])}`  
     }
     else {
-        if(DOMCacheGetOrSet('currentEggImg').getAttribute('src') !== `Imgs/enlightenment.png`) 
-            DOMCacheGetOrSet('currentEggImg').setAttribute('src', `Imgs/enlightenment.png`)
-        DOMCacheGetOrSet('currentEggText').innerHTML = `Current Egg: ${eggNames[data.currentEgg]}<br>Value: $${format(eggValue[data.currentEgg])} (x${format(eggValueBonus)})<br>Egg Laying Rate: +${format(layRate)}%<br>Chicken Gain: ${format(chickenGain)} Chickens/min`
-        if(DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/enlightenment.png`) 
-            DOMCacheGetOrSet('nextEggImg').setAttribute('src', `Imgs/enlightenment.png`)
-        DOMCacheGetOrSet('nextEggText').innerHTML = `The Final Egg`
-    }
+                if(DOMCacheGetOrSet('currentEggImg').getAttribute('src') !== `Imgs/enlightenment.png`) 
+                    DOMCacheGetOrSet('currentEggImg').setAttribute('src', `Imgs/enlightenment.png`)
+                    DOMCacheGetOrSet('currentEggText').innerHTML = `Current Egg: ${eggNames[data.currentEgg]}<br>Value: $${format(eggValue[data.currentEgg])} (x${format(eggValueBonus)})<br>$${format(((currentEggValue.times(soulEggBoost))).times(data.chickens.times(layRate)))}/s<br>Egg Laying Rate: x${format((layRate))}<br>Chicken Gain: ${format(chickenGain)} Chickens/min`
+                if(DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/enlightenment.png`) 
+                    DOMCacheGetOrSet('nextEggImg').setAttribute('src', `Imgs/enlightenment.png`)
+                DOMCacheGetOrSet('nextEggText').innerHTML = `The Final Egg`
+    }  
+    
     for(let i = 0; i < data.unlockedEgg.length; i++)
         DOMCacheGetOrSet(`eggHold${i}`).style.display = data.unlockedEgg[i] === true ? 'flex' : 'none'
 }
