@@ -15,6 +15,13 @@ const defaultContract = {
     goal: D(0)
 }
 
+function contractActive(){
+  for(let x=0;x<data.contractActive.length;x++){
+    if(data.contractActive[x])return true
+  }
+  return false
+}
+
 function generateContract(i) {
     let contract = Object.assign({}, defaultContract)
     let index = getRandom(0, contractEggImgs.length)
@@ -34,7 +41,7 @@ function generateContract(i) {
         contract.reward = D(getRandomDecimal(D(1),D(5)))
     }
     contract.goal = getRandomDecimal(D(1e6),D(1e24))
-    contract.goal = contract.goal.times(eggValue[contract.eggIndex])
+    contract.goal = contract.goal.times(eggData[contract.eggIndex].value)
     data.contracts[i] = contract
 }
 
