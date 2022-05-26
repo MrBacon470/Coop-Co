@@ -42,7 +42,12 @@
         <div id="chickensText" style="margin:1vh;background-color:whitesmoke;color:black;">Chickens: 0</div>
         <button id="prestigeButton" style="margin:1vh;" class="locked" onclick="createConfirmation('prestige')">???</button>
     </div>
-    <div id="game" class="flexBox" style="margin-top:1vh;align-self: center;">
+    <div id="newsHolder">
+        <div id="news">
+            
+        </div>
+    </div>
+    <div id="game" class="flexBox" style="margin-top:0.5vh;align-self: center;">
         <div id="navBar" class="flexBox" style="flex-direction:row;align-items: center;">
             <button style="margin:1vh;" onclick="changeTab(0)">Eggs</button>
             <button style="margin:1vh;" onclick="changeTab(1)">Research</button>
@@ -298,12 +303,17 @@
             </div>
             <div style="margin-bottom:1vh">
                 <button onclick="toggle(0)" id="setTog0"></button>
+                <button onclick="toggle(1);scrollNextMessage()" id="setTog1"></button>
             </div>
-            <a href="https://discord.com/invite/JkQUnubuhx">Discord Link!</a>
+            <div>
+                <a href="https://discord.com/invite/JkQUnubuhx">Discord Link!</a>
+                <a href="https://github.com/MrBacon470/Coop-Co">Github Repo!</a>
+            </div>
             <div>
                 <h3>Changelog :O</h3>
-                <h4>Current Version - v1.0.2</h4>
+                <h4>Current Version - v1.0.4</h4>
                 <h4>Public Release</h4>
+                <p>v1.0.4 - Newsticker Added In Game</p>
                 <p>v1.0.3 - Egg Promotion Progress Bar, Egg Promotion and Prestige Buttons Hidden When In Contract, and Slightly Better Code (by gapples2)</p>
                 <p>v1.0.2 - Contract Rebalancing Part 2, Delete Save Confirmation</p>
                 <p>v1.0.1 - Minor Bug Fixes, 2 New Epic Researches, Favicon changes based on current egg, and Contract Rebalancing Part 1</p>
@@ -329,4 +339,5 @@
     <script src="JS/prestige.js"></script>
     <script src="JS/contracts.js"></script>
     <script src="JS/automation.js"></script>
+    <script src="JS/newsticker.js"></script>
 </html>

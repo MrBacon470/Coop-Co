@@ -44,8 +44,8 @@ function getDefaultObject() {
         buyAmounts: [0,0],
         time: Date.now(),
         currentTab: 0,
-        settingsToggles: [true],
-        currentUpdate: 'v1.0.3',
+        settingsToggles: [true,true],
+        currentUpdate: 'v1.0.4',
         devSpeed: 1,
     }
 }
@@ -125,6 +125,7 @@ window.setInterval(function(){
 window.onload = function (){
     load()
     changeTab(data.currentTab)
+    scrollNextMessage()
 }
 //full reset
 function fullReset(){

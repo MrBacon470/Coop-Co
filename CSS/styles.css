@@ -16,6 +16,7 @@
 }
 
 button {
+    user-select: none;
     background-color: var(--background-color);
     border-width: 2px;
     border-color: whitesmoke;
@@ -95,7 +96,26 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
         overflow: scroll;
     }
 }
+#newsHolder {
+    border: 2px solid whitesmoke;
+    border-radius: 4px;
+    padding: 2px;
+    width: 45%;
+    overflow:hidden;
+    margin:auto;
+    margin-top: 0.5vh;
+    text-align: left;
+}
 
+#news {
+    color:inherit;
+    position: relative;
+    display:inline-block;
+    font-size:15px;
+    font-family:inherit;
+    white-space: nowrap;
+    font-weight: bold;
+}
 button#eggPromoteButton{
   --x: 0%;
   background: linear-gradient(
