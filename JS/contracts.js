@@ -33,8 +33,8 @@ function generateContract(i) {
     contract.rewardType = 'Prophecy Eggs'
     contract.reward = Decimal.round(getRandomDecimal(D(1),D(5)).times(contractRewardBoost))
     contract.goal = getRandomDecimal(D(1e6),D(1e24))
-    contract.goal = contract.goal.times(eggData[contract.eggIndex].value)
-    contract.goal = contract.goal.times(soulEggBoost.times(0.25))
+    contract.goal = contract.goal.times(eggData[contract.eggIndex].value.times(0.15))
+    contract.goal = contract.goal.times(soulEggBoost.times(0.15))
     data.contracts[i] = contract
 }
 

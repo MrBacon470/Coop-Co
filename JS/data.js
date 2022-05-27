@@ -45,7 +45,7 @@ function getDefaultObject() {
         time: Date.now(),
         currentTab: 0,
         settingsToggles: [true,true],
-        currentUpdate: 'v1.0.10',
+        currentUpdate: 'v1.0.11',
         devSpeed: 1,
     }
 }
@@ -65,18 +65,13 @@ function load() {
         deleteSave()
     }
     //Update 1.0.0 Saves to Current Version
-    if(data.currentUpdate === 'v1.0.9') {
-        createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details<br>Contracts were regenerated in v1.0.10`,"812626")
+    else if(data.currentUpdate !== getDefaultObject().currentUpdate){
+        createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details<br>Contracts were regenerated in v1.0.11`,"812626")
         if(data.unlockedContracts === true){
             for(let i = 0; i < 3; i++) {
                 generateContract(i)
             }
         }
-        data.currentUpdate = getDefaultObject().currentUpdate
-    }
-    else if(data.currentUpdate !== getDefaultObject().currentUpdate){
-        createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details`,"812626")
-        data.currentUpdate = getDefaultObject().currentUpdate
     }
     for(let i = 0; i < data.buyAmounts.length; i++) {
         const numString = ['1','5','10','20']
