@@ -1,34 +1,40 @@
 
 function format(a,b = 2) {
     if(data.settingsToggles[0]) {
-        const standardPrefix = ['K','M','B','T','Qa','Qi','Sx','Sp','O','N','Dc','UnDc','DuDc','TrDc','QaDc'
-        ,'QiDc','SxDc','SpDc','OcDc','NoDc','Vg','UnVg','DuVg','TrVg','QaVg','QiVg','SxVg','SpVg','OcVg','NoVg','TG']
-        const standardReq = []
-        for(let i = 0; i < standardPrefix.length; i++) {
-            standardReq[i] = Decimal.pow(10,3+(3*i))
-        }
-        for(let i = standardReq.length-1; i > -1; i--) {
-            if(i === standardReq.length-1 && (a.div(standardReq[i]).gte(1e3)))
-                return formatSci(a,b)
-            if(a.gte(standardReq[i]))
-                return `${(a.div(standardReq[i]).toPrecision(5))} ${standardPrefix[i]}`
-            if(a.lt(standardReq[0]))
-                return formatSci(a,b)
-        }
+        if(a.div(1e93).lt(1e3))
+            return notate(a)
+        else 
+            return formatSci(a,b)
     }
     else {
         return formatSci(a,b)
     }
 }
-/*
-notate = function(e) {
-    const standardPrefix = ['', 'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'O', 'N', 'Dc', 'UnDc', 'DuDc', 'TrDc', 'QaDc', 'QiDc', 'SxDc', 'SpDc', 'OcDc', 'NoDc', 'Vg', 'UnVg', 'DuVg', 'TrVg', 'QaVg', 'QiVg', 'SxVg', 'SpVg', 'OcVg', 'NoVg', 'TG']
-    return e.toPrecision(4).replace(/(\d)\.?(\d*)e\+?(\d+)/, (s,a,b,c)=> {
-        let ab0 = a + b + '000';
-        return `${ab0.slice(0, c % 3 + 1)}.${ab0.slice(c % 3 + 1, 4)} ${standardPrefix[~~(c / 4)]}`
-    })
+
+class Notation {
+    static standardPrefix = ['', 'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'O', 'N', 'Dc', 'UnDc', 'DuDc', 'TrDc', 'QaDc', 'QiDc', 'SxDc', 'SpDc', 'OcDc', 'NoDc', 'Vg', 'UnVg', 'DuVg', 'TrVg', 'QaVg', 'QiVg', 'SxVg', 'SpVg', 'OcVg', 'NoVg', 'TG'];
+    constructor(standardPrefix = Notation.standardPrefix) {
+        this.standardPrefix = standardPrefix;
+    }
+    notate(e) {
+        return e.toPrecision(4).replace(/(\d)\.?(\d*)e\+?(\d+)/, (s,a,b,c)=> {
+            let ab0 = a + b + '000';
+            let num = `${ab0.slice(0, c % 3 + 1)}.${ab0.slice(c % 3 + 1, 4)}`;
+            let pow3 = ~~(c/3);
+            let prefix = this.standardPrefix[pow3];
+            if (prefix) prefix = ' ' + prefix;
+            else if (c < 4) prefix = '';
+            else prefix = 'e' + (pow3 * 3);
+            return `${num}${prefix}`;
+        })
+    }
+    bind() {
+        return (e) => this.notate(e);
+    }
 }
-*/
+
+notate = new Notation().bind()
+
 function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min) ) + min
 }
