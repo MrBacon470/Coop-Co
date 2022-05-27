@@ -24,7 +24,9 @@ newsArray = [//always true
     ['The e in e10 stands for eggs. You don\'t have 10 Trillion eggs, you only have 10. ','true'],['BREAKING NEWS: Florida Man eats rocket fuel egg','true'],['Florida man ends up exploring the entire local group','true'],['Breaking News: Florida Man used his rocket powers to eat every single type of egg. Has gone into a coma-like state.','true'],
     ['Scientist dumbfounded after Florida Man flies to Mars, "how"','true'],['Florida Man has broken the fourth wall and is breaking the further walls, I repeat, Florida Man has broken the fourth wall and is working on the others!','true'],['gge','true'],
     ['Excellent! Excellent! Egg salad! And sandwich. ','true'],['All these damn eggs and I still don\'t know which came first. Chicken, or Egg. The mystery still stands.','true'],['There\'s no way he managed to fry rice','true'],['Jacorb was right, egg is the next mechanic','true'],
-    ['We invented the news ticker, the "Matter" game or whatever it\'s called stole our idea','true'],['Eggcelent gameplay.','true'],['eggineer gaming','true'],
+    ['We invented the news ticker, the "Matter" game or whatever it\'s called stole our idea','true'],['Eggcelent gameplay.','true'],['eggineer gaming','true'],['So how exactly do we make money off this? Are people actually eating “soul eggs”???','true'],
+    ['I heard that there\'s a secret prophecy egg stash at https://discord.gg/kFYgun8Yqs','true'],['DONT EAT SCRAMBLED NEBULA EGGS!!! They taste terrible…','true'],['Breaking: local man manages to make deviled eggs from enlightenment eggs, says they “showed him the truth about reality. and also smelled terrible.”','true'],
+    
 
 ];}
 

@@ -1,13 +1,14 @@
 let soulEggGain = D(0)
 let soulEggBoost = D(0)
 let prophecyEggBoost = D(0)
+let contractRewardBoost = D(1)
 function updatePrestige() {
     if(data.bestSoulEggs.lt(data.soulEggs)) data.bestSoulEggs = data.soulEggs
     const soulAvg = (data.soulEggs.plus(data.bestSoulEggs)).div(2)
     soulEggGain = data.currentEgg >= 3 ? Decimal.floor(Decimal.sqrt(Decimal.sqrt(data.money)).times((D(0.1).times(data.epicResearch[3])).plus(1))) : D(0)
     prophecyEggBoost = Decimal.pow(1.05, data.prophecyEggs);
     soulEggBoost = D(1).plus(soulAvg.times(D(0.01).plus(D(0.01).times(data.epicResearch[2]))).times(prophecyEggBoost))
-    
+    contractRewardBoost = D(1).plus(data.prophecyEggs.times(D(0.01)))
 }
 
 function prestige() {

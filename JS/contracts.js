@@ -31,9 +31,10 @@ function generateContract(i) {
     contract.image = `Imgs/${contractEggImgs[index]}.png`
     contract.eggIndex = contractEggIndex[index]
     contract.rewardType = 'Prophecy Eggs'
-    contract.reward = D(getRandomDecimal(D(1),D(5)))
+    contract.reward = Decimal.round(getRandomDecimal(D(1),D(5)).times(contractRewardBoost))
     contract.goal = getRandomDecimal(D(1e6),D(1e24))
     contract.goal = contract.goal.times(eggData[contract.eggIndex].value)
+    contract.goal = contract.goal.times(soulEggBoost.times(0.25))
     data.contracts[i] = contract
 }
 

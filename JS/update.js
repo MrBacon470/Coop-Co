@@ -4,14 +4,16 @@ function updateHTML() {
     DOMCacheGetOrSet('chickensText').textContent = `Chickens: ${format(data.chickens)}`
     if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `Imgs/${eggData[data.currentEgg].id}.png`) 
         DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `Imgs/${eggData[data.currentEgg].id}.png`)
-    DOMCacheGetOrSet('eggPromoteButton').classList = data.money.gte(eggData[data.currentEgg+1].unlockReq) ? 'unlockedPromote' : 'lockedPromote'
     DOMCacheGetOrSet('eggPromoteButton').style.display = data.currentEgg >= eggData.length-1 || contractActive() ? 'none' : 'inline-block'
-    const previousEggUnlockReq = data.currentEgg !== 0 ? eggData[data.currentEgg].unlockReq.max(1.01) : D(1.01)
-    const currentEggUnlockReq = eggData[data.currentEgg+1].unlockReq.max(1.02)
-    const lastEggUnlockProgress = data.money.max(1).log10().div(previousEggUnlockReq.log10())
-    const nextEggUnlockProgress = data.money.div(previousEggUnlockReq).max(1).log10().div(currentEggUnlockReq.div(previousEggUnlockReq).log10())
-    DOMCacheGetOrSet('eggPromoteButton').style.setProperty("--y", lastEggUnlockProgress.mul(100).max(0).min(100).toString() + '%')
-    DOMCacheGetOrSet('eggPromoteButton').style.setProperty("--x", nextEggUnlockProgress.mul(100).max(0).min(100).toString() + '%')
+    if(data.currentEgg < eggData.length-1) {
+        const previousEggUnlockReq = data.currentEgg !== 0 ? eggData[data.currentEgg].unlockReq.max(1.01) : D(1.01)
+        const currentEggUnlockReq = eggData[data.currentEgg+1].unlockReq.max(1.02)
+        const nextEggDiscoverProgress = data.money.max(1).log10().div(previousEggUnlockReq.log10())
+        const nextEggUnlockProgress = data.money.div(previousEggUnlockReq).max(1).log10().div(currentEggUnlockReq.div(previousEggUnlockReq).log10())
+        DOMCacheGetOrSet('eggPromoteButton').style.setProperty("--y", nextEggDiscoverProgress.mul(100).max(0).min(100).toString() + '%')
+        DOMCacheGetOrSet('eggPromoteButton').style.setProperty("--x", nextEggUnlockProgress.mul(100).max(0).min(100).toString() + '%')
+        DOMCacheGetOrSet('eggPromoteButton').classList = data.money.gte(eggData[data.currentEgg+1].unlockReq) ? 'unlockedPromote' : 'lockedPromote'
+    }
     DOMCacheGetOrSet('prestigeTabButton').style.display = data.hasPrestiged === true ? 'block' : 'none'
     DOMCacheGetOrSet('prestigeButton').classList = data.currentEgg < 3 ? 'locked' : 'prestigeHeader'
     DOMCacheGetOrSet('prestigeButton').style.display = contractActive() ? 'none' : 'block'
@@ -60,7 +62,7 @@ function updateHTML() {
     }
     else if(data.currentTab === 4) {
         DOMCacheGetOrSet('soulEggText').innerHTML = `Soul Eggs: ${format(data.soulEggs)}<br>Best Soul Eggs: ${format(data.bestSoulEggs)}<br>Earnings Boost: x${format(soulEggBoost)}`
-        DOMCacheGetOrSet('prophecyEggText').innerHTML = `Prophecy Eggs: ${format(data.prophecyEggs)}<br>Soul Boost: x${format(prophecyEggBoost)}`
+        DOMCacheGetOrSet('prophecyEggText').innerHTML = `Prophecy Eggs: ${format(data.prophecyEggs)}<br>Soul Boost: x${format(prophecyEggBoost)}<br>Contract Reward Boost: x${format(contractRewardBoost)}`
         for(let i = 0; i < epicResearchCost.length; i++)
             if(data.epicResearch[i].lt(epicResearchMaxLevel[i]))
                 DOMCacheGetOrSet(`er${i}`).classList = data.soulEggs.gte(epicResearchCost[i]) ? 'prestige' : 'lockedResearch'
