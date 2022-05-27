@@ -1,13 +1,26 @@
 
 function format(a,b = 2) {
     if(data.settingsToggles[0]) {
-        return notate(a)
+        const standardPrefix = ['K','M','B','T','Qa','Qi','Sx','Sp','O','N','Dc','UnDc','DuDc','TrDc','QaDc'
+        ,'QiDc','SxDc','SpDc','OcDc','NoDc','Vg','UnVg','DuVg','TrVg','QaVg','QiVg','SxVg','SpVg','OcVg','NoVg','TG']
+        const standardReq = []
+        for(let i = 0; i < standardPrefix.length; i++) {
+            standardReq[i] = Decimal.pow(10,3+(3*i))
+        }
+        for(let i = standardReq.length-1; i > -1; i--) {
+            if(i === standardReq.length-1 && (a.div(standardReq[i]).gte(1e3)))
+                return formatSci(a,b)
+            if(a.gte(standardReq[i]))
+                return `${formatSci(a.divide(standardReq[i]),b)} ${standardPrefix[i]}`
+            if(a.lt(standardReq[0]))
+                return formatSci(a,b)
+        }
     }
     else {
         return formatSci(a,b)
     }
 }
-
+/*
 notate = function(e) {
     const standardPrefix = ['', 'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'O', 'N', 'Dc', 'UnDc', 'DuDc', 'TrDc', 'QaDc', 'QiDc', 'SxDc', 'SpDc', 'OcDc', 'NoDc', 'Vg', 'UnVg', 'DuVg', 'TrVg', 'QaVg', 'QiVg', 'SxVg', 'SpVg', 'OcVg', 'NoVg', 'TG']
     return e.toPrecision(4).replace(/(\d)\.?(\d*)e\+?(\d+)/, (s,a,b,c)=> {
@@ -15,6 +28,7 @@ notate = function(e) {
         return `${ab0.slice(0, c % 3 + 1)}.${ab0.slice(c % 3 + 1, 4)} ${standardPrefix[~~(c / 4)]}`
     })
 }
+*/
 function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min) ) + min
 }
