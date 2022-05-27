@@ -147,7 +147,7 @@ function updateEggPage() {
                 || (DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/question.png` && (data.unlockedEgg[data.currentEgg] === false && data.money.lt(eggData[data.currentEgg].discoverReq))))
                     DOMCacheGetOrSet('nextEggImg').src = data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggData[data.currentEgg].discoverReq) ? `Imgs/${eggData[data.currentEgg+1].id}.png` : `Imgs/question.png`
                 DOMCacheGetOrSet('nextEggText').innerHTML = data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggData[data.currentEgg].discoverReq) ?
-                `Next Egg: ${eggData[data.currentEgg+1].name}<br>Unlock At: $${format(eggData[data.currentEgg].unlockReq)}<br>Value: $${format(eggData[data.currentEgg+1].value)}` : `Next Egg: Not Discovered<br>Discover at $${format(eggData[data.currentEgg].discoverReq)}`  
+                `Next Egg: ${eggData[data.currentEgg+1].name}<br>Unlock At: $${format(eggData[data.currentEgg+1].unlockReq)}<br>Value: $${format(eggData[data.currentEgg+1].value)}` : `Next Egg: Not Discovered<br>Discover at $${format(eggData[data.currentEgg+1].discoverReq)}`  
     }
     else {
                 if(DOMCacheGetOrSet('currentEggImg').getAttribute('src') !== `Imgs/enlightenment.png`) 
@@ -209,7 +209,7 @@ function updateLayRate() {
 
 function promoteEgg() {
     if(data.currentEgg === eggData.length-1) return
-    if(data.money.lt(eggData[data.currentEgg].unlockReq)) return
+    if(data.money.lt(eggData[data.currentEgg+1].unlockReq)) return
     for(let i = 0; i < data.contractActive.length; i++) {
         if(data.contractActive[i] === true) return
     }
