@@ -58,6 +58,11 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 .unlocked {color:#2f8126;border-color: #2f8126;background-color: whitesmoke;}
 .unlocked:hover {color: whitesmoke;border-color: #2f8126;background-color: #2f8126;}
 
+.lockedPromote {color:#812626;border-color: #812626;background-color: whitesmoke;}
+.lockedPromote:hover {color:#812626;border-color: #812626;background-color: #812626;}
+.unlockedPromote {color:#2f8126;border-color: #2f8126;background-color: whitesmoke;}
+.unlockedPromote:hover {color:#2f8126;border-color: #2f8126;background-color: #2f8126;}
+
 .lockedResearch {color:whitesmoke;border-color: #812626;}
 .lockedResearch:hover {color: whitesmoke;border-color: #812626;background-color: #812626;}
 .unlockedResearch {color:whitesmoke;border-color: #2f8126;}
@@ -121,12 +126,12 @@ button#eggPromoteButton{
   --y: 0%;
   background: linear-gradient(
     90deg,
-    rgba(0,255,0,0.2) 0%,
-    rgba(0,255,0,0.2) var(--x),
-    rgba(255,165,0,0.2) var(--x),
-    rgba(255,165,0,0.2) var(--y),
-    rgba(255,0,0,0.2) var(--y),
-    rgba(255,0,0,0.2) 100% 
+    #a3ff9a 0%,
+    #a3ff9a var(--x),
+    #e9ff9a var(--x),
+    #e9ff9a var(--y),
+    #ff9a9a var(--y),
+    #ff9a9a 100% 
   );
 }
 button#eggPromoteButton.unlocked:hover{color: whitesmoke;border-color: #2f8126;background-color: #2f8126;}

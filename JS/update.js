@@ -4,7 +4,7 @@ function updateHTML() {
     DOMCacheGetOrSet('chickensText').textContent = `Chickens: ${format(data.chickens)}`
     if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `Imgs/${eggData[data.currentEgg].id}.png`) 
         DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `Imgs/${eggData[data.currentEgg].id}.png`)
-    DOMCacheGetOrSet('eggPromoteButton').classList = data.money.gte(eggData[data.currentEgg+1].unlockReq) ? 'unlocked' : 'locked'
+    DOMCacheGetOrSet('eggPromoteButton').classList = data.money.gte(eggData[data.currentEgg+1].unlockReq) ? 'unlockedPromote' : 'lockedPromote'
     DOMCacheGetOrSet('eggPromoteButton').style.display = data.currentEgg >= eggData.length-1 || contractActive() ? 'none' : 'inline-block'
     const previousEggUnlockReq = data.currentEgg !== 0 ? eggData[data.currentEgg].unlockReq.max(1.01) : D(1.01)
     const currentEggUnlockReq = eggData[data.currentEgg+1].unlockReq.max(1.02)
