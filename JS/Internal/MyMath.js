@@ -11,7 +11,7 @@ function format(a,b = 2) {
             if(i === standardReq.length-1 && (a.div(standardReq[i]).gte(1e3)))
                 return formatSci(a,b)
             if(a.gte(standardReq[i]))
-                return `${formatSci(a.divide(standardReq[i]),b)} ${standardPrefix[i]}`
+                return `${(a.div(standardReq[i]).toPrecision(5))} ${standardPrefix[i]}`
             if(a.lt(standardReq[0]))
                 return formatSci(a,b)
         }
