@@ -72,6 +72,7 @@ function load() {
                 generateContract(i)
             }
         }
+        data.currentUpdate = getDefaultObject().currentUpdate
     }
     for(let i = 0; i < data.buyAmounts.length; i++) {
         const numString = ['1','5','10','20']
