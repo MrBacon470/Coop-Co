@@ -21,7 +21,10 @@ newsArray = [//always true
     ['Yes, we know what we are. No, we\'re not gonna put a rick roll link, that\'s just childish.','true'],['No chickens?','true'],['If you get rid of everything when you prestige, why do people still buy regular eggs???','true'],['Join the discord for one free egg.','true'],
     ['It takes 3000 grains to produce an egg','true'],['New Coop Co update! Changelog 420.69: Added 4,736th egg along with new prestige, Going Outside! This prestige will reset the game and give you no boosts!','true'],['There is 50% chance for the egg to be a dinosaur egg: it either is or is not','true'],
     ['Is it truly an egg or are you just imagining an egg on the screen?','true'],['🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚','true'],['You think YOU can do it better? Alright then. GitHub is in the settings menu. Go ahead. Make it better.','true'],
-    
+    ['The e in e10 stands for eggs. You don\'t have 10 Trillion eggs, you only have 10. ','true'],['BREAKING NEWS: Florida Man eats rocket fuel egg','true'],['Florida man ends up exploring the entire local group','true'],['Breaking News: Florida Man used his rocket powers to eat every single type of egg. Has gone into a coma-like state.','true'],
+    ['Scientist dumbfounded after Florida Man flies to Mars, "how"','true'],['Florida Man has broken the fourth wall and is breaking the further walls, I repeat, Florida Man has broken the fourth wall and is working on the others!','true'],['gge','true'],
+    ['Excellent! Excellent! Egg salad! And sandwich. ','true'],['All these damn eggs and I still don\'t know which came first. Chicken, or Egg. The mystery still stands.','true'],['There\'s no way he managed to fry rice','true'],['Jacorb was right, egg is the next mechanic','true'],
+    ['We invented the news ticker, the "Matter" game or whatever it\'s called stole our idea','true'],['Eggcelent gameplay.','true'],['eggineer gaming','true'],
 
 ];}
 
