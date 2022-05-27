@@ -65,14 +65,17 @@ function load() {
         deleteSave()
     }
     //Update 1.0.0 Saves to Current Version
-    if(data.currentUpdate !== getDefaultObject().currentUpdate){
-        createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details<br>Contracts Have Been Regenerated this Update`,"812626")
-        data.currentUpdate = getDefaultObject().currentUpdate
+    if(data.currentUpdate === 'v1.0.6') {
+        createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details<br>Contracts were regenerated in v1.0.7`,"812626")
         if(data.unlockedContracts === true){
             for(let i = 0; i < 3; i++) {
                 generateContract(i)
             }
         }
+    }
+    else if(data.currentUpdate !== getDefaultObject().currentUpdate){
+        createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details`,"812626")
+        data.currentUpdate = getDefaultObject().currentUpdate
     }
     for(let i = 0; i < data.buyAmounts.length; i++) {
         const numString = ['1','5','10','20']
