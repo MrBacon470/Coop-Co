@@ -1,3 +1,4 @@
+/*
 function format(a,b = 2) {
     if(data.settingsToggles[0]) {
         const standardPrefix = ['K','M','B','T','Qa','Qi','Sx','Sp','O','N','Dc','UnDc','DuDc','TrDc','QaDc'
@@ -19,7 +20,14 @@ function format(a,b = 2) {
         return formatSci(a,b)
     }
 }
-
+*/
+format = function(e) {
+    const standardPrefix = ['', 'K', 'M', 'B', 'T', 'Qa', 'Qi', 'Sx', 'Sp', 'O', 'N', 'Dc', 'UnDc', 'DuDc', 'TrDc', 'QaDc', 'QiDc', 'SxDc', 'SpDc', 'OcDc', 'NoDc', 'Vg', 'UnVg', 'DuVg', 'TrVg', 'QaVg', 'QiVg', 'SxVg', 'SpVg', 'OcVg', 'NoVg', 'TG']
+    return e.toPrecision(4).replace(/(\d)\.?(\d*)e\+?(\d+)/, (s,a,b,c)=> {
+        let ab0 = a + b + '000';
+        return `${ab0.slice(0, c % 3 + 1)}.${ab0.slice(c % 3 + 1, 4)} ${standardPrefix[~~(c / 4)]}`
+    })
+}
 function getRandom(min, max) {
     return Math.floor(Math.random() * (max - min) ) + min
 }
