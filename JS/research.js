@@ -23,18 +23,22 @@ for(let i = 0; i < commonResearchNames.length; i++) {
     DOMCacheGetOrSet(`r${i}`).classList = 'lockedResearch'
     DOMCacheGetOrSet(`r${i}`).onclick = () => purchaseResearch(i)
 }
+
 function purchaseResearch(i) {
     const buyAmountNums = [1,5,10,20]
-    for(let j = 0; j < buyAmountNums[data.buyAmounts[0]]; j++) {
-        updateResearch()
-        if(data.money.gte(commonResearchCost[i]) && data.research[i].lt(commonResearchMaxLevel[i])) {
-            data.money = data.money.sub(commonResearchCost[i])
-            data.research[i] = data.research[i].add(1)
-            updateHTML()
-        }
-        else
-            break
+    updateResearch();
+    let buyAmount = data.research[i].plus(buyAmountNums[data.buyAmounts[0]]).lte(commonResearchMaxLevel[i]) ? buyAmountNums[data.buyAmounts[0]] : commonResearchMaxLevel[i].minus(data.research[i]);
+    // prevent going over max level
+    let costMult = Decimal.pow(1.15, buyAmount).minus(1).div(0.15);
+    //calculate cost of buying buyAmount researches
+    if(data.money.lt(commonResearchCost[i].times(costMult))) {
+        buyAmount = Math.floor(data.money.div(commonResearchCost[i]).times(0.15).plus(1).log(1.15).toNumber());
+        //reverse function to get maximum buyAmount
+        costMult = Decimal.pow(1.15, buyAmount).minus(1).div(0.15);
     }
+    data.money = data.money.sub(commonResearchCost[i].times(costMult));
+    data.research[i] = data.research[i].add(buyAmount);
+    updateHTML();
 }
 function updateResearch() {
     for(let i = 0; i < commonResearchNames.length; i++)
