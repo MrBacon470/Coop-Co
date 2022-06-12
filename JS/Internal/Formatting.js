@@ -1,9 +1,9 @@
-//Credit to Acamadea
+//Credit to Acamaeda
 function exponentialFormat(num, precision, mantissa = true) {
     let e = num.log10().floor()
     let m = num.div(Decimal.pow(10, e))
-    if (m.toStringWithDecimalPlaces(precision) === 10) {
-        m = new Decimal(1)
+    if (m.toStringWithDecimalPlaces(precision) == 10) {
+        m = decimalOne
         e = e.add(1)
     }
     e = (e.gte(1e9) ? format(e, 3) : (e.gte(10000) ? commaFormat(e, 0) : e.toStringWithDecimalPlaces(0)))
@@ -18,7 +18,7 @@ function commaFormat(num, precision) {
     let init = num.toStringWithDecimalPlaces(precision)
     let portions = init.split(".")
     portions[0] = portions[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
-    if (portions.length === 1) return portions[0]
+    if (portions.length == 1) return portions[0]
     return portions[0] + "." + portions[1]
 }
 
@@ -36,33 +36,39 @@ function fixValue(x, y = 0) {
 
 function sumValues(x) {
     x = Object.values(x)
-    if (!x[0]) return new Decimal(0)
+    if (!x[0]) return decimalZero
     return x.reduce((a, b) => Decimal.add(a, b))
 }
 
-function formatSci(decimal, precision = 2) {
+function formatSci(decimal, precision = 2, small = true) {
     decimal = new Decimal(decimal)
-        if (isNaN(decimal)) return  '[ERROR]: NaN'
-        if (decimal.sign < 0) return "-" + formatSci(decimal.neg(), precision)
-        if (decimal.mag === Number.POSITIVE_INFINITY) return "Infinity"
-        if (decimal.gte("eeee1000")) {
-            let slog = decimal.slog()
-            if (slog.gte(1e6)) return "F" + formatSci(slog.floor())
-            else return Decimal.pow(10, slog.sub(slog.floor())).toStringWithDecimalPlaces(3) + "F" + commaFormat(slog.floor(), 0)
-        } else if (decimal.gte("1e1000000")) return exponentialFormat(decimal, 0, false)
-        else if (decimal.gte("1e10000")) return exponentialFormat(decimal, 0)
-        else if (decimal.gte(1e6)) return exponentialFormat(decimal, precision)
-        else if (decimal.gte(1e3)) return commaFormat(decimal, 0)
-        else if (decimal.gte(0.0001)) return regularFormat(decimal, precision)
-        else if (decimal.eq(0)) return (0).toFixed(precision)
+    if (isNaN(decimal.sign) || isNaN(decimal.layer) || isNaN(decimal.mag)) {
+        player.hasNaN = true;
+        return "NaN"
+    }
+    if (decimal.sign < 0) return "-" + format(decimal.neg(), precision, small)
+    if (decimal.mag == Number.POSITIVE_INFINITY) return "Infinity"
+    if (decimal.gte("eeee1000")) {
+        var slog = decimal.slog()
+        if (slog.gte(1e6)) return "F" + format(slog.floor())
+        else return Decimal.pow(10, slog.sub(slog.floor())).toStringWithDecimalPlaces(3) + "F" + commaFormat(slog.floor(), 0)
+    }
+    else if (decimal.gte("1e1000000")) return exponentialFormat(decimal, 0, false)
+    else if (decimal.gte("1e10000")) return exponentialFormat(decimal, 0)
+    else if (decimal.gte(1e9)) return exponentialFormat(decimal, precision)
+    else if (decimal.gte(1e3)) return commaFormat(decimal, 0)
+    else if (decimal.gte(0.0001) || !small) return regularFormat(decimal, precision)
+    else if (decimal.eq(0)) return (0).toFixed(precision)
 
-        decimal = invertOOM(decimal)
-        let val = ""
-        if (decimal.lt("1e1000")) {
-            val = exponentialFormat(decimal, precision)
-            return val.replace(/([^(?:e|F)]*)$/, '-$1')
-        } else
-            return format(decimal, precision) + "⁻¹"
+    decimal = invertOOM(decimal)
+    let val = ""
+    if (decimal.lt("1e1000")){
+        val = exponentialFormat(decimal, precision)
+        return val.replace(/([^(?:e|F)]*)$/, '-$1')
+    }
+    else   
+        return format(decimal, precision) + "⁻¹"
+
 }
 
 function formatWhole(decimal) {
@@ -90,8 +96,8 @@ function toPlaces(x, precision, maxAccepted) {
 }
 
 // Will also display very small numbers
-function formatSmall(x, precision=2) {
-    return format(x, precision, true)
+function formatSmall(x, precision=2) { 
+    return format(x, precision, true)    
 }
 
 function invertOOM(x){

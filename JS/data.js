@@ -1,4 +1,4 @@
-const D = x => new Decimal(x)
+function D(x){return new Decimal(x)}
 //create all the variables in a data object for saving
 function getDefaultObject() {
     return {
