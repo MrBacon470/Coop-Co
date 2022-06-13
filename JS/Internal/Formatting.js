@@ -39,7 +39,7 @@ function sumValues(x) {
     if (!x[0]) return decimalZero
     return x.reduce((a, b) => Decimal.add(a, b))
 }
-
+/*
 function formatSci(decimal, precision = 2, small = true) {
     if (isNaN(decimal.sign) || isNaN(decimal.layer) || isNaN(decimal.mag)) {
         return "NaN"
@@ -68,7 +68,34 @@ function formatSci(decimal, precision = 2, small = true) {
         return formatSci(decimal, precision) + "⁻¹"
 
 }
-
+*/
+//Formatting created by MrRedshark77
+function formatSci(ex, acc=2, max=6) {
+    ex = D(ex)
+    neg = ex.lt(0)?"-":""
+    if (ex.mag == Infinity) return neg + 'Infinity'
+    if (Number.isNaN(ex.mag)) return neg + 'NaN'
+    if (ex.lt(0)) ex = ex.mul(-1)
+    if (ex.eq(0)) return ex.toFixed(acc)
+    let e = ex.log10().floor()
+    if (ex.log10().lt(Math.min(-acc,0)) && acc > 1) {
+        let e = ex.log10().ceil()
+        let m = ex.div(e.eq(-1)?D(0.1):D(10).pow(e))
+        let be = e.mul(-1).max(1).log10().gte(9)
+        return neg+(be?'':m.toFixed(2))+'e'+formatSci(e, 0, max)
+    } else if (e.lt(max)) {
+        let a = Math.max(Math.min(acc-e.toNumber(), acc), 0)
+        return neg+(a>0?ex.toFixed(a):ex.toFixed(a).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'))
+    } else {
+        if (ex.gte("eeee10")) {
+            let slog = ex.slog()
+            return (slog.gte(1e9)?'':D(10).pow(slog.sub(slog.floor())).toFixed(2)) + "F" + formatSci(slog.floor(), 0)
+        }
+        let m = ex.div(D(10).pow(e))
+        let be = e.log10().gte(9)
+        return neg+(be?'':m.toFixed(2))+'e'+formatSci(e, 0, max)
+    }
+}
 function formatWhole(decimal) {
     decimal = new Decimal(decimal)
     if (decimal.gte(1e9)) return format(decimal, 2)
