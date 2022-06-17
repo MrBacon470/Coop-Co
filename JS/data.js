@@ -41,9 +41,19 @@ function getDefaultObject() {
         research: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
         epicResearch: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
         autoActive: [false,false,false,false],
+        stats: {
+            bestMoney: D(0),
+            bestEgg: '',
+            bestChickens: D(0),
+            contractsComplete: D(0),
+            timePlayed: D(0),
+            prestiges: [D(0),D(0),D(0)],
+            timeInPrestige: D(0),
+        },
         buyAmounts: [0,0],
         time: Date.now(),
         currentTab: 0,
+        currentSubTab: [0],
         settingsToggles: [true,true],
         currentUpdate: 'v1.0.11',
         devSpeed: 1,
@@ -131,6 +141,9 @@ window.setInterval(function(){
 window.onload = function (){
     load()
     changeTab(data.currentTab)
+    for(let i = 0; i < data.currentSubTab.length; i++) {
+        changeSubTab(i,data.currentSubTab[i])
+    }
     scrollNextMessage()
     $.notify('Game Loaded','info')
 }

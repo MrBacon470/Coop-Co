@@ -57,6 +57,10 @@ function startContract(i) {
     }
         
     data.contractActive[i] = true
+    data.stats.prestiges[2] = data.stats.prestiges[1]
+    data.stats.prestiges[1] = data.stats.prestiges[0]
+    data.stats.prestiges[0] = soulEggGain
+    data.stats.timeInPrestige = D(0)
     data.soulEggs = data.soulEggs.plus(soulEggGain)
     for(let i = 0; i < data.research.length; i++)
         data.research[i] = D(0)
@@ -74,6 +78,7 @@ for(let i = 0; i < data.contracts.length; i++)
 function runContract(i) {
     if(data.money.gte(data.contracts[i].goal)) {
         $.notify(`Contract ${data.contracts[i].title} Completed!\n+${format(data.contracts[i].reward)} ${data.contracts[i].rewardType}`, 'success')
+        data.stats.contractsComplete = data.stats.contractsComplete.plus(1)
         switch(data.contracts[i].rewardType) {
             case 'Soul Eggs':
                 data.soulEggs = data.soulEggs.plus(data.contracts[i].reward)

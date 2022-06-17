@@ -312,40 +312,70 @@
         </div>
         <div id="settingsTab" class="flexBox tabHolder">
             <div style="margin-bottom:1vh">
-                <button onclick="save()">Save Game</button>
-                <button onclick="exportSave()">Export Save</button>
-                <button onclick="createPrompt('Import Save',0)">Import Save</button>
-                <button onclick="createConfirmation('reset')">Delete Save (Exports)</button>
+                <button onclick="changeSubTab(0,0)">Settings</button>
+                <button onclick="changeSubTab(0,1)">Stats</button>
+                <button onclick="changeSubTab(0,2)">Credits</button>
             </div>
-            <div style="margin-bottom:1vh">
-                <button onclick="toggle(0)" id="setTog0"></button>
-                <button onclick="toggle(1);scrollNextMessage()" id="setTog1"></button>
+            <div id="setSub0" class="flexBox">
+                <div style="margin-bottom:1vh">
+                    <button onclick="save()">Save Game</button>
+                    <button onclick="exportSave()">Export Save</button>
+                    <button onclick="createPrompt('Import Save',0)">Import Save</button>
+                    <button onclick="createConfirmation('reset')">Delete Save (Exports)</button>
+                </div>
+                <div style="margin-bottom:1vh">
+                    <button onclick="toggle(0)" id="setTog0"></button>
+                    <button onclick="toggle(1);scrollNextMessage()" id="setTog1"></button>
+                </div>
+                <div>
+                    <a href="https://discord.com/invite/JkQUnubuhx">Discord Link!</a>
+                    <a href="https://github.com/MrBacon470/Coop-Co">Github Repo!</a>
+                </div>
+                <div>
+                    <h3>Changelog :O</h3>
+                    <h4>Current Version - v1.1.0</h4>
+                    <h4>Public Release</h4>
+                    <p>v1.1.0 <strong>[MAJOR UPDATE]</strong> - Enlightenments, Eggpeditions, Notifications via Notify.js, Tier XI-XIV Auto,<br>Error NAN Display Fix, New Formatter, Auto Save is 30s Interval Now (Originally 10s)</p>
+                    <p>v1.0.11 - Contract Rebalance pt 5 (I'm probably going to stop rebalancing now)</p>
+                    <p>v1.0.10 - More 1.0.3 Fixes, New Prophecy Egg Boost and Contract Rebalance pt 4 (finale?)</p>
+                    <p>v1.0.9 - More Fixes for bugs introduced by 1.0.3</p>
+                    <p>v1.0.8 <strong>[MAJOR UPDATE]</strong> - New Formatter (by Dimava), Optimized Common Research Buyer and Optimized Prophecy Egg Reward (by Gazyn)</p>
+                    <p>v1.0.7 - Contract Rebalance Part 3 | Soul Egg Rewards Removed Entirely from Contracts</p>
+                    <p>v1.0.6 - Fully Working Double Progress Bar (by Dimava)</p>
+                    <p>v1.0.5 - Fix Major Bug Introduced in 1.0.3</p>
+                    <p>v1.0.4 - Newsticker Added In Game</p>
+                    <p>v1.0.3 <strong>[MAJOR UPDATE]</strong> - Egg Promotion Progress Bar, Egg Promotion and Prestige Buttons Hidden When In Contract, and Slightly Better Code (by gapples2)</p>
+                    <p>v1.0.2 - Contract Rebalancing Part 2, Delete Save Confirmation</p>
+                    <p>v1.0.1 - Minor Bug Fixes, 2 New Epic Researches, Favicon changes based on current egg, and Contract Rebalancing Part 1</p>
+                    <p>v1.0.0 - Patching and Polishing</p>
+                    <h4 style="margin-top:1vh">Alpha Versions</h4>
+                    <p>v0.0.3 <strong>[MAJOR UPDATE]</strong> - Contracts,Automation and Internal Hatchery Buff</p>
+                    <p>v0.0.2 <strong>[MAJOR UPDATE]</strong> - Prestige!</p>
+                    <p>v0.0.1 <strong>[MAJOR UPDATE]</strong> - All Eggs, 28 "Common" Researches, Egg Promotion System</p>
+                </div>
             </div>
-            <div>
-                <a href="https://discord.com/invite/JkQUnubuhx">Discord Link!</a>
-                <a href="https://github.com/MrBacon470/Coop-Co">Github Repo!</a>
+            <div id="setSub1" class="flexBox">
+                <h3>Stats</h3>
+                <div style="display:flex;flex-direction:row;margin-right: 1vw;">
+                    <div style="display:flex;flex-direction:column;">
+                        <h4 id="stat0">Best Money: $0.00</h4>
+                        <h4 id="stat1">Best Egg: Regular</h4>
+                        <h4 id="stat2">Best Chickens: 0.00</h4>
+                        <h4 id="stat3">Contracts Completed: 0</h4>
+                        <h4 id="stat4">Time Played (Includes Time Away): 0</h4>
+                    </div>
+                    <div style="display:flex;flex-direction:column;margin-left: 1vw;">
+                        <h3>Last 3 Prestiges</h3>
+                        <h4 id="stat5">Prestige 1: 0 Soul Eggs</h4>
+                        <h4 id="stat6">Prestige 2: 0 Soul Eggs</h4>
+                        <h4 id="stat7">Prestige 3: 0 Soul Eggs</h4>
+                        <h3>Other Prestige Stats</h3>
+                        <h4 id="stat8">Time in Current Prestige: 0</h4>
+                    </div>
+                </div>
             </div>
-            <div>
-                <h3>Changelog :O</h3>
-                <h4>Current Version - v1.1.0</h4>
-                <h4>Public Release</h4>
-                <p>v1.1.0 <strong>[MAJOR UPDATE]</strong> - Enlightenments, Eggpeditions, Notifications via Notify.js, Tier XI-XIV Auto,<br>Error NAN Display Fix, New Formatter, Auto Save is 30s Interval Now (Originally 10s)</p>
-                <p>v1.0.11 - Contract Rebalance pt 5 (I'm probably going to stop rebalancing now)</p>
-                <p>v1.0.10 - More 1.0.3 Fixes, New Prophecy Egg Boost and Contract Rebalance pt 4 (finale?)</p>
-                <p>v1.0.9 - More Fixes for bugs introduced by 1.0.3</p>
-                <p>v1.0.8 <strong>[MAJOR UPDATE]</strong> - New Formatter (by Dimava), Optimized Common Research Buyer and Optimized Prophecy Egg Reward (by Gazyn)</p>
-                <p>v1.0.7 - Contract Rebalance Part 3 | Soul Egg Rewards Removed Entirely from Contracts</p>
-                <p>v1.0.6 - Fully Working Double Progress Bar (by Dimava)</p>
-                <p>v1.0.5 - Fix Major Bug Introduced in 1.0.3</p>
-                <p>v1.0.4 - Newsticker Added In Game</p>
-                <p>v1.0.3 <strong>[MAJOR UPDATE]</strong> - Egg Promotion Progress Bar, Egg Promotion and Prestige Buttons Hidden When In Contract, and Slightly Better Code (by gapples2)</p>
-                <p>v1.0.2 - Contract Rebalancing Part 2, Delete Save Confirmation</p>
-                <p>v1.0.1 - Minor Bug Fixes, 2 New Epic Researches, Favicon changes based on current egg, and Contract Rebalancing Part 1</p>
-                <p>v1.0.0 - Patching and Polishing</p>
-                <h4 style="margin-top:1vh">Alpha Versions</h4>
-                <p>v0.0.3 <strong>[MAJOR UPDATE]</strong> - Contracts,Automation and Internal Hatchery Buff</p>
-                <p>v0.0.2 <strong>[MAJOR UPDATE]</strong> - Prestige!</p>
-                <p>v0.0.1 <strong>[MAJOR UPDATE]</strong> - All Eggs, 28 "Common" Researches, Egg Promotion System</p>
+            <div id="setSub2" class="flexBox">
+                <h3>Credits</h3>
             </div>
         </div>
     </div>

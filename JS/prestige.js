@@ -16,6 +16,10 @@ function prestige() {
     for(let i = 0; i < data.contractActive.length; i++) {
         if(data.contractActive[i] === true) return
     }
+    data.stats.prestiges[2] = data.stats.prestiges[1]
+    data.stats.prestiges[1] = data.stats.prestiges[0]
+    data.stats.prestiges[0] = soulEggGain
+    data.stats.timeInPrestige = D(0)
     data.soulEggs = data.soulEggs.plus(soulEggGain)
     data.hasPrestiged = true
     for(let i = 0; i < data.research.length; i++)
