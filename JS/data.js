@@ -54,6 +54,7 @@ let data = getDefaultObject()
 const saveName = 'coopCo'
 function save(){
     window.localStorage.setItem(saveName, JSON.stringify(data))
+    $.notify('Game Saved','info')
 }
 function load() {
     let savedata = JSON.parse(window.localStorage.getItem(saveName))
@@ -106,17 +107,17 @@ function exportSave(){
     exportedDataText.setSelectionRange(0, 99999);
     document.execCommand("copy");
     document.body.removeChild(exportedDataText);
-    createAlert('Copied!','The save has been copied to your clipboard!','#2f8126')
+    $.notify('Save File Exported to Clip Board','success')
 }
 function importSave(){
     let importedData = DOMCacheGetOrSet('promptInput').value
     if(importedData.length <= 0 || importedData === undefined) {
-        createAlert('Error!','No data was entered!','#ff0000')
+        $.notify('No Data Imported','error')
         DOMCacheGetOrSet('promptContainer').style.display = 'none'
         return
     }
     else if(importedData.toLowerCase() === '69' || importedData.toLowerCase() === '420'){
-        createAlert('Nice!','Nice','#ff0000')
+        $.notify('Nice','success')
         DOMCacheGetOrSet('promptContainer').style.display = 'none'
         return
     }
@@ -126,11 +127,12 @@ function importSave(){
 }
 window.setInterval(function(){
     save()
-}, 10000);
+}, 30000);
 window.onload = function (){
     load()
     changeTab(data.currentTab)
     scrollNextMessage()
+    $.notify('Game Loaded','info')
 }
 //full reset
 function fullReset(){

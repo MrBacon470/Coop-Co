@@ -74,6 +74,9 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 .prestige:hover {border-color: #8e3dcf;color: whitesmoke;background-color: #8e3dcf;}
 .prestigeHeader {border-color:#8e3dcf;color: #8e3dcf;background-color: whitesmoke;}
 .prestigeHeader:hover {border-color: #8e3dcf;color: whitesmoke;background-color: #8e3dcf;}
+
+.enlightenment {border-color:#ffee48;color: #ffee48;}
+.enlightenment:hover {border-color: #ffee48;color: #5b5732;background-color: #ffee48;}
 /*IDs*/
 #mainHeader {
     width: 100%;
@@ -136,3 +139,11 @@ button#eggPromoteButton{
 }
 button#eggPromoteButton.unlocked:hover{color: whitesmoke;border-color: #2f8126;background-color: #2f8126;}
 button#eggPromoteButton.locked:hover {color: whitesmoke;border-color: #812626;background-color: #812626;}
+.notifyjs-corner, .notifyjs-hidable , .notifyjs-container, .notifyjs-container div span { background-color: rgba(0, 0, 0, 0); color:black;}
+/*
+<div class="notifyjs-wrapper notifyjs-hidable">
+	<div class="notifyjs-arrow"></div>
+	<div class="notifyjs-container" style=""><div class="notifyjs-bootstrap-base notifyjs-bootstrap-info">
+<span data-notify-text="">Hello World</span>
+</div>
+*/
