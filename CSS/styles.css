@@ -113,7 +113,6 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     margin:auto;
     margin-top: 0.5vh;
     text-align: left;
-    user-select: text;
 }
 
 #news {
@@ -124,7 +123,6 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     font-family:inherit;
     white-space: nowrap;
     font-weight: bold;
-    user-select: text;
 }
 button#eggPromoteButton{
   --x: 0%;

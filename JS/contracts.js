@@ -1,9 +1,9 @@
-const contractEggImgs = ['fusion','ai','medical','superfood','immortality']
-const contractEggIndex = [5,15,2,1,7]
-const contractTitles = ['Energy Crisis','AI Boom','Pandemic','Supreme Diets','Fountain of Youth']
+const contractEggImgs = ['fusion','ai','medical','superfood','immortality','supermaterial']
+const contractEggIndex = [5,15,2,1,7,4]
+const contractTitles = ['Energy Crisis','AI Boom','Pandemic','Supreme Diets','Fountain of Youth','Supply Chain Crisis']
 const contractDescs = ['A Californian Energy Shortage means more demand for Fusion Eggs.','The AI Industry requires more AI Eggs for their projects.',
 'A Pandemic is covering the world, Medical Eggs are needed to save lives.','Dieting is back in fashion people need more Superfood Eggs.',
-'People are wanting to stay youthful, Immortality Eggs are needed to keep them that way.']
+'People are wanting to stay youthful, Immortality Eggs are needed to keep them that way.','Supply Chain Issues have caused resources Supermaterial Eggs are needed to offset the shortage.']
 
 const defaultContract = {
     title: '',
@@ -41,6 +41,7 @@ function generateContract(i) {
 function startContract(i) {
     for(let j = 0; j < data.contractActive.length; j++) {
         if(i === j && data.contractActive[j] === true) {
+            $.notify(`Contract ${data.contracts[i].title} Left!`, 'warn')
             data.contractActive[j] = false
             for(let i = 0; i < data.research.length; i++)
                 data.research[i] = D(0)
@@ -65,12 +66,14 @@ function startContract(i) {
     data.chickens = D(0)
     data.money = D(0)
     data.currentEgg = data.contracts[i].eggIndex
+    $.notify(`Contract ${data.contracts[i].title} Started!`, 'warn')
 }
 for(let i = 0; i < data.contracts.length; i++)
     DOMCacheGetOrSet(`contract${i}Button`).addEventListener('click', () => { startContract(i) })
 
 function runContract(i) {
     if(data.money.gte(data.contracts[i].goal)) {
+        $.notify(`Contract ${data.contracts[i].title} Completed!\n+${format(data.contracts[i].reward)} ${data.contracts[i].rewardType}`, 'success')
         switch(data.contracts[i].rewardType) {
             case 'Soul Eggs':
                 data.soulEggs = data.soulEggs.plus(data.contracts[i].reward)

@@ -12,9 +12,13 @@ function runAuto(a) {
             if(data.money.gte(eggData[data.currentEgg].unlockReq))
                 promoteEgg()
             break
+        case 3:
+            for(let i = 20; i < 28; i++)
+                purchaseResearch(i)
+            break
     }
 }
-const autoNames = ['Tier I-V Auto','Tier VI-X Auto','Promotion Auto']
+const autoNames = ['Tier I-V Auto','Tier VI-X Auto','Promotion Auto','Tier XI-XIV Auto']
 function updateAutomation() {
     for(let i = 0; i < data.autoActive.length; i++) {
         if(data.autoActive[i]) runAuto(i)
@@ -25,6 +29,9 @@ function updateAutomation() {
             DOMCacheGetOrSet(`auto${i}`).classList = data.autoActive[i] ? 'unlockedResearch' : 'lockedResearch'
             DOMCacheGetOrSet(`auto${i}`).innerHTML = data.autoActive[i] ? `${autoNames[i]}: On` : `${autoNames[i]}: Off`
         }
+        DOMCacheGetOrSet(`auto3`).style.display = data.epicResearch[10].gte(epicResearchMaxLevel[10]) ? 'inline-block' : 'none'
+        DOMCacheGetOrSet(`auto3`).classList = data.autoActive[3] ? 'unlockedResearch' : 'lockedResearch'
+         DOMCacheGetOrSet(`auto3`).innerHTML = data.autoActive[3] ? `${autoNames[3]}: On` : `${autoNames[3]}: Off`
     }
     else if(data.currentTab === 4)
         DOMCacheGetOrSet('auto2').style.display = data.epicResearch[9].gte(epicResearchMaxLevel[9]) ? 'inline-block' : 'none'

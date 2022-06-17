@@ -48,12 +48,12 @@ function updateResearch() {
 }
 //Epic Section
 const epicResearchNames = ['Epic Internal Hatcheries','Lab Upgrade','Soul Food','Prestige Bonus','Epic Comfy Nests','Accounting Tricks','Tier I-V Automator','Tier VI-X Automator',
-    'Start with 1 Chicken','Promotion Automator']
+    'Start with 1 Chicken','Promotion Automator','Tier XI-XIV Automator']
 const epicResearchDescs = ['Increase Chicken Gain by 5%','Reduce Research Costs by 5%','Increase Soul Egg Bonus by 1%',
     '+10% More Soul Eggs per Prestige','Egg Laying Rate +5%','Increase Egg Value by 5%','Automate Tier I-V Research','Automate Tier VI-X Research',
-    'Start with 1 Chicken on any Reset','Automatic Promotions']
-const epicResearchMaxLevel = [D(20),D(10),D(140),D(20),D(20),D(20),D(1),D(1),D(1),D(1)]
-const epicResearchBaseCost = [D(100),D(1e5),D(1e6),D(5e6),D(1e3),D(1e3),D(1e4),D(1e7),D(1e6),D(1e9)]
+    'Start with 1 Chicken on any Reset','Automatic Promotions','Automated Tier XI-XIV Research']
+const epicResearchMaxLevel = [D(20),D(10),D(140),D(20),D(20),D(20),D(1),D(1),D(1),D(1),D(1)]
+const epicResearchBaseCost = [D(100),D(1e5),D(1e6),D(5e6),D(1e3),D(1e3),D(1e4),D(1e7),D(1e6),D(1e9),D(1e9)]
 let epicResearchCost = []
 for(let i = 0; i < epicResearchNames.length; i++) {
     epicResearchCost[i] = epicResearchBaseCost[i].times(Decimal.pow(1.25, data.epicResearch[i]))
