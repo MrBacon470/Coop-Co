@@ -78,6 +78,9 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 .enlightenment {border-color:#ffee48;color: #ffee48;}
 .enlightenment:hover {border-color: #ffee48;color: #5b5732;background-color: #ffee48;}
 
+.achLock {width: 2em;height: 2em;border: 2px solid whitesmoke;border-radius: 2px;padding: 3px;margin: 4px;}
+.achUnlock {width: 2em;height: 2em;border: 2px solid whitesmoke;border-radius: 2px;padding: 3px;background-color: #2f8126;margin: 4px;}
+.achPlaceholder {width: 2em;height: 2em;border: 2px solid whitesmoke;border-radius: 2px;padding: 3px;margin: 4px;}
 .credit {
     display: flex;
     flex-direction: row;
