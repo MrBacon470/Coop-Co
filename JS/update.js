@@ -48,7 +48,7 @@ function updateHTML() {
         if(data.unlockedContracts === true) {
             for(let i = 0; i < data.contracts.length; i++) {
                 DOMCacheGetOrSet(`contract${i}Img`).setAttribute('src', data.contracts[i].image)
-                DOMCacheGetOrSet(`contract${i}Header`).textContent = `Contract-0${i+1} | ${data.contracts[i].title}`
+                DOMCacheGetOrSet(`contract${i}Header`).textContent = data.contractActive[i] ? `Contract-0${i+1} | ${data.contracts[i].title} - [ACTIVE]` : `Contract-0${i+1} | ${data.contracts[i].title}`
                 DOMCacheGetOrSet(`contract${i}Description`).textContent = data.contracts[i].description
                 DOMCacheGetOrSet(`contract${i}Reward`).textContent = `Reward: ${format(data.contracts[i].reward)} ${data.contracts[i].rewardType}`
                 DOMCacheGetOrSet(`contract${i}Goal`).textContent = `Goal: $${format(data.contracts[i].goal)}`
