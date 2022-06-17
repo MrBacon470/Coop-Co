@@ -77,6 +77,16 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 
 .enlightenment {border-color:#ffee48;color: #ffee48;}
 .enlightenment:hover {border-color: #ffee48;color: #5b5732;background-color: #ffee48;}
+
+.credit {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.credit img {width: 1.5em; height: 1.5em; margin-right:1em;}
+.credit a {text-align: center; font-size: 1.2em;}
 /*IDs*/
 #mainHeader {
     width: 100%;
