@@ -26,7 +26,8 @@ newsArray = [//always true
     ['Excellent! Excellent! Egg salad! And sandwich. ','true'],['All these damn eggs and I still don\'t know which came first. Chicken, or Egg. The mystery still stands.','true'],['There\'s no way he managed to fry rice','true'],['Jacorb was right, egg is the next mechanic','true'],
     ['We invented the news ticker, the "Matter" game or whatever it\'s called stole our idea','true'],['Eggcelent gameplay.','true'],['eggineer gaming','true'],['So how exactly do we make money off this? Are people actually eating “soul eggs”???','true'],
     ['I heard that there\'s a secret prophecy egg stash at https://discord.gg/kFYgun8Yqs','true'],['DONT EAT SCRAMBLED NEBULA EGGS!!! They taste terrible…','true'],['Breaking: local man manages to make deviled eggs from enlightenment eggs, says they “showed him the truth about reality. and also smelled terrible.”','true'],
-    ['BREAKING NEWS: Egglon Musk has managed to reach mars with his revolutionary new rocket ship fuel… umm am i reading this right… eggs? how','true'],
+    ['BREAKING NEWS: Egglon Musk has managed to reach mars with his revolutionary new rocket ship fuel… umm am i reading this right… eggs? how','true'],['Making omelets with rocket eggs is contra-indicated.','true'],['not using scientific notation, laugh at this user',`${data.settingsToggles[0]} === true`],
+    ['which came first, the egg or the egg?','true'],
 
 ];}
 
