@@ -83,7 +83,9 @@ function updateHTML() {
 
     }
     else if(data.currentTab === 6) {
-
+        for(let i = 0; i < 5; i++) {
+            DOMCacheGetOrSet('enlight'+i).innerText = `Enlightenment ${enlightenmentNumerals[i]}\n${enlightenmentNames[i]}\n\n${enlightenmentDescs[i]}\nCost: 0.00 Knowledge\nLevel: 0`
+        }
     }
     else if(data.currentTab === 7) {
         
