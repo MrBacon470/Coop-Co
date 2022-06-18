@@ -24,6 +24,7 @@ for(let i = 0; i < achievementNames.length; i++)
     DOMCacheGetOrSet('ach' + i).addEventListener('mouseover', () => updateAchText(i))
 
 function getAchievement(i) {
+    if(data.achievements[i] === true) return
     data.achievements[i] = true
     $.notify(`${achievementNames[i]} Unlocked!`,'success')
     updateAchClass()
