@@ -79,4 +79,13 @@ function updateHTML() {
             Cost: [MAXED]`
         }
     }
+    else if(data.currentTab === 5) {
+
+    }
+    else if(data.currentTab === 6) {
+
+    }
+    else if(data.currentTab === 7) {
+        
+    }
 }

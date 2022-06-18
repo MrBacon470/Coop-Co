@@ -37,10 +37,11 @@ function getDefaultObject() {
         }],
         contractActive: [false,false,false],
         currentEgg: 0,
-        unlockedEgg: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-        research: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
-        epicResearch: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
+        unlockedEgg: new Array(18).fill(false),
+        research: new Array(28).fill(D(0)),
+        epicResearch: new Array(11).fill(D(0)),
         autoActive: [false,false,false,false],
+        achievements: new Array(27).fill(false),
         stats: {
             bestMoney: D(0),
             bestEgg: '',
@@ -150,6 +151,7 @@ window.onload = function (){
     }
     scrollNextMessage()
     $.notify('Game Loaded','info')
+    updateAchClass()
 }
 //full reset
 function fullReset(){

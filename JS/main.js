@@ -33,6 +33,7 @@ function mainLoop() {
     if(data.stats.bestProphecyEggs.lt(data.prophecyEggs)) data.stats.bestProphecyEggs = data.prophecyEggs
     data.stats.timePlayed = data.stats.timePlayed.plus(diff)
     data.stats.timeInPrestige = data.stats.timeInPrestige.plus(diff)
+    checkAchievements()
     updateHTML()
     if(DOMCacheGetOrSet('faviconLink').getAttribute('href') !== `Imgs/${eggData[data.currentEgg].id}.png`)
         DOMCacheGetOrSet('faviconLink').href = `Imgs/${eggData[data.currentEgg].id}.png`
