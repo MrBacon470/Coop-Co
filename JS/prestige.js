@@ -9,6 +9,11 @@ function updatePrestige() {
     prophecyEggBoost = Decimal.pow(1.05, data.prophecyEggs);
     soulEggBoost = D(1).plus(soulAvg.times(D(0.01).plus(D(0.01).times(data.epicResearch[2]))).times(prophecyEggBoost))
     contractRewardBoost = D(1).plus(data.prophecyEggs.times(D(0.01)))
+    if(data.inPath === true) {
+        soulEggBoost = D(1)
+        prophecyEggBoost = D(1)
+        contractRewardBoost = D(1)
+    }
 }
 
 function prestige() {

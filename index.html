@@ -53,7 +53,7 @@
         <div id="navBar" class="flexBox" style="flex-direction:row;align-items: center;">
             <button style="margin:1vh;" onclick="changeTab(0)">Eggs</button>
             <button style="margin:1vh;" onclick="changeTab(1)">Research</button>
-            <button style="margin:1vh;" onclick="changeTab(2)">Contracts</button>
+            <button id="contractButton" style="margin:1vh;" onclick="changeTab(2)">Contracts</button>
             <button id="eggpeditionTabButton" style="margin:1vh;" onclick="changeTab(5)">Eggpeditions</button>
             <button id="enlightenmentTabButton" class="enlightenment" style="margin:1vh;" onclick="changeTab(6)">Enlightenments</button>
             <button id="prestigeTabButton" class="prestige" style="margin:1vh;" onclick="changeTab(4)">Prestige</button>
@@ -315,7 +315,7 @@
             </div>
             <div class="flexBox" style="flex-direction:row">
                 <p id="knowledgeText" style="margin:1em;color:#ffee48">Knowledge: 0<br>+0.00/s</p>
-                <button id="enlightenmentButton" style="margin:1em" class="enlightenment">Enter the Path</button>
+                <button id="enlightenmentButton" onclick="enterPath()" style="margin:1em" class="enlightenment">Enter the Path</button>
             </div>
             <p style="margin:1em;color:#ffee48;text-align: center;">
                 To Pursue Enlightenment one must give up everything.

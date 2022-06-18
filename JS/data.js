@@ -41,6 +41,9 @@ function getDefaultObject() {
         research: new Array(28).fill(D(0)),
         epicResearch: new Array(11).fill(D(0)),
         autoActive: [false,false,false,false],
+        enlightenments: new Array(5).fill(D(0)),
+        inPath: false,
+        knowledge: D(0),
         achievements: new Array(27).fill(false),
         stats: {
             bestMoney: D(0),
