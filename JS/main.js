@@ -29,6 +29,8 @@ function mainLoop() {
     }
     if(data.stats.bestMoney.lt(data.money)) data.stats.bestMoney = data.money
     if(data.stats.bestChickens.lt(data.chickens)) data.stats.bestChickens = data.chickens
+    if(data.stats.bestSoulEggs.lt(data.bestSoulEggs)) data.stats.bestSoulEggs = data.bestSoulEggs
+    if(data.stats.bestProphecyEggs.lt(data.prophecyEggs)) data.stats.bestProphecyEggs = data.prophecyEggs
     data.stats.timePlayed = data.stats.timePlayed.plus(diff)
     data.stats.timeInPrestige = data.stats.timeInPrestige.plus(diff)
     updateHTML()
@@ -70,6 +72,8 @@ function updateStats() {
     DOMCacheGetOrSet('stat6').textContent = `Prestige 2: ${format(data.stats.prestiges[1])} Soul Eggs`
     DOMCacheGetOrSet('stat7').textContent = `Prestige 3: ${format(data.stats.prestiges[2])} Soul Eggs`
     DOMCacheGetOrSet('stat8').textContent = `Time In Current Run: ${formatTime(data.stats.timeInPrestige)}`
+    DOMCacheGetOrSet('stat9').textContent = `Best Soul Eggs: ${format(data.stats.bestSoulEggs)}`
+    DOMCacheGetOrSet('stat10').textContent = `Best Prophecy Eggs: ${format(data.stats.bestProphecyEggs)}`
 }
 
  function createAlert(a,b,c) {

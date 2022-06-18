@@ -49,6 +49,8 @@ function getDefaultObject() {
             timePlayed: D(0),
             prestiges: [D(0),D(0),D(0)],
             timeInPrestige: D(0),
+            bestSoulEggs: D(0),
+            bestProphecyEggs: D(0),
         },
         buyAmounts: [0,0],
         time: Date.now(),
