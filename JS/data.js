@@ -44,7 +44,12 @@ function getDefaultObject() {
         enlightenments: new Array(5).fill(D(0)),
         inPath: false,
         knowledge: D(0),
-        achievements: new Array(27).fill(false),
+        planetsDiscovered: new Array(6).fill(false),
+        discoveries: 0,
+        currentPlanetIndex: 0,
+        onPlanet: false,
+        planetData: new Array(6).fill({money: D(0), chickens: D(0), research: new Array(28).fill(D(0))}),
+        achievements: new Array(37).fill(false),
         stats: {
             bestMoney: D(0),
             bestEgg: '',
@@ -146,7 +151,6 @@ window.setInterval(function(){
 }, 30000);
 window.onload = function (){
     load()
-    checkAchievements()
     diff = diff = (Date.now()-data.time)*data.devSpeed/1000
     $.notify('Welcome Back!\nYou were gone for ' + formatTime(diff), 'info')
     changeTab(data.currentTab)

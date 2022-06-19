@@ -153,6 +153,7 @@ button#eggPromoteButton{
 button#eggPromoteButton.unlocked:hover{color: whitesmoke;border-color: #2f8126;background-color: #2f8126;}
 button#eggPromoteButton.locked:hover {color: whitesmoke;border-color: #812626;background-color: #812626;}
 .notifyjs-corner, .notifyjs-hidable , .notifyjs-container, .notifyjs-container div span { background-color: rgba(0, 0, 0, 0); color:black;}
+#planetRow img {width: 5em; height: 5em; margin:1em}
 /*
 <div class="notifyjs-wrapper notifyjs-hidable">
 	<div class="notifyjs-arrow"></div>

@@ -82,7 +82,7 @@ function updateHTML() {
         }
     }
     else if(data.currentTab === 5) {
-
+        updateEggspeditionsUI()
     }
     else if(data.currentTab === 6) {
         for(let i = 0; i < 5; i++) {
