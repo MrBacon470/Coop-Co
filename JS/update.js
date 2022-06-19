@@ -20,6 +20,7 @@ function updateHTML() {
     DOMCacheGetOrSet('prestigeButton').textContent = data.currentEgg < 3 ? 'Reach Rocket Fuel Eggs' : `Prestige: +${format(soulEggGain)} Soul Eggs`
     DOMCacheGetOrSet('newsHolder').style.display = data.settingsToggles[1] ? 'block' : 'none'
     DOMCacheGetOrSet('contractButton').style.display = data.inPath === false ? 'block' : 'none'
+    DOMCacheGetOrSet('enlightenmentTabButton').style.display = data.unlockedEgg[17] === true ? 'block' : 'none'
     if(data.currentTab === 0) {
         updateEggPage()
     }
