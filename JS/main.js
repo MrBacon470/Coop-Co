@@ -7,6 +7,7 @@ function mainLoop() {
     updateIntHatch()
     updateLayRate()
     updatePrestige()
+    updateEnlightenment()
     updateAutomation()
     if(data.chickens.lt(1) && data.epicResearch[8].gte(epicResearchMaxLevel[8]))
         data.chickens = D(1)

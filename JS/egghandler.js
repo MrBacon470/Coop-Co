@@ -183,6 +183,7 @@ function updateEggValueBonus() {
     eggValueBonus = data.research[25].gt(0) ? eggValueBonus.times((D(.01).times(data.research[25])).plus(1)) : eggValueBonus.times(D(1))
     eggValueBonus = data.research[26].gt(0) ? eggValueBonus.times((D(10).times(data.research[26]))) : eggValueBonus.times(D(1))
     eggValueBonus = data.epicResearch[5].gt(0) ? eggValueBonus.times((D(0.05).times(data.epicResearch[5])).plus(1)) : eggValueBonus.times(D(1))
+    eggValueBonus = data.enlightenments[3].gt(0) ? eggValueBonus.times((D(0.10).times(data.enlightenments[3])).plus(1)) : eggValueBonus.times(D(1))
 }
 
 function updateIntHatch() {
