@@ -48,7 +48,7 @@ function getDefaultObject() {
         discoveries: 0,
         currentPlanetIndex: 0,
         onPlanet: false,
-        planetData: new Array(6).fill({money: D(0), chickens: D(0), research: new Array(28).fill(D(0))}),
+        planetData: [{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))}],
         achievements: new Array(41).fill(false),
         stats: {
             bestMoney: D(0),

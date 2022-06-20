@@ -41,8 +41,13 @@ function purchaseResearch(i) {
     updateHTML();
 }
 function updateResearch() {
-    for(let i = 0; i < commonResearchNames.length; i++)
-        commonResearchCost[i] = (commonResearchBaseCost[i].sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.15, data.research[i]))
+    for(let i = 0; i < commonResearchNames.length; i++) {
+        if(data.onPlanet === false)
+            commonResearchCost[i] = (commonResearchBaseCost[i].sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.15, data.research[i]))
+        else if(data.onPlanet === true && data.currentPlanetIndex === 0)
+            commonResearchCost[i] = ((commonResearchBaseCost[i].times(2)).sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.15, data.research[i]))
+    }
+        
     for(let i = 0; i < epicResearchNames.length; i++)
         epicResearchCost[i] = epicResearchBaseCost[i].times(Decimal.pow(1.25, data.epicResearch[i]))
 }

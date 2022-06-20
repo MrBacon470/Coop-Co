@@ -2,10 +2,16 @@ function updateHTML() {
     //Globals
     DOMCacheGetOrSet('moneyText').textContent = `$${format(data.money)}`
     DOMCacheGetOrSet('chickensText').textContent = `Chickens: ${format(data.chickens)}`
-    if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `Imgs/${eggData[data.currentEgg].id}.png`) 
+    if(data.onPlanet === false) {
+        if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `Imgs/${eggData[data.currentEgg].id}.png`) 
         DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `Imgs/${eggData[data.currentEgg].id}.png`)
-    DOMCacheGetOrSet('eggPromoteButton').style.display = data.currentEgg >= eggData.length-1 || contractActive() || data.inPath === true ? 'none' : 'inline-block'
-    if(data.currentEgg < eggData.length-1) {
+    }   
+    else {
+        if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `Imgs/${planetEggImgIDs[data.currentPlanetIndex]}.png`) 
+        DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `Imgs/${planetEggImgIDs[data.currentPlanetIndex]}.png`)
+    }
+    DOMCacheGetOrSet('eggPromoteButton').style.display = data.currentEgg >= eggData.length-1 || contractActive() || data.inPath === true || data.onPlanet === true ? 'none' : 'inline-block'
+    if(data.currentEgg < eggData.length-1 && data.onPlanet === false) {
         const previousEggUnlockReq = data.currentEgg !== 0 ? eggData[data.currentEgg].unlockReq.max(1.01) : D(1.01)
         const currentEggUnlockReq = eggData[data.currentEgg+1].unlockReq.max(1.02)
         const nextEggDiscoverProgress = data.money.max(1).log10().div(previousEggUnlockReq.log10())
@@ -16,11 +22,12 @@ function updateHTML() {
     }
     DOMCacheGetOrSet('prestigeTabButton').style.display = data.hasPrestiged === true ? 'block' : 'none'
     DOMCacheGetOrSet('prestigeButton').classList = data.currentEgg < 3 ? 'locked' : 'prestigeHeader'
-    DOMCacheGetOrSet('prestigeButton').style.display = contractActive() || data.inPath === true ? 'none' : 'block'
+    DOMCacheGetOrSet('prestigeButton').style.display = contractActive() || data.inPath === true || data.onPlanet === true ? 'none' : 'block'
     DOMCacheGetOrSet('prestigeButton').textContent = data.currentEgg < 3 ? 'Reach Rocket Fuel Eggs' : `Prestige: +${format(soulEggGain)} Soul Eggs`
     DOMCacheGetOrSet('newsHolder').style.display = data.settingsToggles[1] ? 'block' : 'none'
     DOMCacheGetOrSet('contractButton').style.display = data.inPath === false ? 'block' : 'none'
     DOMCacheGetOrSet('enlightenmentTabButton').style.display = data.unlockedEgg[17] === true ? 'block' : 'none'
+    DOMCacheGetOrSet('contractButton').style.display = data.onPlanet === false ? 'block' : 'none'
     if(data.currentTab === 0) {
         updateEggPage()
     }

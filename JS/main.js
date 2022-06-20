@@ -15,9 +15,12 @@ function mainLoop() {
         if(data.contractActive[i])
             runContract(i)
     }
-    currentEggValue = eggData[data.currentEgg].value.times(eggValueBonus)
-    data.chickens = data.chickens.plus(chickenGain.times(diff/15))
-    data.money = data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff)).times(data.chickens.times(layRate)))
+    for(let i = 0; i < 6; i++) {
+        planetBoosts[i] = data.planetData[i].chickens.gt(0) ? D(1).plus(Decimal.sqrt(Decimal.log(data.planetData[i].chickens,10))) : D(1)
+    }
+    currentEggValue = data.onPlanet === false ? eggData[data.currentEgg].value.times(eggValueBonus) : planetEggValue[data.currentPlanetIndex].times(eggValueBonus)
+    data.chickens = data.onPlanet === true && data.currentPlanetIndex === 1 ? data.chickens.plus(chickenGain.times(diff/60)) : data.chickens.plus(chickenGain.times(diff/15))
+    data.money = data.onPlanet === true && data.currentPlanetIndex === 1 ? data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff/4)).times(data.chickens.times(layRate))) : data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff)).times(data.chickens.times(layRate)))
     //Stats Updates
     for(let i = data.unlockedEgg.length - 1; i > -1; i--) {
         if(data.unlockedEgg[i] === true) {

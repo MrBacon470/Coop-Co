@@ -54,7 +54,7 @@
             <button style="margin:1vh;" onclick="changeTab(0)">Eggs</button>
             <button style="margin:1vh;" onclick="changeTab(1)">Research</button>
             <button id="contractButton" style="margin:1vh;" onclick="changeTab(2)">Contracts</button>
-            <button id="eggpeditionTabButton" style="margin:1vh;" onclick="changeTab(5)">Eggpeditions</button>
+            <button id="eggpeditionTabButton" style="margin:1vh;" onclick="changeTab(5)">Eggspeditions</button>
             <button id="enlightenmentTabButton" class="enlightenment" style="margin:1vh;" onclick="changeTab(6)">Enlightenments</button>
             <button id="prestigeTabButton" class="prestige" style="margin:1vh;" onclick="changeTab(4)">Prestige</button>
             <button style="margin:1vh;" onclick="changeTab(7)">Achievements</button>
@@ -301,7 +301,7 @@
                 <h4 id="prophecyEggText" style="color:#cdcf3d">Prophecy Eggs: 0.00</h4>
             </div>
         </div>
-        <div id="eggpeditionTab" class="flexBox tabHolder">
+        <div id="eggpeditionTab" class="flexBox tabHolder" style="text-align:center">
             <h3>Eggspeditions</h3>
             <div class="flexBox">
                 <div id="planetRow">
@@ -316,10 +316,11 @@
                 </div>
             </div>
             <p id="planetHoverText">Hover over a planet to see what it is</p>
-            <div>
-                <button id="discoveryButton">Discover World</button>
-                <button id="eggspeditionButton">Go on an Eggspedition</button>
+            <div style="margin-top:1em;margin-bottom:1em">
+                <button id="discoveryButton" onclick="discoverPlanet()">Discover Planet</button>
+                <button id="eggspeditionButton" onclick="journeyToPlanet()">Go on an Eggspedition</button>
             </div>
+            <p id="discoveryText">Discover Planet: Cost 50 Million Rocket Fuel Eggs</p>
         </div>
         <div id="enlightenmentTab" class="flexBox tabHolder">
             <h3 style="color:#ffee48">Enlightenments</h3>
