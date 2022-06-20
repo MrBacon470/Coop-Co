@@ -18,6 +18,7 @@ function updateEggspeditionsUI() {
     DOMCacheGetOrSet('discoveryButton').classList = data.currentEgg === discoveryEggIndexes[data.discoveries] && data.chickens.gte(discoveryReqs[data.discoveries]) && data.planetsDiscovered[planetHoverIndex] === false ? 'unlockedResearch' : 'lockedResearch'
     DOMCacheGetOrSet('discoveryButton').innerText = data.planetsDiscovered[planetHoverIndex] === true ? 'Already Discovered' : `Discover Planet`
     DOMCacheGetOrSet('discoveryText').innerText = data.discoveries < discoveryEggIndexes.length ? `Discovery Cost: ${format(discoveryReqs[data.discoveries])} ${eggData[discoveryEggIndexes[data.discoveries]].name} Chickens` : `All Planets Discovered`
+    
     if(data.onPlanet === false) {
         if(planetHoverIndex !== -1) {
             DOMCacheGetOrSet('eggspeditionButton').innerText = data.planetsDiscovered[planetHoverIndex] === true ? `Journey to ${planetNames[planetHoverIndex]}` : `Planet Not Discovered`
@@ -32,7 +33,10 @@ function updateEggspeditionsUI() {
         DOMCacheGetOrSet('eggspeditionButton').innerText = `Return Home`
         DOMCacheGetOrSet('eggspeditionButton').classList = 'unlockedResearch'
     }
-    
+    if(data.inPath === true) {
+        DOMCacheGetOrSet('eggspeditionButton').innerText = `Leave the Path to Travel`
+        DOMCacheGetOrSet('eggspeditionButton').classList = 'lockedResearch'
+    } 
     if(planetHoverIndex !== -1 && planetHoverIndex !== 2)
         DOMCacheGetOrSet('planetHoverText').innerText = data.planetsDiscovered[planetHoverIndex] === true ? `Planet ${planetNames[planetHoverIndex]}\n${planetDescs[planetHoverIndex]}\n\n$${format(data.planetData[planetHoverIndex].money)} | ${format(data.planetData[planetHoverIndex].chickens)} Chickens\nx${format(planetBoosts[planetHoverIndex])} ${planetBoostNames[planetHoverIndex]} Boost` : `This Planet Has Not Been Discovered Yet`
     else if(planetHoverIndex === 2)
@@ -57,6 +61,7 @@ function discoverPlanet() {
 }
 
 function journeyToPlanet() {
+    if(data.inPath === true) return
     if(data.onPlanet === false && data.planetsDiscovered[planetHoverIndex] === true) {
         data.currentPlanetIndex = planetHoverIndex
         data.research = data.planetData[data.currentPlanetIndex].research
