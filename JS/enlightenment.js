@@ -19,6 +19,7 @@ function updateEnlightenment() {
 }
 
 function enterPath() {
+    if(data.onPlanet === true) return
     if(data.inPath === true) {
         prestige()
         data.inPath = false
