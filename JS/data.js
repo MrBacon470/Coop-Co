@@ -49,7 +49,7 @@ function getDefaultObject() {
         currentPlanetIndex: 0,
         onPlanet: false,
         planetData: new Array(6).fill({money: D(0), chickens: D(0), research: new Array(28).fill(D(0))}),
-        achievements: new Array(37).fill(false),
+        achievements: new Array(41).fill(false),
         stats: {
             bestMoney: D(0),
             bestEgg: '',
