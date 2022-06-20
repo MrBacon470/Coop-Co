@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="JS/Internal/jquery-3.6.0.min.js"></script>
+    <script src="JS/Internal/notify.js"></script>
     <link rel="stylesheet" href="CSS/styles.css">
     <link id="faviconLink" rel="icon" type="image/png" href="Imgs/egg.png">
     <title>Coop Co</title>
@@ -51,8 +53,11 @@
         <div id="navBar" class="flexBox" style="flex-direction:row;align-items: center;">
             <button style="margin:1vh;" onclick="changeTab(0)">Eggs</button>
             <button style="margin:1vh;" onclick="changeTab(1)">Research</button>
-            <button style="margin:1vh;" onclick="changeTab(2)">Contracts</button>
+            <button id="contractButton" style="margin:1vh;" onclick="changeTab(2)">Contracts</button>
+            <button id="eggpeditionTabButton" style="margin:1vh;" onclick="changeTab(5)">Eggspeditions</button>
+            <button id="enlightenmentTabButton" class="enlightenment" style="margin:1vh;" onclick="changeTab(6)">Enlightenments</button>
             <button id="prestigeTabButton" class="prestige" style="margin:1vh;" onclick="changeTab(4)">Prestige</button>
+            <button style="margin:1vh;" onclick="changeTab(7)">Achievements</button>
             <button style="margin:1vh;" onclick="changeTab(3)">Settings</button>
         </div>
         <div id="eggTab" class="flexBox tabHolder">
@@ -222,6 +227,7 @@
             <div>
                 <button id="auto0"></button>
                 <button id="auto1"></button>
+                <button id="auto3"></button>
             </div>
         </div>
         <div id="contractsTab" class="flexBox tabHolder">
@@ -283,6 +289,7 @@
             <div style="display:flex;flex-direction:row;align-items:center;margin-bottom: 1vh;">
                 <button id="er6"></button>
                 <button id="er7"></button>
+                <button id="er10"></button>
                 <button id="er8"></button>
             </div>
             <div>
@@ -294,41 +301,200 @@
                 <h4 id="prophecyEggText" style="color:#cdcf3d">Prophecy Eggs: 0.00</h4>
             </div>
         </div>
+        <div id="eggpeditionTab" class="flexBox tabHolder" style="text-align:center">
+            <h3>Eggspeditions</h3>
+            <div class="flexBox">
+                <div id="planetRow">
+                    <img id="planet0" src="Imgs/planet1.png">
+                    <img id="planet1" src="Imgs/planet2.png">
+                    <img id="planet2" src="Imgs/planet3.png">
+                </div>
+                <div id="planetRow">
+                    <img id="planet3" src="Imgs/planet4.png">
+                    <img id="planet4" src="Imgs/planet5.png">
+                    <img id="planet5" src="Imgs/planet6.png">
+                </div>
+            </div>
+            <p id="planetHoverText">Hover over a planet to see what it is</p>
+            <div style="margin-top:1em;margin-bottom:1em">
+                <button id="discoveryButton" onclick="discoverPlanet()">Discover Planet</button>
+                <button id="eggspeditionButton" onclick="journeyToPlanet()">Go on an Eggspedition</button>
+            </div>
+            <p id="discoveryText">Discover Planet: Cost 50 Million Rocket Fuel Eggs</p>
+        </div>
+        <div id="enlightenmentTab" class="flexBox tabHolder">
+            <h3 style="color:#ffee48">Enlightenments</h3>
+            <div class="flexBox" style="flex-direction:row">
+                <button id="enlight0" onclick="purchaseEnlightenment(0)" style="margin:1em" class="enlightenment">Enlightenment I</button>
+                <button id="enlight1" onclick="purchaseEnlightenment(1)" style="margin:1em" class="enlightenment">Enlightenment II</button>
+                <button id="enlight2" onclick="purchaseEnlightenment(2)" style="margin:1em" class="enlightenment">Enlightenment III</button>
+                <button id="enlight3" onclick="purchaseEnlightenment(3)" style="margin:1em" class="enlightenment">Enlightenment IV</button>
+                <button id="enlight4" onclick="purchaseEnlightenment(4)" style="margin:1em" class="enlightenment">Enlightenment V</button>
+            </div>
+            <div class="flexBox" style="flex-direction:row">
+                <p id="knowledgeText" style="margin:1em;color:#ffee48">Knowledge: 0<br>+0.00/s</p>
+                <button id="enlightenmentButton" onclick="enterPath()" style="margin:1em" class="enlightenment">Enter the Path</button>
+            </div>
+            <p style="margin:1em;color:#ffee48;text-align: center;">
+                To Pursue Enlightenment one must give up everything.
+                <br><br>Soul and Prophecy Eggs will lose their effects<br>You will be unable to prestige as well as you will be unable to leave the enlightenment egg.
+            </p>
+        </div>
+        <div id="achievementTab" class="flexBox tabHolder">
+            <h3>Achievements</h3>
+            <div style="display:flex;flex-direction: row;margin: 0 1vh 1vw 1vh;">
+                <div class="flexBox">
+                    <img id="ach0" src="Imgs/egg.png" class="achLock">
+                    <img id="ach1" src="Imgs/superfood.png" class="achLock">
+                    <img id="ach2" src="Imgs/medical.png" class="achLock">
+                    <img id="ach3" src="Imgs/rocketfuel.png" class="achLock">
+                    <img id="ach4" src="Imgs/supermaterial.png" class="achLock">
+                    <img id="ach5" src="Imgs/fusion.png" class="achLock">
+                    <img id="ach6" src="Imgs/quantum.png" class="achLock">
+                    <img id="ach7" src="Imgs/immortality.png" class="achLock">
+                </div>
+                <div class="flexBox">
+                    <img id="ach8" src="Imgs/tachyon.png" class="achLock">
+                    <img id="ach9" src="Imgs/graviton.png" class="achLock">
+                    <img id="ach10" src="Imgs/dilithium.png" class="achLock">
+                    <img id="ach11" src="Imgs/prodigy.png" class="achLock">
+                    <img id="ach12" src="Imgs/terraform.png" class="achLock">
+                    <img id="ach13" src="Imgs/antimatter.png" class="achLock">
+                    <img id="ach14" src="Imgs/darkmatter.png" class="achLock">
+                    <img id="ach15" src="Imgs/ai.png" class="achLock">
+                </div>  
+                <div class="flexBox">
+                    <img id="ach16" src="Imgs/nebula.png" class="achLock">
+                    <img id="ach17" src="Imgs/universe.png" class="achLock">
+                    <img id="ach18" src="Imgs/enlightenment.png" class="achLock">
+                    <div class="achPlaceholder"></div>
+                    <img id="ach19" src="Imgs/greencheck.png" class="achLock">
+                    <img id="ach20" src="Imgs/greencheck.png" class="achLock">
+                    <img id="ach21" src="Imgs/greencheck.png" class="achLock">
+                    <img id="ach22" src="Imgs/greencheck.png" class="achLock">
+                </div>  
+                <div class="flexBox">
+                    <img id="ach23" src="Imgs/soul.png" class="achLock">
+                    <img id="ach24" src="Imgs/soul.png" class="achLock">
+                    <img id="ach25" src="Imgs/soul.png" class="achLock">
+                    <img id="ach26" src="Imgs/soul.png" class="achLock">
+                    <img id="ach27" src="Imgs/prophecy.png" class="achLock">
+                    <img id="ach28" src="Imgs/prophecy.png" class="achLock">
+                    <img id="ach29" src="Imgs/prophecy.png" class="achLock">
+                    <img id="ach30" src="Imgs/prophecy.png" class="achLock">
+                </div>
+                <div class="flexBox">
+                    <img id="ach31" src="Imgs/planet1.png" class="achLock">
+                    <img id="ach32" src="Imgs/planet2.png" class="achLock">
+                    <img id="ach33" src="Imgs/planet3.png" class="achLock">
+                    <img id="ach34" src="Imgs/planet4.png" class="achLock">
+                    <img id="ach35" src="Imgs/planet5.png" class="achLock">
+                    <img id="ach36" src="Imgs/planet6.png" class="achLock">
+                    <img id="ach37" src="Imgs/lightbulb.png" class="achLock">
+                    <img id="ach38" src="Imgs/lightbulb.png" class="achLock">
+                </div>
+                <div class="flexBox">
+                    <img id="ach39" src="Imgs/lightbulb.png" class="achLock">
+                    <img id="ach40" src="Imgs/lightbulb.png" class="achLock">
+                    <div class="achPlaceholder"></div>
+                    <div class="achPlaceholder"></div>
+                    <div class="achPlaceholder"></div>
+                    <div class="achPlaceholder"></div>
+                    <div class="achPlaceholder"></div>
+                    <div class="achPlaceholder"></div>
+                </div>
+            </div>
+            <p id="achHoverText" style="text-align:center">Hover Over An Image to See Its Description</p>
+        </div>
         <div id="settingsTab" class="flexBox tabHolder">
             <div style="margin-bottom:1vh">
-                <button onclick="save()">Save Game</button>
-                <button onclick="exportSave()">Export Save</button>
-                <button onclick="createPrompt('Import Save',0)">Import Save</button>
-                <button onclick="createConfirmation('reset')">Delete Save (Exports)</button>
+                <button onclick="changeSubTab(0,0)">Settings</button>
+                <button onclick="changeSubTab(0,1)">Stats</button>
+                <button onclick="changeSubTab(0,2)">Credits</button>
             </div>
-            <div style="margin-bottom:1vh">
-                <button onclick="toggle(0)" id="setTog0"></button>
-                <button onclick="toggle(1);scrollNextMessage()" id="setTog1"></button>
+            <div id="setSub0" class="flexBox">
+                <div style="margin-bottom:1vh">
+                    <button onclick="save()">Save Game</button>
+                    <button onclick="exportSave()">Export Save</button>
+                    <button onclick="createPrompt('Import Save',0)">Import Save</button>
+                    <button onclick="createConfirmation('reset')">Delete Save (Exports)</button>
+                </div>
+                <div style="margin-bottom:1vh">
+                    <button onclick="toggle(0)" id="setTog0"></button>
+                    <button onclick="toggle(1);scrollNextMessage()" id="setTog1"></button>
+                </div>
+                <div>
+                    <a href="https://discord.com/invite/JkQUnubuhx">Discord Link!</a>
+                    <a href="https://github.com/MrBacon470/Coop-Co">Github Repo!</a>
+                </div>
+                <div>
+                    <h3>Changelog :O</h3>
+                    <h4>Current Version - v1.1.0</h4>
+                    <h4>Public Release</h4>
+                    <p>v1.1.0 <strong>[MAJOR UPDATE]</strong> - Enlightenments, Eggpeditions, Notifications via Notify.js, Tier XI-XIV Auto,<br>Error NAN Display Fix, New Formatter, Auto Save is 30s Interval Now (Originally 10s), Stats Screen, Achievements</p>
+                    <p>v1.0.11 - Contract Rebalance pt 5 (I'm probably going to stop rebalancing now)</p>
+                    <p>v1.0.10 - More 1.0.3 Fixes, New Prophecy Egg Boost and Contract Rebalance pt 4 (finale?)</p>
+                    <p>v1.0.9 - More Fixes for bugs introduced by 1.0.3</p>
+                    <p>v1.0.8 <strong>[MAJOR UPDATE]</strong> - New Formatter (by Dimava), Optimized Common Research Buyer and Optimized Prophecy Egg Reward (by Gazyn)</p>
+                    <p>v1.0.7 - Contract Rebalance Part 3 | Soul Egg Rewards Removed Entirely from Contracts</p>
+                    <p>v1.0.6 - Fully Working Double Progress Bar (by Dimava)</p>
+                    <p>v1.0.5 - Fix Major Bug Introduced in 1.0.3</p>
+                    <p>v1.0.4 - Newsticker Added In Game</p>
+                    <p>v1.0.3 <strong>[MAJOR UPDATE]</strong> - Egg Promotion Progress Bar, Egg Promotion and Prestige Buttons Hidden When In Contract, and Slightly Better Code (by gapples2)</p>
+                    <p>v1.0.2 - Contract Rebalancing Part 2, Delete Save Confirmation</p>
+                    <p>v1.0.1 - Minor Bug Fixes, 2 New Epic Researches, Favicon changes based on current egg, and Contract Rebalancing Part 1</p>
+                    <p>v1.0.0 - Patching and Polishing</p>
+                    <h4 style="margin-top:1vh">Alpha Versions</h4>
+                    <p>v0.0.3 <strong>[MAJOR UPDATE]</strong> - Contracts,Automation and Internal Hatchery Buff</p>
+                    <p>v0.0.2 <strong>[MAJOR UPDATE]</strong> - Prestige!</p>
+                    <p>v0.0.1 <strong>[MAJOR UPDATE]</strong> - All Eggs, 28 "Common" Researches, Egg Promotion System</p>
+                </div>
             </div>
-            <div>
-                <a href="https://discord.com/invite/JkQUnubuhx">Discord Link!</a>
-                <a href="https://github.com/MrBacon470/Coop-Co">Github Repo!</a>
+            <div id="setSub1" class="flexBox">
+                <h3>Stats</h3>
+                <div style="display:flex;flex-direction:row;margin-right: 1vw;">
+                    <div style="display:flex;flex-direction:column;">
+                        <h4 id="stat0">Best Money: $0.00</h4>
+                        <h4 id="stat1">Best Egg: Regular</h4>
+                        <h4 id="stat2">Best Chickens: 0.00</h4>
+                        <h4 id="stat3">Contracts Completed: 0</h4>
+                        <h4 id="stat4">Time Played (Includes Time Away): 0</h4>
+                    </div>
+                    <div style="display:flex;flex-direction:column;margin-left: 1vw;">
+                        <h3>Last 3 Prestiges</h3>
+                        <h4 id="stat5">Prestige 1: 0 Soul Eggs</h4>
+                        <h4 id="stat6">Prestige 2: 0 Soul Eggs</h4>
+                        <h4 id="stat7">Prestige 3: 0 Soul Eggs</h4>
+                        <h3>Other Prestige Stats</h3>
+                        <h4 id="stat9">Best Soul Eggs: 0</h4>
+                        <h4 id="stat10">Best Prophecy Eggs: 0</h4>
+                        <h4 id="stat8">Time in Current Prestige: 0</h4>
+                    </div>
+                </div>
             </div>
-            <div>
-                <h3>Changelog :O</h3>
-                <h4>Current Version - v1.0.11</h4>
-                <h4>Public Release</h4>
-                <p>v1.0.11 - Contract Rebalance pt 5 (I'm probably going to stop rebalancing now)</p>
-                <p>v1.0.10 - More 1.0.3 Fixes, New Prophecy Egg Boost and Contract Rebalance pt 4 (finale?)</p>
-                <p>v1.0.9 - More Fixes for bugs introduced by 1.0.3</p>
-                <p>v1.0.8 - New Formatter (by Dimava), Optimized Common Research Buyer and Optimized Prophecy Egg Reward (by Gazyn)</p>
-                <p>v1.0.7 - Contract Rebalance Part 3 | Soul Egg Rewards Removed Entirely from Contracts</p>
-                <p>v1.0.6 - Fully Working Double Progress Bar (by Dimava)</p>
-                <p>v1.0.5 - Fix Major Bug Introduced in 1.0.3</p>
-                <p>v1.0.4 - Newsticker Added In Game</p>
-                <p>v1.0.3 - Egg Promotion Progress Bar, Egg Promotion and Prestige Buttons Hidden When In Contract, and Slightly Better Code (by gapples2)</p>
-                <p>v1.0.2 - Contract Rebalancing Part 2, Delete Save Confirmation</p>
-                <p>v1.0.1 - Minor Bug Fixes, 2 New Epic Researches, Favicon changes based on current egg, and Contract Rebalancing Part 1</p>
-                <p>v1.0.0 - Patching and Polishing</p>
-                <h4 style="margin-top:1vh">Alpha Versions</h4>
-                <p>v0.0.3 - Contracts,Automation and Internal Hatchery Buff</p>
-                <p>v0.0.2 - Prestige!</p>
-                <p>v0.0.1 - All Eggs, 28 "Common" Researches, Egg Promotion System</p>
+            <div id="setSub2" class="flexBox">
+                <h3>Programmers</h3>
+                <div style="flex-direction:row;">
+                    <div style="flex-direction:column">
+                        <div class="credit">
+                            <img src="https://avatars.githubusercontent.com/u/72811949?s=64&v=4">
+                            <a>VoidCloud</a>
+                        </div>
+                        <div class="credit">
+                            <img src="https://avatars.githubusercontent.com/u/20068737?s=64&v=4">
+                            <a>Dimava</a>
+                        </div>
+                        <div class="credit">
+                            <img src="https://avatars.githubusercontent.com/u/26186257?s=64&v=4">
+                            <a>Gazyn</a>
+                        </div>
+                        <div class="credit">
+                            <img src="https://avatars.githubusercontent.com/u/71836730?s=64&v=4">
+                            <a>Gapples2</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -347,4 +513,7 @@
     <script src="JS/contracts.js"></script>
     <script src="JS/automation.js"></script>
     <script src="JS/newsticker.js"></script>
+    <script src="JS/achievements.js"></script>
+    <script src="JS/enlightenment.js"></script>
+    <script src="JS/eggspeditions.js"></script>
 </html>

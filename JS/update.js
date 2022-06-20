@@ -2,10 +2,16 @@ function updateHTML() {
     //Globals
     DOMCacheGetOrSet('moneyText').textContent = `$${format(data.money)}`
     DOMCacheGetOrSet('chickensText').textContent = `Chickens: ${format(data.chickens)}`
-    if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `Imgs/${eggData[data.currentEgg].id}.png`) 
+    if(data.onPlanet === false) {
+        if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `Imgs/${eggData[data.currentEgg].id}.png`) 
         DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `Imgs/${eggData[data.currentEgg].id}.png`)
-    DOMCacheGetOrSet('eggPromoteButton').style.display = data.currentEgg >= eggData.length-1 || contractActive() ? 'none' : 'inline-block'
-    if(data.currentEgg < eggData.length-1) {
+    }   
+    else {
+        if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `Imgs/${planetEggImgIDs[data.currentPlanetIndex]}.png`) 
+        DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `Imgs/${planetEggImgIDs[data.currentPlanetIndex]}.png`)
+    }
+    DOMCacheGetOrSet('eggPromoteButton').style.display = data.currentEgg >= eggData.length-1 || contractActive() || data.inPath === true || data.onPlanet === true ? 'none' : 'inline-block'
+    if(data.currentEgg < eggData.length-1 && data.onPlanet === false) {
         const previousEggUnlockReq = data.currentEgg !== 0 ? eggData[data.currentEgg].unlockReq.max(1.01) : D(1.01)
         const currentEggUnlockReq = eggData[data.currentEgg+1].unlockReq.max(1.02)
         const nextEggDiscoverProgress = data.money.max(1).log10().div(previousEggUnlockReq.log10())
@@ -16,9 +22,12 @@ function updateHTML() {
     }
     DOMCacheGetOrSet('prestigeTabButton').style.display = data.hasPrestiged === true ? 'block' : 'none'
     DOMCacheGetOrSet('prestigeButton').classList = data.currentEgg < 3 ? 'locked' : 'prestigeHeader'
-    DOMCacheGetOrSet('prestigeButton').style.display = contractActive() ? 'none' : 'block'
+    DOMCacheGetOrSet('prestigeButton').style.display = contractActive() || data.inPath === true || data.onPlanet === true ? 'none' : 'block'
     DOMCacheGetOrSet('prestigeButton').textContent = data.currentEgg < 3 ? 'Reach Rocket Fuel Eggs' : `Prestige: +${format(soulEggGain)} Soul Eggs`
     DOMCacheGetOrSet('newsHolder').style.display = data.settingsToggles[1] ? 'block' : 'none'
+    DOMCacheGetOrSet('contractButton').style.display = data.inPath === false ? 'block' : 'none'
+    DOMCacheGetOrSet('enlightenmentTabButton').style.display = data.unlockedEgg[17] === true ? 'block' : 'none'
+    DOMCacheGetOrSet('contractButton').style.display = data.onPlanet === false ? 'block' : 'none'
     if(data.currentTab === 0) {
         updateEggPage()
     }
@@ -48,7 +57,7 @@ function updateHTML() {
         if(data.unlockedContracts === true) {
             for(let i = 0; i < data.contracts.length; i++) {
                 DOMCacheGetOrSet(`contract${i}Img`).setAttribute('src', data.contracts[i].image)
-                DOMCacheGetOrSet(`contract${i}Header`).textContent = `Contract-0${i+1} | ${data.contracts[i].title}`
+                DOMCacheGetOrSet(`contract${i}Header`).textContent = data.contractActive[i] ? `Contract-0${i+1} | ${data.contracts[i].title} - [ACTIVE]` : `Contract-0${i+1} | ${data.contracts[i].title}`
                 DOMCacheGetOrSet(`contract${i}Description`).textContent = data.contracts[i].description
                 DOMCacheGetOrSet(`contract${i}Reward`).textContent = `Reward: ${format(data.contracts[i].reward)} ${data.contracts[i].rewardType}`
                 DOMCacheGetOrSet(`contract${i}Goal`).textContent = `Goal: $${format(data.contracts[i].goal)}`
@@ -57,8 +66,13 @@ function updateHTML() {
         }
     }
     else if(data.currentTab === 3) {
-        DOMCacheGetOrSet(`setTog0`).innerHTML = data.settingsToggles[0] ? `Notation: Mixed Sci` : `Notation: Sci`
-        DOMCacheGetOrSet(`setTog1`).innerHTML = data.settingsToggles[1] ? `Newsticker: On` : `Newsticker: Off`
+        if(data.currentSubTab[0] === 0) {
+            DOMCacheGetOrSet(`setTog0`).innerHTML = data.settingsToggles[0] ? `Notation: Mixed Sci` : `Notation: Sci`
+            DOMCacheGetOrSet(`setTog1`).innerHTML = data.settingsToggles[1] ? `Newsticker: On` : `Newsticker: Off`
+        }
+        else if(data.currentSubTab[0] === 1) {
+            updateStats()
+        }
     }
     else if(data.currentTab === 4) {
         DOMCacheGetOrSet('soulEggText').innerHTML = `Soul Eggs: ${format(data.soulEggs)}<br>Best Soul Eggs: ${format(data.bestSoulEggs)}<br>Earnings Boost: x${format(soulEggBoost)}`
@@ -73,5 +87,18 @@ function updateHTML() {
             Cost: ${format(epicResearchCost[i])} Soul Eggs` : `${epicResearchNames[i]}<br>${epicResearchDescs[i]}<br>Level: ${toPlaces(data.epicResearch[i],0,epicResearchMaxLevel[i].plus(1))}/${toPlaces(epicResearchMaxLevel[i],0,epicResearchMaxLevel[i].plus(1))}<br>
             Cost: [MAXED]`
         }
+    }
+    else if(data.currentTab === 5) {
+        updateEggspeditionsUI()
+    }
+    else if(data.currentTab === 6) {
+        for(let i = 0; i < 5; i++) {
+            DOMCacheGetOrSet('enlight'+i).innerText = `Enlightenment ${enlightenmentNumerals[i]}\n${enlightenmentNames[i]}\n\n${enlightenmentDescs[i]}\nCost: ${format(enlightenmentCosts[i])} Knowledge\nLevel: 0`
+        }
+        DOMCacheGetOrSet('knowledgeText').innerText = data.inPath === true ? `Knowledge: ${format(data.knowledge)}\n+${format(knowledgeGain)}/s` : `Knowledge: ${format(data.knowledge)}`
+        DOMCacheGetOrSet('enlightenmentButton').innerText = data.inPath === true ? `Leave The Path` : `Enter The Path`
+    }
+    else if(data.currentTab === 7) {
+        
     }
 }

@@ -4,10 +4,10 @@ function format(a,b = 2) {
         if(a.div(1e93).lt(1e3))
             return notate(a)
         else 
-            return formatSci(a,b)
+            return formatSci(a)
     }
     else {
-        return formatSci(a,b)
+        return formatSci(a)
     }
 }
 

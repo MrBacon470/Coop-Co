@@ -1,9 +1,9 @@
-//Credit to Acamadea
+//Credit to Acamaeda
 function exponentialFormat(num, precision, mantissa = true) {
     let e = num.log10().floor()
     let m = num.div(Decimal.pow(10, e))
-    if (m.toStringWithDecimalPlaces(precision) === 10) {
-        m = new Decimal(1)
+    if (m.toStringWithDecimalPlaces(precision) == 10) {
+        m = decimalOne
         e = e.add(1)
     }
     e = (e.gte(1e9) ? format(e, 3) : (e.gte(10000) ? commaFormat(e, 0) : e.toStringWithDecimalPlaces(0)))
@@ -18,7 +18,7 @@ function commaFormat(num, precision) {
     let init = num.toStringWithDecimalPlaces(precision)
     let portions = init.split(".")
     portions[0] = portions[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
-    if (portions.length === 1) return portions[0]
+    if (portions.length == 1) return portions[0]
     return portions[0] + "." + portions[1]
 }
 
@@ -36,35 +36,66 @@ function fixValue(x, y = 0) {
 
 function sumValues(x) {
     x = Object.values(x)
-    if (!x[0]) return new Decimal(0)
+    if (!x[0]) return decimalZero
     return x.reduce((a, b) => Decimal.add(a, b))
 }
+/*
+function formatSci(decimal, precision = 2, small = true) {
+    if (isNaN(decimal.sign) || isNaN(decimal.layer) || isNaN(decimal.mag)) {
+        return "NaN"
+    }
+    if (decimal.sign < 0) return "-" + formatSci(decimal.neg(), precision, small)
+    if (decimal.mag == Number.POSITIVE_INFINITY) return "Infinity"
+    if (decimal.gte("eeee1000")) {
+        var slog = decimal.slog()
+        if (slog.gte(1e6)) return "F" + formatSci(slog.floor())
+        else return Decimal.pow(10, slog.sub(slog.floor())).toStringWithDecimalPlaces(3) + "F" + commaFormat(slog.floor(), 0)
+    }
+    else if (decimal.gte("1e1000000")) return exponentialFormat(decimal, 0, false)
+    else if (decimal.gte("1e10000")) return exponentialFormat(decimal, 0)
+    else if (decimal.gte(1e9)) return exponentialFormat(decimal, precision)
+    else if (decimal.gte(1e3)) return commaFormat(decimal, 0)
+    else if (decimal.gte(0.0001) || !small) return regularFormat(decimal, precision)
+    else if (decimal.eq(0)) return (0).toFixed(precision)
 
-function formatSci(decimal, precision = 2) {
-    decimal = new Decimal(decimal)
-        if (isNaN(decimal)) return  '[ERROR]: NaN'
-        if (decimal.sign < 0) return "-" + formatSci(decimal.neg(), precision)
-        if (decimal.mag === Number.POSITIVE_INFINITY) return "Infinity"
-        if (decimal.gte("eeee1000")) {
-            let slog = decimal.slog()
-            if (slog.gte(1e6)) return "F" + formatSci(slog.floor())
-            else return Decimal.pow(10, slog.sub(slog.floor())).toStringWithDecimalPlaces(3) + "F" + commaFormat(slog.floor(), 0)
-        } else if (decimal.gte("1e1000000")) return exponentialFormat(decimal, 0, false)
-        else if (decimal.gte("1e10000")) return exponentialFormat(decimal, 0)
-        else if (decimal.gte(1e6)) return exponentialFormat(decimal, precision)
-        else if (decimal.gte(1e3)) return commaFormat(decimal, 0)
-        else if (decimal.gte(0.0001)) return regularFormat(decimal, precision)
-        else if (decimal.eq(0)) return (0).toFixed(precision)
+    decimal = invertOOM(decimal)
+    let val = ""
+    if (decimal.lt("1e1000")){
+        val = exponentialFormat(decimal, precision)
+        return val.replace(/([^(?:e|F)]*)$/, '-$1')
+    }
+    else   
+        return formatSci(decimal, precision) + "⁻¹"
 
-        decimal = invertOOM(decimal)
-        let val = ""
-        if (decimal.lt("1e1000")) {
-            val = exponentialFormat(decimal, precision)
-            return val.replace(/([^(?:e|F)]*)$/, '-$1')
-        } else
-            return format(decimal, precision) + "⁻¹"
 }
-
+*/
+//Formatting created by MrRedshark77
+function formatSci(ex, acc=2, max=6) {
+    ex = D(ex)
+    neg = ex.lt(0)?"-":""
+    if (ex.mag == Infinity) return neg + 'Infinity'
+    if (Number.isNaN(ex.mag)) return neg + 'NaN'
+    if (ex.lt(0)) ex = ex.mul(-1)
+    if (ex.eq(0)) return ex.toFixed(acc)
+    let e = ex.log10().floor()
+    if (ex.log10().lt(Math.min(-acc,0)) && acc > 1) {
+        let e = ex.log10().ceil()
+        let m = ex.div(e.eq(-1)?D(0.1):D(10).pow(e))
+        let be = e.mul(-1).max(1).log10().gte(9)
+        return neg+(be?'':m.toFixed(2))+'e'+formatSci(e, 0, max)
+    } else if (e.lt(max)) {
+        let a = Math.max(Math.min(acc-e.toNumber(), acc), 0)
+        return neg+(a>0?ex.toFixed(a):ex.toFixed(a).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'))
+    } else {
+        if (ex.gte("eeee10")) {
+            let slog = ex.slog()
+            return (slog.gte(1e9)?'':D(10).pow(slog.sub(slog.floor())).toFixed(2)) + "F" + formatSci(slog.floor(), 0)
+        }
+        let m = ex.div(D(10).pow(e))
+        let be = e.log10().gte(9)
+        return neg+(be?'':m.toFixed(2))+'e'+formatSci(e, 0, max)
+    }
+}
 function formatWhole(decimal) {
     decimal = new Decimal(decimal)
     if (decimal.gte(1e9)) return format(decimal, 2)
@@ -72,12 +103,16 @@ function formatWhole(decimal) {
     return format(decimal, 0)
 }
 
-function formatTime(s) {
-    if (s < 60) return format(s) + "s"
-    else if (s < 3600) return formatWhole(Math.floor(s / 60)) + "m " + format(s % 60) + "s"
-    else if (s < 86400) return formatWhole(Math.floor(s / 3600)) + "h " + formatWhole(Math.floor(s / 60) % 60) + "m " + format(s % 60) + "s"
-    else if (s < 31536000) return formatWhole(Math.floor(s / 86400) % 365) + "d " + formatWhole(Math.floor(s / 3600) % 24) + "h " + formatWhole(Math.floor(s / 60) % 60) + "m " + format(s % 60) + "s"
-    else return formatWhole(Math.floor(s / 31536000)) + "y " + formatWhole(Math.floor(s / 86400) % 365) + "d " + formatWhole(Math.floor(s / 3600) % 24) + "h " + formatWhole(Math.floor(s / 60) % 60) + "m " + format(s % 60) + "s"
+function formatTime(time) {
+  if (time >= 31536000) {
+      return Decimal.floor(time / 31536000) + " years, " + Decimal.floor((time % 31536000) / 86400) + " days, " + Decimal.floor((time % 86400) / 3600) + " hours, " + Decimal.floor((time % 3600) / 60) + " minutes, and " + Decimal.floor(time % 60) + " seconds"
+  } else if (time >= 86400) {
+      return Decimal.floor(time / 86400) + " days, " + Decimal.floor((time % 86400) / 3600) + " hours, " + Decimal.floor((time % 3600) / 60) + " minutes, and " + Decimal.floor(time % 60) + " seconds"
+  } else if (time >= 3600) {
+      return Decimal.floor(time / 3600) + " hours, " + Decimal.floor((time % 3600) / 60) + " minutes, and " + Decimal.floor(time % 60) + " seconds"
+  } else if (time >= 60) {
+      return Decimal.floor(time / 60) + " minutes, and " + Decimal.floor(time % 60) + " seconds"
+  } else return Decimal.floor(time % 60) + " seconds"
 }
 
 function toPlaces(x, precision, maxAccepted) {
@@ -90,8 +125,8 @@ function toPlaces(x, precision, maxAccepted) {
 }
 
 // Will also display very small numbers
-function formatSmall(x, precision=2) {
-    return format(x, precision, true)
+function formatSmall(x, precision=2) { 
+    return format(x, precision, true)    
 }
 
 function invertOOM(x){

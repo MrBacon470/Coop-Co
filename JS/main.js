@@ -7,6 +7,7 @@ function mainLoop() {
     updateIntHatch()
     updateLayRate()
     updatePrestige()
+    updateEnlightenment()
     updateAutomation()
     if(data.chickens.lt(1) && data.epicResearch[8].gte(epicResearchMaxLevel[8]))
         data.chickens = D(1)
@@ -14,19 +15,48 @@ function mainLoop() {
         if(data.contractActive[i])
             runContract(i)
     }
-    currentEggValue = eggData[data.currentEgg].value.times(eggValueBonus)
-    data.chickens = data.chickens.plus(chickenGain.times(diff/15))
-    data.money = data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff)).times(data.chickens.times(layRate)))
+    for(let i = 0; i < 6; i++) {
+        planetBoosts[i] = data.planetData[i].chickens.gt(0) ? D(1).plus(Decimal.sqrt(Decimal.log(data.planetData[i].chickens,10))) : D(1)
+    }
+    currentEggValue = data.onPlanet === false ? eggData[data.currentEgg].value.times(eggValueBonus) : planetEggValue[data.currentPlanetIndex].times(eggValueBonus)
+    data.chickens = data.onPlanet === true && data.currentPlanetIndex === 1 ? data.chickens.plus(chickenGain.times(diff/60)) : data.chickens.plus(chickenGain.times(diff/15))
+    data.money = data.onPlanet === true && data.currentPlanetIndex === 1 ? data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff/4)).times(data.chickens.times(layRate))) : data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff)).times(data.chickens.times(layRate)))
+    //Stats Updates
+    for(let i = data.unlockedEgg.length - 1; i > -1; i--) {
+        if(data.unlockedEgg[i] === true) {
+            data.stats.bestEgg = eggData[i+1].name
+            break
+        }
+        if(i === 0 && data.unlockedEgg[i] === false) {
+            data.stats.bestEgg = 'Regular'
+        }
+    }
+    if(data.stats.bestMoney.lt(data.money)) data.stats.bestMoney = data.money
+    if(data.stats.bestChickens.lt(data.chickens)) data.stats.bestChickens = data.chickens
+    if(data.stats.bestSoulEggs.lt(data.bestSoulEggs)) data.stats.bestSoulEggs = data.bestSoulEggs
+    if(data.stats.bestProphecyEggs.lt(data.prophecyEggs)) data.stats.bestProphecyEggs = data.prophecyEggs
+    data.stats.timePlayed = data.stats.timePlayed.plus(diff)
+    data.stats.timeInPrestige = data.stats.timeInPrestige.plus(diff)
+    checkAchievements()
     updateHTML()
     if(DOMCacheGetOrSet('faviconLink').getAttribute('href') !== `Imgs/${eggData[data.currentEgg].id}.png`)
         DOMCacheGetOrSet('faviconLink').href = `Imgs/${eggData[data.currentEgg].id}.png`
 }
 
 function changeTab(i) {
-    const tabIDs = ['egg','research','contracts','settings','prestige']
+    const tabIDs = ['egg','research','contracts','settings','prestige','eggpedition','enlightenment','achievement']
     data.currentTab = i
     for(let i = 0; i < tabIDs.length; i++) {
         DOMCacheGetOrSet(`${tabIDs[i]}Tab`).style.display = i === data.currentTab ? 'flex' : 'none'
+    }
+}
+
+function changeSubTab(a,b) {
+    const subAmts = [2]
+    const subIDs = ['set']
+    data.currentSubTab[a] = b
+    for(let i = 0; i <= subAmts[a]; i++) {
+        DOMCacheGetOrSet(`${subIDs[a]}Sub${i}`).style.display = i === data.currentSubTab[a] ? 'flex' : 'none'
     }
 }
 
@@ -35,6 +65,20 @@ function toggleBA(i) {
     const numString = ['1','5','10','20']
     data.buyAmounts[i] = data.buyAmounts[i] + 1 === 4 ? 0 : data.buyAmounts[i] + 1
     DOMCacheGetOrSet(`ba${i}`).innerHTML = `Buy Amount: ${numString[data.buyAmounts[i]]}`
+}
+
+function updateStats() {
+    DOMCacheGetOrSet('stat0').textContent = `Best Money: $${format(data.stats.bestMoney)}`
+    DOMCacheGetOrSet('stat1').textContent = `Best Egg: ${data.stats.bestEgg}`
+    DOMCacheGetOrSet('stat2').textContent = `Best Chickens: ${format(data.stats.bestChickens)}`
+    DOMCacheGetOrSet('stat3').textContent = `Contracts Completed: ${format(data.stats.contractsComplete)}`
+    DOMCacheGetOrSet('stat4').textContent = `Time Played: ${formatTime(data.stats.timePlayed)}`
+    DOMCacheGetOrSet('stat5').textContent = `Prestige 1: ${format(data.stats.prestiges[0])} Soul Eggs`
+    DOMCacheGetOrSet('stat6').textContent = `Prestige 2: ${format(data.stats.prestiges[1])} Soul Eggs`
+    DOMCacheGetOrSet('stat7').textContent = `Prestige 3: ${format(data.stats.prestiges[2])} Soul Eggs`
+    DOMCacheGetOrSet('stat8').textContent = `Time In Current Run: ${formatTime(data.stats.timeInPrestige)}`
+    DOMCacheGetOrSet('stat9').textContent = `Best Soul Eggs: ${format(data.stats.bestSoulEggs)}`
+    DOMCacheGetOrSet('stat10').textContent = `Best Prophecy Eggs: ${format(data.stats.bestProphecyEggs)}`
 }
 
  function createAlert(a,b,c) {

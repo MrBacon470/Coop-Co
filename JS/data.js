@@ -1,4 +1,4 @@
-const D = x => new Decimal(x)
+function D(x){return new Decimal(x)}
 //create all the variables in a data object for saving
 function getDefaultObject() {
     return {
@@ -37,15 +37,36 @@ function getDefaultObject() {
         }],
         contractActive: [false,false,false],
         currentEgg: 0,
-        unlockedEgg: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-        research: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
-        epicResearch: [D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0),D(0)],
-        autoActive: [false,false,false],
+        unlockedEgg: new Array(18).fill(false),
+        research: new Array(28).fill(D(0)),
+        epicResearch: new Array(11).fill(D(0)),
+        autoActive: [false,false,false,false],
+        enlightenments: new Array(5).fill(D(0)),
+        inPath: false,
+        knowledge: D(0),
+        planetsDiscovered: new Array(6).fill(false),
+        discoveries: 0,
+        currentPlanetIndex: 0,
+        onPlanet: false,
+        planetData: [{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))}],
+        achievements: new Array(41).fill(false),
+        stats: {
+            bestMoney: D(0),
+            bestEgg: '',
+            bestChickens: D(0),
+            contractsComplete: D(0),
+            timePlayed: D(0),
+            prestiges: [D(0),D(0),D(0)],
+            timeInPrestige: D(0),
+            bestSoulEggs: D(0),
+            bestProphecyEggs: D(0),
+        },
         buyAmounts: [0,0],
         time: Date.now(),
         currentTab: 0,
+        currentSubTab: [0],
         settingsToggles: [true,true],
-        currentUpdate: 'v1.0.11',
+        currentUpdate: 'v1.1.0',
         devSpeed: 1,
     }
 }
@@ -54,6 +75,7 @@ let data = getDefaultObject()
 const saveName = 'coopCo'
 function save(){
     window.localStorage.setItem(saveName, JSON.stringify(data))
+    $.notify('Game Saved','info')
 }
 function load() {
     let savedata = JSON.parse(window.localStorage.getItem(saveName))
@@ -66,12 +88,17 @@ function load() {
     }
     //Update 1.0.0 Saves to Current Version
     else if(data.currentUpdate !== getDefaultObject().currentUpdate){
-        createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details<br>Contracts were regenerated in v1.0.11`,"812626")
-        if(data.unlockedContracts === true){
-            for(let i = 0; i < 3; i++) {
-                generateContract(i)
+        if(data.currentUpdate !== 'v1.0.11') {
+            createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details<br>Contracts were regenerated in v1.0.11`,"812626")
+            if(data.unlockedContracts === true){
+                for(let i = 0; i < 3; i++) {
+                    generateContract(i)
+                }
             }
         }
+        else
+            createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details`,"812626")
+        
         data.currentUpdate = getDefaultObject().currentUpdate
     }
     for(let i = 0; i < data.buyAmounts.length; i++) {
@@ -106,17 +133,17 @@ function exportSave(){
     exportedDataText.setSelectionRange(0, 99999);
     document.execCommand("copy");
     document.body.removeChild(exportedDataText);
-    createAlert('Copied!','The save has been copied to your clipboard!','#2f8126')
+    $.notify('Save File Exported to Clip Board','success')
 }
 function importSave(){
     let importedData = DOMCacheGetOrSet('promptInput').value
     if(importedData.length <= 0 || importedData === undefined) {
-        createAlert('Error!','No data was entered!','#ff0000')
+        $.notify('No Data Imported','error')
         DOMCacheGetOrSet('promptContainer').style.display = 'none'
         return
     }
     else if(importedData.toLowerCase() === '69' || importedData.toLowerCase() === '420'){
-        createAlert('Nice!','Nice','#ff0000')
+        $.notify('Nice','success')
         DOMCacheGetOrSet('promptContainer').style.display = 'none'
         return
     }
@@ -126,11 +153,18 @@ function importSave(){
 }
 window.setInterval(function(){
     save()
-}, 10000);
+}, 30000);
 window.onload = function (){
     load()
+    diff = diff = (Date.now()-data.time)*data.devSpeed/1000
+    $.notify('Welcome Back!\nYou were gone for ' + formatTime(diff), 'info')
     changeTab(data.currentTab)
+    for(let i = 0; i < data.currentSubTab.length; i++) {
+        changeSubTab(i,data.currentSubTab[i])
+    }
     scrollNextMessage()
+    $.notify('Game Loaded','info')
+    updateAchClass()
 }
 //full reset
 function fullReset(){
