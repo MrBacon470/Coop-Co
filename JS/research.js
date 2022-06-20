@@ -17,7 +17,10 @@ const commonResearchBaseCost = [D(0.5),D(1.16),D(1836),D(454986),D(1351894),D(16
     D(4.222e36),D(433.836e42),D(223.92e48),D(23.596e42),D(17.914e48),D(15.902e51),D(16.564e66),D(14.474e54)]
 let commonResearchCost = []
 for(let i = 0; i < commonResearchNames.length; i++) {
-    commonResearchCost[i] = (commonResearchBaseCost[i].sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.15, data.research[i]))
+    if(data.onPlanet === false)
+        commonResearchCost[i] = (commonResearchBaseCost[i].sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.15, data.research[i]))
+    else if(data.onPlanet === true && data.currentPlanetIndex === 0)
+        commonResearchCost[i] = ((commonResearchBaseCost[i]).sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.35, data.research[i]))
     DOMCacheGetOrSet(`r${i}`).innerHTML = `${commonResearchNames[i]}<br>${commonResearchDescs[i]}<br>Level: ${format(data.research[i],0)}/${format(commonResearchMaxLevel[i],0)}<br>
     Cost: $${format(commonResearchCost[i])}`
     DOMCacheGetOrSet(`r${i}`).classList = 'lockedResearch'
@@ -45,7 +48,7 @@ function updateResearch() {
         if(data.onPlanet === false)
             commonResearchCost[i] = (commonResearchBaseCost[i].sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.15, data.research[i]))
         else if(data.onPlanet === true && data.currentPlanetIndex === 0)
-            commonResearchCost[i] = ((commonResearchBaseCost[i].times(2)).sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.15, data.research[i]))
+            commonResearchCost[i] = ((commonResearchBaseCost[i]).sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.35, data.research[i]))
     }
         
     for(let i = 0; i < epicResearchNames.length; i++)

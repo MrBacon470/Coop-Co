@@ -66,7 +66,7 @@ function getDefaultObject() {
         currentTab: 0,
         currentSubTab: [0],
         settingsToggles: [true,true],
-        currentUpdate: 'v1.0.11',
+        currentUpdate: 'v1.1.0',
         devSpeed: 1,
     }
 }
@@ -88,12 +88,17 @@ function load() {
     }
     //Update 1.0.0 Saves to Current Version
     else if(data.currentUpdate !== getDefaultObject().currentUpdate){
-        createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details<br>Contracts were regenerated in v1.0.11`,"812626")
-        if(data.unlockedContracts === true){
-            for(let i = 0; i < 3; i++) {
-                generateContract(i)
+        if(data.currentUpdate !== 'v1.0.11') {
+            createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details<br>Contracts were regenerated in v1.0.11`,"812626")
+            if(data.unlockedContracts === true){
+                for(let i = 0; i < 3; i++) {
+                    generateContract(i)
+                }
             }
         }
+        else
+            createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details`,"812626")
+        
         data.currentUpdate = getDefaultObject().currentUpdate
     }
     for(let i = 0; i < data.buyAmounts.length; i++) {

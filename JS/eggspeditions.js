@@ -1,9 +1,9 @@
 const planetNames = ['Arcturus','Ravnar','Xylok','Triton','Hereth','Malak']
-const planetDescs = ['Dark Energy Abounds (2x Research Costs)','Tick Tock (Time Speed 1/4th)','Peace and Tranquility (No World Debuff)','The Abyss Watches (No Soul or Prophecy Egg Boost)','A World of Lava (Slower Chicken Gain)','Light in the Dark (Low Egg Value)']
+const planetDescs = ['Dark Energy Abounds (Higher Research Scaling)','Tick Tock (Time Speed 1/4th)','Peace and Tranquility (No World Debuff)','The Abyss Watches (No Soul or Prophecy Egg Boost)','A World of Lava (Slower Chicken Gain)','Light in the Dark (Low Egg Value)']
 const planetEggImgIDs = ['darkenergy','time','peace','abyss','lava','light']
 const planetEggNames = ['Dark Energy','Time','Peace','Abyss','Lava','Light']
 const planetBoostNames = ['Planet Egg Value Boost','Lay Rate','None','Soul Egg Gain','Chicken Gain','Egg Value']
-const planetEggValue = [D(1e10),D(100),D(10),D(1),D(0.5),D(0.25)]
+const planetEggValue = [D(1e3),D(100),D(10),D(1),D(0.5),D(0.25)]
 const discoveryEggIndexes = [3,5,6,10,13,14]
 const discoveryReqs = [D(2.5e4),D(1e5),D(1e6),D(5e6),D(1e7),D(1e8)]
 let planetHoverIndex = -1
