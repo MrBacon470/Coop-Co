@@ -3,7 +3,7 @@ const planetDescs = ['Dark Energy Abounds (2x Research Costs)','Tick Tock (Time 
 const planetEggImgIDs = ['darkenergy','time','peace','abyss','lava','light']
 const planetEggNames = ['Dark Energy','Time','Peace','Abyss','Lava','Light']
 const planetBoostNames = ['Planet Egg Value Boost','Lay Rate','None','Soul Egg Gain','Chicken Gain','Egg Value']
-const planetEggValue = [D(1e12),D(1e5),D(2.5e4),D(1),D(0.5),D(0.25)]
+const planetEggValue = [D(1e10),D(100),D(10),D(1),D(0.5),D(0.25)]
 const discoveryEggIndexes = [3,5,6,10,13,14]
 const discoveryReqs = [D(2.5e4),D(1e5),D(1e6),D(5e6),D(1e7),D(1e8)]
 let planetHoverIndex = -1
@@ -58,14 +58,14 @@ function discoverPlanet() {
 
 function journeyToPlanet() {
     if(data.onPlanet === false && data.planetsDiscovered[planetHoverIndex] === true) {
-        data.onPlanet = true
         data.currentPlanetIndex = planetHoverIndex
-        data.research = data.planetData[planetHoverIndex].research
+        data.research = data.planetData[data.currentPlanetIndex].research
+        data.chickens = data.planetData[data.currentPlanetIndex].chickens
+        data.money = data.planetData[data.currentPlanetIndex].money
+        data.onPlanet = true
         eggValueBonus = D(1)
         chickenGain = D(0)
         layRate = D(1)
-        data.chickens = data.planetData[planetHoverIndex].chickens
-        data.money = data.planetData[planetHoverIndex].money
         data.currentEgg = 0
     }
     else if(data.onPlanet === true) {
