@@ -23,7 +23,7 @@ const achievementDescriptions = [
 'Get 10 Prophecy Eggs','Get 1 Thousand Prophecy Eggs','Get 1 Million Prophecy Eggs','Get 10 Million Prophecy Eggs',
 //Planets and Knowledge
 'Unlock the 1st Planet','Unlock the 2nd Planet','Unlock the 3rd Planet','Unlock the 4th Planet','Unlock the 5th Planet','Unlock the 6th Planet',
-'Acquire 1 Thousand Knowledge','Acquire 1 Million Knowledge','Acquire 1 Billion Knowledge','Acquire 1 Trillion Knowledge'
+'Acquire 100 Knowledge','Acquire 1 Thousand Knowledge','Acquire 10 Thousand Knowledge','Acquire 100 Thousand Knowledge'
 ]
 
 function updateAchText(i) {
@@ -60,7 +60,7 @@ function checkAchievements() {
     //Planets and Knowledge
     for(let i = 31; i < 37; i++)
         if(data.planetsDiscovered[i-31] === true && data.achievements[i] === false) getAchievement(i)
-    const knowledgeAchReq = [D(1e3),D(1e6),D(1e9),D(1e12)]
+    const knowledgeAchReq = [D(100),D(1e3),D(1e4),D(1e5)]
     for(let i = 37; i < 41; i++)
         if(data.knowledge.gte(knowledgeAchReq[i-37]) && data.achievements[i] === false) getAchievement(i)
 }

@@ -2,7 +2,7 @@ const planetNames = ['Arcturus','Ravnar','Xylok','Triton','Hereth','Malak']
 const planetDescs = ['Dark Energy Abounds (Higher Research Scaling)','Tick Tock (Time Speed 1/4th)','Peace and Tranquility (No World Debuff)','The Abyss Watches (No Soul or Prophecy Egg Boost)','A World of Lava (Slower Chicken Gain)','Light in the Dark (Low Egg Value)']
 const planetEggImgIDs = ['darkenergy','time','peace','abyss','lava','light']
 const planetEggNames = ['Dark Energy','Time','Peace','Abyss','Lava','Light']
-const planetBoostNames = ['Planet Egg Value','Lay Rate','None','Soul Egg Gain','Chicken Gain','Egg Value']
+const planetBoostNames = ['Planet Egg Value','Lay Rate','Knowledge Gain','Soul Egg Gain','Chicken Gain','Egg Value']
 const planetEggValue = [D(1e3),D(100),D(10),D(1),D(0.5),D(0.25)]
 const discoveryEggIndexes = [3,5,6,10,13,14]
 const discoveryReqs = [D(2.5e4),D(1e5),D(1e6),D(5e6),D(7.5e6),D(1e7)]
@@ -37,10 +37,8 @@ function updateEggspeditionsUI() {
         DOMCacheGetOrSet('eggspeditionButton').innerText = `Leave the Path to Travel`
         DOMCacheGetOrSet('eggspeditionButton').classList = 'lockedResearch'
     } 
-    if(planetHoverIndex !== -1 && planetHoverIndex !== 2)
-        DOMCacheGetOrSet('planetHoverText').innerText = data.planetsDiscovered[planetHoverIndex] === true ? `Planet ${planetNames[planetHoverIndex]}\n${planetDescs[planetHoverIndex]}\n\n$${format(data.planetData[planetHoverIndex].money)} | ${format(data.planetData[planetHoverIndex].chickens)} Chickens\nx${format(planetBoosts[planetHoverIndex])} ${planetBoostNames[planetHoverIndex]} Boost` : `Planet ???\n${planetDescs[planetHoverIndex]}\n\n??? | ??? Chickens`
-    else if(planetHoverIndex === 2)
-        DOMCacheGetOrSet('planetHoverText').innerText = data.planetsDiscovered[planetHoverIndex] === true ? `Planet ${planetNames[planetHoverIndex]}\n${planetDescs[planetHoverIndex]}\n\n$${format(data.planetData[planetHoverIndex].money)} | ${format(data.planetData[planetHoverIndex].chickens)} Chickens` : `Planet ???\n${planetDescs[planetHoverIndex]}\n\n??? | ??? Chickens`
+    if(planetHoverIndex !== -1)
+        DOMCacheGetOrSet('planetHoverText').innerText = data.planetsDiscovered[planetHoverIndex] === true ? `Planet ${planetNames[planetHoverIndex]}\n${planetDescs[planetHoverIndex]}\n\n$${format(data.planetData[planetHoverIndex].money)} | ${format(data.planetData[planetHoverIndex].chickens)} Chickens\nx${format(planetBoosts[planetHoverIndex])} ${planetBoostNames[planetHoverIndex]} Boost` : `Planet ???\n${planetDescs[planetHoverIndex]}\n\n??? | ??? Chickens\n${planetBoostNames[planetHoverIndex]}`
 }
 
 function updatePlanetHoverText(i) {

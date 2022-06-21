@@ -16,7 +16,7 @@ function mainLoop() {
             runContract(i)
     }
     for(let i = 0; i < 6; i++) {
-        planetBoosts[i] = data.planetData[i].chickens.gt(0) ? D(1).plus(Decimal.sqrt(Decimal.log(data.planetData[i].chickens,10))) : D(1)
+        planetBoosts[i] = data.planetData[i].money.gt(0) ? D(1).plus(Decimal.sqrt(Decimal.log(data.planetData[i].money,5))) : D(1)
     }
     currentEggValue = data.onPlanet === false ? eggData[data.currentEgg].value.times(eggValueBonus) : planetEggValue[data.currentPlanetIndex].times(eggValueBonus)
     data.chickens = data.onPlanet === true && data.currentPlanetIndex === 1 ? data.chickens.plus(chickenGain.times(diff/60)) : data.chickens.plus(chickenGain.times(diff/15))

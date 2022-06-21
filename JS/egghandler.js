@@ -144,10 +144,10 @@ function updateEggPage() {
       if(DOMCacheGetOrSet('currentEggImg').getAttribute('src') !== `Imgs/${eggData[data.currentEgg].id}.png`) 
         DOMCacheGetOrSet('currentEggImg').setAttribute('src', `Imgs/${eggData[data.currentEgg].id}.png`)
       DOMCacheGetOrSet('currentEggText').innerHTML = `Current Egg: ${eggData[data.currentEgg].name}<br>Value: $${format(eggData[data.currentEgg].value)} (x${format(eggValueBonus)})<br>$${format(((currentEggValue.times(soulEggBoost))).times(data.chickens.times(layRate)))}/s<br>Egg Laying Rate: x${format((layRate))}<br>Chicken Gain: ${format(chickenGain)} Chickens/min`
-      if((DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/${eggData[data.currentEgg+1].id}.png` && (data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggData[data.currentEgg].discoverReq))) 
+      if((DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/${eggData[data.currentEgg+1].id}.png` && (data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggData[data.currentEgg+1].discoverReq))) 
       || (DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `Imgs/question.png` && (data.unlockedEgg[data.currentEgg] === false && data.money.lt(eggData[data.currentEgg].discoverReq))))
         DOMCacheGetOrSet('nextEggImg').src = data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggData[data.currentEgg].discoverReq) ? `Imgs/${eggData[data.currentEgg+1].id}.png` : `Imgs/question.png`
-      DOMCacheGetOrSet('nextEggText').innerHTML = data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggData[data.currentEgg].discoverReq) ?
+      DOMCacheGetOrSet('nextEggText').innerHTML = data.unlockedEgg[data.currentEgg] === true || data.money.gte(eggData[data.currentEgg+1].discoverReq) ?
       `Next Egg: ${eggData[data.currentEgg+1].name}<br>Unlock At: $${format(eggData[data.currentEgg+1].unlockReq)}<br>Value: $${format(eggData[data.currentEgg+1].value)}` : `Next Egg: Not Discovered<br>Discover at $${format(eggData[data.currentEgg+1].discoverReq)}`  
     }
     else {
