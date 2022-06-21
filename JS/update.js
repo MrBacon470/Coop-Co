@@ -28,6 +28,7 @@ function updateHTML() {
     DOMCacheGetOrSet('contractButton').style.display = data.inPath === false ? 'block' : 'none'
     DOMCacheGetOrSet('enlightenmentTabButton').style.display = data.unlockedEgg[17] === true ? 'block' : 'none'
     DOMCacheGetOrSet('contractButton').style.display = data.onPlanet === false ? 'block' : 'none'
+    DOMCacheGetOrSet('eggpeditionTabButton').style.display = data.unlockedContracts === true ? 'block' : 'none'
     if(data.currentTab === 0) {
         updateEggPage()
     }
@@ -69,6 +70,7 @@ function updateHTML() {
         if(data.currentSubTab[0] === 0) {
             DOMCacheGetOrSet(`setTog0`).innerHTML = data.settingsToggles[0] ? `Notation: Mixed Sci` : `Notation: Sci`
             DOMCacheGetOrSet(`setTog1`).innerHTML = data.settingsToggles[1] ? `Newsticker: On` : `Newsticker: Off`
+            DOMCacheGetOrSet(`setTog2`).innerHTML = data.settingsToggles[2] ? `Contract Notifications: On` : `Contract Notifications: Off`
         }
         else if(data.currentSubTab[0] === 1) {
             updateStats()

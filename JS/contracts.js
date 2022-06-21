@@ -41,7 +41,8 @@ function generateContract(i) {
 function startContract(i) {
     for(let j = 0; j < data.contractActive.length; j++) {
         if(i === j && data.contractActive[j] === true) {
-            $.notify(`Contract ${data.contracts[i].title} Left!`, 'warn')
+            if(data.settingsToggles[2] === true) 
+                $.notify(`Contract ${data.contracts[i].title} Left!`, 'warn')
             data.contractActive[j] = false
             for(let i = 0; i < data.research.length; i++)
                 data.research[i] = D(0)
@@ -70,14 +71,16 @@ function startContract(i) {
     data.chickens = D(0)
     data.money = D(0)
     data.currentEgg = data.contracts[i].eggIndex
-    $.notify(`Contract ${data.contracts[i].title} Started!`, 'warn')
+    if(data.settingsToggles[2] === true)
+        $.notify(`Contract ${data.contracts[i].title} Started!`, 'warn')
 }
 for(let i = 0; i < data.contracts.length; i++)
     DOMCacheGetOrSet(`contract${i}Button`).addEventListener('click', () => { startContract(i) })
 
 function runContract(i) {
     if(data.money.gte(data.contracts[i].goal)) {
-        $.notify(`Contract ${data.contracts[i].title} Completed!\n+${format(data.contracts[i].reward)} ${data.contracts[i].rewardType}`, 'success')
+        if(data.settingsToggles[2] === true) 
+            $.notify(`Contract ${data.contracts[i].title} Completed!\n+${format(data.contracts[i].reward)} ${data.contracts[i].rewardType}`, 'success')
         data.stats.contractsComplete = data.stats.contractsComplete.plus(1)
         switch(data.contracts[i].rewardType) {
             case 'Soul Eggs':
