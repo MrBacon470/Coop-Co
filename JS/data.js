@@ -85,7 +85,7 @@ function load() {
     if(data.currentUpdate === 'v0.0.0' || data.currentUpdate === 'v0.0.1' || data.currentUpdate === 'v0.0.2' || data.currentUpdate === 'v0.0.3') {
         createAlert('Update!','Your save is from a Beta Testing release of Coop Co<br>It has been deleted since many balancing things have changed','#ff0000')      
         deleteSave()
-    }
+    }//g
     //Update 1.0.0 Saves to Current Version
     else if(data.currentUpdate !== getDefaultObject().currentUpdate){
         createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details`,"812626")
