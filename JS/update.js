@@ -28,7 +28,7 @@ function updateHTML() {
     DOMCacheGetOrSet('contractButton').style.display = data.inPath === false ? 'block' : 'none'
     DOMCacheGetOrSet('enlightenmentTabButton').style.display = data.unlockedEgg[17] === true ? 'block' : 'none'
     DOMCacheGetOrSet('contractButton').style.display = data.onPlanet === false ? 'block' : 'none'
-    DOMCacheGetOrSet('eggpeditionTabButton').style.display = data.unlockedContracts === true ? 'block' : 'none'
+    DOMCacheGetOrSet('eggpeditionTabButton').style.display = data.unlockedEgg[2] === true ? 'block' : 'none'
     if(data.currentTab === 0) {
         updateEggPage()
     }

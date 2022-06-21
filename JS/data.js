@@ -66,7 +66,7 @@ function getDefaultObject() {
         currentTab: 0,
         currentSubTab: [0],
         settingsToggles: [true,true,true],
-        currentUpdate: 'v1.1.1',
+        currentUpdate: 'v1.1.2',
         devSpeed: 1,
     }
 }
