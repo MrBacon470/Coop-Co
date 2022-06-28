@@ -30,6 +30,7 @@ function enterPath() {
         prestige()
         data.inPath = true
         data.currentEgg = 18
+        data.money = D(0)
     }
 }
 

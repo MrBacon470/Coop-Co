@@ -8,7 +8,7 @@ function updatePrestige() {
     soulEggGain = data.currentEgg >= 3 ? Decimal.floor(Decimal.sqrt(Decimal.sqrt(data.money)).times((D(0.1).times(data.epicResearch[3])).plus(1))) : D(0)
     soulEggGain = soulEggGain.times(D(1).plus(data.enlightenments[2].times(0.15)))
     soulEggGain = soulEggGain.times(planetBoosts[3])
-    prophecyEggBoost = Decimal.pow(1.01, data.prophecyEggs)
+    prophecyEggBoost = Decimal.pow(1.015, data.prophecyEggs)
     if(prophecyEggBoost.gt(1e6)) prophecyEggBoost = prophecyEggBoost.div(1e6).log10().add(1).mul(1e6)
     //prophecyEggBoost = prophecyEggBoost.times(D(1).plus(data.enlightenments[1].times(0.10)))
     

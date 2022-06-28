@@ -46,7 +46,7 @@ function updatePlanetHoverText(i) {
 }
 
 for(let i = 0; i < planetNames.length; i++) {
-    DOMCacheGetOrSet('planet'+i).addEventListener('mouseover', () => updatePlanetHoverText(i))
+    DOMCacheGetOrSet('planet'+i).addEventListener('click', () => updatePlanetHoverText(i))
 }
 
 function discoverPlanet() {
