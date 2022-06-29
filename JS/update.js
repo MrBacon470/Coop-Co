@@ -59,11 +59,14 @@ function updateHTML() {
         if(data.unlockedContracts === true) {
             for(let i = 0; i < data.contracts.length; i++) {
                 DOMCacheGetOrSet(`contract${i}Img`).setAttribute('src', data.contracts[i].image)
-                DOMCacheGetOrSet(`contract${i}Header`).textContent = data.contractActive[i] ? `Contract-0${i+1} | ${data.contracts[i].title} - [ACTIVE]` : `Contract-0${i+1} | ${data.contracts[i].title}`
-                DOMCacheGetOrSet(`contract${i}Description`).textContent = data.contracts[i].description
-                DOMCacheGetOrSet(`contract${i}Reward`).textContent = `Reward: ${format(data.contracts[i].reward)} ${data.contracts[i].rewardType}`
-                DOMCacheGetOrSet(`contract${i}Goal`).textContent = `Goal: $${format(data.contracts[i].goal)}`
-                DOMCacheGetOrSet(`contract${i}Button`).textContent = data.contractActive[i] ? `Leave Contract` : `Start Contract`
+                DOMCacheGetOrSet(`contract${i}Header`).innerText = data.contractActive[i] ? `Contract-0${i+1} | ${data.contracts[i].title} - [ACTIVE]` : `Contract-0${i+1} | ${data.contracts[i].title}`
+                DOMCacheGetOrSet(`contract${i}Description`).innerText = data.contracts[i].description
+                DOMCacheGetOrSet(`contract${i}Reward`).innerText = `Reward: ${format(data.contracts[i].reward)} ${data.contracts[i].rewardType}`
+                DOMCacheGetOrSet(`contract${i}Goal`).innerText = `Goal: $${format(data.contracts[i].goal)}`
+                if(data.onPlanet === false && data.inPath === false)
+                    DOMCacheGetOrSet(`contract${i}Button`).innerText = data.contractActive[i] ? `Leave Contract` : `Start Contract`
+                else
+                    DOMCacheGetOrSet(`contract${i}Button`).innerText = 'Unavailable'
             }
         }
     }
