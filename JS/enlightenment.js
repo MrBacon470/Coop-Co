@@ -22,19 +22,27 @@ function updateEnlightenment() {
 function enterPath() {
     if(data.onPlanet === true) return
     if(data.inPath === true) {
-        prestige()
         data.inPath = false
-        data.currentEgg = 0
+        prestige()
     }
     else {
         prestige()
         data.inPath = true
         data.currentEgg = 18
+        eggValueBonus = D(1)
+        chickenGain = D(0)
+        layRate = D(1)
+        data.chickens = D(0)
+        data.money = D(0)
     }
 }
 
 function purchaseEnlightenment(i) {
-    if(data.knowledge.lt(enlightenmentCosts[i])) return
-    data.knowledge = data.knowledge.minus(enlightenmentCosts[i])
-    data.enlightenments[i] = data.enlightenments[i].plus(1)
+    const buyAmountNums = [1,5,10,20]
+    for(let j = 0; j < buyAmountNums[data.buyAmounts[2]]; j++) {
+        if(data.knowledge.lt(enlightenmentCosts[i])) return
+        data.knowledge = data.knowledge.minus(enlightenmentCosts[i])
+        data.enlightenments[i] = data.enlightenments[i].plus(1)
+        updateEnlightenment()
+    }
 }

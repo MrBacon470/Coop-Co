@@ -96,6 +96,38 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 }
 .credit img {width: 1.5em; height: 1.5em; margin-right:1em;}
 .credit a {text-align: center; font-size: 1.2em;}
+
+.badge-red {
+    background-color: #812626;
+    color: whitesmoke;
+    padding: 2px 4px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.badge-green {
+    background-color: #2f8126;
+    color: whitesmoke;
+    padding: 2px 4px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.badge-blue {
+    background-color: #267081;
+    color: whitesmoke;
+    padding: 2px 4px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.badge-yellow {
+    background-color: #c7cf26;
+    color: #363636;
+    padding: 2px 4px;
+    text-align: center;
+    border-radius: 5px;
+}
 /*IDs*/
 #mainHeader {
     width: 100%;
@@ -160,6 +192,8 @@ button#eggPromoteButton.unlocked:hover{color: whitesmoke;border-color: #2f8126;b
 button#eggPromoteButton.locked:hover {color: whitesmoke;border-color: #812626;background-color: #812626;}
 .notifyjs-corner, .notifyjs-hidable , .notifyjs-container, .notifyjs-container div span { background-color: rgba(0, 0, 0, 0); color:black;}
 #planetRow img {width: 5em; height: 5em; margin:1em}
+
+#changelogHolder h4, #changelogHolder h3, #changelogHolder p {margin-bottom: 1vh;}
 /*
 <div class="notifyjs-wrapper notifyjs-hidable">
 	<div class="notifyjs-arrow"></div>

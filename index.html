@@ -300,6 +300,9 @@
                 <img src="Imgs/prophecy.png">
                 <h4 id="prophecyEggText" style="color:#cdcf3d">Prophecy Eggs: 0.00</h4>
             </div>
+            <div>
+                <p id="prophecyEggSoftCapText" style="color:#cdcf3d;text-align: center;">Prophecy Egg boost is being decreased by: 1e6</p>
+            </div>
         </div>
         <div id="eggpeditionTab" class="flexBox tabHolder" style="text-align:center">
             <h3>Eggspeditions</h3>
@@ -315,7 +318,7 @@
                     <img id="planet5" src="Imgs/planet6.png">
                 </div>
             </div>
-            <p id="planetHoverText">Hover over a planet to see what it is</p>
+            <p id="planetHoverText">Click on a planet to see what it is</p>
             <div style="margin-top:1em;margin-bottom:1em">
                 <button id="discoveryButton" onclick="discoverPlanet()">Discover Planet</button>
                 <button id="eggspeditionButton" onclick="journeyToPlanet()">Go on an Eggspedition</button>
@@ -332,6 +335,7 @@
                 <button id="enlight3" onclick="purchaseEnlightenment(3)" style="margin:1em" class="enlightenment">Enlightenment IV</button>
                 <button id="enlight4" onclick="purchaseEnlightenment(4)" style="margin:1em" class="enlightenment">Enlightenment V</button>
             </div>
+            <button id="ba2" class="enlightenment">Buy Amount: 1</button>
             <div class="flexBox" style="flex-direction:row">
                 <p id="knowledgeText" style="margin:1em;color:#ffee48">Knowledge: 0<br>+0.00/s</p>
                 <button id="enlightenmentButton" onclick="enterPath()" style="margin:1em" class="enlightenment">Enter the Path</button>
@@ -429,30 +433,31 @@
                     <a href="https://discord.com/invite/JkQUnubuhx">Discord Link!</a>
                     <a href="https://github.com/MrBacon470/Coop-Co">Github Repo!</a>
                 </div>
-                <div>
+                <div id="changelogHolder">
                     <h3>Changelog :O</h3>
-                    <h4>Current Version - v1.1.3</h4>
+                    <h4>Current Version - v1.1.4</h4>
                     <h4>Public Release</h4>
-                    <p>v1.1.3 - New Planet Boost (Knowledge Gain), Knowledge and Enlightenment Rebalance, Achievement 38-41 Rebalance, Next Egg Not Being Hidden Fixed</p>
-                    <p>v1.1.2 - Quick Patch for Eggspedition Button being missing</p>
-                    <p>v1.1.1 - Eggspedition Discovery Rebalance, Contract Notification Toggle, Warning for eggspeditions</p>
-                    <p>v1.1.0 <strong>[MAJOR UPDATE]</strong> - Enlightenments, Eggpeditions, Notifications via Notify.js, Tier XI-XIV Auto,<br>Error NAN Display Fix, New Formatter, Auto Save is 30s Interval Now (Originally 10s), Stats Screen, Achievements</p>
-                    <p>v1.0.11 - Contract Rebalance pt 5 (I'm probably going to stop rebalancing now)</p>
-                    <p>v1.0.10 - More 1.0.3 Fixes, New Prophecy Egg Boost and Contract Rebalance pt 4 (finale?)</p>
-                    <p>v1.0.9 - More Fixes for bugs introduced by 1.0.3</p>
-                    <p>v1.0.8 <strong>[MAJOR UPDATE]</strong> - New Formatter (by Dimava), Optimized Common Research Buyer and Optimized Prophecy Egg Reward (by Gazyn)</p>
-                    <p>v1.0.7 - Contract Rebalance Part 3 | Soul Egg Rewards Removed Entirely from Contracts</p>
-                    <p>v1.0.6 - Fully Working Double Progress Bar (by Dimava)</p>
-                    <p>v1.0.5 - Fix Major Bug Introduced in 1.0.3</p>
-                    <p>v1.0.4 - Newsticker Added In Game</p>
-                    <p>v1.0.3 <strong>[MAJOR UPDATE]</strong> - Egg Promotion Progress Bar, Egg Promotion and Prestige Buttons Hidden When In Contract, and Slightly Better Code (by gapples2)</p>
-                    <p>v1.0.2 - Contract Rebalancing Part 2, Delete Save Confirmation</p>
-                    <p>v1.0.1 - Minor Bug Fixes, 2 New Epic Researches, Favicon changes based on current egg, and Contract Rebalancing Part 1</p>
-                    <p>v1.0.0 - Patching and Polishing</p>
-                    <h4 style="margin-top:1vh">Alpha Versions</h4>
-                    <p>v0.0.3 <strong>[MAJOR UPDATE]</strong> - Contracts,Automation and Internal Hatchery Buff</p>
-                    <p>v0.0.2 <strong>[MAJOR UPDATE]</strong> - Prestige!</p>
-                    <p>v0.0.1 <strong>[MAJOR UPDATE]</strong> - All Eggs, 28 "Common" Researches, Egg Promotion System</p>
+                    <p>v1.1.4 <span class="badge-red">Major Rebalance</span> - Massive Prophecy Egg Boost Softcap, All End Game Saves reset to a default End Game Save due to rebalance,<br>Contract Rebalance Part 6 (ono), Enlightenment Buy Amount Implemented</p>
+                    <p>v1.1.3 <span class="badge-red">Rebalance</span> - New Planet Boost (Knowledge Gain), Knowledge and Enlightenment Rebalance, Achievement 38-41 Rebalance, Next Egg Not Being Hidden Fixed</p>
+                    <p>v1.1.2 <span class="badge-yellow">Bug Fix</span> - Quick Patch for Eggspedition Button being missing</p>
+                    <p>v1.1.1 <span class="badge-yellow">Bug Fix & Rebalance</span> - Eggspedition Discovery Rebalance, Contract Notification Toggle, Warning for eggspeditions</p>
+                    <p>v1.1.0 <span class="badge-green">Major Update</span> - Enlightenments, Eggpeditions, Notifications via Notify.js, Tier XI-XIV Auto,<br>Error NAN Display Fix, New Formatter, Auto Save is 30s Interval Now (Originally 10s), Stats Screen, Achievements</p>
+                    <p>v1.0.11 <span class="badge-red">Rebalance</span> - Contract Rebalance pt 5 (I'm probably going to stop rebalancing now)</p>
+                    <p>v1.0.10 <span class="badge-yellow">Bug Fix & Rebalance</span>  - More 1.0.3 Fixes, New Prophecy Egg Boost and Contract Rebalance pt 4 (finale?)</p>
+                    <p>v1.0.9 <span class="badge-yellow">Bug Fix</span>  - More Fixes for bugs introduced by 1.0.3</p>
+                    <p>v1.0.8 <span class="badge-green">Major Update</span> - New Formatter (by Dimava), Optimized Common Research Buyer and Optimized Prophecy Egg Reward (by Gazyn)</p>
+                    <p>v1.0.7 <span class="badge-red">Rebalance</span> - Contract Rebalance Part 3 | Soul Egg Rewards Removed Entirely from Contracts</p>
+                    <p>v1.0.6 <span class="badge-yellow">Bug Fix</span> - Fully Working Double Progress Bar (by Dimava)</p>
+                    <p>v1.0.5 <span class="badge-yellow">Bug Fix</span> - Fix Major Bug Introduced in 1.0.3</p>
+                    <p>v1.0.4 <span class="badge-blue">Minor Update</span> - Newsticker Added In Game</p>
+                    <p>v1.0.3 <span class="badge-green">Major Update</span> - Egg Promotion Progress Bar, Egg Promotion and Prestige Buttons Hidden When In Contract, and Slightly Better Code (by gapples2)</p>
+                    <p>v1.0.2 <span class="badge-red">Rebalance</span> - Contract Rebalancing Part 2, Delete Save Confirmation</p>
+                    <p>v1.0.1 <span class="badge-blue">Minor Update</span> - Minor Bug Fixes, 2 New Epic Researches, Favicon changes based on current egg, and Contract Rebalancing Part 1</p>
+                    <p>v1.0.0 <span class="badge-yellow">Bug Fix</span> - Patching and Polishing</p>
+                    <h4>Alpha Versions</h4>
+                    <p>v0.0.3 <span class="badge-green">Major Update</span> - Contracts,Automation and Internal Hatchery Buff</p>
+                    <p>v0.0.2 <span class="badge-green">Major Update</span> - Prestige!</p>
+                    <p>v0.0.1 <span class="badge-green">Major Update</span> - All Eggs, 28 "Common" Researches, Egg Promotion System</p>
                 </div>
             </div>
             <div id="setSub1" class="flexBox">
@@ -496,6 +501,10 @@
                         <div class="credit">
                             <img src="https://avatars.githubusercontent.com/u/71836730?s=64&v=4">
                             <a>Gapples2</a>
+                        </div>
+                        <div class="credit">
+                            <img src="https://avatars.githubusercontent.com/u/61973821?s=60&v=4">
+                            <a>MrRedShark77</a>
                         </div>
                     </div>
                 </div>

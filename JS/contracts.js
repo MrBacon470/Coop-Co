@@ -21,7 +21,7 @@ function contractActive(){
   }
   return false
 }
-
+const contractGoalScaling = [0.1,0.75,0.05,0.5,0.095]
 function generateContract(i) {
     let contract = Object.assign({}, defaultContract)
     let index = getRandom(0, contractEggImgs.length)
@@ -33,8 +33,8 @@ function generateContract(i) {
     contract.rewardType = 'Prophecy Eggs'
     contract.reward = Decimal.round(getRandomDecimal(D(1),D(5)).times(contractRewardBoost))
     contract.goal = getRandomDecimal(D(1e6),D(1e24))
-    contract.goal = contract.goal.times(eggData[contract.eggIndex].value.times(0.15))
-    contract.goal = contract.goal.times(soulEggBoost.times(0.15))
+    contract.goal = contract.goal.times(eggData[contract.eggIndex].value.times(D(contractGoalScaling[index]).plus(1)))
+    contract.goal = contract.goal.times(soulEggBoost.times(0.25))
     data.contracts[i] = contract
 }
 
