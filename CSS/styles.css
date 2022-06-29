@@ -194,6 +194,7 @@ button#eggPromoteButton.locked:hover {color: whitesmoke;border-color: #812626;ba
 #planetRow img {width: 5em; height: 5em; margin:1em}
 
 #changelogHolder h4, #changelogHolder h3, #changelogHolder p {margin-bottom: 1vh;}
+#changelogHolder {max-width: 85%;}
 /*
 <div class="notifyjs-wrapper notifyjs-hidable">
 	<div class="notifyjs-arrow"></div>
