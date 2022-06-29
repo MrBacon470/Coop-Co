@@ -22,14 +22,17 @@ function updateEnlightenment() {
 function enterPath() {
     if(data.onPlanet === true) return
     if(data.inPath === true) {
-        prestige()
         data.inPath = false
-        data.currentEgg = 0
+        prestige()
     }
     else {
         prestige()
         data.inPath = true
         data.currentEgg = 18
+        eggValueBonus = D(1)
+        chickenGain = D(0)
+        layRate = D(1)
+        data.chickens = D(0)
         data.money = D(0)
     }
 }

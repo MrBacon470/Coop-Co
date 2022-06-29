@@ -1,7 +1,12 @@
 let diff = 0;
+let gameLoaded = false
 function mainLoop() {
     diff = (Date.now()-data.time)*data.devSpeed/1000
     data.time = Date.now()
+    if(gameLoaded === false) {
+        $.notify('Welcome Back!\nYou were gone for ' + formatTime(diff), 'info')
+        gameLoaded = true
+    }
     updateResearch()
     updateEggValueBonus()
     updateIntHatch()
