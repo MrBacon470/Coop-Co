@@ -28,7 +28,9 @@ newsArray = [//always true
     ['I heard that there\'s a secret prophecy egg stash at https://discord.gg/kFYgun8Yqs','true'],['DONT EAT SCRAMBLED NEBULA EGGS!!! They taste terrible…','true'],['Breaking: local man manages to make deviled eggs from enlightenment eggs, says they “showed him the truth about reality. and also smelled terrible.”','true'],
     ['BREAKING NEWS: Egglon Musk has managed to reach mars with his revolutionary new rocket ship fuel… umm am i reading this right… eggs? how','true'],['Making omelets with rocket eggs is contra-indicated.','true'],['not using scientific notation, laugh at this user',`${data.settingsToggles[0]} === true`],
     ['which came first, the egg or the egg?','true'],['"Genetic Purification"...? Isn\'t that just eugenics?','true'],['Florida man has broken several walls, the costs are too expensive to fix! (idk)','true'],['This game takes only a few moments to beat if you know how to use the console.','true'],
-
+    ['“We quit, why should we be here making actual news when our neighboring news provider managed to have 200x more subscribers just by constantly churning out useless egg puns instead?” -The New Yolk Times ','true'],['Have you noticed that the browser icon of the game changes depending on what kind of egg you\'re currently producing?','true'],
+    ['You might have noticed that the news ticker reports some of the news earlier than you\'d expect, but since our journalists have really limited programming skills, consider us time travelers. ','true'],['BREAKING NEWS: scientists believe we are living in a giant egg!','true'],
+    ['It\'s eggcellent how much progress you\'re making!'],['The next statement is true. The previous statement is false.','true'],
 ];}
 
 let s = DOMCacheGetOrSet('news');
