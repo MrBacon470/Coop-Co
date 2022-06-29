@@ -39,6 +39,7 @@ function generateContract(i) {
 }
 
 function startContract(i) {
+    if(data.inPath === true || data.onPlanet === true) return
     for(let j = 0; j < data.contractActive.length; j++) {
         if(i === j && data.contractActive[j] === true) {
             if(data.settingsToggles[2] === true) 

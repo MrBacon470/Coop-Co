@@ -20,7 +20,7 @@ function updateEnlightenment() {
 }
 
 function enterPath() {
-    if(data.onPlanet === true) return
+    if(data.onPlanet === true || contractActive()) return
     if(data.inPath === true) {
         data.inPath = false
         prestige()

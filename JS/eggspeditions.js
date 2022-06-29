@@ -58,7 +58,7 @@ function discoverPlanet() {
 }
 
 function journeyToPlanet() {
-    if(data.inPath === true) return
+    if(data.inPath === true || contractActive()) return
     if(data.onPlanet === false && data.planetsDiscovered[planetHoverIndex] === true) {
         data.currentPlanetIndex = planetHoverIndex
         data.research = data.planetData[data.currentPlanetIndex].research
