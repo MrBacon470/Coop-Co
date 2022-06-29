@@ -3,6 +3,7 @@ function D(x){return new Decimal(x)}
 function getDefaultObject() {
     return {
         money: D(0),
+        bestRunMoney: D(0),
         chickens: D(0),
         soulEggs: D(0),
         prophecyEggs: D(0),
@@ -65,7 +66,7 @@ function getDefaultObject() {
         time: Date.now(),
         currentTab: 0,
         currentSubTab: [0],
-        settingsToggles: [true,true,true],
+        settingsToggles: [true,true,true,true],
         currentUpdate: 'v1.1.4',
         devSpeed: 1,
     }

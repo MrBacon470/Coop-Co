@@ -6,7 +6,7 @@ let softCapAmts = [D(0),D(0)]
 function updatePrestige() {
     if(data.bestSoulEggs.lt(data.soulEggs)) data.bestSoulEggs = data.soulEggs
     const soulAvg = (data.soulEggs.plus(data.bestSoulEggs)).div(2)
-    soulEggGain = data.currentEgg >= 3 ? Decimal.floor(Decimal.sqrt(Decimal.sqrt(data.money)).times((D(0.1).times(data.epicResearch[3])).plus(1))) : D(0)
+    soulEggGain = data.currentEgg >= 3 ? Decimal.floor(Decimal.sqrt(Decimal.sqrt(data.bestRunMoney)).times((D(0.1).times(data.epicResearch[3])).plus(1))) : D(0)
     soulEggGain = soulEggGain.times(D(1).plus(data.enlightenments[2].times(0.15)))
     soulEggGain = soulEggGain.times(planetBoosts[3])
     prophecyEggBoost = Decimal.pow(1.015, data.prophecyEggs)
@@ -44,5 +44,6 @@ function prestige() {
     layRate = D(1)
     data.chickens = D(0)
     data.money = D(0)
+    data.bestRunMoney = D(0)
     data.currentEgg = 0
 }

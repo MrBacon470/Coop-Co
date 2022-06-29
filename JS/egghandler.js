@@ -241,4 +241,5 @@ function promoteEgg() {
     layRate = D(1)
     data.chickens = D(0)
     data.money = D(0)
+    data.bestRunMoney = D(0)
 }

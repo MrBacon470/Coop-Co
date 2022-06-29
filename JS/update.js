@@ -72,6 +72,7 @@ function updateHTML() {
             DOMCacheGetOrSet(`setTog0`).innerHTML = data.settingsToggles[0] ? `Notation: Mixed Sci` : `Notation: Sci`
             DOMCacheGetOrSet(`setTog1`).innerHTML = data.settingsToggles[1] ? `Newsticker: On` : `Newsticker: Off`
             DOMCacheGetOrSet(`setTog2`).innerHTML = data.settingsToggles[2] ? `Contract Notifications: On` : `Contract Notifications: Off`
+            DOMCacheGetOrSet(`setTog3`).innerHTML = data.settingsToggles[3] ? `Auto Promote Stops at: Enlightenment` : `Auto Promote Stops at: Universe`
         }
         else if(data.currentSubTab[0] === 1) {
             updateStats()
