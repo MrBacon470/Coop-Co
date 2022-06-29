@@ -28,10 +28,7 @@ function updatePrestige() {
 }
 
 function prestige() {
-    if(data.currentEgg < 3) return
-    for(let i = 0; i < data.contractActive.length; i++) {
-        if(data.contractActive[i] === true) return
-    }
+    if(data.currentEgg < 3 || contractActive()) return
     data.stats.prestiges[2] = data.stats.prestiges[1]
     data.stats.prestiges[1] = data.stats.prestiges[0]
     data.stats.prestiges[0] = soulEggGain

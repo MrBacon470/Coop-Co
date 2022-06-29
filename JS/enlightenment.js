@@ -23,10 +23,35 @@ function enterPath() {
     if(data.onPlanet === true || contractActive()) return
     if(data.inPath === true) {
         data.inPath = false
-        prestige()
+        data.stats.prestiges[2] = data.stats.prestiges[1]
+        data.stats.prestiges[1] = data.stats.prestiges[0]
+        data.stats.prestiges[0] = soulEggGain
+        data.stats.timeInPrestige = D(0)
+        data.soulEggs = data.soulEggs.plus(soulEggGain)
+        data.hasPrestiged = true
+        data.research = new Array(28).fill(D(0))
+        eggValueBonus = D(1)
+        chickenGain = D(0)
+        layRate = D(1)
+        data.chickens = D(0)
+        data.money = D(0)
+        data.bestRunMoney = D(0)
+        data.currentEgg = 0
     }
     else {
-        prestige()
+        data.stats.prestiges[2] = data.stats.prestiges[1]
+        data.stats.prestiges[1] = data.stats.prestiges[0]
+        data.stats.prestiges[0] = soulEggGain
+        data.stats.timeInPrestige = D(0)
+        data.soulEggs = data.soulEggs.plus(soulEggGain)
+        data.hasPrestiged = true
+        data.research = new Array(28).fill(D(0))
+        eggValueBonus = D(1)
+        chickenGain = D(0)
+        layRate = D(1)
+        data.chickens = D(0)
+        data.money = D(0)
+        data.bestRunMoney = D(0)
         data.inPath = true
         data.currentEgg = 18
         eggValueBonus = D(1)
