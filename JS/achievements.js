@@ -27,7 +27,7 @@ const achievementDescriptions = [
 ]
 
 function updateAchText(i) {
-    DOMCacheGetOrSet('achHoverText').innerHTML = `[${i+1}] - ${achievementNames[i]}<br>${achievementDescriptions[i]}`
+    DOMCacheGetOrSet('achHoverText').innerText = `[${i+1}] - ${achievementNames[i]}\n${achievementDescriptions[i]}`
 }
 
 for(let i = 0; i < achievementNames.length; i++) 

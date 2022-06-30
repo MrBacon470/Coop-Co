@@ -98,7 +98,7 @@ function load() {
     }
     for(let i = 0; i < data.buyAmounts.length; i++) {
         const numString = ['1','5','10','20']
-        DOMCacheGetOrSet(`ba${i}`).innerHTML = `Buy Amount: ${numString[data.buyAmounts[i]]}`
+        DOMCacheGetOrSet(`ba${i}`).innerText = `Buy Amount: ${numString[data.buyAmounts[i]]}`
         DOMCacheGetOrSet(`ba${i}`).onclick = () => {toggleBA(i)}
     }
 }

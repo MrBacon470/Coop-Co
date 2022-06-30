@@ -70,7 +70,7 @@ function toggle(i) {data.settingsToggles[i] = !data.settingsToggles[i]}
 function toggleBA(i) {
     const numString = ['1','5','10','20']
     data.buyAmounts[i] = data.buyAmounts[i] + 1 === 4 ? 0 : data.buyAmounts[i] + 1
-    DOMCacheGetOrSet(`ba${i}`).innerHTML = `Buy Amount: ${numString[data.buyAmounts[i]]}`
+    DOMCacheGetOrSet(`ba${i}`).innerText = `Buy Amount: ${numString[data.buyAmounts[i]]}`
 }
 
 function updateStats() {
@@ -89,8 +89,8 @@ function updateStats() {
 
  function createAlert(a,b,c) {
     DOMCacheGetOrSet('alertContainer').style.border = `4px solid #${c}`
-    DOMCacheGetOrSet('alertTitle').innerHTML = a
-    DOMCacheGetOrSet('alertContent').innerHTML = b
+    DOMCacheGetOrSet('alertTitle').innerText = a
+    DOMCacheGetOrSet('alertContent').innerText = b
     DOMCacheGetOrSet('alert').style.display = 'block'
     DOMCacheGetOrSet('alertContainer').style.display = 'block'
 }
@@ -101,7 +101,7 @@ function createPrompt(a,b) {
     old_element.parentNode.replaceChild(new_element, old_element);
     DOMCacheGetOrSet('promptInput').value = ''
     DOMCacheGetOrSet('promptContainer').style.border = "4px solid whitesmoke"
-    DOMCacheGetOrSet('promptTitle').innerHTML = a
+    DOMCacheGetOrSet('promptTitle').innerText = a
     DOMCacheGetOrSet('prompt').style.display = 'block'
     DOMCacheGetOrSet('promptContainer').style.display = 'block'
     switch(b) {
@@ -121,8 +121,8 @@ function createConfirmation(a) {
         case 'prestige':
             if(data.currentEgg < 3) return
             document.getElementById('confirmContainer').style.border = `4px solid #8e3dcf`
-            document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to prestige?'
-            document.getElementById('confirmContent').innerHTML = 'This will reset all progress for Soul Eggs'
+            document.getElementById('confirmTitle').innerText = 'Are you sure you want to prestige?'
+            document.getElementById('confirmContent').innerText = 'This will reset all progress for Soul Eggs'
             document.getElementById('confirm').style.display = 'block'
             document.getElementById('confirmContainer').style.display = 'block'
             document.getElementById('noConfirm').addEventListener('click', () => {closeModal(2)})
@@ -130,8 +130,8 @@ function createConfirmation(a) {
             break
         case 'reset':
             document.getElementById('confirmContainer').style.border = `4px solid #812626`
-            document.getElementById('confirmTitle').innerHTML = 'Are you sure you want to reset your game?'
-            document.getElementById('confirmContent').innerHTML = 'This will export your savefile to the clipboard but delete your save game in local storage.'
+            document.getElementById('confirmTitle').innerText = 'Are you sure you want to reset your game?'
+            document.getElementById('confirmContent').innerText = 'This will export your savefile to the clipboard but delete your save game in local storage.'
             document.getElementById('confirm').style.display = 'block'
             document.getElementById('confirmContainer').style.display = 'block'
             document.getElementById('noConfirm').addEventListener('click', () => {closeModal(2)})

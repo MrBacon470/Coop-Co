@@ -21,7 +21,7 @@ for(let i = 0; i < commonResearchNames.length; i++) {
         commonResearchCost[i] = (commonResearchBaseCost[i].sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.15, data.research[i]))
     else if(data.onPlanet === true && data.currentPlanetIndex === 0)
         commonResearchCost[i] = ((commonResearchBaseCost[i]).sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.35, data.research[i]))
-    DOMCacheGetOrSet(`r${i}`).innerHTML = `${commonResearchNames[i]}<br>${commonResearchDescs[i]}<br>Level: ${format(data.research[i],0)}/${format(commonResearchMaxLevel[i],0)}<br>
+    DOMCacheGetOrSet(`r${i}`).innerText = `${commonResearchNames[i]}\n${commonResearchDescs[i]}\nLevel: ${format(data.research[i],0)}/${format(commonResearchMaxLevel[i],0)}\n
     Cost: $${format(commonResearchCost[i])}`
     DOMCacheGetOrSet(`r${i}`).classList = 'lockedResearch'
     DOMCacheGetOrSet(`r${i}`).onclick = () => purchaseResearch(i)
@@ -65,7 +65,7 @@ const epicResearchBaseCost = [D(100),D(1e5),D(1e6),D(5e6),D(1e3),D(1e3),D(1e4),D
 let epicResearchCost = []
 for(let i = 0; i < epicResearchNames.length; i++) {
     epicResearchCost[i] = epicResearchBaseCost[i].times(Decimal.pow(1.25, data.epicResearch[i]))
-    DOMCacheGetOrSet(`er${i}`).innerHTML = `${epicResearchNames[i]}<br>${epicResearchDescs[i]}<br>Level: ${format(data.epicResearch[i],0)}/${format(epicResearchMaxLevel[i],0)}<br>
+    DOMCacheGetOrSet(`er${i}`).innerText = `${epicResearchNames[i]}\n${epicResearchDescs[i]}\nLevel: ${format(data.epicResearch[i],0)}/${format(epicResearchMaxLevel[i],0)}\n
     Cost: ${format(epicResearchCost[i])} Soul Eggs`
     DOMCacheGetOrSet(`er${i}`).classList = 'lockedResearch'
     DOMCacheGetOrSet(`er${i}`).onclick = () => purchaseEpicResearch(i)
