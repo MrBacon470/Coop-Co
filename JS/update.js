@@ -91,7 +91,7 @@ function updateHTML() {
             DOMCacheGetOrSet(`er${i}`).innerText = data.epicResearch[i].lt(epicResearchMaxLevel[i]) ? `${epicResearchNames[i]}\n${epicResearchDescs[i]}\nLevel: ${toPlaces(data.epicResearch[i],0,epicResearchMaxLevel[i].plus(1))}/${toPlaces(epicResearchMaxLevel[i],0,epicResearchMaxLevel[i].plus(1))}\nCost: ${format(epicResearchCost[i])} Soul Eggs` : 
             `${epicResearchNames[i]}\n${epicResearchDescs[i]}\nLevel: ${toPlaces(data.epicResearch[i],0,epicResearchMaxLevel[i].plus(1))}/${toPlaces(epicResearchMaxLevel[i],0,epicResearchMaxLevel[i].plus(1))}\nCost: [MAXED]`
         }
-        DOMCacheGetOrSet('prophecyEggSoftCapText').innerText = prophecyEggBoost.gte(1e6) ? `Prophecy Egg Boost is being decreased by: ${format(softCapAmts[1])}` : `Prophecy Egg Boost Softcap takes effect at ${format(D(1e6))}`
+        DOMCacheGetOrSet('prophecyEggSoftCapText').innerText = prophecyEggBoost.gte(1e6) ? `Prophecy Egg Boost is being divided by: ${format(softCapAmts[1])}` : `Prophecy Egg Boost Softcap takes effect at ${format(D(1e6))}`
     }
     else if(data.currentTab === 5) {
         updateEggspeditionsUI()
