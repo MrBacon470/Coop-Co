@@ -45,8 +45,8 @@ function mainLoop() {
     data.stats.timeInPrestige = data.stats.timeInPrestige.plus(diff)
     checkAchievements()
     updateHTML()
-    if(DOMCacheGetOrSet('faviconLink').getAttribute('href') !== `Imgs/${eggData[data.currentEgg].id}.png`)
-        DOMCacheGetOrSet('faviconLink').href = `Imgs/${eggData[data.currentEgg].id}.png`
+    if(DOMCacheGetOrSet('faviconLink').getAttribute('href') !== `Imgs/Eggs/${eggData[data.currentEgg].id}.png`)
+        DOMCacheGetOrSet('faviconLink').href = `Imgs/Eggs/${eggData[data.currentEgg].id}.png`
 }
 
 function changeTab(i) {
