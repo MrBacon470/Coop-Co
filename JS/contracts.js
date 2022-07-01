@@ -28,7 +28,7 @@ function generateContract(i) {
     if(index > contractEggImgs.length - 1) index = contractEggImgs.length - 1
     contract.title = contractTitles[index]
     contract.description = contractDescs[index]
-    contract.image = `Imgs/${contractEggImgs[index]}.png`
+    contract.image = `Imgs/Eggs/${contractEggImgs[index]}.png`
     contract.eggIndex = contractEggIndex[index]
     contract.rewardType = 'Prophecy Eggs'
     contract.reward = Decimal.round(getRandomDecimal(D(1),D(5)).times(contractRewardBoost))
