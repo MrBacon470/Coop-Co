@@ -11,6 +11,7 @@ function getDefaultObject() {
         hasPrestiged: false,
         unlockedContracts: false,
         generatedContracts: false,
+        regeneratedContracts: false,
         contracts: [{
             title: '',
             description: '',
@@ -160,6 +161,11 @@ window.onload = function (){
     scrollNextMessage()
     $.notify('Game Loaded','info')
     updateAchClass()
+    if(data.generatedContracts === true && data.regeneratedContracts === false) {
+        for(let i = 0; i < 3; i++)
+            generateContract(i)
+        data.regeneratedContracts = true
+    }
 }
 //full reset
 function fullReset(){

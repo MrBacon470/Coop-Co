@@ -1,5 +1,6 @@
 let diff = 0;
 let gameLoaded = false
+const eggImgPath = 'Imgs/Eggs/'
 function mainLoop() {
     diff = (Date.now()-data.time)*data.devSpeed/1000
     data.time = Date.now()
@@ -45,8 +46,8 @@ function mainLoop() {
     data.stats.timeInPrestige = data.stats.timeInPrestige.plus(diff)
     checkAchievements()
     updateHTML()
-    if(DOMCacheGetOrSet('faviconLink').getAttribute('href') !== `Imgs/Eggs/${eggData[data.currentEgg].id}.png`)
-        DOMCacheGetOrSet('faviconLink').href = `Imgs/Eggs/${eggData[data.currentEgg].id}.png`
+    if(DOMCacheGetOrSet('faviconLink').getAttribute('href') !== `${eggImgPath}${eggData[data.currentEgg].id}.png`)
+        DOMCacheGetOrSet('faviconLink').href = `${eggImgPath}${eggData[data.currentEgg].id}.png`
 }
 
 function changeTab(i) {

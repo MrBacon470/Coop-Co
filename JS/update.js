@@ -3,12 +3,12 @@ function updateHTML() {
     DOMCacheGetOrSet('moneyText').textContent = `$${format(data.money)}`
     DOMCacheGetOrSet('chickensText').textContent = `Chickens: ${format(data.chickens)}`
     if(data.onPlanet === false) {
-        if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `Imgs/Eggs/${eggData[data.currentEgg].id}.png`) 
-        DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `Imgs/Eggs/${eggData[data.currentEgg].id}.png`)
+        if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `${eggImgPath}${eggData[data.currentEgg].id}.png`) 
+        DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `${eggImgPath}${eggData[data.currentEgg].id}.png`)
     }   
     else {
-        if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `Imgs/Eggs/${planetEggImgIDs[data.currentPlanetIndex]}.png`) 
-        DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `Imgs/Eggs/${planetEggImgIDs[data.currentPlanetIndex]}.png`)
+        if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `${eggImgPath}${planetEggImgIDs[data.currentPlanetIndex]}.png`) 
+        DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `${eggImgPath}${planetEggImgIDs[data.currentPlanetIndex]}.png`)
     }
     DOMCacheGetOrSet('eggPromoteButton').style.display = data.currentEgg >= eggData.length-1 || contractActive() || data.inPath === true || data.onPlanet === true ? 'none' : 'inline-block'
     if(data.currentEgg < eggData.length-1 && data.onPlanet === false) {
