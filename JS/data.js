@@ -153,6 +153,7 @@ window.setInterval(function(){
 window.onload = function (){
     load()
     diff = (Date.now()-data.time)*data.devSpeed/1000
+    $.notify('Welcome Back!\nYou were gone for ' + formatTime(diff), 'info')
     
     changeTab(data.currentTab)
     for(let i = 0; i < data.currentSubTab.length; i++) {

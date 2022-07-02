@@ -1,13 +1,7 @@
 let diff = 0;
-let gameLoaded = false
 const eggImgPath = 'Imgs/Eggs/'
 function mainLoop() {
     diff = (Date.now()-data.time)*data.devSpeed/1000
-    data.time = Date.now()
-    if(gameLoaded === false) {
-        $.notify('Welcome Back!\nYou were gone for ' + formatTime(diff), 'info')
-        gameLoaded = true
-    }
     updateResearch()
     updateEggValueBonus()
     updateIntHatch()
@@ -48,6 +42,7 @@ function mainLoop() {
     updateHTML()
     if(DOMCacheGetOrSet('faviconLink').getAttribute('href') !== `${eggImgPath}${eggData[data.currentEgg].id}.png`)
         DOMCacheGetOrSet('faviconLink').href = `${eggImgPath}${eggData[data.currentEgg].id}.png`
+    data.time = Date.now()
 }
 
 function changeTab(i) {
