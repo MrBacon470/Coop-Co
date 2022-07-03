@@ -152,7 +152,7 @@ function updateEggPage() {
       }
       else {
         if(DOMCacheGetOrSet('currentEggImg').getAttribute('src') !== `${eggImgPath}enlightenment.png`) 
-          DOMCacheGetOrSet('currentEggImg').setAttribute('src', `ImgsEggs/Eggs/enlightenment.png`)
+          DOMCacheGetOrSet('currentEggImg').setAttribute('src', `${eggImgPath}enlightenment.png`)
         DOMCacheGetOrSet('currentEggText').innerText = `Current Egg: ${eggData[data.currentEgg].name}\nValue: $${format(eggData[data.currentEgg].value)} (x${format(eggValueBonus)})\n$${format(((currentEggValue.times(soulEggBoost))).times(data.chickens.times(layRate)))}/s\nEgg Laying Rate: x${format((layRate))}\nChicken Gain: ${format(chickenGain)} Chickens/min`
         if(DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `${eggImgPath}enlightenment.png`) 
           DOMCacheGetOrSet('nextEggImg').setAttribute('src', `${eggImgPath}enlightenment.png`)
