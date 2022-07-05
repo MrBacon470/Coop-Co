@@ -59,6 +59,7 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     padding: 5px;
     border-radius: 3px;
     border: 4px solid;
+    background-color: #393c3c;
 }
 .tabHolder {padding:1vw 1vh 1vw 1vh;}
 
