@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mrbacon470.github.io/Coop-Co/">
-    <meta property="og:title" content="Coop Co v1.1.4">
+    <meta property="og:title" content="Coop Co v1.1.5">
     <meta property="og:description" content="Coop Co made by VoidCloud.">
     <meta property="og:image" content="https://mrbacon470.github.io/Coop-Co/Imgs/Eggs/egg.png">
     <meta content="#f0ead6" data-react-helmet="true" name="theme-color" />
     <script src="JS/Internal/jquery-3.6.0.min.js"></script>
     <script src="JS/Internal/notify.js"></script>
-    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="CSS/Theme-Original.css">
     <link id="faviconLink" rel="icon" type="image/png" href="Imgs/Eggs/egg.png">
     <title>Coop Co</title>
 </head>
@@ -44,10 +44,10 @@
         </div>
     </div>
     <div id="mainHeader" class="flexRow" style="align-items: center;align-self: center;">
-        <img id="currentEggImgHeader" style="background-color:whitesmoke" src="Imgs/egg.png">
+        <img id="currentEggImgHeader" src="Imgs/egg.png">
         <button id="eggPromoteButton" style="margin:1vh;" class="locked promoteButton" onclick="promoteEgg()">Promote to Next Egg</button>
-        <h2 id="moneyText" style="margin:1vh;background-color:whitesmoke;color:black;">$0.00</h2>
-        <div id="chickensText" style="margin:1vh;background-color:whitesmoke;color:black;">Chickens: 0</div>
+        <h2 id="moneyText">$0.00</h2>
+        <div id="chickensText">Chickens: 0</div>
         <button id="prestigeButton" style="margin:1vh;" class="locked" onclick="createConfirmation('prestige')">???</button>
     </div>
     <div id="newsHolder">

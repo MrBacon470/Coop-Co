@@ -3,21 +3,19 @@
     src: url('RobotoMono-Medium.ttf');
 }
 
-:root {
-    --background-color: #393c3c;
-}
-
 /*Globals*/
 * {
     margin: 0%;
     font-family: 'Roboto Mono';
-    background-color: var(--background-color);
     color: whitesmoke;
 }
-body {user-select: none;}
+body {
+    user-select: none;
+    background-color: #393c3c;
+}
 button {
     user-select: none;
-    background-color: var(--background-color);
+    background-color: #393c3c;
     border-width: 2px;
     border-color: whitesmoke;
     border-style: solid;
@@ -26,7 +24,7 @@ button {
 }
 button:hover {
     background-color: whitesmoke;
-    color: var(--background-color);
+    color: #393c3c;
     
     transition-duration: 0.5s;
 }
@@ -195,13 +193,14 @@ button#eggPromoteButton{
     #ff9a9a 100% 
   );
 }
-button#eggPromoteButton.unlocked:hover{color: whitesmoke;border-color: #2f8126;background-color: #2f8126;}
-button#eggPromoteButton.locked:hover {color: whitesmoke;border-color: #812626;background-color: #812626;}
 .notifyjs-corner, .notifyjs-hidable , .notifyjs-container, .notifyjs-container div span { background-color: rgba(0, 0, 0, 0); color:black;}
 #planetRow img {width: 5em; height: 5em; margin:1em}
 
 #changelogHolder h4, #changelogHolder h3, #changelogHolder p {margin-bottom: 1vh;}
 #changelogHolder {max-width: 85%;}
+
+#mainHeader img, #mainHeader h2, #mainHeader div {background-color: whitesmoke;}
+#mainHeader h2, #mainHeader div {margin: 1vh; color:black}
 /*
 <div class="notifyjs-wrapper notifyjs-hidable">
 	<div class="notifyjs-arrow"></div>
