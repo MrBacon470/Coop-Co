@@ -202,6 +202,8 @@ button#eggPromoteButton{
 
 #mainHeader img, #mainHeader h2, #mainHeader div {background-color: whitesmoke;}
 #mainHeader h2, #mainHeader div {margin: 1vh; color:black}
+
+#promptInput {background-color: #393c3c; border: 2px solid; border-radius: 2px;}
 /*
 <div class="notifyjs-wrapper notifyjs-hidable">
 	<div class="notifyjs-arrow"></div>
