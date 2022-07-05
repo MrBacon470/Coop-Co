@@ -88,14 +88,13 @@ function load() {
     //Update 1.0.0 Saves to Current Version
     if(data.currentUpdate !== getDefaultObject().currentUpdate){
         createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details`,"812626")
-        data.currentUpdate = getDefaultObject().currentUpdate
-        if(data.money.gt(endGameSave.money) || data.soulEggs.gt(endGameSave.soulEggs) || data.prophecyEggs.gt(endGameSave.prophecyEggs)) {
+        if(data.money.gt(endGameSave.money) || data.soulEggs.gt(endGameSave.soulEggs) || data.prophecyEggs.gt(endGameSave.prophecyEggs) && data.currentUpdate !== 'v1.1.4') {
             data = Object.assign(getDefaultObject(),endGameSave)
             save()
             location.reload()
             $.notify('Due to balancing changes all end game saves have been reverted\nto a default end game save','warn')
         }
-            
+        data.currentUpdate = getDefaultObject().currentUpdate  
     }
     for(let i = 0; i < data.buyAmounts.length; i++) {
         const numString = ['1','5','10','20']
