@@ -82,12 +82,6 @@ function save(){
     window.localStorage.setItem(saveName, JSON.stringify(data))
     $.notify('Game Saved','info')
 }
-const endGameResetVersions = ['v1.0.0','v1.0.1','v1.0.2','v1.0.3','v1.0.4','v1.0.5','v1.0.6','v1.0.7','v1.0.8','v1.0.9','v1.0.10','v1.0.11','v1.1.0','v1.1.1','v1.1.2','v1.1.3']
-let resetEndGame = false
-function checkForReset() {
-    for(let i = 0; i < endGameResetVersions.length; i++)
-        if(data.currentUpdate === endGameResetVersions[i]) resetEndGame = true
-}
 function load() {
     let savedata = JSON.parse(window.localStorage.getItem(saveName))
     if(savedata === null || savedata === undefined) savedata = getDefaultObject()
@@ -95,13 +89,6 @@ function load() {
     //Update 1.0.0 Saves to Current Version
     if(data.currentUpdate !== getDefaultObject().currentUpdate){
         createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details`,"812626")
-        checkForReset()
-        if(data.money.gt(endGameSave.money) || data.soulEggs.gt(endGameSave.soulEggs) || data.prophecyEggs.gt(endGameSave.prophecyEggs) && resetEndGame === true) {
-            data = Object.assign(getDefaultObject(),endGameSave)
-            save()
-            location.reload()
-            $.notify('Due to balancing changes all end game saves have been reverted\nto a default end game save','warn')
-        }
         data.currentUpdate = getDefaultObject().currentUpdate  
     }
     for(let i = 0; i < data.buyAmounts.length; i++) {
