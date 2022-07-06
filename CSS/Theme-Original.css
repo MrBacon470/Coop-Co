@@ -144,6 +144,40 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     text-align: center;
     border-radius: 5px;
 }
+
+.notifyjs-bootstrap-base {
+	font-weight: bold;
+	padding: 8px 15px 8px 14px;
+	background-color: #fcf8e3;
+	border: 5px solid #fbeed5;
+	white-space: nowrap;
+	padding-left: 15px;
+	background-repeat: no-repeat;
+	background-position: 3px 7px;
+    border-radius: 4px;
+}
+.notifyjs-bootstrap-error {
+	color: whitesmoke;
+	background-color: #bf352d;
+	border-color: #9e160f;
+}
+.notifyjs-bootstrap-success {
+	color: whitesmoke;
+	background-color: #1eb93a;
+	border-color: #0c8021;
+}
+.notifyjs-bootstrap-info {
+	color: whitesmoke;
+	background-color: #3b8dff;
+	border-color: #006aff;
+}
+.notifyjs-bootstrap-warn {
+	color: whitesmoke;
+	background-color: #DBD800;
+	border-color: #BAB700;
+}
+
+
 /*IDs*/
 #mainHeader {
     width: 100%;

@@ -145,6 +145,38 @@ h2:hover,h3:hover,h4:hover,p:hover,div:hover {color: black;transition-duration: 
     text-align: center;
     border-radius: 5px;
 }
+
+.notifyjs-bootstrap-base {
+	font-weight: bold;
+	padding: 8px 15px 8px 14px;
+	background-color: #fcf8e3;
+	border: 3px solid #fbeed5;
+	white-space: nowrap;
+	padding-left: 15px;
+	background-repeat: no-repeat;
+	background-position: 3px 7px;
+}
+.notifyjs-bootstrap-error {
+	color: whitesmoke;
+	background-color: var(--locked-color);
+	border-color: var(--locked-color);
+}
+.notifyjs-bootstrap-success {
+	color: whitesmoke;
+	background-color: var(--unlocked-color);
+	border-color: var(--unlocked-color);
+}
+.notifyjs-bootstrap-info {
+	color: whitesmoke;
+	background-color: var(--maxed-color);
+	border-color: var(--maxed-color);
+}
+.notifyjs-bootstrap-warn {
+	color: whitesmoke;
+	background-color: var(--prophecy-color);
+	border-color: var(--prophecy-color);
+}
+
 /*IDs*/
 #mainHeader {
     width: 100%;

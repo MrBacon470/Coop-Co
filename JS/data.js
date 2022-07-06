@@ -63,6 +63,7 @@ function getDefaultObject() {
             bestSoulEggs: D(0),
             bestProphecyEggs: D(0),
         },
+        themeIndex: 0,
         buyAmounts: [0,0,0],
         time: Date.now(),
         currentTab: 0,
@@ -173,6 +174,9 @@ window.onload = function (){
             generateContract(i)
         data.regeneratedContracts = true
     }
+    const themeDisplayNames = ['Original','Void Stream','Flashbang']
+    DOMCacheGetOrSet('setTog4').innerText = `Theme: ${themeDisplayNames[data.themeIndex]}`
+    setTheme()
 }
 //full reset
 function fullReset(){

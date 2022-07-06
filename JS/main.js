@@ -152,6 +152,30 @@ function closeModal(i) {
     
 }
 
+function setTheme() {
+    const themeNames = ['Original','StarStream','White']
+    document.querySelectorAll("link").forEach( function(e) {
+        if (e.href.includes("Theme")) e.remove();
+    });
+
+    var head = document.head;
+    var link = document.createElement('link');
+
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = "CSS/Theme-" + themeNames[data.themeIndex] + ".css";
+
+    head.appendChild(link);
+}
+
+function changeTheme() {
+    const themeDisplayNames = ['Original','Void Stream','Flashbang']
+    data.themeIndex++
+    if(data.themeIndex >= themeDisplayNames.length) data.themeIndex = 0
+    DOMCacheGetOrSet('setTog4').innerText = `Theme: ${themeDisplayNames[data.themeIndex]}`
+    setTheme()
+}
+
 window.setInterval(function() {
     mainLoop()
 },50)
