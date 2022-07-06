@@ -12,10 +12,10 @@ function updateHTML() {
     }
     DOMCacheGetOrSet('eggPromoteButton').style.display = data.currentEgg >= eggData.length-1 || contractActive() || data.inPath === true || data.onPlanet === true ? 'none' : 'inline-block'
     if(data.currentEgg < eggData.length-1 && data.onPlanet === false) {
-        const previousEggUnlockReq = data.currentEgg !== 0 ? eggData[data.currentEgg].unlockReq.max(1.01) : D(1.01)
+        const currentEggDiscoverReq = eggData[data.currentEgg+1].discoverReq.max(1.01)
         const currentEggUnlockReq = eggData[data.currentEgg+1].unlockReq.max(1.02)
-        const nextEggDiscoverProgress = data.money.max(1).log10().div(previousEggUnlockReq.log10())
-        const nextEggUnlockProgress = data.money.div(previousEggUnlockReq).max(1).log10().div(currentEggUnlockReq.div(previousEggUnlockReq).log10())
+        const nextEggDiscoverProgress = data.money.max(1).log10().div(currentEggDiscoverReq.log10())
+        const nextEggUnlockProgress = data.money.div(currentEggDiscoverReq).max(1).log10().div(currentEggUnlockReq.div(currentEggDiscoverReq).log10())
         DOMCacheGetOrSet('eggPromoteButton').style.setProperty("--y", nextEggDiscoverProgress.mul(100).max(0).min(100).toString() + '%')
         DOMCacheGetOrSet('eggPromoteButton').style.setProperty("--x", nextEggUnlockProgress.mul(100).max(0).min(100).toString() + '%')
         DOMCacheGetOrSet('eggPromoteButton').classList = data.money.gte(eggData[data.currentEgg+1].unlockReq) ? 'unlockedPromote' : 'lockedPromote'
