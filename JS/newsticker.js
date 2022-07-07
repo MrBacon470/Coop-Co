@@ -31,7 +31,8 @@ newsArray = [//always true
     ['“We quit, why should we be here making actual news when our neighboring news provider managed to have 200x more subscribers just by constantly churning out useless egg puns instead?” -The New Yolk Times ','true'],['Have you noticed that the browser icon of the game changes depending on what kind of egg you\'re currently producing?','true'],
     ['You might have noticed that the news ticker reports some of the news earlier than you\'d expect, but since our journalists have really limited programming skills, consider us time travelers. ','true'],['BREAKING NEWS: scientists believe we are living in a giant egg!','true'],
     ['It\'s eggcellent how much progress you\'re making!'],['The next statement is true. The previous statement is false.','true'],['All of the king\'s horses and all of the king\'s men could have put Humpty Dumpty together again if he was made out of Supermaterial','true'],['The chance of seeing this news message is the chance of getting two egg yolks in one egg! (1/1000 chance)','getRandom(1,1000) === 1000'],
-    ['Stop paying attention to the news ticker and focus on the actual game! Isn\'t that what you came here for?','true'],
+    ['Stop paying attention to the news ticker and focus on the actual game! Isn\'t that what you came here for?','true'],['Eating an Ancient Egg in Ancient Greece be like...','true'],['how many soul eggs is one soul worth?','true'],['Can we use these soul eggs to create a soul?','true'],
+    ['<i>Introducing Prestige™ - a way to fuse yourself with the egg. Become the egg. Join our master. D̶̃͗O̷̿̂ ̴̧̌I̷̓͆T̶͈̓ ̵͆̈́Ń̴͒O̸͕̓Ẇ̸͘</i>'],
     
 ];}
 
