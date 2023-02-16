@@ -36,9 +36,9 @@ function updateHTML() {
     else if(data.currentTab === 1) {
         for(let i = 0; i < commonResearchCost.length; i++)
             if(data.research[i].lt(commonResearchMaxLevel[i]))
-                DOMCacheGetOrSet(`r${i}`).classList = data.money.gte(commonResearchCost[i]) ? 'unlockedResearch' : 'lockedResearch'
+                DOMCacheGetOrSet(`r${i}`).classList = data.money.gte(commonResearchCost[i]) ? 'greenButton' : 'redButton'
             else
-                DOMCacheGetOrSet(`r${i}`).classList = 'maxedResearch'
+                DOMCacheGetOrSet(`r${i}`).classList = 'blueButton'
         for(let i = 0; i < commonResearchNames.length; i++) {
             DOMCacheGetOrSet(`r${i}`).innerText = data.research[i].lt(commonResearchMaxLevel[i]) ? `${commonResearchNames[i]}\n${commonResearchDescs[i]}\nLevel: ${toPlaces(data.research[i],0,commonResearchMaxLevel[i].plus(1))}/${toPlaces(commonResearchMaxLevel[i],0,commonResearchMaxLevel[i].plus(1))}\nCost: $${format(commonResearchCost[i])}` : `${commonResearchNames[i]}\n${commonResearchDescs[i]}\nLevel: ${toPlaces(data.research[i],0,commonResearchMaxLevel[i].plus(1))}/${toPlaces(commonResearchMaxLevel[i],0,commonResearchMaxLevel[i].plus(1))}\nCost: [MAXED]`
         }
@@ -84,9 +84,9 @@ function updateHTML() {
         DOMCacheGetOrSet('prophecyEggText').innerText = `Prophecy Eggs: ${format(data.prophecyEggs)}\nSoul Boost: x${format(prophecyEggBoost)}\nContract Reward Boost: x${format(contractRewardBoost)}`
         for(let i = 0; i < epicResearchCost.length; i++)
             if(data.epicResearch[i].lt(epicResearchMaxLevel[i]))
-                DOMCacheGetOrSet(`er${i}`).classList = data.soulEggs.gte(epicResearchCost[i]) ? 'prestige' : 'lockedResearch'
+                DOMCacheGetOrSet(`er${i}`).classList = data.soulEggs.gte(epicResearchCost[i]) ? 'prestige' : 'redButton'
             else
-                DOMCacheGetOrSet(`er${i}`).classList = 'maxedResearch'
+                DOMCacheGetOrSet(`er${i}`).classList = 'blueButton'
         for(let i = 0; i < epicResearchNames.length; i++) {
             DOMCacheGetOrSet(`er${i}`).innerText = data.epicResearch[i].lt(epicResearchMaxLevel[i]) ? `${epicResearchNames[i]}\n${epicResearchDescs[i]}\nLevel: ${toPlaces(data.epicResearch[i],0,epicResearchMaxLevel[i].plus(1))}/${toPlaces(epicResearchMaxLevel[i],0,epicResearchMaxLevel[i].plus(1))}\nCost: ${format(epicResearchCost[i])} Soul Eggs` : 
             `${epicResearchNames[i]}\n${epicResearchDescs[i]}\nLevel: ${toPlaces(data.epicResearch[i],0,epicResearchMaxLevel[i].plus(1))}/${toPlaces(epicResearchMaxLevel[i],0,epicResearchMaxLevel[i].plus(1))}\nCost: [MAXED]`

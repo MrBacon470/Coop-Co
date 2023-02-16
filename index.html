@@ -37,18 +37,18 @@
             <h3 id="confirmTitle">Are you sure?</h3>
             <p id="confirmContent" style="margin-bottom:1vh">New things have been added since last time</p>
             <div class="flexRow">
-                <button id="noConfirm" class="lockedResearch" style="margin-right:0.5vw">No!</button>
-                <button id="yesConfirm" class="unlockedResearch" style="margin-left:0.5vw">Yes!</button>
+                <button id="noConfirm" class="redButton" style="margin-right:0.5vw">No!</button>
+                <button id="yesConfirm" class="greenButton" style="margin-left:0.5vw">Yes!</button>
             </div>
             <br>
         </div>
     </div>
     <div id="mainHeader" class="flexRow" style="align-items: center;align-self: center;">
         <img id="currentEggImgHeader" src="Imgs/egg.png">
-        <button id="eggPromoteButton" style="margin:1vh;" class="locked promoteButton" onclick="promoteEgg()">Promote to Next Egg</button>
+        <button id="eggPromoteButton" style="margin:1vh;" class="redButton promoteButton" onclick="promoteEgg()">Promote to Next Egg</button>
         <h2 id="moneyText">$0.00</h2>
         <div id="chickensText">Chickens: 0</div>
-        <button id="prestigeButton" style="margin:1vh;" class="locked" onclick="createConfirmation('prestige')">???</button>
+        <button id="prestigeButton" style="margin:1vh;" class="redButton" onclick="createConfirmation('prestige')">???</button>
     </div>
     <div id="newsHolder">
         <div id="news">
@@ -61,8 +61,8 @@
             <button style="margin:1vh;" onclick="changeTab(1)">Research</button>
             <button id="contractButton" style="margin:1vh;" onclick="changeTab(2)">Contracts</button>
             <button id="eggpeditionTabButton" style="margin:1vh;" onclick="changeTab(5)">Eggspeditions</button>
-            <button id="enlightenmentTabButton" class="enlightenment" style="margin:1vh;" onclick="changeTab(6)">Enlightenments</button>
-            <button id="prestigeTabButton" class="prestige" style="margin:1vh;" onclick="changeTab(4)">Prestige</button>
+            <button id="enlightenmentTabButton" class="yellowButton" style="margin:1vh;" onclick="changeTab(6)">Enlightenments</button>
+            <button id="prestigeTabButton" class="purpleButton" style="margin:1vh;" onclick="changeTab(4)">Prestige</button>
             <button style="margin:1vh;" onclick="changeTab(7)">Achievements</button>
             <button style="margin:1vh;" onclick="changeTab(3)">Settings</button>
         </div>
@@ -245,7 +245,7 @@
                     <div id="contract0Content">
                         <h4 id="contract0Header">Contract-01</h4>
                         <p id="contract0Description">A Californian Energy Shortage means more demand for Fusion Eggs</p>
-                        <p style="color:#dd3131">!When you start a contract you will do a prestige reset and be unable to leave the egg until<br>the contract is complete or cancelled!</p>
+                        <p style="color:var(--red)">!When you start a contract you will do a prestige reset and be unable to leave the egg until<br>the contract is complete or cancelled!</p>
                     </div>
                     <p id="contract0Goal"></p>
                     <p id="contract0Reward">Reward: 0.00 Soul Eggs</p>
@@ -256,7 +256,7 @@
                     <div id="contract1Content">
                         <h4 id="contract1Header">Contract-02</h4>
                         <p id="contract1Description">A Californian Energy Shortage means more demand for Fusion Eggs</p>
-                        <p style="color:#dd3131">!When you start a contract you will do a prestige reset and be unable to leave the egg until<br>the contract is complete or cancelled!</p>
+                        <p style="color:var(--red)">!When you start a contract you will do a prestige reset and be unable to leave the egg until<br>the contract is complete or cancelled!</p>
                     </div>
                     <p id="contract1Goal"></p>
                     <p id="contract1Reward">Reward: 0.00 Soul Eggs</p>
@@ -267,7 +267,7 @@
                     <div id="contract2Content">
                         <h4 id="contract2Header">Contract-03</h4>
                         <p id="contract2Description">A Californian Energy Shortage means more demand for Fusion Eggs</p>
-                        <p style="color:#dd3131">!When you start a contract you will do a prestige reset and be unable to leave the egg until<br>the contract is complete or cancelled!</p>
+                        <p style="color:var(--red)">!When you start a contract you will do a prestige reset and be unable to leave the egg until<br>the contract is complete or cancelled!</p>
                     </div>
                     <p id="contract2Goal"></p>
                     <p id="contract2Reward">Reward: 0.00 Soul Eggs</p>
@@ -276,10 +276,10 @@
             </div>
         </div>
         <div id="prestigeTab" class="flexCol tabHolder">
-            <h3 style="color:var(--prestige-color)">Prestige</h3>
+            <h3 style="color:var(--purple)">Prestige</h3>
             <div class="flexRow">
                 <img src="Imgs/Eggs/soul.png">
-                <h4 id="soulEggText" style="color:var(--prestige-color)">Soul Eggs: 0.00</h4>
+                <h4 id="soulEggText" style="color:var(--purple)">Soul Eggs: 0.00</h4>
             </div>
             <div class="flexRow" style="margin-bottom: 1vh;">
                 <button id="er0"></button>
@@ -299,7 +299,7 @@
                 <button id="er8"></button>
             </div>
             <div>
-                <button id="ba1" class="prestige">Buy Amount: 1</button>
+                <button id="ba1" class="purpleButton">Buy Amount: 1</button>
                 <button id="auto2"></button>
             </div>
             <div class="flexRow">
@@ -330,21 +330,21 @@
                 <button id="eggspeditionButton" onclick="journeyToPlanet()">Go on an Eggspedition</button>
             </div>
             <p id="discoveryText">Discover Planet: Cost 50 Million Rocket Fuel Eggs</p>
-            <p style="color:#dd3131">!Warning! - Journeying to any planet will cause a reset on the main farm.</p>
+            <p style="color:var(--red)">!Warning! - Journeying to any planet will cause a reset on the main farm.</p>
         </div>
         <div id="enlightenmentTab" class="flexCol tabHolder">
             <h3 style="color:var(--enlightenment-color)">Enlightenments</h3>
             <div class="flexRow">
-                <button id="enlight0" onclick="purchaseEnlightenment(0)" style="margin:1em" class="enlightenment">Enlightenment I</button>
-                <button id="enlight1" onclick="purchaseEnlightenment(1)" style="margin:1em" class="enlightenment">Enlightenment II</button>
-                <button id="enlight2" onclick="purchaseEnlightenment(2)" style="margin:1em" class="enlightenment">Enlightenment III</button>
-                <button id="enlight3" onclick="purchaseEnlightenment(3)" style="margin:1em" class="enlightenment">Enlightenment IV</button>
-                <button id="enlight4" onclick="purchaseEnlightenment(4)" style="margin:1em" class="enlightenment">Enlightenment V</button>
+                <button id="enlight0" onclick="purchaseEnlightenment(0)" style="margin:1em" class="yellowButton">Enlightenment I</button>
+                <button id="enlight1" onclick="purchaseEnlightenment(1)" style="margin:1em" class="yellowButton">Enlightenment II</button>
+                <button id="enlight2" onclick="purchaseEnlightenment(2)" style="margin:1em" class="yellowButton">Enlightenment III</button>
+                <button id="enlight3" onclick="purchaseEnlightenment(3)" style="margin:1em" class="yellowButton">Enlightenment IV</button>
+                <button id="enlight4" onclick="purchaseEnlightenment(4)" style="margin:1em" class="yellowButton">Enlightenment V</button>
             </div>
-            <button id="ba2" class="enlightenment">Buy Amount: 1</button>
+            <button id="ba2" class="yellowButton">Buy Amount: 1</button>
             <div class="flexRow">
                 <p id="knowledgeText" style="margin:1em;color:var(--enlightenment-color)">Knowledge: 0<br>+0.00/s</p>
-                <button id="enlightenmentButton" onclick="enterPath()" style="margin:1em" class="enlightenment">Enter the Path</button>
+                <button id="enlightenmentButton" onclick="enterPath()" style="margin:1em" class="yellowButton">Enter the Path</button>
             </div>
             <p style="margin:1em;color:var(--enlightenment-color);text-align: center;">
                 To Pursue Enlightenment one must give up everything.
