@@ -87,31 +87,31 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 
 .locked {color:var(--locked-color);border-color: var(--locked-color);background-color: var(--header-color);}
 .locked:hover {color: whitesmoke;border-color: var(--locked-color);background-color: var(--locked-color);}
-.unlocked {color:var(--red);border-color: var(--red);background-color: var(--header-color);}
-.unlocked:hover {color: whitesmoke;border-color: var(--red);background-color: var(--red);}
+.unlocked {color:var(--unlocked-color);border-color: var(--unlocked-color);background-color: var(--header-color);}
+.unlocked:hover {color: whitesmoke;border-color: var(--unlocked-color);background-color: var(--unlocked-color);}
 
 .lockedPromote {color:var(--locked-color);border-color: var(--locked-color);background-color: var(--header-color);}
 .lockedPromote:hover {color:var(--locked-color);border-color: var(--locked-color);background-color: var(--locked-color);}
-.unlockedPromote {color:var(--red);border-color: var(--red);background-color: var(--header-color);}
-.unlockedPromote:hover {color:var(--red);border-color: var(--red);background-color: var(--red);}
+.unlockedPromote {color:var(--unlocked-color);border-color: var(--unlocked-color);background-color: var(--header-color);}
+.unlockedPromote:hover {color:var(--unlocked-color);border-color: var(--unlocked-color);background-color: var(--unlocked-color);}
 
 .lockedResearch {color:var(--locked-color);border-color: var(--locked-color);}
 .lockedResearch:hover {color: var(--bg-color);border-color: var(--locked-color);background-color: var(--locked-color);}
-.unlockedResearch {color:var(--red);border-color: var(--red);}
-.unlockedResearch:hover {color: var(--bg-color);border-color: var(--red);background-color: var(--red);}
+.unlockedResearch {color:var(--unlocked-color);border-color: var(--unlocked-color);}
+.unlockedResearch:hover {color: var(--bg-color);border-color: var(--unlocked-color);background-color: var(--unlocked-color);}
 .maxedResearch {color: var(--maxed-color);border-color: var(--maxed-color);}
 .maxedResearch:hover {color: var(--bg-color);border-color: var(--maxed-color);background-color: var(--maxed-color);}
 
-.prestige {border-color:var(--purple);color: var(--purple);}
-.prestige:hover {border-color: var(--purple);color: whitesmoke;background-color: var(--purple);}
-.prestigeHeader {border-color:var(--purple);color: var(--purple);background-color: var(--header-color);}
-.prestigeHeader:hover {border-color: var(--purple);color: var(--header-color);background-color: var(--purple);}
+.prestige {border-color:var(--prestige-color);color: var(--prestige-color);}
+.prestige:hover {border-color: var(--prestige-color);color: whitesmoke;background-color: var(--prestige-color);}
+.prestigeHeader {border-color:var(--prestige-color);color: var(--prestige-color);background-color: var(--header-color);}
+.prestigeHeader:hover {border-color: var(--prestige-color);color: var(--header-color);background-color: var(--prestige-color);}
 
 .enlightenment {border-color:var(--enlightenment-color);color: var(--enlightenment-color);}
 .enlightenment:hover {border-color: var(--enlightenment-color);color: var(--bg-color);background-color: var(--enlightenment-color);}
 
 .achLock {width: 2em;height: 2em;border: 2px solid #9c0f0f;padding: 3px;margin: 4px;}
-.achUnlock {width: 2em;height: 2em;border: 2px solid #1a9c0f;padding: 3px;background-color: var(--red);margin: 4px;}
+.achUnlock {width: 2em;height: 2em;border: 2px solid #1a9c0f;padding: 3px;background-color: var(--unlocked-color);margin: 4px;}
 .achPlaceholder {width: 2em;height: 2em;border: 2px solid #8e9c0f;padding: 3px;margin: 4px;}
 .credit {
     display: flex;
@@ -132,7 +132,7 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 }
 
 .badge-green {
-    background-color: var(--red);
+    background-color: var(--unlocked-color);
     color: whitesmoke;
     padding: 2px 4px;
     text-align: center;
@@ -172,8 +172,8 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 }
 .notifyjs-bootstrap-success {
 	color: whitesmoke;
-	background-color: var(--red);
-	border-color: var(--red);
+	background-color: var(--unlocked-color);
+	border-color: var(--unlocked-color);
 }
 .notifyjs-bootstrap-info {
 	color: whitesmoke;
@@ -199,13 +199,13 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     height: auto;
     font-size: 1.5em;
     top: 95%;
-    border-color: var(--red);
-    color: var(--red);
+    border-color: #dd3131;
+    color: #dd3131;
 }
 #mainButton:hover {
-    background-color: var(--red);
+    background-color: #dd3131;
     color: var(--background-color);
-    border-color: var(--red);
+    border-color: #dd3131;
 }
 #researchCol {margin:4px;}
 #researchCol button {margin-bottom: 1vh;}

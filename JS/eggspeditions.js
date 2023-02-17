@@ -15,27 +15,27 @@ function updateEggspeditionsUI() {
         else if((DOMCacheGetOrSet('planet'+i).getAttribute('src') !== `Imgs/planet${i+1}.png` && data.planetsDiscovered[i] === true) || (DOMCacheGetOrSet('planet'+i).getAttribute('src') !== `Imgs/questionplanet.png` && data.planetsDiscovered[i] === false && planetHoverIndex !== i))
             DOMCacheGetOrSet('planet'+i).src = data.planetsDiscovered[i] === true ? `Imgs/planet${i+1}.png` : `Imgs/questionplanet.png`
     }
-    DOMCacheGetOrSet('discoveryButton').classList = data.currentEgg === discoveryEggIndexes[data.discoveries] && data.chickens.gte(discoveryReqs[data.discoveries]) && data.planetsDiscovered[planetHoverIndex] === false ? 'greenButton' : 'redButton'
+    DOMCacheGetOrSet('discoveryButton').classList = data.currentEgg === discoveryEggIndexes[data.discoveries] && data.chickens.gte(discoveryReqs[data.discoveries]) && data.planetsDiscovered[planetHoverIndex] === false ? 'unlockedResearch' : 'lockedResearch'
     DOMCacheGetOrSet('discoveryButton').innerText = data.planetsDiscovered[planetHoverIndex] === true ? 'Already Discovered' : `Discover Planet`
     DOMCacheGetOrSet('discoveryText').innerText = data.discoveries < discoveryEggIndexes.length ? `Discovery Cost: ${format(discoveryReqs[data.discoveries])} ${eggData[discoveryEggIndexes[data.discoveries]].name} Chickens` : `All Planets Discovered`
     
     if(data.onPlanet === false) {
         if(planetHoverIndex !== -1) {
             DOMCacheGetOrSet('eggspeditionButton').innerText = data.planetsDiscovered[planetHoverIndex] === true ? `Journey to ${planetNames[planetHoverIndex]}` : `Planet Not Discovered`
-            DOMCacheGetOrSet('eggspeditionButton').classList = data.planetsDiscovered[planetHoverIndex] === true ? 'greenButton' : 'redButton'
+            DOMCacheGetOrSet('eggspeditionButton').classList = data.planetsDiscovered[planetHoverIndex] === true ? 'unlockedResearch' : 'lockedResearch'
         }
         else {
             DOMCacheGetOrSet('eggspeditionButton').innerText = `No Planet Selected`
-            DOMCacheGetOrSet('eggspeditionButton').classList = 'redButton'
+            DOMCacheGetOrSet('eggspeditionButton').classList = 'lockedResearch'
         }
     }
     else {
         DOMCacheGetOrSet('eggspeditionButton').innerText = `Return Home`
-        DOMCacheGetOrSet('eggspeditionButton').classList = 'greenButton'
+        DOMCacheGetOrSet('eggspeditionButton').classList = 'unlockedResearch'
     }
     if(data.inPath === true) {
         DOMCacheGetOrSet('eggspeditionButton').innerText = `Leave the Path to Travel`
-        DOMCacheGetOrSet('eggspeditionButton').classList = 'redButton'
+        DOMCacheGetOrSet('eggspeditionButton').classList = 'lockedResearch'
     } 
     if(planetHoverIndex !== -1)
         DOMCacheGetOrSet('planetHoverText').innerText = data.planetsDiscovered[planetHoverIndex] === true ? `Planet ${planetNames[planetHoverIndex]}\n${planetDescs[planetHoverIndex]}\n\n$${format(data.planetData[planetHoverIndex].money)} | ${format(data.planetData[planetHoverIndex].chickens)} Chickens\nx${format(planetBoosts[planetHoverIndex])} ${planetBoostNames[planetHoverIndex]} Boost` : `Planet ???\n${planetDescs[planetHoverIndex]}\n\n??? | ??? Chickens\n${planetBoostNames[planetHoverIndex]}`
