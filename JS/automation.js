@@ -26,16 +26,16 @@ function updateAutomation() {
     if(data.currentTab === 1) {
         for(let i = 0; i < 2; i++) {
             DOMCacheGetOrSet(`auto${i}`).style.display = data.epicResearch[6+i].gte(epicResearchMaxLevel[6+i]) ? 'inline-block' : 'none'
-            DOMCacheGetOrSet(`auto${i}`).classList = data.autoActive[i] ? 'unlockedResearch' : 'lockedResearch'
+            DOMCacheGetOrSet(`auto${i}`).classList = data.autoActive[i] ? 'greenButton' : 'redButton'
             DOMCacheGetOrSet(`auto${i}`).innerText = data.autoActive[i] ? `${autoNames[i]}: On` : `${autoNames[i]}: Off`
         }
         DOMCacheGetOrSet(`auto3`).style.display = data.epicResearch[10].gte(epicResearchMaxLevel[10]) ? 'inline-block' : 'none'
-        DOMCacheGetOrSet(`auto3`).classList = data.autoActive[3] ? 'unlockedResearch' : 'lockedResearch'
+        DOMCacheGetOrSet(`auto3`).classList = data.autoActive[3] ? 'greenButton' : 'redButton'
          DOMCacheGetOrSet(`auto3`).innerText = data.autoActive[3] ? `${autoNames[3]}: On` : `${autoNames[3]}: Off`
     }
     else if(data.currentTab === 4)
         DOMCacheGetOrSet('auto2').style.display = data.epicResearch[9].gte(epicResearchMaxLevel[9]) ? 'inline-block' : 'none'
-        DOMCacheGetOrSet(`auto2`).classList = data.autoActive[2] ? 'unlockedResearch' : 'lockedResearch'
+        DOMCacheGetOrSet(`auto2`).classList = data.autoActive[2] ? 'greenButton' : 'redButton'
         DOMCacheGetOrSet(`auto2`).innerText = data.autoActive[2] ? `${autoNames[2]}: On` : `${autoNames[2]}: Off`
 }
 
