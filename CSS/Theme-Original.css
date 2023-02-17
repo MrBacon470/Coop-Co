@@ -12,15 +12,6 @@
     --prestige-color: #8e3dcf;
     --prophecy-color: #cdcf3d;
     --enlightenment-color: #ffee48;
-    --orange: #e9a200;
-    --gray: #999999;
-    --white: #ffe9c4;
-    --green: #65be67;
-    --red: #d74444;
-    --blue: #4481d7;
-    --purple: #a144d7;
-    --yellow: #d7d744;
-    --white2: #f5f5f5;
 }
 
 /*Globals*/
@@ -83,32 +74,35 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 }
 .tabHolder {padding:1vw 1vh 1vw 1vh;}
 
-.blueButton {border-color:var(--blue); background-color: var(--bg-color); color: var(--blue);}
-.blueButton:hover { border-color:var(--blue); background-color: var(--blue); color: var(--white2);}
-.redButton {border-color:var(--red); background-color: var(--bg-color); color: var(--red);}
-.redButton:hover { border-color:var(--red); background-color: var(--red); color: var(--white2);}
-.greenButton {border-color:var(--green); background-color: var(--bg-color); color: var(--green);}
-.greenButton:hover { border-color:var(--green); background-color: var(--green); color: var(--white2);}
-.yellowButton {border-color:var(--yellow); background-color: var(--bg-color); color: var(--yellow);}
-.yellowButton:hover { border-color:var(--yellow); background-color: var(--yellow); color: var(--white2);}
-.purpleButton {border-color:var(--purple); background-color: var(--bg-color); color: var(--purple);}
-.purpleButton:hover { border-color:var(--purple); background-color: var(--purple); color: var(--white2);}
+
+.locked {color:var(--locked-color);border-color: var(--locked-color);background-color: var(--header-color);}
+.locked:hover {color: whitesmoke;border-color: var(--locked-color);background-color: var(--locked-color);}
+.unlocked {color:var(--unlocked-color);border-color: var(--unlocked-color);background-color: var(--header-color);}
+.unlocked:hover {color: whitesmoke;border-color: var(--unlocked-color);background-color: var(--unlocked-color);}
 
 .lockedPromote {color:var(--locked-color);border-color: var(--locked-color);background-color: var(--header-color);}
 .lockedPromote:hover {color:var(--locked-color);border-color: var(--locked-color);background-color: var(--locked-color);}
-.unlockedPromote {color:var(--green);border-color: var(--green);background-color: var(--header-color);}
-.unlockedPromote:hover {color:var(--green);border-color: var(--green);background-color: var(--green);}
+.unlockedPromote {color:var(--unlocked-color);border-color: var(--unlocked-color);background-color: var(--header-color);}
+.unlockedPromote:hover {color:var(--unlocked-color);border-color: var(--unlocked-color);background-color: var(--unlocked-color);}
 
 .lockedResearch {color:whitesmoke;border-color: var(--locked-color);}
 .lockedResearch:hover {color: whitesmoke;border-color: var(--locked-color);background-color: var(--locked-color);}
-.unlockedResearch {color:whitesmoke;border-color: var(--red);}
-.unlockedResearch:hover {color: whitesmoke;border-color: var(--red);background-color: var(--red);}
+.unlockedResearch {color:whitesmoke;border-color: var(--unlocked-color);}
+.unlockedResearch:hover {color: whitesmoke;border-color: var(--unlocked-color);background-color: var(--unlocked-color);}
 .maxedResearch {color: whitesmoke;border-color: var(--maxed-color);}
 .maxedResearch:hover {color: whitesmoke;border-color: var(--maxed-color);background-color: var(--maxed-color);}
 
-.prestigeHeader {border-color:var(--purple);color: var(--purple);background-color: var(--header-color);}
-.prestigeHeader:hover {border-color: var(--purple);color: var(--header-color);background-color: var(--purple);}
+.prestige {border-color:var(--prestige-color);color: var(--prestige-color);}
+.prestige:hover {border-color: var(--prestige-color);color: whitesmoke;background-color: var(--prestige-color);}
+.prestigeHeader {border-color:var(--prestige-color);color: var(--prestige-color);background-color: var(--header-color);}
+.prestigeHeader:hover {border-color: var(--prestige-color);color: var(--header-color);background-color: var(--prestige-color);}
 
+.enlightenment {border-color:var(--enlightenment-color);color: var(--enlightenment-color);}
+.enlightenment:hover {border-color: var(--enlightenment-color);color: var(--bg-color);background-color: var(--enlightenment-color);}
+
+.achLock {width: 2em;height: 2em;border: 2px solid whitesmoke;border-radius: 2px;padding: 3px;margin: 4px;}
+.achUnlock {width: 2em;height: 2em;border: 2px solid whitesmoke;border-radius: 2px;padding: 3px;background-color: var(--unlocked-color);margin: 4px;}
+.achPlaceholder {width: 2em;height: 2em;border: 2px solid whitesmoke;border-radius: 2px;padding: 3px;margin: 4px;}
 .credit {
     display: flex;
     flex-direction: row;
@@ -128,7 +122,7 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 }
 
 .badge-green {
-    background-color: var(--red);
+    background-color: var(--unlocked-color);
     color: whitesmoke;
     padding: 2px 4px;
     text-align: center;
@@ -197,13 +191,13 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     height: auto;
     font-size: 1.5em;
     top: 95%;
-    border-color: var(--red);
-    color: var(--red);
+    border-color: #dd3131;
+    color: #dd3131;
 }
 #mainButton:hover {
-    background-color: var(--red);
+    background-color: #dd3131;
     color: var(--background-color);
-    border-color: var(--red);
+    border-color: #dd3131;
 }
 #researchCol {margin:4px;}
 #researchCol button {margin-bottom: 1vh;}
