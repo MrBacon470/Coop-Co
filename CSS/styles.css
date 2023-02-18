@@ -2,6 +2,14 @@
     font-family: 'Roboto Mono';
     src: url('RobotoMono-Medium.ttf');
 }
+@font-face {
+    font-family: 'IBM Plex Mono';
+    src: url('IBMPlexMono-Medium.ttf');
+}
+@font-face {
+    font-family: 'Source Code Pro';
+    src: url('SourceCodePro-Medium.ttf');
+}
 
 :root {
     --bg-color: #171b1b;
@@ -20,7 +28,7 @@
 /*Globals*/
 * {
     margin: 0%;
-    font-family: 'Roboto Mono';
+    font-family: 'Source Code Pro';
     color: whitesmoke;
 }
 body {
@@ -235,6 +243,7 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 #mainHeader h2, #mainHeader div {margin: 1vh; color:black}
 
 #promptInput {background-color: var(--bg-color); border: 2px solid;}
+#navBar button {margin:1vh}
 /*
 <div class="notifyjs-wrapper notifyjs-hidable">
 	<div class="notifyjs-arrow"></div>

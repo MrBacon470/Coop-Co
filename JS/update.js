@@ -84,7 +84,7 @@ function updateHTML() {
         DOMCacheGetOrSet('prophecyEggText').innerText = `Prophecy Eggs: ${format(data.prophecyEggs)}\nSoul Boost: x${format(prophecyEggBoost)}\nContract Reward Boost: x${format(contractRewardBoost)}`
         for(let i = 0; i < epicResearchCost.length; i++)
             if(data.epicResearch[i].lt(epicResearchMaxLevel[i]))
-                DOMCacheGetOrSet(`er${i}`).classList = data.soulEggs.gte(epicResearchCost[i]) ? 'prestige' : 'redButton'
+                DOMCacheGetOrSet(`er${i}`).classList = data.soulEggs.gte(epicResearchCost[i]) ? 'purpleButton' : 'redButton'
             else
                 DOMCacheGetOrSet(`er${i}`).classList = 'blueButton'
         for(let i = 0; i < epicResearchNames.length; i++) {
