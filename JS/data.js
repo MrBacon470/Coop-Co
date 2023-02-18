@@ -161,9 +161,9 @@ window.onload = function (){
             generateContract(i)
         data.regeneratedContracts = true
     }
-    const themeDisplayNames = ['Original','Void Stream','Flashbang']
-    DOMCacheGetOrSet('setTog4').innerText = `Theme: ${themeDisplayNames[data.themeIndex]}`
-    setTheme()
+    //const themeDisplayNames = ['Original','Void Stream','Flashbang']
+    //DOMCacheGetOrSet('setTog4').innerText = `Theme: ${themeDisplayNames[data.themeIndex]}`
+    //setTheme()
 }
 //full reset
 function fullReset(){

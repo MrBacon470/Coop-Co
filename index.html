@@ -12,7 +12,7 @@
     <meta content="#f0ead6" data-react-helmet="true" name="theme-color" />
     <script src="JS/Internal/jquery-3.6.0.min.js"></script>
     <script src="JS/Internal/notify.js"></script>
-    <link rel="stylesheet" href="CSS/Theme-Original.css">
+    <link rel="stylesheet" href="CSS/styles.css">
     <link id="faviconLink" rel="icon" type="image/png" href="Imgs/Eggs/egg.png">
     <title>Coop Co</title>
 </head>
@@ -166,7 +166,7 @@
                     </div>
                 </div>
             </div>
-            <button id="mainButton" onclick="data.chickens = data.chickens.plus(1)">Click to Hatch +1 Chicken</button>
+            <button id="mainButton" onclick="data.chickens = data.chickens.plus(1)" class="redButton">Click to Hatch +1 Chicken</button>
         </div>
         <div id="researchTab" class="flexCol tabHolder">
             <h3>Research</h3>
@@ -240,7 +240,7 @@
             <h3>Contracts</h3>
             <p id="contractHiddenText">Unlock at Fusion Eggs</p>
             <div id="contractHolder">
-                <div id="contract0" class="flexCol" style="border: 2px solid whitesmoke;align-items:flex-start;padding:2px;border-radius: 5px;">
+                <div id="contract0" class="flexCol" style="border: 2px solid whitesmoke;align-items:flex-start;padding:2px">
                     <img id="contract0Img" src="Imgs/Eggs/fusion.png">
                     <div id="contract0Content">
                         <h4 id="contract0Header">Contract-01</h4>
@@ -251,7 +251,7 @@
                     <p id="contract0Reward">Reward: 0.00 Soul Eggs</p>
                     <button id="contract0Button">Accept</button>
                 </div>
-                <div id="contract1" class="flexCol" style="border: 2px solid whitesmoke;align-items:flex-start;padding:5px;border-radius: 5px;">
+                <div id="contract1" class="flexCol" style="border: 2px solid whitesmoke;align-items:flex-start;padding:5px">
                     <img id="contract1Img" src="Imgs/Eggs/fusion.png">
                     <div id="contract1Content">
                         <h4 id="contract1Header">Contract-02</h4>
@@ -262,7 +262,7 @@
                     <p id="contract1Reward">Reward: 0.00 Soul Eggs</p>
                     <button id="contract1Button">Accept</button>
                 </div>
-                <div id="contract2" class="flexCol" style="border: 2px solid whitesmoke;align-items:flex-start;padding:5px;border-radius: 5px;">
+                <div id="contract2" class="flexCol" style="border: 2px solid whitesmoke;align-items:flex-start;padding:5px;">
                     <img id="contract2Img" src="Imgs/Eggs/fusion.png">
                     <div id="contract2Content">
                         <h4 id="contract2Header">Contract-03</h4>
@@ -333,7 +333,7 @@
             <p style="color:var(--red)">!Warning! - Journeying to any planet will cause a reset on the main farm.</p>
         </div>
         <div id="enlightenmentTab" class="flexCol tabHolder">
-            <h3 style="color:var(--enlightenment-color)">Enlightenments</h3>
+            <h3 style="color:var(--yellow)">Enlightenments</h3>
             <div class="flexRow">
                 <button id="enlight0" onclick="purchaseEnlightenment(0)" style="margin:1em" class="yellowButton">Enlightenment I</button>
                 <button id="enlight1" onclick="purchaseEnlightenment(1)" style="margin:1em" class="yellowButton">Enlightenment II</button>
@@ -343,10 +343,10 @@
             </div>
             <button id="ba2" class="yellowButton">Buy Amount: 1</button>
             <div class="flexRow">
-                <p id="knowledgeText" style="margin:1em;color:var(--enlightenment-color)">Knowledge: 0<br>+0.00/s</p>
+                <p id="knowledgeText" style="margin:1em;color:var(--yellow)">Knowledge: 0<br>+0.00/s</p>
                 <button id="enlightenmentButton" onclick="enterPath()" style="margin:1em" class="yellowButton">Enter the Path</button>
             </div>
-            <p style="margin:1em;color:var(--enlightenment-color);text-align: center;">
+            <p style="margin:1em;color:var(--yellow);text-align: center;">
                 To Pursue Enlightenment one must give up everything.
                 <br><br>Soul and Prophecy Eggs will lose their effects<br>You will be unable to prestige as well as you will be unable to leave the enlightenment egg.
             </p>
@@ -435,7 +435,7 @@
                     <button onclick="toggle(1);scrollNextMessage()" id="setTog1"></button>
                     <button onclick="toggle(2)" id="setTog2"></button>
                     <button onclick="toggle(3)" id="setTog3"></button>
-                    <button onclick="changeTheme()" id="setTog4"></button>
+                    <!--<button onclick="changeTheme()" id="setTog4"></button>-->
                 </div>
                 <div>
                     <a href="https://discord.com/invite/JkQUnubuhx">Discord Link!</a>

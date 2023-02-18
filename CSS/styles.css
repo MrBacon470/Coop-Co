@@ -4,14 +4,8 @@
 }
 
 :root {
-    --bg-color: #393c3c;
-    --header-color: whitesmoke;
-    --locked-color: #812626;
-    --unlocked-color: #2f8126;
-    --maxed-color: #267081;
-    --prestige-color: #8e3dcf;
-    --prophecy-color: #cdcf3d;
-    --enlightenment-color: #ffee48;
+    --bg-color: #171b1b;
+    --header-color: lightgrey;
     --orange: #e9a200;
     --gray: #999999;
     --white: #ffe9c4;
@@ -20,7 +14,7 @@
     --blue: #4481d7;
     --purple: #a144d7;
     --yellow: #d7d744;
-    --white2: #f5f5f5;
+    --white2: #9f9f9f;
 }
 
 /*Globals*/
@@ -39,7 +33,6 @@ button {
     border-width: 2px;
     border-color: whitesmoke;
     border-style: solid;
-    border-radius: 5px;
     transition-duration: 0.5s;
 }
 button:hover {
@@ -77,37 +70,37 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     transform: translate(-50%, -50%);
     z-index: 6969;
     padding: 5px;
-    border-radius: 3px;
     border: 4px solid;
     background-color: var(--bg-color);
 }
 .tabHolder {padding:1vw 1vh 1vw 1vh;}
 
 .blueButton {border-color:var(--blue); background-color: var(--bg-color); color: var(--blue);}
-.blueButton:hover { border-color:var(--blue); background-color: var(--blue); color: var(--white2);}
+.blueButton:hover { border-color:var(--blue); background-color: var(--blue); color: var(--bg-color);}
 .redButton {border-color:var(--red); background-color: var(--bg-color); color: var(--red);}
-.redButton:hover { border-color:var(--red); background-color: var(--red); color: var(--white2);}
+.redButton:hover { border-color:var(--red); background-color: var(--red); color: var(--bg-color);}
 .greenButton {border-color:var(--green); background-color: var(--bg-color); color: var(--green);}
-.greenButton:hover { border-color:var(--green); background-color: var(--green); color: var(--white2);}
-.yellowButton {border-color:var(--yellow); background-color: var(--bg-color); color: var(--yellow);}
-.yellowButton:hover { border-color:var(--yellow); background-color: var(--yellow); color: var(--white2);}
+.greenButton:hover { border-color:var(--green); background-color: var(--green); color: var(--bg-color);}
 .purpleButton {border-color:var(--purple); background-color: var(--bg-color); color: var(--purple);}
-.purpleButton:hover { border-color:var(--purple); background-color: var(--purple); color: var(--white2);}
+.purpleButton:hover { border-color:var(--purple); background-color: var(--purple); color: var(--bg-color);}
+.yellowButton {border-color:var(--yellow); background-color: var(--bg-color); color: var(--yellow);}
+.yellowButton:hover { border-color:var(--yellow); background-color: var(--yellow); color: var(--bg-color);}
 
-.lockedPromote {color:var(--locked-color);border-color: var(--locked-color);background-color: var(--header-color);}
-.lockedPromote:hover {color:var(--locked-color);border-color: var(--locked-color);background-color: var(--locked-color);}
-.unlockedPromote {color:var(--green);border-color: var(--green);background-color: var(--header-color);}
-.unlockedPromote:hover {color:var(--green);border-color: var(--green);background-color: var(--green);}
+.purpleButtonHeader {border-color:var(--purple); background-color: var(--header-color); color: var(--purple);}
+.purpleButtonHeader:hover { border-color:var(--purple); background-color: var(--purple); color: var(--header-color);}
+.redButtonHeader {border-color:var(--red); background-color: var(--header-color); color: var(--red);}
+.redButtonHeader:hover { border-color:var(--red); background-color: var(--red); color: var(--header-color);}
+.greenButtonHeader {border-color:var(--green); background-color: var(--header-color); color: var(--green);}
+.greenButtonHeader:hover { border-color:var(--green); background-color: var(--green); color: var(--header-color);}
 
-.lockedResearch {color:whitesmoke;border-color: var(--locked-color);}
-.lockedResearch:hover {color: whitesmoke;border-color: var(--locked-color);background-color: var(--locked-color);}
-.unlockedResearch {color:whitesmoke;border-color: var(--red);}
-.unlockedResearch:hover {color: whitesmoke;border-color: var(--red);background-color: var(--red);}
-.maxedResearch {color: whitesmoke;border-color: var(--maxed-color);}
-.maxedResearch:hover {color: whitesmoke;border-color: var(--maxed-color);background-color: var(--maxed-color);}
+.redButtonPromote {border-color:var(--red); color: var(--red);}
+.redButtonPromote:hover { border-color:var(--red); color: var(--red);}
+.greenButtonPromote {border-color:var(--green); color: var(--green);}
+.greenButtonPromote:hover { border-color:var(--green); color: var(--green);}
 
-.prestigeHeader {border-color:var(--purple);color: var(--purple);background-color: var(--header-color);}
-.prestigeHeader:hover {border-color: var(--purple);color: var(--header-color);background-color: var(--purple);}
+.achUnlock {height: 2em; width: 2em; margin: .25em; padding: 2px; border: 2px solid var(--green);}
+.achLock {height: 2em; width: 2em; margin: .25em; padding: 2px; border: 2px solid var(--red);}
+.achPlaceholder {height: 2em; width: 2em; margin: .25em; padding: 2px; border: 2px solid var(--gray);}
 
 .credit {
     display: flex;
@@ -120,35 +113,31 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 .credit a {text-align: center; font-size: 1.2em;}
 
 .badge-red {
-    background-color: var(--locked-color);
-    color: whitesmoke;
-    padding: 2px 4px;
-    text-align: center;
-    border-radius: 5px;
-}
-
-.badge-green {
     background-color: var(--red);
     color: whitesmoke;
     padding: 2px 4px;
     text-align: center;
-    border-radius: 5px;
 }
 
-.badge-blue {
-    background-color: var(--maxed-color);
+.badge-green {
+    background-color: var(--green);
     color: whitesmoke;
     padding: 2px 4px;
     text-align: center;
-    border-radius: 5px;
+}
+
+.badge-blue {
+    background-color: var(--blue);
+    color: whitesmoke;
+    padding: 2px 4px;
+    text-align: center;
 }
 
 .badge-yellow {
-    background-color: #c7cf26;
-    color: #363636;
+    background-color: var(--yellow);
+    color: var(--bg-color);
     padding: 2px 4px;
     text-align: center;
-    border-radius: 5px;
 }
 
 .notifyjs-bootstrap-base {
@@ -160,7 +149,6 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 	padding-left: 15px;
 	background-repeat: no-repeat;
 	background-position: 3px 7px;
-    border-radius: 4px;
 }
 .notifyjs-bootstrap-error {
 	color: whitesmoke;
@@ -197,13 +185,6 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     height: auto;
     font-size: 1.5em;
     top: 95%;
-    border-color: var(--red);
-    color: var(--red);
-}
-#mainButton:hover {
-    background-color: var(--red);
-    color: var(--background-color);
-    border-color: var(--red);
 }
 #researchCol {margin:4px;}
 #researchCol button {margin-bottom: 1vh;}
@@ -214,7 +195,6 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 }
 #newsHolder {
     border: 2px solid whitesmoke;
-    border-radius: 4px;
     padding: 2px;
     width: 45%;
     overflow:hidden;
@@ -237,12 +217,12 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
   --y: 0%;
   background: linear-gradient(
     90deg,
-    #a3ff9a 0%,
-    #a3ff9a var(--x),
-    #e9ff9a var(--x),
-    #e9ff9a var(--y),
-    #ff9a9a var(--y),
-    #ff9a9a 100% 
+    #c9ffc4 0%,
+    #c9ffc4 var(--x),
+    #fffec4 var(--x),
+    #fffec4 var(--y),
+    #ffc4c4 var(--y),
+    #ffc4c4 100% 
   );
 }
 .notifyjs-corner, .notifyjs-hidable , .notifyjs-container, .notifyjs-container div span { background-color: rgba(0, 0, 0, 0); color:black;}
@@ -254,7 +234,7 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 #mainHeader img, #mainHeader h2, #mainHeader div {background-color: var(--header-color);}
 #mainHeader h2, #mainHeader div {margin: 1vh; color:black}
 
-#promptInput {background-color: var(--bg-color); border: 2px solid; border-radius: 2px;}
+#promptInput {background-color: var(--bg-color); border: 2px solid;}
 /*
 <div class="notifyjs-wrapper notifyjs-hidable">
 	<div class="notifyjs-arrow"></div>
