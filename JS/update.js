@@ -44,29 +44,7 @@ function updateHTML() {
         }
     }
     else if(data.currentTab === 2) {
-        if(data.unlockedContracts === false && data.currentEgg >= 5)
-            data.unlockedContracts = true
-            if(data.generatedContracts === false && data.unlockedContracts === true){
-                for(let i = 0; i < 3; i++) {
-                    generateContract(i)
-                }
-                data.generatedContracts = true
-            }
-        DOMCacheGetOrSet('contractHiddenText').style.display = data.unlockedContracts === false ? 'block' : 'none'
-        DOMCacheGetOrSet('contractHolder').style.display = data.unlockedContracts === true ? 'block' : 'none'
-        if(data.unlockedContracts === true) {
-            for(let i = 0; i < data.contracts.length; i++) {
-                DOMCacheGetOrSet(`contract${i}Img`).setAttribute('src', data.contracts[i].image)
-                DOMCacheGetOrSet(`contract${i}Header`).innerText = data.contractActive[i] ? `Contract-0${i+1} | ${data.contracts[i].title} - [ACTIVE]` : `Contract-0${i+1} | ${data.contracts[i].title}`
-                DOMCacheGetOrSet(`contract${i}Description`).innerText = data.contracts[i].description
-                DOMCacheGetOrSet(`contract${i}Reward`).innerText = `Reward: ${format(data.contracts[i].reward)} ${data.contracts[i].rewardType}`
-                DOMCacheGetOrSet(`contract${i}Goal`).innerText = `Goal: $${format(data.contracts[i].goal)}`
-                if(data.onPlanet === false && data.inPath === false)
-                    DOMCacheGetOrSet(`contract${i}Button`).innerText = data.contractActive[i] ? `Leave Contract` : `Start Contract`
-                else
-                    DOMCacheGetOrSet(`contract${i}Button`).innerText = 'Unavailable'
-            }
-        }
+        
     }
     else if(data.currentTab === 3) {
         if(data.currentSubTab[0] === 0) {

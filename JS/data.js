@@ -12,31 +12,7 @@ function getDefaultObject() {
         unlockedContracts: false,
         generatedContracts: false,
         regeneratedContracts: false,
-        contracts: [{
-            title: '',
-            description: '',
-            image: '',
-            eggIndex: 0,
-            reward: D(0),
-            rewardType: '',
-            goal: D(0)
-        },{
-            title: '',
-            description: '',
-            image: '',
-            eggIndex: 0,
-            reward: D(0),
-            rewardType: '',
-            goal: D(0)
-        },{
-            title: '',
-            description: '',
-            image: '',
-            eggIndex: 0,
-            reward: D(0),
-            rewardType: '',
-            goal: D(0)
-        }],
+        contracts: [],
         contractActive: new Array(3).fill(false),
         currentEgg: 0,
         unlockedEgg: new Array(18).fill(false),

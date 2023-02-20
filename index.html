@@ -43,12 +43,13 @@
             <br>
         </div>
     </div>
-    <div id="mainHeader" class="flexRow" style="align-items: center;align-self: center;">
+    <div id="mainHeader" class="flexRow">
         <img id="currentEggImgHeader" src="Imgs/egg.png">
-        <button id="eggPromoteButton" style="margin:1vh;" class="redButton promoteButton" onclick="promoteEgg()">Promote to Next Egg</button>
+        <button id="eggPromoteButton" class="redButton promoteButton" onclick="promoteEgg()">Promote to Next Egg</button>
         <h2 id="moneyText">$0.00</h2>
-        <div id="chickensText">Chickens: 0</div>
-        <button id="prestigeButton" style="margin:1vh;" class="redButton" onclick="createConfirmation('prestige')">???</button>
+        <p id="chickensText">Chickens: 0</p>
+        <button id="prestigeButton" class="purpleButtonHeader" onclick="createConfirmation('prestige')">???</button>
+        <button id="ascensionButton" class="orangeButtonHeader" onclick="createConfirmation('ascension')">Ascend</button>
     </div>
     <div id="newsHolder">
         <div id="news">
@@ -63,6 +64,7 @@
             <button id="eggpeditionTabButton" class="blueButton" onclick="changeTab(5)">Eggspeditions</button>
             <button id="enlightenmentTabButton" class="yellowButton"  onclick="changeTab(6)">Enlightenments</button>
             <button id="prestigeTabButton" class="purpleButton" onclick="changeTab(4)">Prestige</button>
+            <button id="ascensionTabButton" class="orangeButton" onclick="changeTab(8)">Ascension</button>
             <button onclick="changeTab(7)">Achievements</button>
             <button onclick="changeTab(3)">Settings</button>
         </div>
@@ -238,42 +240,6 @@
         </div>
         <div id="contractsTab" class="flexCol tabHolder">
             <h3>Contracts</h3>
-            <p id="contractHiddenText">Unlock at Fusion Eggs</p>
-            <div id="contractHolder">
-                <div id="contract0" class="flexCol" style="border: 2px solid whitesmoke;align-items:flex-start;padding:2px">
-                    <img id="contract0Img" src="Imgs/Eggs/fusion.png">
-                    <div id="contract0Content">
-                        <h4 id="contract0Header">Contract-01</h4>
-                        <p id="contract0Description">A Californian Energy Shortage means more demand for Fusion Eggs</p>
-                        <p style="color:var(--red)">!When you start a contract you will do a prestige reset and be unable to leave the egg until<br>the contract is complete or cancelled!</p>
-                    </div>
-                    <p id="contract0Goal"></p>
-                    <p id="contract0Reward">Reward: 0.00 Soul Eggs</p>
-                    <button id="contract0Button">Accept</button>
-                </div>
-                <div id="contract1" class="flexCol" style="border: 2px solid whitesmoke;align-items:flex-start;padding:5px">
-                    <img id="contract1Img" src="Imgs/Eggs/fusion.png">
-                    <div id="contract1Content">
-                        <h4 id="contract1Header">Contract-02</h4>
-                        <p id="contract1Description">A Californian Energy Shortage means more demand for Fusion Eggs</p>
-                        <p style="color:var(--red)">!When you start a contract you will do a prestige reset and be unable to leave the egg until<br>the contract is complete or cancelled!</p>
-                    </div>
-                    <p id="contract1Goal"></p>
-                    <p id="contract1Reward">Reward: 0.00 Soul Eggs</p>
-                    <button id="contract1Button">Accept</button>
-                </div>
-                <div id="contract2" class="flexCol" style="border: 2px solid whitesmoke;align-items:flex-start;padding:5px;">
-                    <img id="contract2Img" src="Imgs/Eggs/fusion.png">
-                    <div id="contract2Content">
-                        <h4 id="contract2Header">Contract-03</h4>
-                        <p id="contract2Description">A Californian Energy Shortage means more demand for Fusion Eggs</p>
-                        <p style="color:var(--red)">!When you start a contract you will do a prestige reset and be unable to leave the egg until<br>the contract is complete or cancelled!</p>
-                    </div>
-                    <p id="contract2Goal"></p>
-                    <p id="contract2Reward">Reward: 0.00 Soul Eggs</p>
-                    <button id="contract2Button">Accept</button>
-                </div>
-            </div>
         </div>
         <div id="prestigeTab" class="flexCol tabHolder">
             <h3 style="color:var(--purple)">Prestige</h3>
@@ -350,6 +316,9 @@
                 To Pursue Enlightenment one must give up everything.
                 <br><br>Soul and Prophecy Eggs will lose their effects<br>You will be unable to prestige as well as you will be unable to leave the enlightenment egg.
             </p>
+        </div>
+        <div id="ascenscionTab" class="flexCol tabHolder">
+            <h3 style="color: var(--orange)">Ascenscion</h3>
         </div>
         <div id="achievementTab" class="flexCol tabHolder">
             <h3>Achievements</h3>
