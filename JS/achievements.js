@@ -207,7 +207,7 @@ const achievementObjs = [
 ]
 
 function updateAchText(i) {
-    DOMCacheGetOrSet('achHoverText').innerText = `[${i+1}] - ${achievementObjs[i].name}\n${achievementObjs[i].desc}`
+    DOMCacheGetOrSet('achHoverText').innerText = `[${i+1}] - ${achievementObjs[i].name}\n${achievementObjs[i].description}`
 }
 
 for(let i = 0; i < achievementObjs.length; i++) 
