@@ -41,6 +41,7 @@ button {
     border-width: 2px;
     border-color: whitesmoke;
     border-style: solid;
+    border-radius: 5px;
     transition-duration: 0.5s;
 }
 button:hover {
