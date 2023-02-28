@@ -25,14 +25,13 @@
     --bg-color: #171b1b;
     --header-color: lightgrey;
     --gray: #999999;
-    --white: #ffe9c4;
+    --white: #e7e7e7;
     --green: #65be67;
     --red: #d74444;
     --blue: #4481d7;
     --purple: #a144d7;
     --yellow: #d7d744;
     --orange: #d77f44;
-    --white2: #9f9f9f;
 }
 
 /*Globals*/
@@ -121,9 +120,9 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 .greenButtonPromote {border-color:var(--green); color: var(--green);}
 .greenButtonPromote:hover { border-color:var(--green); color: var(--green);}
 
-.achUnlock {height: 2em; width: 2em; margin: .25em; padding: 2px; border: 2px solid var(--green);}
-.achLock {height: 2em; width: 2em; margin: .25em; padding: 2px; border: 2px solid var(--red);}
-.achPlaceholder {height: 2em; width: 2em; margin: .25em; padding: 2px; border: 2px solid var(--gray);}
+.achUnlock {height: 2em; width: 2em; margin: .25em; padding: 2px; border: 2px solid var(--white); border-radius: 5px; background-color: var(--green);}
+.achLock {height: 2em; width: 2em; margin: .25em; padding: 2px; border: 2px solid var(--white); border-radius: 5px; background-color: var(--red);}
+.achPlaceholder {height: 2em; width: 2em; margin: .25em; padding: 2px; border: 2px solid var(--white); border-radius: 5px; background-color: var(--gray);}
 
 .credit {
     display: flex;
@@ -260,6 +259,8 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 #promptInput {background-color: var(--bg-color); border: 2px solid;}
 #navBar button, #mainHeader button, #mainHeader img, #mainHeader h2, #mainHeader p {margin:1vh}
 #mainHeader p {color: black}
+
+#epicResearchRow button {margin-left: .25em; margin-right: .25em;}
 /*
 <div class="notifyjs-wrapper notifyjs-hidable">
 	<div class="notifyjs-arrow"></div>
