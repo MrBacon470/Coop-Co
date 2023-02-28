@@ -46,7 +46,7 @@ function mainLoop() {
 }
 
 function changeTab(i) {
-    const tabIDs = ['egg','research','contracts','settings','prestige','eggpedition','enlightenment','achievement','ascenscion']
+    const tabIDs = ['egg','research','contracts','settings','prestige','eggpedition','enlightenment','achievement','ascension']
     data.currentTab = i
     for(let i = 0; i < tabIDs.length; i++) {
         DOMCacheGetOrSet(`${tabIDs[i]}Tab`).style.display = i === data.currentTab ? 'flex' : 'none'
@@ -54,8 +54,8 @@ function changeTab(i) {
 }
 
 function changeSubTab(a,b) {
-    const subAmts = [2]
-    const subIDs = ['set']
+    const subAmts = [3,2,2]
+    const subIDs = ['set','con','asc']
     data.currentSubTab[a] = b
     for(let i = 0; i <= subAmts[a]; i++) {
         DOMCacheGetOrSet(`${subIDs[a]}Sub${i}`).style.display = i === data.currentSubTab[a] ? 'flex' : 'none'

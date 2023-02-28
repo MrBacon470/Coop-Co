@@ -43,7 +43,7 @@ function getDefaultObject() {
         buyAmounts: [0,0,0],
         time: Date.now(),
         currentTab: 0,
-        currentSubTab: [0],
+        currentSubTab: new Array(3).fill(0),
         settingsToggles: new Array(4).fill(true),
         currentUpdate: 'v1.1.5',
         devSpeed: 1,

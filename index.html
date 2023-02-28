@@ -240,6 +240,12 @@
         </div>
         <div id="contractsTab" class="flexCol tabHolder">
             <h3>Contracts</h3>
+            <div style="margin-bottom:1vh">
+                <button onclick="changeSubTab(1,0)" class="purpleButton">Prestige Contracts</button>
+                <button onclick="changeSubTab(1,1)" class="orangeButton">Ascension Contracts</button>
+            </div>
+            <div id="conSub0" class="flexCol"></div>
+            <div id="conSub1" class="flexCol"></div>
         </div>
         <div id="prestigeTab" class="flexCol tabHolder">
             <h3 style="color:var(--purple)">Prestige</h3>
@@ -317,8 +323,14 @@
                 <br><br>Soul and Prophecy Eggs will lose their effects<br>You will be unable to prestige as well as you will be unable to leave the enlightenment egg.
             </p>
         </div>
-        <div id="ascenscionTab" class="flexCol tabHolder">
+        <div id="ascensionTab" class="flexCol tabHolder">
             <h3 style="color: var(--orange)">Ascension</h3>
+            <div style="margin-bottom:1vh">
+                <button onclick="changeSubTab(2,0)" class="orangeButton">Ascension</button>
+                <button onclick="changeSubTab(2,1)" class="orangeButton">Temple</button>
+            </div>
+            <div id="ascSub0" class="flexCol"></div>
+            <div id="ascSub1" class="flexCol"></div>
         </div>
         <div id="achievementTab" class="flexCol tabHolder">
             <h3>Achievements</h3>
