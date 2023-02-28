@@ -11,6 +11,16 @@
     src: url('SourceCodePro-Medium.ttf');
 }
 
+@font-face {
+    font-family: 'Martian Mono';
+    src: url('MartianMono-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Tilt Warp';
+    src: url('TiltWarp-Regular.ttf');
+}
+
 :root {
     --bg-color: #171b1b;
     --header-color: lightgrey;
@@ -28,7 +38,7 @@
 /*Globals*/
 * {
     margin: 0%;
-    font-family: 'Source Code Pro';
+    font-family: 'Tilt Warp';
     color: whitesmoke;
 }
 body {
