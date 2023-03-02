@@ -50,6 +50,7 @@ function changeTab(i) {
     data.currentTab = i
     for(let i = 0; i < tabIDs.length; i++) {
         DOMCacheGetOrSet(`${tabIDs[i]}Tab`).style.display = i === data.currentTab ? 'flex' : 'none'
+        
     }
 }
 
@@ -57,7 +58,7 @@ function changeSubTab(a,b) {
     const subAmts = [3,2,2]
     const subIDs = ['set','con','asc']
     data.currentSubTab[a] = b
-    for(let i = 0; i <= subAmts[a]; i++) {
+    for(let i = 0; i < subAmts[a]; i++) {
         DOMCacheGetOrSet(`${subIDs[a]}Sub${i}`).style.display = i === data.currentSubTab[a] ? 'flex' : 'none'
     }
 }
