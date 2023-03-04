@@ -44,19 +44,32 @@ const prestigeContracts = [
 ]
 
 function updateContractsHTML() {
-  for(let i = 0; i < 3; i++) {
-    if(data.contracts[i].id === -1) {
-      DOMCacheGetOrSet(`infContractTitle${i}`).innerText = 'No Contract'
-      DOMCacheGetOrSet(`infContractDesc${i}`).innerText = 'No Contract'
-      DOMCacheGetOrSet(`infContractGoal${i}`).innerText = 'No Contract'
-      DOMCacheGetOrSet(`infContractReward${i}`).innerText = 'No Contract'
-      DOMCacheGetOrSet(`infContractButton${i}`).innerText = 'No Contract'
-    } else {
-      DOMCacheGetOrSet(`infContractTitle${i}`).innerText = prestigeContracts[data.contracts[i].id].name
-      DOMCacheGetOrSet(`infContractDesc${i}`).innerText = prestigeContracts[data.contracts[i].id].desc
-      DOMCacheGetOrSet(`infContractGoal${i}`).innerText = `Goal: $${format(data.contracts[i].goal)}`
-      DOMCacheGetOrSet(`infContractReward${i}`).innerText = `Reward: ${format(data.contracts[i].reward)} Prophecy Eggs`
+  if(data.currentSubTab[1] === 0) {
+    for(let i = 0; i < 3; i++) {
+      if(data.contracts[i].id === -1) {
+        DOMCacheGetOrSet(`infContractTitle${i}`).innerText = 'No Contract'
+        DOMCacheGetOrSet(`infContractDesc${i}`).innerText = 'No Contract'
+        DOMCacheGetOrSet(`infContractGoal${i}`).innerText = 'No Contract'
+        DOMCacheGetOrSet(`infContractReward${i}`).innerText = 'No Contract'
+        DOMCacheGetOrSet(`infContractButton${i}`).innerText = 'No Contract'
+      } else {
+        DOMCacheGetOrSet(`infContractTitle${i}`).innerText = prestigeContracts[data.contracts[i].id].name
+        DOMCacheGetOrSet(`infContractDesc${i}`).innerText = prestigeContracts[data.contracts[i].id].desc
+        DOMCacheGetOrSet(`infContractGoal${i}`).innerText = `Goal: $${format(data.contracts[i].goal)}`
+        DOMCacheGetOrSet(`infContractReward${i}`).innerText = `Reward: ${format(data.contracts[i].reward)} Prophecy Eggs`
+      }
+      if(contractActive() || data.inPath || data.onPlanet || data.contracts[i].id === -1) {
+        DOMCacheGetOrSet(`infContractButton${i}`).innerText = !data.contractActive[i] ? 'Can\'t Start' : 'Exit Contract'
+        DOMCacheGetOrSet(`infContractButton${i}`).classList = !data.contractActive[i] ? 'redButton' : 'greenButton'
+      }
+      else {
+        DOMCacheGetOrSet(`infContractButton${i}`).innerText = 'Start Contract'
+        DOMCacheGetOrSet(`infContractButton${i}`).classList = 'greenButton'
+      }
     }
+  }
+  else if(data.currentSubTab[1] === 1) {
+    //Implement Ascension Contracts
   }
 }
 
@@ -67,14 +80,45 @@ function contractActive(){
   return false
 }
 
-function generateContract() {
-    
+function generateContract(i) {
+    const id = getRandom(0, prestigeContracts.length)
+    let goal = prestigeContracts[id].baseGoal
+    let reward = prestigeContracts[id].baseReward.times(contractRewardBoost)
+    data.contracts[i].id = id
+    data.contracts[i].goal = goal
+    data.contracts[i].reward = reward
 }
 
 function startContract(i) {
-    
+    if(data.inPath || data.onPlanet || data.contracts[i].id === -1 || (contractActive() && !data.contractActive[i])) return
+    if(!data.contractActive[i]) {
+      prestige()
+      data.contractActive[i] = true
+      if(data.settingsToggles[2] === true) 
+        $.notify(`Contract ${prestigeContracts[data.contracts[i].id].name} Started!`, 'warn')
+    }
+    else {
+      prestige()
+      data.contractActive[i] = false
+      if(data.settingsToggles[2] === true) 
+        $.notify(`Contract ${prestigeContracts[data.contracts[i].id].name} Left!`, 'warn')
+    }
 }
 
 function runContract(i) {
-    
+    if(data.money.gte(data.contracts[i].goal)) {
+      data.contractActive[i] = false
+      data.prophecyEggs = data.prophecyEggs.plus(data.contracts[i].reward)
+      generateContract(i)
+      for(let i = 0; i < data.research.length; i++)
+        data.research[i] = D(0)
+      eggValueBonus = D(1)
+      chickenGain = D(0)
+      layRate = D(1)
+      data.chickens = D(0)
+      data.money = D(0)
+      data.currentEgg = 0
+      if(data.settingsToggles[2] === true) 
+        $.notify(`Contract ${prestigeContracts[data.contracts[i].id].name} Completed!`, 'success')
+    }
 }
