@@ -37,7 +37,7 @@
 /*Globals*/
 * {
     margin: 0%;
-    font-family: 'Tilt Warp';
+    font-family: 'Martian Mono';
     color: whitesmoke;
 }
 body {
@@ -133,6 +133,13 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 }
 .credit img {width: 1.5em; height: 1.5em; margin-right:1em;}
 .credit a {text-align: center; font-size: 1.2em;}
+
+.contractHolder {
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
 
 .badge-red {
     background-color: var(--red);

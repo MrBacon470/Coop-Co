@@ -44,7 +44,7 @@ function updateHTML() {
         }
     }
     else if(data.currentTab === 2) {
-        
+        updateContractsHTML()
     }
     else if(data.currentTab === 3) {
         if(data.currentSubTab[0] === 0) {
