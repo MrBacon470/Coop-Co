@@ -139,6 +139,8 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
+    width: 12em;
+    text-align: center;
 }
 
 .badge-red {

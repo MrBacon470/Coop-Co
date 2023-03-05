@@ -81,7 +81,8 @@ function contractActive(){
 }
 
 function generateContract(i) {
-    const id = getRandom(0, prestigeContracts.length)
+    let id = getRandom(0, prestigeContracts.length)
+    if(id > prestigeContracts.length - 1) index = prestigeContracts.length - 1
     let goal = prestigeContracts[id].baseGoal
     let reward = prestigeContracts[id].baseReward.times(contractRewardBoost)
     data.contracts[i].id = id
