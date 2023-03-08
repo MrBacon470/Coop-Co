@@ -9,7 +9,7 @@ function getDefaultObject() {
         prophecyEggs: D(0),
         bestSoulEggs: D(0),
         hasPrestiged: false,
-        contracts: new Array(3).fill({id: -1, goal: D(0), reward: D(0)}),
+        contracts: data.contracts = [{id: -1, goal: D(0), reward: D(0)},{id: -1, goal: D(0), reward: D(0)},{id: -1, goal: D(0), reward: D(0)}],
         contractActive: new Array(3).fill(false),
         currentEgg: 0,
         unlockedEgg: new Array(18).fill(false),
