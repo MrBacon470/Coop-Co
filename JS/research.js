@@ -23,8 +23,7 @@ for(let i = 0; i < commonResearchNames.length; i++) {
         commonResearchCost[i] = ((commonResearchBaseCost[i]).sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.35, data.research[i]))
     DOMCacheGetOrSet(`r${i}`).innerText = `${commonResearchNames[i]}\n${commonResearchDescs[i]}\nLevel: ${format(data.research[i],0)}/${format(commonResearchMaxLevel[i],0)}\n
     Cost: $${format(commonResearchCost[i])}`
-    DOMCacheGetOrSet(`r${i}`).classList = 'redButton'
-    DOMCacheGetOrSet(`r${i}`).onclick = () => purchaseResearch(i)
+
 }
 
 function purchaseResearch(i) {
@@ -67,8 +66,6 @@ for(let i = 0; i < epicResearchNames.length; i++) {
     epicResearchCost[i] = epicResearchBaseCost[i].times(Decimal.pow(1.25, data.epicResearch[i]))
     DOMCacheGetOrSet(`er${i}`).innerText = `${epicResearchNames[i]}\n${epicResearchDescs[i]}\nLevel: ${format(data.epicResearch[i],0)}/${format(epicResearchMaxLevel[i],0)}\n
     Cost: ${format(epicResearchCost[i])} Soul Eggs`
-    DOMCacheGetOrSet(`er${i}`).classList = 'redButton'
-    DOMCacheGetOrSet(`er${i}`).onclick = () => purchaseEpicResearch(i)
 }
 function purchaseEpicResearch(i) {
     const buyAmountNums = [1,5,10,20]

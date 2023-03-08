@@ -39,6 +39,3 @@ function updateAutomation() {
         DOMCacheGetOrSet(`auto2`).innerText = data.autoActive[2] ? `${autoNames[2]}: On` : `${autoNames[2]}: Off`
 }
 
-for(let i = 0; i < data.autoActive.length; i++) {
-    DOMCacheGetOrSet(`auto${i}`).addEventListener('click', () => { data.autoActive[i] = !data.autoActive[i] })
-}

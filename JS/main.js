@@ -1,5 +1,44 @@
 let diff = 0;
 const eggImgPath = 'Imgs/Eggs/'
+
+function generateHTMLAndHandlers() {
+    for(let i = 0; i < tabIDs.length; i++) {
+        DOMCacheGetOrSet(`tabButton${i}`).addEventListener('click', () => {changeTab(i)})
+    }
+    //Egg Tab
+    DOMCacheGetOrSet('mainButton').addEventListener('click', () => {data.chickens = data.chickens.plus(1)})
+    //Research Tab
+    for(let i = 0; i < commonResearchNames.length; i++) {
+        DOMCacheGetOrSet(`r${i}`).classList = 'redButton'
+        DOMCacheGetOrSet(`r${i}`).onclick = () => purchaseResearch(i)
+    }
+    //Contracts Tab
+    for(let i = 0; i < 3; i++) {
+        DOMCacheGetOrSet(`infContractButton${i}`).addEventListener('click', () => {startContract(i)})
+    }
+    //Eggspeditions Tab
+    DOMCacheGetOrSet('discoveryButton').addEventListener('click', () => {discoverPlanet()})
+    DOMCacheGetOrSet('eggspeditionButton').addEventListener('click', () => {journeyToPlanet()})
+    for(let i = 0; i < planetNames.length; i++) {
+        DOMCacheGetOrSet('planet'+i).addEventListener('click', () => updatePlanetHoverText(i))
+    }
+    //Prestige Tab
+    for(let i = 0; i < epicResearchNames.length; i++) {
+        DOMCacheGetOrSet(`er${i}`).classList = 'redButton'
+        DOMCacheGetOrSet(`er${i}`).onclick = () => purchaseEpicResearch(i)
+    }
+    //Ascension Tab
+    //Achievements Tab
+    for(let i = 0; i < achievementObjs.length; i++) 
+        DOMCacheGetOrSet('ach' + i).addEventListener('mouseover', () => updateAchText(i))
+    //Automators
+    for(let i = 0; i < data.autoActive.length; i++) {
+        DOMCacheGetOrSet(`auto${i}`).addEventListener('click', () => { data.autoActive[i] = !data.autoActive[i] })
+    }
+
+    console.log('HTML and Handlers Generated')
+}
+
 function mainLoop() {
     diff = (Date.now()-data.time)*data.devSpeed/1000
     updateResearch()
@@ -44,9 +83,8 @@ function mainLoop() {
         DOMCacheGetOrSet('faviconLink').href = `${eggImgPath}${eggData[data.currentEgg].id}.png`
     data.time = Date.now()
 }
-
+const tabIDs = ['egg','research','contracts','settings','prestige','eggpedition','enlightenment','achievement','ascension']
 function changeTab(i) {
-    const tabIDs = ['egg','research','contracts','settings','prestige','eggpedition','enlightenment','achievement','ascension']
     data.currentTab = i
     for(let i = 0; i < tabIDs.length; i++) {
         DOMCacheGetOrSet(`${tabIDs[i]}Tab`).style.display = i === data.currentTab ? 'flex' : 'none'

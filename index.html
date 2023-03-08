@@ -58,15 +58,15 @@
     </div>
     <div id="game" class="flexCol" style="margin-top:0.5vh;align-self: center;">
         <div id="navBar" class="flexRow" style="align-items: center;">
-            <button onclick="changeTab(0)">Eggs</button>
-            <button onclick="changeTab(1)">Research</button>
-            <button id="contractButton" onclick="changeTab(2)">Contracts</button>
-            <button id="eggpeditionTabButton" class="blueButton" onclick="changeTab(5)">Eggspeditions</button>
-            <button id="enlightenmentTabButton" class="yellowButton"  onclick="changeTab(6)">Enlightenments</button>
-            <button id="prestigeTabButton" class="purpleButton" onclick="changeTab(4)">Prestige</button>
-            <button id="ascensionTabButton" class="orangeButton" onclick="changeTab(8)">Ascension</button>
-            <button onclick="changeTab(7)">Achievements</button>
-            <button onclick="changeTab(3)">Settings</button>
+            <button id="tabButton0">Eggs</button>
+            <button id="tabButton1">Research</button>
+            <button id="tabButton2">Contracts</button>
+            <button id="tabButton5" class="blueButton">Eggspeditions</button>
+            <button id="tabButton6" class="yellowButton">Enlightenments</button>
+            <button id="tabButton4" class="purpleButton">Prestige</button>
+            <button id="tabButton8" class="orangeButton">Ascension</button>
+            <button id="tabButton7">Achievements</button>
+            <button id="tabButton3">Settings</button>
         </div>
         <div id="eggTab" class="flexCol tabHolder">
             <h3>Eggs</h3>
@@ -168,7 +168,7 @@
                     </div>
                 </div>
             </div>
-            <button id="mainButton" onclick="data.chickens = data.chickens.plus(1)" class="redButton">Click to Hatch +1 Chicken</button>
+            <button id="mainButton" class="redButton">Click to Hatch +1 Chicken</button>
         </div>
         <div id="researchTab" class="flexCol tabHolder">
             <h3>Research</h3>
@@ -348,8 +348,8 @@
             </div>
             <p id="planetHoverText">Click on a planet to see what it is</p>
             <div style="margin-top:1em;margin-bottom:1em">
-                <button id="discoveryButton" onclick="discoverPlanet()">Discover Planet</button>
-                <button id="eggspeditionButton" onclick="journeyToPlanet()">Go on an Eggspedition</button>
+                <button id="discoveryButton">Discover Planet</button>
+                <button id="eggspeditionButton">Go on an Eggspedition</button>
             </div>
             <p id="discoveryText">Discover Planet: Cost 50 Million Rocket Fuel Eggs</p>
             <p style="color:var(--red)">!Warning! - Journeying to any planet will cause a reset on the main farm.</p>

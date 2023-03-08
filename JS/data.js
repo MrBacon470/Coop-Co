@@ -119,6 +119,7 @@ window.setInterval(function(){
 }, 30000);
 window.onload = function (){
     load()
+    generateHTMLAndHandlers()
     diff = (Date.now()-data.time)*data.devSpeed/1000
     $.notify('Welcome Back!\nYou were gone for ' + formatTime(diff), 'info')
     

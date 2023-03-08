@@ -210,9 +210,6 @@ function updateAchText(i) {
     DOMCacheGetOrSet('achHoverText').innerText = `[${i+1}] - ${achievementObjs[i].name}\n${achievementObjs[i].description}`
 }
 
-for(let i = 0; i < achievementObjs.length; i++) 
-    DOMCacheGetOrSet('ach' + i).addEventListener('mouseover', () => updateAchText(i))
-
 function getAchievement(i) {
     if(data.achievements[i] === true) return
     data.achievements[i] = true

@@ -45,10 +45,6 @@ function updatePlanetHoverText(i) {
     planetHoverIndex = i
 }
 
-for(let i = 0; i < planetNames.length; i++) {
-    DOMCacheGetOrSet('planet'+i).addEventListener('click', () => updatePlanetHoverText(i))
-}
-
 function discoverPlanet() {
     if(data.currentEgg === discoveryEggIndexes[data.discoveries] && data.chickens.gte(discoveryReqs[data.discoveries]) && data.planetsDiscovered[planetHoverIndex] === false) {
         data.chickens = data.chickens.sub(discoveryReqs[data.discoveries])
