@@ -252,4 +252,7 @@ function updateAchClass() {
     for(let i = 0; i < 19; i++) {
         DOMCacheGetOrSet('ach'+i).src = data.achievements[i] ? achievementObjs[i].img : `${eggImgPath}question.png`
     }
+    for(let i = 19; i < achievementObjs.length; i++) {
+        DOMCacheGetOrSet('ach'+i).src = achievementObjs[i].img
+    }
 }
