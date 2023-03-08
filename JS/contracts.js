@@ -40,6 +40,13 @@ const prestigeContracts = [
       eggIndex: 4,
       baseGoal: D(1e12),
       baseReward: D(5),
+    },
+    {
+      name: 'Temporal Tear',
+      desc: 'A Temporal Tear has caused a rift in the space-time continuum, Tachyon Eggs are needed to fix it.',
+      eggIndex: 8,
+      baseGoal: D(1e18),
+      baseReward: D(3),
     }
 ]
 
@@ -83,7 +90,7 @@ function contractActive(){
 function generateContract(i) {
     let id = getRandom(0, prestigeContracts.length)
     if(id > prestigeContracts.length - 1) index = prestigeContracts.length - 1
-    let goal = prestigeContracts[id].baseGoal
+    let goal = prestigeContracts[id].baseGoal.times(contractRewardBoost)
     let reward = prestigeContracts[id].baseReward.times(contractRewardBoost)
     data.contracts[i].id = id
     data.contracts[i].goal = goal
@@ -94,6 +101,7 @@ function startContract(i) {
     if(data.inPath || data.onPlanet || data.contracts[i].id === -1 || (contractActive() && !data.contractActive[i])) return
     if(!data.contractActive[i]) {
       prestige()
+      data.currentEgg = prestigeContracts[data.contracts[i].id].eggIndex
       data.contractActive[i] = true
       if(data.settingsToggles[2] === true) 
         $.notify(`Contract ${prestigeContracts[data.contracts[i].id].name} Started!`, 'warn')
