@@ -207,6 +207,9 @@ const achievementObjs = [
 ]
 
 function updateAchText(i) {
+    if(i < 19)
+    DOMCacheGetOrSet('achHoverText').innerText = `[${i+1}] - ${!data.achievements[i] ? '???' :achievementObjs[i].name}\n${achievementObjs[i].description}`
+    else 
     DOMCacheGetOrSet('achHoverText').innerText = `[${i+1}] - ${achievementObjs[i].name}\n${achievementObjs[i].description}`
 }
 
@@ -246,5 +249,7 @@ function updateAchClass() {
     for(let i = 0; i < achievementObjs.length; i++) {
             DOMCacheGetOrSet('ach'+i).classList = data.achievements[i] ? 'achUnlock' : 'achLock'
     }
-
+    for(let i = 0; i < 19; i++) {
+        DOMCacheGetOrSet('ach'+i).src = data.achievements[i] ? achievementObjs[i].img : `${eggImgPath}question.png`
+    }
 }
