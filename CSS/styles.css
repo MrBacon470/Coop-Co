@@ -257,6 +257,41 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     #ffc4c4 100% 
   );
 }
+
+#templeSlot0 {
+    background-color: var(--yellow);
+    border: 2px solid var(--gray);
+    border-radius: 5px;
+    padding: 5px;
+    height: 4em;
+    width: 4em;
+}
+
+#templeSlot1 {
+    background-color: var(--blue);
+    border: 2px solid var(--gray);
+    border-radius: 5px;
+    padding: 5px;
+    height: 3.5em;
+    width: 3.5em;
+}
+
+#templeSlot2 {
+    background-color: var(--red);
+    border: 2px solid var(--gray);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#templeSlotHolder img {margin-left: 1vw; margin-right: 1vw; margin-top: 1vh; margin-bottom: 1vh;}
+#templeSlotHolder {
+    margin-top: 1vh; 
+    margin-bottom: 1vh;
+    border: 2px solid var(--orange);
+    border-radius: 5px;
+    padding: 5px;
+}
+
 .notifyjs-corner, .notifyjs-hidable , .notifyjs-container, .notifyjs-container div span { background-color: rgba(0, 0, 0, 0); color:black;}
 #planetRow img {width: 5em; height: 5em; margin:1em}
 

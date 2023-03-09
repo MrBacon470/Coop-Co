@@ -34,7 +34,8 @@ newsArray = [//always true
     ['Stop paying attention to the news ticker and focus on the actual game! Isn\'t that what you came here for?','true'],['Eating an Ancient Egg in Ancient Greece be like...','true'],['how many soul eggs is one soul worth?','true'],['Can we use these soul eggs to create a soul?','true'],
     ['<i>Introducing Prestige™ - a way to fuse yourself with the egg. Become the egg. Join our master. D̶̃͗O̷̿̂ ̴̧̌I̷̓͆T̶͈̓ ̵͆̈́Ń̴͒O̸͕̓Ẇ̸͘</i>','true'],['"Eggs for the egg god" -Aleggsander Teggnoblade (RIP)','true'],["It appears the prodigy and AI eggs have turned Florida Men into smart Florida Robots. Now they are unstoppable.","true"],
     ['"Coop-Co Is A PERFECTLY BALANCED Game With No Exploits" - The Spiffing Brit before monopolising the egg market','true'],["egg egg egg eggg? egg. egg! egggggggggggggggggggggggggg","true"],['"I like to eat at kfc" says local fowl','true'],["press alt f4 to get a life","true"],
-    ["BREGGKING NEWS: Coop Co behind update schedule! 'Algebraic Progression already got to v2.1,' random guy reports.","true"],['Nothing like the smell of scrambled nebula eggs in the morning','true'],['The news will be shut down shortly. Our news guy ate too many enlightenment eggs and ascended.','true'],
+    ["BREGGKING NEWS: Coop Co behind update schedule! 'Algebraic Progression already got to v2.1,' random guy reports.","true"],['Nothing like the smell of scrambled nebula eggs in the morning','true'],['The news will be shut down shortly. Our news guy ate too many enlightenment eggs and ascended.','true'],['"Breaking news: Chicken found giving live birth for the first time, egg farmers pissed at prospect of having no more eggs" Note: No bird, let alone chicken, has been found to give birth to live young.','true'],
+    
     
 ];}
 
