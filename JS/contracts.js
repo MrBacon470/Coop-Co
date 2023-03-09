@@ -7,8 +7,8 @@ const prestigeContracts = [
       baseReward: D(2),
     },
     {
-      name: 'AI Boom',
-      desc: 'The AI Industry requires more AI Eggs for their projects.',
+      name: 'GPT-2.0',
+      desc: 'To make the ultimate version fo ChatGPT, AI Eggs are needed',
       eggIndex: 15,
       baseGoal: D(1e27),
       baseReward: D(1),
@@ -36,7 +36,7 @@ const prestigeContracts = [
     },
     {
       name: 'Supply Chain Crisis',
-      desc: 'Supply Chain Issues have caused resources Supermaterial Eggs are needed to offset the shortage.',
+      desc: 'Supply Chain Issues have caused resource shortages, Supermaterial Eggs are needed to offset the shortage.',
       eggIndex: 4,
       baseGoal: D(1e14),
       baseReward: D(5),
@@ -89,6 +89,9 @@ function contractActive(){
 
 function generateContract(i) {
     let id = getRandom(0, prestigeContracts.length)
+    while(!data.unlockedEgg[prestigeContracts[id].eggIndex]) {
+      id = getRandom(0, prestigeContracts.length)
+    }
     if(id > prestigeContracts.length - 1) index = prestigeContracts.length - 1
     let goal = prestigeContracts[id].baseGoal.times(eggData[prestigeContracts[id].eggIndex].value.times(0.25).times(contractGoalBoost.times(soulEggBoost.times(0.75))))
     let reward = prestigeContracts[id].baseReward.times(contractRewardBoost)

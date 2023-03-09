@@ -36,6 +36,13 @@ function generateHTMLAndHandlers() {
         DOMCacheGetOrSet(`auto${i}`).addEventListener('click', () => { data.autoActive[i] = !data.autoActive[i] })
     }
 
+    for(let i = 1; i < data.settingsToggles.length; i++) {
+        if(i === 3)
+            DOMCacheGetOrSet(`setTog${i}`).classList = data.settingsToggles[i] ? 'yellowButton' : 'blueButton'
+        else if(i !== 0 || i !== 3)
+            DOMCacheGetOrSet(`setTog${i}`).classList = data.settingsToggles[i] ? 'greenButton' : 'redButton'
+    }
+
     console.log('HTML and Handlers Generated')
 }
 
@@ -101,7 +108,13 @@ function changeSubTab(a,b) {
     }
 }
 
-function toggle(i) {data.settingsToggles[i] = !data.settingsToggles[i]}
+function toggle(i) {
+    data.settingsToggles[i] = !data.settingsToggles[i]
+    if(i === 3)
+         DOMCacheGetOrSet(`setTog${i}`).classList = data.settingsToggles[i] ? 'yellowButton' : 'blueButton'
+    else if(i !== 0)
+        DOMCacheGetOrSet(`setTog${i}`).classList = data.settingsToggles[i] ? 'greenButton' : 'redButton'
+}
 function toggleBA(i) {
     const numString = ['1','5','10','20']
     data.buyAmounts[i] = data.buyAmounts[i] + 1 === 4 ? 0 : data.buyAmounts[i] + 1
