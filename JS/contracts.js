@@ -3,49 +3,49 @@ const prestigeContracts = [
       name: 'Energy Crisis',
       desc: 'A Californian Energy Shortage means more demand for Fusion Eggs.',
       eggIndex: 5,
-      baseGoal: D(1e15),
+      baseGoal: D(1e17),
       baseReward: D(2),
     },
     {
       name: 'AI Boom',
       desc: 'The AI Industry requires more AI Eggs for their projects.',
       eggIndex: 15,
-      baseGoal: D(1e25),
+      baseGoal: D(1e27),
       baseReward: D(1),
     },
     {
       name: 'Pandemic',
       desc: 'A Pandemic is covering the world, Medical Eggs are needed to save lives.',
       eggIndex: 2,
-      baseGoal: D(1e10),
+      baseGoal: D(1e12),
       baseReward: D(5),
     },
     {
       name: 'Supreme Diets',
       desc: 'Dieting is back in fashion people need more Superfood Eggs.',
       eggIndex: 1,
-      baseGoal: D(1e9),
+      baseGoal: D(1e11),
       baseReward: D(6),
     },
     {
       name: 'Fountain of Youth',
       desc: 'People are wanting to stay youthful, Immortality Eggs are needed to keep them that way.',
       eggIndex: 7,
-      baseGoal: D(1e17),
+      baseGoal: D(1e19),
       baseReward: D(4),
     },
     {
       name: 'Supply Chain Crisis',
       desc: 'Supply Chain Issues have caused resources Supermaterial Eggs are needed to offset the shortage.',
       eggIndex: 4,
-      baseGoal: D(1e12),
+      baseGoal: D(1e14),
       baseReward: D(5),
     },
     {
       name: 'Temporal Tear',
       desc: 'A Temporal Tear has caused a rift in the space-time continuum, Tachyon Eggs are needed to fix it.',
       eggIndex: 8,
-      baseGoal: D(1e18),
+      baseGoal: D(1e20),
       baseReward: D(3),
     }
 ]
@@ -90,7 +90,7 @@ function contractActive(){
 function generateContract(i) {
     let id = getRandom(0, prestigeContracts.length)
     if(id > prestigeContracts.length - 1) index = prestigeContracts.length - 1
-    let goal = prestigeContracts[id].baseGoal.times(contractRewardBoost)
+    let goal = prestigeContracts[id].baseGoal.times(eggData[prestigeContracts[id].eggIndex].value.times(0.25).times(contractGoalBoost.times(soulEggBoost.times(0.75))))
     let reward = prestigeContracts[id].baseReward.times(contractRewardBoost)
     data.contracts[i].id = id
     data.contracts[i].goal = goal
@@ -107,18 +107,7 @@ function startContract(i) {
         $.notify(`Contract ${prestigeContracts[data.contracts[i].id].name} Started!`, 'warn')
     }
     else {
-      prestige()
       data.contractActive[i] = false
-      if(data.settingsToggles[2] === true) 
-        $.notify(`Contract ${prestigeContracts[data.contracts[i].id].name} Left!`, 'warn')
-    }
-}
-
-function runContract(i) {
-    if(data.money.gte(data.contracts[i].goal)) {
-      data.contractActive[i] = false
-      data.prophecyEggs = data.prophecyEggs.plus(data.contracts[i].reward)
-      generateContract(i)
       for(let i = 0; i < data.research.length; i++)
         data.research[i] = D(0)
       eggValueBonus = D(1)
@@ -128,6 +117,25 @@ function runContract(i) {
       data.money = D(0)
       data.currentEgg = 0
       if(data.settingsToggles[2] === true) 
+        $.notify(`Contract ${prestigeContracts[data.contracts[i].id].name} Left!`, 'warn')
+    }
+}
+
+function runContract(i) {
+    if(data.money.gte(data.contracts[i].goal)) {
+      data.contractActive[i] = false
+      data.prophecyEggs = data.prophecyEggs.plus(data.contracts[i].reward)
+      if(data.settingsToggles[2] === true) 
         $.notify(`Contract ${prestigeContracts[data.contracts[i].id].name} Completed!`, 'success')
+      for(let i = 0; i < 3; i++)
+        generateContract(i)
+      for(let i = 0; i < data.research.length; i++)
+        data.research[i] = D(0)
+      eggValueBonus = D(1)
+      chickenGain = D(0)
+      layRate = D(1)
+      data.chickens = D(0)
+      data.money = D(0)
+      data.currentEgg = 0
     }
 }
