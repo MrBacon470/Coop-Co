@@ -184,26 +184,6 @@ const achievementObjs = [
         description: 'Unlock the 6th Planet',
         img: `Imgs/planet6.png`
     },
-    {
-        name: 'Intelligent',
-        description: 'Acquire 100 Knowledge',
-        img: `Imgs/lightbulb.png`
-    },
-    {
-        name: 'Genius',
-        description: 'Acquire 1 Thousand Knowledge',
-        img: `Imgs/lightbulb.png`
-    },
-    {
-        name: 'Einstein',
-        description: 'Acquire 10 Thousand Knowledge',
-        img: `Imgs/lightbulb.png`
-    },
-    {
-        name: 'True Egglightenment',
-        description: 'Acquire 100 Thousand Knowledge',
-        img: `Imgs/lightbulb.png`
-    },
 ]
 
 function updateAchText(i) {

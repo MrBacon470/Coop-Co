@@ -73,17 +73,7 @@ function updateHTML() {
     else if(data.currentTab === 5) {
         updateEggspeditionsUI()
     }
-    else if(data.currentTab === 6) {
-        for(let i = 0; i < 5; i++) {
-            DOMCacheGetOrSet('enlight'+i).innerText = `Enlightenment ${enlightenmentNumerals[i]}\n${enlightenmentNames[i]}\n\n${enlightenmentDescs[i]}\nCost: ${format(enlightenmentCosts[i])} Knowledge\nLevel: ${format(data.enlightenments[i])}`
-        }
-        DOMCacheGetOrSet('knowledgeText').innerText = data.inPath === true ? `Knowledge: ${format(data.knowledge)}\n+${format(knowledgeGain)}/s` : `Knowledge: ${format(data.knowledge)}`
-        if(data.onPlanet === false)
-            DOMCacheGetOrSet('enlightenmentButton').innerText = data.inPath === true ? `Leave The Path` : `Enter The Path`
-        else
-            DOMCacheGetOrSet('enlightenmentButton').innerText = 'Can\'t Enter Path While On Eggspedition'
-    }
     else if(data.currentTab === 7) {
-        
+       
     }
 }

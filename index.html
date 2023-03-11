@@ -62,10 +62,9 @@
             <button id="tabButton1">Research</button>
             <button id="tabButton2">Contracts</button>
             <button id="tabButton5" class="blueButton">Eggspeditions</button>
-            <button id="tabButton6" class="yellowButton">Enlightenments</button>
             <button id="tabButton4" class="purpleButton">Prestige</button>
-            <button id="tabButton8" class="orangeButton">Ascension</button>
-            <button id="tabButton7">Achievements</button>
+            <button id="tabButton7" class="orangeButton">Ascension</button>
+            <button id="tabButton6">Achievements</button>
             <button id="tabButton3">Settings</button>
         </div>
         <div id="eggTab" class="flexCol tabHolder">
@@ -354,25 +353,6 @@
             <p id="discoveryText">Discover Planet: Cost 50 Million Rocket Fuel Eggs</p>
             <p style="color:var(--red)">!Warning! - Journeying to any planet will cause a reset on the main farm.</p>
         </div>
-        <div id="enlightenmentTab" class="flexCol tabHolder">
-            <h3 style="color:var(--yellow)">Enlightenments</h3>
-            <div class="flexRow">
-                <button id="enlight0" onclick="purchaseEnlightenment(0)" style="margin:1em" class="yellowButton">Enlightenment I</button>
-                <button id="enlight1" onclick="purchaseEnlightenment(1)" style="margin:1em" class="yellowButton">Enlightenment II</button>
-                <button id="enlight2" onclick="purchaseEnlightenment(2)" style="margin:1em" class="yellowButton">Enlightenment III</button>
-                <button id="enlight3" onclick="purchaseEnlightenment(3)" style="margin:1em" class="yellowButton">Enlightenment IV</button>
-                <button id="enlight4" onclick="purchaseEnlightenment(4)" style="margin:1em" class="yellowButton">Enlightenment V</button>
-            </div>
-            <button id="ba2" class="yellowButton">Buy Amount: 1</button>
-            <div class="flexRow">
-                <p id="knowledgeText" style="margin:1em;color:var(--yellow)">Knowledge: 0<br>+0.00/s</p>
-                <button id="enlightenmentButton" onclick="enterPath()" style="margin:1em" class="yellowButton">Enter the Path</button>
-            </div>
-            <p style="margin:1em;color:var(--yellow);text-align: center;">
-                To Pursue Enlightenment one must give up everything.
-                <br><br>Soul and Prophecy Eggs will lose their effects<br>You will be unable to prestige as well as you will be unable to leave the enlightenment egg.
-            </p>
-        </div>
         <div id="ascensionTab" class="flexCol tabHolder">
             <h3 style="color: var(--orange)">Ascension</h3>
             <div style="margin-bottom:1vh">
@@ -457,12 +437,12 @@
                     <img id="ach34">
                     <img id="ach35">
                     <img id="ach36">
-                    <img id="ach37">
-                    <img id="ach38">
+                    <div class="achPlaceholder"></div>
+                    <div class="achPlaceholder"></div>
                 </div>
                 <div class="flexCol">
-                    <img id="ach39">
-                    <img id="ach40">
+                    <div class="achPlaceholder"></div>
+                    <div class="achPlaceholder"></div>
                     <div class="achPlaceholder"></div>
                     <div class="achPlaceholder"></div>
                     <div class="achPlaceholder"></div>
@@ -598,6 +578,5 @@
     <script src="JS/automation.js"></script>
     <script src="JS/newsticker.js"></script>
     <script src="JS/achievements.js"></script>
-    <script src="JS/enlightenment.js"></script>
     <script src="JS/eggspeditions.js"></script>
 </html>

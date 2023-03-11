@@ -53,7 +53,6 @@ function mainLoop() {
     updateIntHatch()
     updateLayRate()
     updatePrestige()
-    updateEnlightenment()
     updateAutomation()
     if(data.chickens.lt(1) && data.epicResearch[8].gte(epicResearchMaxLevel[8]))
         data.chickens = D(1)
@@ -90,7 +89,7 @@ function mainLoop() {
         DOMCacheGetOrSet('faviconLink').href = `${eggImgPath}${eggData[data.currentEgg].id}.png`
     data.time = Date.now()
 }
-const tabIDs = ['egg','research','contracts','settings','prestige','eggpedition','enlightenment','achievement','ascension']
+const tabIDs = ['egg','research','contracts','settings','prestige','eggpedition','achievement','ascension']
 function changeTab(i) {
     data.currentTab = i
     for(let i = 0; i < tabIDs.length; i++) {

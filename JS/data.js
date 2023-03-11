@@ -24,7 +24,7 @@ function getDefaultObject() {
         currentPlanetIndex: 0,
         onPlanet: false,
         planetData: [{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))}],
-        achievements: new Array(41).fill(false),
+        achievements: new Array(37).fill(false),
         stats: {
             bestMoney: D(0),
             bestEgg: '',
@@ -37,7 +37,7 @@ function getDefaultObject() {
             bestProphecyEggs: D(0),
         },
         themeIndex: 0,
-        buyAmounts: [0,0,0],
+        buyAmounts: [0,0],
         time: Date.now(),
         currentTab: 0,
         currentSubTab: new Array(3).fill(0),
