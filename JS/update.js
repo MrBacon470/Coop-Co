@@ -26,7 +26,6 @@ function updateHTML() {
     DOMCacheGetOrSet('prestigeButton').textContent = data.currentEgg < 3 ? 'Reach Rocket Fuel Eggs' : `Prestige: +${format(soulEggGain)} Soul Eggs`
     DOMCacheGetOrSet('newsHolder').style.display = data.settingsToggles[1] ? 'block' : 'none'
     DOMCacheGetOrSet('tabButton2').style.display = data.inPath === false && data.onPlanet === false ? 'block' : 'none'
-    DOMCacheGetOrSet('tabButton6').style.display = data.unlockedEgg[17] === true ? 'block' : 'none'
     //hm
     DOMCacheGetOrSet('tabButton5').style.display = data.unlockedEgg[2] === true ? 'block' : 'none'
     if(data.currentTab === 0) {

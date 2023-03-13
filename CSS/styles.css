@@ -230,38 +230,33 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
   );
 }
 
-#templeSlot0 {
-    background-color: var(--yellow);
-    border: 2px solid var(--gray);
-    border-radius: 5px;
-    padding: 5px;
-    height: 4em;
-    width: 4em;
+#gemologyHolder {
+    position: relative;
+    height:25em;
+    width: 25em;
+    padding: .5em;
+    margin: 1em;
 }
 
-#templeSlot1 {
-    background-color: var(--blue);
-    border: 2px solid var(--gray);
-    border-radius: 5px;
-    padding: 5px;
-    height: 3.5em;
-    width: 3.5em;
+#gemologyHolder #topSlot {
+    position:absolute;
+    top: 0%;
+    left: 45%;
 }
-
-#templeSlot2 {
-    background-color: var(--red);
-    border: 2px solid var(--gray);
-    border-radius: 5px;
-    padding: 5px;
+#gemologyHolder #bottomSlot {
+    position:absolute;
+    bottom: 0%;
+    left: 45%;
 }
-
-#templeSlotHolder img {margin-left: 1vw; margin-right: 1vw; margin-top: 1vh; margin-bottom: 1vh;}
-#templeSlotHolder {
-    margin-top: 1vh; 
-    margin-bottom: 1vh;
-    border: 2px solid var(--orange);
-    border-radius: 5px;
-    padding: 5px;
+#gemologyHolder #leftSlot {
+    position:absolute;
+    top: 45%;
+    left: 0%;
+}
+#gemologyHolder #rightSlot {
+    position:absolute;
+    top: 45%;
+    right: 0%;
 }
 
 .notifyjs-corner, .notifyjs-hidable , .notifyjs-container, .notifyjs-container div span { background-color: rgba(0, 0, 0, 0); color:black;}
