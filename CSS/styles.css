@@ -144,34 +144,6 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     text-align: center;
 }
 
-.badge-red {
-    background-color: var(--red);
-    color: whitesmoke;
-    padding: 2px 4px;
-    text-align: center;
-}
-
-.badge-green {
-    background-color: var(--green);
-    color: whitesmoke;
-    padding: 2px 4px;
-    text-align: center;
-}
-
-.badge-blue {
-    background-color: var(--blue);
-    color: whitesmoke;
-    padding: 2px 4px;
-    text-align: center;
-}
-
-.badge-yellow {
-    background-color: var(--yellow);
-    color: var(--bg-color);
-    padding: 2px 4px;
-    text-align: center;
-}
-
 .notifyjs-bootstrap-base {
 	font-weight: bold;
 	padding: 8px 15px 8px 14px;
@@ -306,6 +278,7 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 #mainHeader p {color: black}
 
 #epicResearchRow button {margin-left: .25em; margin-right: .25em;}
+
 /*
 <div class="notifyjs-wrapper notifyjs-hidable">
 	<div class="notifyjs-arrow"></div>

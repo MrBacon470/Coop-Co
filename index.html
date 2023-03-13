@@ -357,33 +357,19 @@
             <h3 style="color: var(--orange)">Ascension</h3>
             <div style="margin-bottom:1vh">
                 <button onclick="changeSubTab(2,0)" class="orangeButton">Ascension</button>
-                <button onclick="changeSubTab(2,1)" class="orangeButton">Temple</button>
+                <button onclick="changeSubTab(2,1)" class="orangeButton">Gemology</button>
             </div>
             <div id="ascSub0" class="flexCol">
                 
             </div>
             <div id="ascSub1" class="flexCol">
-                <div id="templeSlotHolder" class="flexRow">
-                    <img id="templeSlot0" src="Imgs/greencheck.png">
-                    <img id="templeSlot1" src="Imgs/greencheck.png">
-                    <img id="templeSlot2" src="Imgs/greencheck.png">
-                </div>
-                <p style="color:var(--orange)">Select a Slot any Slot</p>
-                <div id="templeSlotHolder" class="flexRow">
-                    <div class="flexCol">
-                        <img id="t0" src="Imgs/lightbulb.png">
-                        <img id="t1" src="Imgs/lightbulb.png">
-                        <img id="t2" src="Imgs/lightbulb.png">
-                        <img id="t3" src="Imgs/lightbulb.png">
-                        <img id="t4" src="Imgs/lightbulb.png">
-                    </div>
-                    <div class="flexCol">
-                        <img id="t5" src="Imgs/lightbulb.png">
-                        <img id="t6" src="Imgs/lightbulb.png">
-                        <img id="t7" src="Imgs/lightbulb.png">
-                        <img id="t8" src="Imgs/lightbulb.png">
-                        <img id="t9" src="Imgs/lightbulb.png">
-                    </div>
+                <div id="gemologyHolder">
+                    <img id="topSlot" src="Imgs/lightbulb.png">
+                    <img id="leftSlot0" src="Imgs/lightbulb.png">
+                    <img id="leftSlot1" src="Imgs/lightbulb.png">
+                    <img id="rightSlot0" src="Imgs/lightbulb.png">
+                    <img id="rightSlot1" src="Imgs/lightbulb.png">
+                    <img id="bottomSlot" src="Imgs/lightbulb.png">
                 </div>
             </div>
         </div>
@@ -473,38 +459,12 @@
                     <button onclick="toggle(3)" id="setTog3"></button>
                     <!--<button onclick="changeTheme()" id="setTog4"></button>-->
                 </div>
-                <div>
+                <div style="margin-bottom:1vh">
                     <a style="color:var(--purple)" href="https://discord.com/invite/JkQUnubuhx">Discord Link!</a>
                     <a style="color:var(--blue)" href="https://github.com/MrBacon470/Coop-Co">Github Repo!</a>
+                    <a style="color:var(--yellow)" href="https://mrbacon470.github.io/Coop-Co/changelog.html">Changelog!</a>
                 </div>
-                <div id="changelogHolder">
-                    <h3>Changelog :O</h3>
-                    <h4>Current Version - v2.0.0 Dev Build</h4>
-                    <h4>Public Release</h4>
-                    <p><strong>v2.0.0</strong> <span class="badge-green">Major Update</span> - Ascension! Contract Overhaul! Enlightenments Removed! UI Redux! More Eggs! More Achievements</p>
-                    <p><strong>v1.1.5</strong> <span class="badge-blue">Minor Update</span> - Cleaned up Styling and removed almost all inline styling, Added Multi-Theme support (3 Themes Currently: Original, Void Stream (my take on the Star Stream theme in NG+3C) and Flashbang) and Changed the progress bar to be yellow is progress to discovery and green is unlock progress</p>
-                    <p><strong>v1.1.4</strong> <span class="badge-red">Major Rebalance</span> - Massive Prophecy Egg Boost Softcap, All End Game Saves reset to a default End Game Save due to rebalance,<br>Contract Rebalance Part 6 (ono), Enlightenment Buy Amount Implemented, Prestige based off of best money on the current egg, Auto Promotion Stop Toggle and Prevent Entering contracts while being enlightened.</p>
-                    <p><strong>v1.1.3</strong> <span class="badge-red">Rebalance</span> - New Planet Boost (Knowledge Gain), Knowledge and Enlightenment Rebalance, Achievement 38-41 Rebalance, Next Egg Not Being Hidden Fixed</p>
-                    <p><strong>v1.1.2</strong> <span class="badge-yellow">Bug Fix</span> - Quick Patch for Eggspedition Button being missing</p>
-                    <p><strong>v1.1.1</strong> <span class="badge-yellow">Bug Fix & Rebalance</span> - Eggspedition Discovery Rebalance, Contract Notification Toggle, Warning for eggspeditions</p>
-                    <p><strong>v1.1.0</strong> <span class="badge-green">Major Update</span> - Enlightenments, Eggpeditions, Notifications via Notify.js, Tier XI-XIV Auto,<br>Error NAN Display Fix, New Formatter, Auto Save is 30s Interval Now (Originally 10s), Stats Screen, Achievements</p>
-                    <p><strong>v1.0.11</strong> <span class="badge-red">Rebalance</span> - Contract Rebalance pt 5 (I'm probably going to stop rebalancing now)</p>
-                    <p><strong>v1.0.10</strong> <span class="badge-yellow">Bug Fix & Rebalance</span>  - More 1.0.3 Fixes, New Prophecy Egg Boost and Contract Rebalance pt 4 (finale?)</p>
-                    <p><strong>v1.0.9</strong> <span class="badge-yellow">Bug Fix</span>  - More Fixes for bugs introduced by 1.0.3</p>
-                    <p><strong>v1.0.8</strong> <span class="badge-green">Major Update</span> - New Formatter (by Dimava), Optimized Common Research Buyer and Optimized Prophecy Egg Reward (by Gazyn)</p>
-                    <p><strong>v1.0.7</strong> <span class="badge-red">Rebalance</span> - Contract Rebalance Part 3 | Soul Egg Rewards Removed Entirely from Contracts</p>
-                    <p><strong>v1.0.6</strong> <span class="badge-yellow">Bug Fix</span> - Fully Working Double Progress Bar (by Dimava)</p>
-                    <p><strong>v1.0.5</strong> <span class="badge-yellow">Bug Fix</span> - Fix Major Bug Introduced in 1.0.3</p>
-                    <p><strong>v1.0.4</strong> <span class="badge-blue">Minor Update</span> - Newsticker Added In Game</p>
-                    <p><strong>v1.0.3</strong> <span class="badge-green">Major Update</span> - Egg Promotion Progress Bar, Egg Promotion and Prestige Buttons Hidden When In Contract, and Slightly Better Code (by gapples2)</p>
-                    <p><strong>v1.0.2</strong> <span class="badge-red">Rebalance</span> - Contract Rebalancing Part 2, Delete Save Confirmation</p>
-                    <p><strong>v1.0.1</strong> <span class="badge-blue">Minor Update</span> - Minor Bug Fixes, 2 New Epic Researches, Favicon changes based on current egg, and Contract Rebalancing Part 1</p>
-                    <p><strong>v1.0.0</strong> <span class="badge-yellow">Bug Fix</span> - Patching and Polishing</p>
-                    <h4>Alpha Versions</h4>
-                    <p><strong>v0.0.3</strong> <span class="badge-green">Major Update</span> - Contracts,Automation and Internal Hatchery Buff</p>
-                    <p><strong>v0.0.2</strong> <span class="badge-green">Major Update</span> - Prestige!</p>
-                    <p><strong>v0.0.1</strong> <span class="badge-green">Major Update</span> - All Eggs, 28 "Common" Researches, Egg Promotion System</p>
-                </div>
+                <p id="currentVersionText">Current Version: v0.0.0</p>
             </div>
             <div id="setSub1" class="flexCol">
                 <h3>Stats</h3>

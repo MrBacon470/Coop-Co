@@ -1,0 +1,83 @@
+@font-face {
+    font-family: 'Martian Mono';
+    src: url('MartianMono-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('RobotoMono-Medium.ttf');
+}
+
+:root {
+    --bg-color: #171b1b;
+    --header-color: lightgrey;
+    --gray: #999999;
+    --white: #e7e7e7;
+    --green: #65be67;
+    --red: #d74444;
+    --blue: #4481d7;
+    --purple: #a144d7;
+    --yellow: #d7d744;
+    --orange: #d77f44;
+}
+
+* {
+    margin: 0%;
+    font-family: 'Martian Mono';
+    color: whitesmoke;
+    text-align: center;
+}
+body {
+    user-select: none;
+    background-color: var(--bg-color);
+}
+button {
+    user-select: none;
+    background-color: var(--bg-color);
+    border-width: 2px;
+    border-color: whitesmoke;
+    border-style: solid;
+    border-radius: 5px;
+    transition-duration: 0.5s;
+}
+button:hover {
+    background-color: whitesmoke;
+    color: var(--bg-color);
+    
+    transition-duration: 0.5s;
+}
+img {height: 3.25em; width: 3.25em;}
+h1,h2,h3,h4,p { margin-bottom: 1vh;}
+
+.badge-red {
+    background-color: var(--red);
+    color: whitesmoke;
+    padding: 2px 4px;
+    text-align: center;
+}
+
+.badge-green {
+    background-color: var(--green);
+    color: whitesmoke;
+    padding: 2px 4px;
+    text-align: center;
+}
+
+.badge-blue {
+    background-color: var(--blue);
+    color: whitesmoke;
+    padding: 2px 4px;
+    text-align: center;
+}
+
+.badge-yellow {
+    background-color: var(--yellow);
+    color: var(--bg-color);
+    padding: 2px 4px;
+    text-align: center;
+}
+
+#changeLogHolder {
+    padding: 1em;
+    margin: 1em;
+}

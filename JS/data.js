@@ -128,6 +128,7 @@ window.onload = function (){
         changeSubTab(i,data.currentSubTab[i])
     }
     scrollNextMessage()
+    DOMCacheGetOrSet('currentVersionText').innerText = `Current Version: ${getDefaultObject().currentUpdate}`
     $.notify('Game Loaded','info')
     updateAchClass()
     //const themeDisplayNames = ['Original','Void Stream','Flashbang']
