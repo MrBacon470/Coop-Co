@@ -144,6 +144,36 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     text-align: center;
 }
 
+.gemSlot {
+    height: 2em;
+    width: 2em;
+    background-color: var(--orange);
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    margin:.25em;
+    padding: 5px;
+}
+
+.gemSlotSelected {
+    height: 2em;
+    width: 2em;
+    background-color: var(--green);
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    margin:.25em;
+    padding: 5px;
+}
+
+.gemSlotFailed {
+    height: 2em;
+    width: 2em;
+    background-color: var(--red);
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    margin:.25em;
+    padding: 5px;
+}
+
 .notifyjs-bootstrap-base {
 	font-weight: bold;
 	padding: 8px 15px 8px 14px;
@@ -230,35 +260,6 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
   );
 }
 
-#gemologyHolder {
-    position: relative;
-    height:25em;
-    width: 25em;
-    padding: .5em;
-    margin: 1em;
-}
-
-#gemologyHolder #topSlot {
-    position:absolute;
-    top: 0%;
-    left: 45%;
-}
-#gemologyHolder #bottomSlot {
-    position:absolute;
-    bottom: 0%;
-    left: 45%;
-}
-#gemologyHolder #leftSlot {
-    position:absolute;
-    top: 45%;
-    left: 0%;
-}
-#gemologyHolder #rightSlot {
-    position:absolute;
-    top: 45%;
-    right: 0%;
-}
-
 .notifyjs-corner, .notifyjs-hidable , .notifyjs-container, .notifyjs-container div span { background-color: rgba(0, 0, 0, 0); color:black;}
 #planetRow img {width: 5em; height: 5em; margin:1em}
 
@@ -273,6 +274,20 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 #mainHeader p {color: black}
 
 #epicResearchRow button {margin-left: .25em; margin-right: .25em;}
+
+#gemOperations {
+    background-color: var(--bg-color);
+    border: 2px solid var(--orange);
+    border-radius: 5px;
+    color: var(--orange);
+    transition-duration: 0.5s;
+}
+
+#gemOperations:hover {
+    background-color: var(--orange);
+    color: var(--bg-color);
+    transition-duration: 0.5s;
+}
 
 /*
 <div class="notifyjs-wrapper notifyjs-hidable">

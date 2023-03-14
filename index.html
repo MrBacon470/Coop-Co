@@ -360,14 +360,97 @@
                 <button onclick="changeSubTab(2,1)" class="orangeButton">Gemology</button>
             </div>
             <div id="ascSub0" class="flexCol">
-                
+                <div class="flexRow">
+                    <img src="Imgs/Eggs/knowlegg.png">
+                    <h4 id="knowleggText" style="color:var(--yellow)">Knowlegg: 0.00</h4>
+                </div>
             </div>
             <div id="ascSub1" class="flexCol">
-                <div id="gemologyHolder">
-                    <img id="topSlot" src="Imgs/lightbulb.png">
-                    <img id="leftSlot" src="Imgs/lightbulb.png">
-                    <img id="rightSlot" src="Imgs/lightbulb.png">
-                    <img id="bottomSlot" src="Imgs/lightbulb.png">
+                <div id="gemologyHolder" class="flexRow" style="margin-bottom:1vh;">
+                    <img id="gemSlot0" class="gemSlot" src="Imgs/gem.png">
+                    <select id="gemOperations">
+                        <option value="0">Mutate</option>
+                        <option value="1">Combine</option>
+                        <option value="2">Absorb</option>
+                    </select>
+                    <img id="gemSlot1" class="gemSlot" src="Imgs/gem.png">
+                    <p style="color:var(--orange)">Result =></p>
+                    <img id="gemSlot2" class="gemSlot" src="Imgs/gem.png">
+                </div>
+                <p style="color:var(--orange);margin-bottom:1vh;">Reliquary</p>
+                <div id="gemHolder" class="flexRow" style="margin-bottom:1vh;">
+                    <div class="flexCol" style="margin:1em;align-items: flex-start;">
+                        <div class="flexRow">
+                            <img id="gem0Img" class="gemSlot">
+                            <p id="gem0Text">Gem 0 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem1Img" class="gemSlot">
+                            <p id="gem1Text">Gem 1 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem2Img" class="gemSlot">
+                            <p id="gem2Text">Gem 2 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem3Img" class="gemSlot">
+                            <p id="gem3Text">Gem 3 - Boost</p>
+                        </div>
+                    </div>
+                    <div class="flexCol" style="margin:1em;align-items: flex-start;">
+                        <div class="flexRow">
+                            <img id="gem4Img" class="gemSlot">
+                            <p id="gem4Text">Gem 4 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem5Img" class="gemSlot">
+                            <p id="gem5Text">Gem 5 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem6Img" class="gemSlot">
+                            <p id="gem6Text">Gem 6 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem7Img" class="gemSlot">
+                            <p id="gem7Text">Gem 7 - Boost</p>
+                        </div>
+                    </div>
+                    <div class="flexCol" style="margin:1em;align-items: flex-start;">
+                        <div class="flexRow">
+                            <img id="gem8Img" class="gemSlot">
+                            <p id="gem8Text">Gem 8 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem9Img" class="gemSlot">
+                            <p id="gem9Text">Gem 9 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem10Img" class="gemSlot">
+                            <p id="gem10Text">Gem 10 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem11Img" class="gemSlot">
+                            <p id="gem11Text">Gem 11 - Boost</p>
+                        </div>
+                    </div>
+                    <div class="flexCol" style="margin:1em;align-items: flex-start;">
+                        <div class="flexRow">
+                            <img id="gem12Img" class="gemSlot">
+                            <p id="gem12Text">Gem Χ - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem13Img" class="gemSlot">
+                            <p id="gem13Text">Gem Ψ - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem14Img" class="gemSlot">
+                            <p id="gem14Text">Gem Ω - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem15Img" class="gemSlot">
+                            <p id="gem15Text">Gem 15 - Boost</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -442,6 +525,7 @@
                 <button onclick="changeSubTab(0,0)">Settings</button>
                 <button onclick="changeSubTab(0,1)">Stats</button>
                 <button onclick="changeSubTab(0,2)">Credits</button>
+                <button onclick="changeSubTab(0,3)">Help</button>
             </div>
             <div id="setSub0" class="flexCol">
                 <div style="margin-bottom:1vh">
@@ -518,6 +602,7 @@
                 </div>
 
             </div>
+            <div id="setSub3" class="flexCol"></div>
         </div>
     </div>
     
@@ -537,4 +622,5 @@
     <script src="JS/newsticker.js"></script>
     <script src="JS/achievements.js"></script>
     <script src="JS/eggspeditions.js"></script>
+    <script src="JS/ascension.js"></script>
 </html>
