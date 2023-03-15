@@ -230,8 +230,6 @@ function checkAchievements() {
     for(let i = 31; i < 37; i++)
         if(data.planetsDiscovered[i-31] === true && data.achievements[i] === false) getAchievement(i)
     const knowledgeAchReq = [D(100),D(1e3),D(1e4),D(1e5)]
-    for(let i = 37; i < 41; i++)
-        if(data.knowledge.gte(knowledgeAchReq[i-37]) && data.achievements[i] === false) getAchievement(i)
 }
 
 function updateAchClass() {

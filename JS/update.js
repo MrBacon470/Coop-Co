@@ -58,7 +58,7 @@ function updateHTML() {
             DOMCacheGetOrSet('help0').style.display = data.hasPrestiged ? 'block' : 'none'
             DOMCacheGetOrSet('help1').style.display = data.hasPrestiged ? 'block' : 'none'
             DOMCacheGetOrSet('help2').style.display = data.unlockedEgg[3] ? 'block' : 'none'
-            DOMCacheGetOrSet('help3').style.display = data.hasAscended ? 'block' : 'none'
+            DOMCacheGetOrSet('help3').style.display = data.unlockedContracts ? 'block' : 'none'
             DOMCacheGetOrSet('help4').style.display = data.hasAscended ? 'block' : 'none'
             DOMCacheGetOrSet('help5').style.display = data.hasAscended ? 'block' : 'none'
             DOMCacheGetOrSet('help6').style.display = data.hasAscended ? 'block' : 'none'

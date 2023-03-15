@@ -129,7 +129,7 @@ function changeTab(i) {
 }
 
 function changeSubTab(a,b) {
-    const subAmts = [3,2,2]
+    const subAmts = [4,2,2]
     const subIDs = ['set','con','asc']
     data.currentSubTab[a] = b
     for(let i = 0; i < subAmts[a]; i++) {
