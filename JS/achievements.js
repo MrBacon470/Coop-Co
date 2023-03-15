@@ -191,6 +191,7 @@ function updateAchText(i) {
     DOMCacheGetOrSet('achHoverText').innerText = `[${i+1}] - ${!data.achievements[i] ? '???' :achievementObjs[i].name}\n${achievementObjs[i].description}`
     else 
     DOMCacheGetOrSet('achHoverText').innerText = `[${i+1}] - ${achievementObjs[i].name}\n${achievementObjs[i].description}`
+    DOMCacheGetOrSet('achHoverText').style.color = data.achievements[i] ? 'var(--green)' : 'var(--red)'
 }
 
 function getAchievement(i) {
@@ -198,6 +199,14 @@ function getAchievement(i) {
     data.achievements[i] = true
     $.notify(`${achievementObjs[i].name} Unlocked!`,'success')
     updateAchClass()
+}
+
+function getAchievementsCompleted() {
+    let count = 0;
+    for(let i = 0; i < data.achievements.length; i++) {
+        if(data.achievements[i] === true) count++
+    }
+    return count
 }
 
 function checkAchievements() {
@@ -235,4 +244,5 @@ function updateAchClass() {
     for(let i = 19; i < achievementObjs.length; i++) {
         DOMCacheGetOrSet('ach'+i).src = achievementObjs[i].img
     }
+    DOMCacheGetOrSet('achCompletionText').innerText = `Achievements Completed: ${getAchievementsCompleted()}/${achievementObjs.length} [${format(getAchievementsCompleted()/achievementObjs.length*100,2)}%]`
 }

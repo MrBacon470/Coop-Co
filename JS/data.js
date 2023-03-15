@@ -19,7 +19,6 @@ function getDefaultObject() {
         epicResearch: new Array(11).fill(D(0)),
         autoActive: new Array(4).fill(false),
         enlightenments: new Array(5).fill(D(0)),
-        knowledge: D(0),
         planetsDiscovered: new Array(6).fill(false),
         discoveries: 0,
         currentPlanetIndex: 0,
@@ -27,8 +26,8 @@ function getDefaultObject() {
         planetData: [{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))}],
         achievements: new Array(37).fill(false),
         knowlegg: D(0),
+        hasAscended: false,
         legendaryResearch: new Array(4).fill(D(0)),
-
         stats: {
             bestMoney: D(0),
             bestEgg: '',
