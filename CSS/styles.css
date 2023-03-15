@@ -218,30 +218,32 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 	padding: 8px 15px 8px 14px;
 	background-color: #fcf8e3;
 	border: 5px solid #fbeed5;
+    border-radius: 5px;
 	white-space: nowrap;
 	padding-left: 15px;
 	background-repeat: no-repeat;
 	background-position: 3px 7px;
+    color: var(--white)
 }
 .notifyjs-bootstrap-error {
 	color: whitesmoke;
-	background-color: #bf352d;
-	border-color: #9e160f;
+	background-color: var(--red);
+	border-color: #8b2d2d;
 }
 .notifyjs-bootstrap-success {
 	color: whitesmoke;
-	background-color: #1eb93a;
-	border-color: #0c8021;
+	background-color: var(--green);
+	border-color: #2d8b40;
 }
 .notifyjs-bootstrap-info {
 	color: whitesmoke;
-	background-color: #3b8dff;
-	border-color: #006aff;
+	background-color: var(--blue);
+	border-color: #2d548b;
 }
 .notifyjs-bootstrap-warn {
 	color: whitesmoke;
-	background-color: #DBD800;
-	border-color: #BAB700;
+	background-color: var(--yellow);
+	border-color: #7a8b2d;
 }
 
 
@@ -299,7 +301,7 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
   );
 }
 
-.notifyjs-corner, .notifyjs-hidable , .notifyjs-container, .notifyjs-container div span { background-color: rgba(0, 0, 0, 0); color:black;}
+.notifyjs-corner, .notifyjs-hidable , .notifyjs-container, .notifyjs-container div span { background-color: rgba(0, 0, 0, 0); color:var(--white);}
 #planetRow img {width: 5em; height: 5em; margin:1em}
 
 #changelogHolder h4, #changelogHolder h3, #changelogHolder p {margin-bottom: 1vh;}

@@ -11,7 +11,7 @@ function updateHTML() {
         DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `${eggImgPath}${planetEggImgIDs[data.currentPlanetIndex]}.png`)
     }
     DOMCacheGetOrSet('eggPromoteButton').style.display = data.currentEgg >= eggData.length-1 || contractActive() || data.inPath === true || data.onPlanet === true ? 'none' : 'inline-block'
-    if(data.currentEgg < eggData.length-1 && data.onPlanet === true) {
+    if(data.currentEgg < eggData.length-1 && !data.onPlanet) {
         const currentEggDiscoverReq = eggData[data.currentEgg+1].discoverReq.max(1.01)
         const currentEggUnlockReq = eggData[data.currentEgg+1].unlockReq.max(1.02)
         const nextEggDiscoverProgress = data.money.max(1).log10().div(currentEggDiscoverReq.log10())
