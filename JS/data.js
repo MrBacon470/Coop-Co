@@ -19,7 +19,6 @@ function getDefaultObject() {
         epicResearch: new Array(11).fill(D(0)),
         autoActive: new Array(4).fill(false),
         enlightenments: new Array(5).fill(D(0)),
-        inPath: false,
         knowledge: D(0),
         planetsDiscovered: new Array(6).fill(false),
         discoveries: 0,

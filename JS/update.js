@@ -25,9 +25,9 @@ function updateHTML() {
     DOMCacheGetOrSet('prestigeButton').style.display = contractActive() || data.inPath === true || data.onPlanet === true ? 'none' : 'block'
     DOMCacheGetOrSet('prestigeButton').textContent = data.currentEgg < 3 ? 'Reach Rocket Fuel Eggs' : `Prestige: +${format(soulEggGain)} Soul Eggs`
     DOMCacheGetOrSet('newsHolder').style.display = data.settingsToggles[1] ? 'block' : 'none'
-    DOMCacheGetOrSet('tabButton2').style.display = data.inPath && data.onPlanet && data.unlockedContracts ? 'block' : 'none'
+    DOMCacheGetOrSet('tabButton2').style.display = !data.onPlanet && data.unlockedContracts ? 'block' : 'none'
     //hm
-    DOMCacheGetOrSet('tabButton5').style.display = data.unlockedEgg[2] === true ? 'block' : 'none'
+    DOMCacheGetOrSet('tabButton5').style.display = data.unlockedEgg[3] === true ? 'block' : 'none'
     if(data.currentTab === 0) {
         updateEggPage()
     }

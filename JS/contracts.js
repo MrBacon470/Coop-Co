@@ -140,5 +140,6 @@ function runContract(i) {
       data.chickens = D(0)
       data.money = D(0)
       data.currentEgg = 0
+      data.stats.contractsComplete = data.stats.contractsComplete.plus(1)
     }
 }
