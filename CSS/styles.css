@@ -273,7 +273,7 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
 #navBar button, #mainHeader button, #mainHeader img, #mainHeader h2, #mainHeader p {margin:1vh}
 #mainHeader p {color: black}
 
-#epicResearchRow button {margin-left: .25em; margin-right: .25em;}
+#epicResearchRow button, #legendaryResearchRow button {margin-left: .25em; margin-right: .25em;}
 
 #gemOperations {
     background-color: var(--bg-color);

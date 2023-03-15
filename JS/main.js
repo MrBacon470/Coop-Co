@@ -28,6 +28,10 @@ function generateHTMLAndHandlers() {
         DOMCacheGetOrSet(`er${i}`).onclick = () => purchaseEpicResearch(i)
     }
     //Ascension Tab
+    for(let i = 0; i < gemObjs.length; i++) {
+        DOMCacheGetOrSet(`gem${i}Img`).src = gemObjs[i].src
+        DOMCacheGetOrSet(`gem${i}Text`).innerText = gemObjs[i].name
+    }
     //Achievements Tab
     for(let i = 0; i < achievementObjs.length; i++) 
         DOMCacheGetOrSet('ach' + i).addEventListener('mouseover', () => updateAchText(i))
@@ -83,6 +87,13 @@ function mainLoop() {
     if(data.stats.bestProphecyEggs.lt(data.prophecyEggs)) data.stats.bestProphecyEggs = data.prophecyEggs
     data.stats.timePlayed = data.stats.timePlayed.plus(diff)
     data.stats.timeInPrestige = data.stats.timeInPrestige.plus(diff)
+    if(!data.unlockedContracts && data.currentEgg >= 5) data.unlockedContracts = true;
+    if(data.currentEgg >= 5 && !data.generatedContracts && data.unlockedContracts) {
+        for(let i = 0; i < 3; i++)
+            generateContract(i)
+        data.generatedContracts = true
+    }
+
     checkAchievements()
     updateHTML()
     if(DOMCacheGetOrSet('faviconLink').getAttribute('href') !== `${eggImgPath}${eggData[data.currentEgg].id}.png`)

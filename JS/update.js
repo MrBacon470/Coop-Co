@@ -2,7 +2,7 @@ function updateHTML() {
     //Globals
     DOMCacheGetOrSet('moneyText').textContent = `$${format(data.money)}`
     DOMCacheGetOrSet('chickensText').textContent = `Chickens: ${format(data.chickens)}`
-    if(data.onPlanet === false) {
+    if(!data.onPlanet) {
         if(DOMCacheGetOrSet('currentEggImgHeader').getAttribute('src') !== `${eggImgPath}${eggData[data.currentEgg].id}.png`) 
         DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `${eggImgPath}${eggData[data.currentEgg].id}.png`)
     }   
@@ -11,7 +11,7 @@ function updateHTML() {
         DOMCacheGetOrSet('currentEggImgHeader').setAttribute('src', `${eggImgPath}${planetEggImgIDs[data.currentPlanetIndex]}.png`)
     }
     DOMCacheGetOrSet('eggPromoteButton').style.display = data.currentEgg >= eggData.length-1 || contractActive() || data.inPath === true || data.onPlanet === true ? 'none' : 'inline-block'
-    if(data.currentEgg < eggData.length-1 && data.onPlanet === false) {
+    if(data.currentEgg < eggData.length-1 && data.onPlanet === true) {
         const currentEggDiscoverReq = eggData[data.currentEgg+1].discoverReq.max(1.01)
         const currentEggUnlockReq = eggData[data.currentEgg+1].unlockReq.max(1.02)
         const nextEggDiscoverProgress = data.money.max(1).log10().div(currentEggDiscoverReq.log10())
@@ -25,7 +25,7 @@ function updateHTML() {
     DOMCacheGetOrSet('prestigeButton').style.display = contractActive() || data.inPath === true || data.onPlanet === true ? 'none' : 'block'
     DOMCacheGetOrSet('prestigeButton').textContent = data.currentEgg < 3 ? 'Reach Rocket Fuel Eggs' : `Prestige: +${format(soulEggGain)} Soul Eggs`
     DOMCacheGetOrSet('newsHolder').style.display = data.settingsToggles[1] ? 'block' : 'none'
-    DOMCacheGetOrSet('tabButton2').style.display = data.inPath === false && data.onPlanet === false ? 'block' : 'none'
+    DOMCacheGetOrSet('tabButton2').style.display = data.inPath && data.onPlanet && data.unlockedContracts ? 'block' : 'none'
     //hm
     DOMCacheGetOrSet('tabButton5').style.display = data.unlockedEgg[2] === true ? 'block' : 'none'
     if(data.currentTab === 0) {

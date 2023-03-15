@@ -44,7 +44,7 @@
         </div>
     </div>
     <div id="mainHeader" class="flexRow">
-        <img id="currentEggImgHeader" src="Imgs/egg.png">
+        <img id="currentEggImgHeader" src="Imgs/Eggs/egg.png">
         <button id="eggPromoteButton" class="redButton promoteButton" onclick="promoteEgg()">Promote to Next Egg</button>
         <h2 id="moneyText">$0.00</h2>
         <p id="chickensText">Chickens: 0</p>
@@ -360,22 +360,30 @@
                 <button onclick="changeSubTab(2,1)" class="orangeButton">Gemology</button>
             </div>
             <div id="ascSub0" class="flexCol">
-                <div class="flexRow">
+                <div class="flexRow" style="margin-bottom: 1vh;">
                     <img src="Imgs/Eggs/knowlegg.png">
                     <h4 id="knowleggText" style="color:var(--yellow)">Knowlegg: 0.00</h4>
+                </div>
+                <div class="flexCol" style="margin-bottom: 1vh;">
+                    <div id="legendaryResearchRow" class="flexRow">
+                        <button id="lR0">LegRes0</button>
+                        <button id="lR1">LegRes1</button>
+                        <button id="lR2">LegRes2</button>
+                        <button id="lR3">LegRes3</button>
+                    </div>
                 </div>
             </div>
             <div id="ascSub1" class="flexCol">
                 <div id="gemologyHolder" class="flexRow" style="margin-bottom:1vh;">
-                    <img id="gemSlot0" class="gemSlot" src="Imgs/gem.png">
+                    <img id="gemSlot0" class="gemSlot" src="Imgs/Gems/gem.png">
                     <select id="gemOperations">
                         <option value="0">Mutate</option>
                         <option value="1">Combine</option>
                         <option value="2">Absorb</option>
                     </select>
-                    <img id="gemSlot1" class="gemSlot" src="Imgs/gem.png">
+                    <img id="gemSlot1" class="gemSlot" src="Imgs/Gems/gem.png">
                     <p style="color:var(--orange)">Result =></p>
-                    <img id="gemSlot2" class="gemSlot" src="Imgs/gem.png">
+                    <img id="gemSlot2" class="gemSlot" src="Imgs/Gems/gem.png">
                 </div>
                 <p style="color:var(--orange);margin-bottom:1vh;">Reliquary</p>
                 <div id="gemHolder" class="flexRow" style="margin-bottom:1vh;">

@@ -10,6 +10,8 @@ function getDefaultObject() {
         bestSoulEggs: D(0),
         hasPrestiged: false,
         contracts: [{id: -1, goal: D(0), reward: D(0)},{id: -1, goal: D(0), reward: D(0)},{id: -1, goal: D(0), reward: D(0)}],
+        unlockedContracts: false,
+        generatedContracts: false,
         contractActive: new Array(3).fill(false),
         currentEgg: 0,
         unlockedEgg: new Array(18).fill(false),
@@ -25,6 +27,9 @@ function getDefaultObject() {
         onPlanet: false,
         planetData: [{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))},{money: D(0), chickens: D(0), research: new Array(28).fill(D(0))}],
         achievements: new Array(37).fill(false),
+        knowlegg: D(0),
+        legendaryResearch: new Array(4).fill(D(0)),
+
         stats: {
             bestMoney: D(0),
             bestEgg: '',

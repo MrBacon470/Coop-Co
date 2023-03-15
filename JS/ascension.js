@@ -65,3 +65,15 @@ const gemObjs = [
     }
 ]
 
+const legendaryResearchObjs = [
+    {
+        name: 'Enlightened Thinkers',
+        description: '+x more knowlegg gain',
+        max: D(15),
+        base: D(0)
+    },
+]
+
+function updateAscensionHTML() {
+
+}
