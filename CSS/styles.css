@@ -330,6 +330,11 @@ h1,h2,h3,h4 { margin-bottom: 1vh;}
     transition-duration: 0.5s;
 }
 
+#alert {
+    align-items: center;
+    text-align: center;
+}
+
 /*
 <div class="notifyjs-wrapper notifyjs-hidable">
 	<div class="notifyjs-arrow"></div>

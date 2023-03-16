@@ -77,6 +77,7 @@ function mainLoop() {
     updateIntHatch()
     updateLayRate()
     updatePrestige()
+    updateAscension()
     updateAutomation()
     if(data.chickens.lt(1) && data.epicResearch[8].gte(epicResearchMaxLevel[8]))
         data.chickens = D(1)
@@ -166,7 +167,7 @@ function updateStats() {
 }
 
  function createAlert(a,b,c) {
-    DOMCacheGetOrSet('alertContainer').style.border = `4px solid #${c}`
+    DOMCacheGetOrSet('alertContainer').style.border = `2px solid ${c}`
     DOMCacheGetOrSet('alertTitle').innerText = a
     DOMCacheGetOrSet('alertContent').innerText = b
     DOMCacheGetOrSet('alert').style.display = 'block'

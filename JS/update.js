@@ -26,6 +26,9 @@ function updateHTML() {
     DOMCacheGetOrSet('prestigeButton').textContent = data.currentEgg < 3 ? 'Reach Rocket Fuel Eggs' : `Prestige: +${format(soulEggGain)} Soul Eggs`
     DOMCacheGetOrSet('newsHolder').style.display = data.settingsToggles[1] ? 'block' : 'none'
     DOMCacheGetOrSet('tabButton2').style.display = !data.onPlanet && data.unlockedContracts ? 'block' : 'none'
+    DOMCacheGetOrSet('ascensionButton').style.display = data.currentEgg >= 18 ? 'block' : 'none'
+    DOMCacheGetOrSet('ascensionButton').classList = data.currentEgg >= 18 && data.money.gte(1e45) ? 'orangeButtonHeader' : 'redButtonHeader'
+    DOMCacheGetOrSet('ascensionButton').innerText = data.currentEgg >= 18 && data.money.gte(1e45) ? `Ascend: +${format(knowleggGain)} Knowleggs` : `Ascend: ($${format(data.money)}/${format(1e45)})`
     //hm
     DOMCacheGetOrSet('tabButton5').style.display = data.unlockedEgg[3] === true ? 'block' : 'none'
     if(data.currentTab === 0) {
@@ -82,6 +85,6 @@ function updateHTML() {
         updateEggspeditionsUI()
     }
     else if(data.currentTab === 7) {
-       
+       updateAscensionHTML()
     }
 }
