@@ -121,6 +121,7 @@ window.setInterval(function(){
     save()
 }, 30000);
 window.onload = function (){
+    let currTime = Date.now()
     load()
     generateHTMLAndHandlers()
     diff = (Date.now()-data.time)*data.devSpeed/1000
@@ -137,6 +138,8 @@ window.onload = function (){
     //const themeDisplayNames = ['Original','Void Stream','Flashbang']
     //DOMCacheGetOrSet('setTog4').innerText = `Theme: ${themeDisplayNames[data.themeIndex]}`
     //setTheme()
+    let timeComp = Date.now() - currTime
+    console.log(`Game Loaded in ${timeComp}ms`)
 }
 //full reset
 function fullReset(){

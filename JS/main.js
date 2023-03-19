@@ -2,7 +2,6 @@ let diff = 0;
 const eggImgPath = 'Imgs/Eggs/'
 
 function generateHTMLAndHandlers() {
-    let currTime = Date.now()
     for(let i = 0; i < tabIDs.length; i++) {
         DOMCacheGetOrSet(`tabButton${i}`).addEventListener('click', () => {changeTab(i)})
     }
@@ -66,8 +65,6 @@ function generateHTMLAndHandlers() {
         }
     });
     } 
-    let timeComp = Date.now() - currTime
-    console.log(`HTML & Handlers Generated in ${timeComp}ms!`)
 }
 
 function mainLoop() {
