@@ -8,7 +8,7 @@ function generateHTMLAndHandlers() {
     //Egg Tab
     DOMCacheGetOrSet('mainButton').addEventListener('click', () => {data.chickens = data.chickens.plus(1)})
     //Research Tab
-    for(let i = 0; i < commonResearchNames.length; i++) {
+    for(let i = 0; i < commonResearches.length; i++) {
         DOMCacheGetOrSet(`r${i}`).classList = 'redButton'
         DOMCacheGetOrSet(`r${i}`).onclick = () => purchaseResearch(i)
     }
@@ -23,7 +23,7 @@ function generateHTMLAndHandlers() {
         DOMCacheGetOrSet('planet'+i).addEventListener('click', () => updatePlanetHoverText(i))
     }
     //Prestige Tab
-    for(let i = 0; i < epicResearchNames.length; i++) {
+    for(let i = 0; i < epicResearches.length; i++) {
         DOMCacheGetOrSet(`er${i}`).classList = 'redButton'
         DOMCacheGetOrSet(`er${i}`).onclick = () => purchaseEpicResearch(i)
     }

@@ -36,12 +36,12 @@ function updateHTML() {
     }
     else if(data.currentTab === 1) {
         for(let i = 0; i < commonResearchCost.length; i++)
-            if(data.research[i].lt(commonResearchMaxLevel[i]))
+            if(data.research[i].lt(commonResearches[i].maxLevel))
                 DOMCacheGetOrSet(`r${i}`).classList = data.money.gte(commonResearchCost[i]) ? 'greenButton' : 'redButton'
             else
                 DOMCacheGetOrSet(`r${i}`).classList = 'blueButton'
-        for(let i = 0; i < commonResearchNames.length; i++) {
-            DOMCacheGetOrSet(`r${i}`).innerText = data.research[i].lt(commonResearchMaxLevel[i]) ? `${commonResearchNames[i]}\n${commonResearchDescs[i]}\nLevel: ${toPlaces(data.research[i],0,commonResearchMaxLevel[i].plus(1))}/${toPlaces(commonResearchMaxLevel[i],0,commonResearchMaxLevel[i].plus(1))}\nCost: $${format(commonResearchCost[i])}` : `${commonResearchNames[i]}\n${commonResearchDescs[i]}\nLevel: ${toPlaces(data.research[i],0,commonResearchMaxLevel[i].plus(1))}/${toPlaces(commonResearchMaxLevel[i],0,commonResearchMaxLevel[i].plus(1))}\nCost: [MAXED]`
+        for(let i = 0; i < commonResearches.length; i++) {
+            DOMCacheGetOrSet(`r${i}`).innerText = data.research[i].lt(commonResearches[i].maxLevel) ? `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.plus(1))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.plus(1))}\nCost: $${format(commonResearchCost[i])}` : `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.plus(1))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.plus(1))}\nCost: [MAXED]`
         }
     }
     else if(data.currentTab === 2) {

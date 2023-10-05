@@ -67,7 +67,7 @@ function load() {
         createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details`,"812626")
         data.currentUpdate = getDefaultObject().currentUpdate  
     }
-    for(let i = 0; i < data.buyAmounts.length; i++) {
+    for(let i = 0; i < data.buyAmounts.length-1; i++) {
         const numString = ['1','5','10','20']
         DOMCacheGetOrSet(`ba${i}`).innerText = `Buy Amount: ${numString[data.buyAmounts[i]]}`
         DOMCacheGetOrSet(`ba${i}`).onclick = () => {toggleBA(i)}

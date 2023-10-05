@@ -1,17 +1,251 @@
 //Common Section
-const commonResearchNames = ['Comfortable Nests','Nutritional Supplements','Internal Hatcheries','Padded Packaging','Bigger Eggs','Internal Hatchery Upgrades','USDE Prime Certification','Hen House A/C','Super-Feed™ Diet','Internal Hatchery Expansion','Improved Genetics','Shell Fortification','Even Bigger Eggs','Internal Hatchery Expansion','Genetic Purification','Machine Learning Incubators','Time Compression','Graviton Coating','Crystalline Shelling','Neural Linking','Telepathic Will','Atomic Purification','Multiversal Layering','Timeline Diversion','Eggsistor Miniturization','Matter Reconfiguration','Timeline Splicing','Relativity Optimization']
-const commonResearchDescs = ['Egg Laying Rate +10%','Egg Value +25%','+8 Chickens/min','Earnings Per Egg +25%','Doubles Egg Value','+20 Chickens/min','Triples Egg Value','Egg Laying Rate +5%','Egg Value +25%','+40 Chickens/min','Egg Laying Rate & Egg Value + 15%','Egg Value +15%','Doubles Egg Value','+100 Chickens/min','Egg Value +10%','+20 Chickens/min','Egg Laying Rate +10%','Double Egg Density (Value)','Egg Value +25%','+200 Chickens/min','Egg Quality (Value) +25%','Egg Value +10%','10x Egg Value','Egg Laying Rate +2%','Egg Value +5%','Increases Egg Value +1%','10x Egg Value','Egg Laying Rate +10%']
-const commonResearchMaxLevel = [D(50),D(40),D(10),D(30),D(1),D(10),D(1),D(50),D(35),D(15),D(30),D(60),D(5),D(30),D(100),D(250),D(20),D(7),D(100),D(30),D(50),D(3),D(50),D(25),D(100),D(500),D(1),D(10)]
-const commonResearchBaseCost = [D(0.5),D(1.16),D(1836),D(454986),D(1351894),D(16029660),D(32.318e12),D(2986194),D(530.5e6),D(2.886e12),D(7.488e12),D(14.738e15),D(28.608e18),D(330.094e15),D(112.026e18),D(145.17e21),D(34.476e21),D(78.316e27),D(246.06e27),D(702.028e24),D(4.222e36),D(433.836e42),D(223.92e48),D(23.596e42),D(17.914e48),D(15.902e51),D(16.564e66),D(14.474e54)]
-
-
+const commonResearches = [
+    {
+      name: 'Comfortable Nests',
+      desc: 'Egg Laying Rate +10%',
+      maxLevel: D(50),
+      baseCost: D(0.5)
+    },
+    {
+      name: 'Nutritional Supplements',
+      desc: 'Egg Value +25%',
+      maxLevel: D(40),
+      baseCost: D(1.16)
+    },
+    {
+      name: 'Internal Hatcheries',
+      desc: '+8 Chickens/min',
+      maxLevel: D(10),
+      baseCost: D(1836)
+    },
+    {
+      name: 'Padded Packaging',
+      desc: 'Earnings Per Egg +25%',
+      maxLevel: D(30),
+      baseCost: D(454986)
+    },
+    {
+      name: 'Bigger Eggs',
+      desc: 'Doubles Egg Value',
+      maxLevel: D(1),
+      baseCost: D(1351894)
+    },
+    {
+      name: 'Internal Hatchery Upgrades',
+      desc: '+20 Chickens/min',
+      maxLevel: D(10),
+      baseCost: D(16029660)
+    },
+    {
+      name: 'USDE Prime Certification',
+      desc: 'Triples Egg Value',
+      maxLevel: D(1),
+      baseCost: D(32.318e12)
+    },
+    {
+      name: 'Hen House A/C',
+      desc: 'Egg Laying Rate +5%',
+      maxLevel: D(50),
+      baseCost: D(2986194)
+    },
+    {
+      name: 'Super-Feed™ Diet',
+      desc: 'Egg Value +25%',
+      maxLevel: D(35),
+      baseCost: D(530.5e6)
+    },
+    {
+      name: 'Internal Hatchery Expansion',
+      desc: '+40 Chickens/min',
+      maxLevel: D(15),
+      baseCost: D(2.886e12)
+    },
+    {
+      name: 'Improved Genetics',
+      desc: 'Egg Laying Rate & Egg Value + 15%',
+      maxLevel: D(30),
+      baseCost: D(7.488e12)
+    },
+    {
+      name: 'Shell Fortification',
+      desc: 'Egg Value +15%',
+      maxLevel: D(60),
+      baseCost: D(14.738e15)
+    },
+    {
+      name: 'Even Bigger Eggs',
+      desc: 'Doubles Egg Value',
+      maxLevel: D(5),
+      baseCost: D(28.608e18)
+    },
+    {
+      name: 'Internal Hatchery Expansion',
+      desc: '+100 Chickens/min',
+      maxLevel: D(30),
+      baseCost: D(3.30094e17)
+    },
+    {
+      name: 'Genetic Purification',
+      desc: 'Egg Value +10%',
+      maxLevel: D(100),
+      baseCost: D(1.12026e20)
+    },
+    {
+      name: 'Machine Learning Incubators',
+      desc: '+20 Chickens/min',
+      maxLevel: D(250),
+      baseCost: D(1.4517e20)
+    },
+    {
+      name: 'Time Compression',
+      desc: 'Egg Laying Rate +10%',
+      maxLevel: D(20),
+      baseCost: D(3.4476e25)
+    },
+    {
+      name: 'Graviton Coating',
+      desc: 'Double Egg Density (Value)',
+      maxLevel: D(7),
+      baseCost: D(7.8316e24)
+    },
+    {
+      name: 'Crystalline Shelling',
+      desc: 'Egg Value +25%',
+      maxLevel: D(100),
+      baseCost: D(2.4606e30)
+    },
+    {
+      name: 'Neural Linking',
+      desc: '+200 Chickens/min',
+      maxLevel: D(30),
+      baseCost: D(7.02028e29)
+    },
+    {
+      name: 'Telepathic Will',
+      desc: 'Egg Quality (Value) +25%',
+      maxLevel: D(50),
+      baseCost: D(7.02028e29)
+    },
+    {
+      name: 'Atomic Purification',
+      desc: 'Egg Value +10%',
+      maxLevel: D(3),
+      baseCost: D(4.43336e36)
+    },
+    {
+      name: 'Multiversal Layering',
+      desc: '10x Egg Value',
+      maxLevel: D(50),
+      baseCost: D(2.2392e42)
+    },
+    {
+      name: 'Timeline Diversion',
+      desc: 'Egg Laying Rate +2%',
+      maxLevel: D(25),
+      baseCost: D(2.3596e47)
+    },
+    {
+      name: 'Eggsistor Miniaturization',
+      desc: 'Egg Value +5%',
+      maxLevel: D(100),
+      baseCost: D(1.7914e47)
+    },
+    {
+      name: 'Matter Reconfiguration',
+      desc: 'Increases Egg Value +1%',
+      maxLevel: D(15),
+      baseCost: D(1.5902e51)
+    },
+    {
+      name: 'Timeline Splicing',
+      desc: '10x Egg Value',
+      maxLevel: D(16),
+      baseCost: D(1.6564e66)
+    },
+    {
+      name: 'Relativity Optimization',
+      desc: 'Egg Laying Rate +10%',
+      maxLevel: D(14),
+      baseCost: D(1.4474e54)
+    }
+];
+const epicResearches = [
+    {
+      name: 'Epic Internal Hatcheries',
+      desc: 'Increase Chicken Gain by 5%',
+      maxLevel: D(20),
+      baseCost: D(100)
+    },
+    {
+      name: 'Lab Upgrade',
+      desc: 'Reduce Research Costs by 5%',
+      maxLevel: D(10),
+      baseCost: D(1e5)
+    },
+    {
+      name: 'Soul Food',
+      desc: 'Increase Soul Egg Bonus by 1%',
+      maxLevel: D(140),
+      baseCost: D(1e6)
+    },
+    {
+      name: 'Prestige Bonus',
+      desc: '+10% More Soul Eggs per Prestige',
+      maxLevel: D(20),
+      baseCost: D(5e6)
+    },
+    {
+      name: 'Epic Comfy Nests',
+      desc: 'Egg Laying Rate +5%',
+      maxLevel: D(20),
+      baseCost: D(1e3)
+    },
+    {
+      name: 'Accounting Tricks',
+      desc: 'Increase Egg Value by 5%',
+      maxLevel: D(20),
+      baseCost: D(1e3)
+    },
+    {
+      name: 'Tier I-V Automator',
+      desc: 'Automate Tier I-V Research',
+      maxLevel: D(1),
+      baseCost: D(1e4)
+    },
+    {
+      name: 'Tier VI-X Automator',
+      desc: 'Automate Tier VI-X Research',
+      maxLevel: D(1),
+      baseCost: D(1e7)
+    },
+    {
+      name: 'Start with 1 Chicken',
+      desc: 'Start with 1 Chicken on any Reset',
+      maxLevel: D(1),
+      baseCost: D(1e6)
+    },
+    {
+      name: 'Promotion Automator',
+      desc: 'Automatic Promotions',
+      maxLevel: D(1),
+      baseCost: D(1e9)
+    },
+    {
+      name: 'Tier XI-XIV Automator',
+      desc: 'Automated Tier XI-XIV Research',
+      maxLevel: D(1),
+      baseCost: D(1e9)
+    }
+];
 let commonResearchCost = []
-for(let i = 0; i < commonResearchNames.length; i++) {
+let epicResearchCost = []
+
+for(let i = 0; i < commonResearches.length; i++) {
     if(data.onPlanet === false)
-        commonResearchCost[i] = (commonResearchBaseCost[i].sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.15, data.research[i]))
+        commonResearchCost[i] = (commonResearches[i].baseCost.sub(commonResearches[i].baseCost.times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.15, data.research[i]))
     else if(data.onPlanet === true && data.currentPlanetIndex === 0)
-        commonResearchCost[i] = ((commonResearchBaseCost[i]).sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.35, data.research[i]))
-    DOMCacheGetOrSet(`r${i}`).innerText = `${commonResearchNames[i]}\n${commonResearchDescs[i]}\nLevel: ${format(data.research[i],0)}/${format(commonResearchMaxLevel[i],0)}\n
+        commonResearchCost[i] = ((commonResearches[i].baseCost).sub(commonResearches[i].baseCost.times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.35, data.research[i]))
+    DOMCacheGetOrSet(`r${i}`).innerText = `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${format(data.research[i],0)}/${format(commonResearches[i].maxLevel,0)}\n
     Cost: $${format(commonResearchCost[i])}`
 
 }
@@ -19,7 +253,7 @@ for(let i = 0; i < commonResearchNames.length; i++) {
 function purchaseResearch(i) {
     const buyAmountNums = [1,5,10,20]
     updateResearch();
-    let buyAmount = data.research[i].plus(buyAmountNums[data.buyAmounts[0]]).lte(commonResearchMaxLevel[i]) ? buyAmountNums[data.buyAmounts[0]] : commonResearchMaxLevel[i].minus(data.research[i]);
+    let buyAmount = data.research[i].plus(buyAmountNums[data.buyAmounts[0]]).lte(commonResearches[i].maxLevel) ? buyAmountNums[data.buyAmounts[0]] : commonResearches[i].maxLevel.minus(data.research[i]);
     // prevent going over max level
     let costMult = Decimal.pow(1.15, buyAmount).minus(1).div(0.15);
     //calculate cost of buying buyAmount researches
@@ -33,28 +267,21 @@ function purchaseResearch(i) {
     updateHTML();
 }
 function updateResearch() {
-    for(let i = 0; i < commonResearchNames.length; i++) {
+    for(let i = 0; i < commonResearches.length; i++) {
         if(data.onPlanet === false)
-            commonResearchCost[i] = (commonResearchBaseCost[i].sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.15, data.research[i]))
+            commonResearchCost[i] = (commonResearches[i].baseCost.sub(commonResearches[i].baseCost.times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.15, data.research[i]))
         else if(data.onPlanet === true && data.currentPlanetIndex === 0)
-            commonResearchCost[i] = ((commonResearchBaseCost[i]).sub(commonResearchBaseCost[i].times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.35, data.research[i]))
+            commonResearchCost[i] = ((commonResearches[i].baseCost).sub(commonResearches[i].baseCost.times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.35, data.research[i]))
     }
         
-    for(let i = 0; i < epicResearchNames.length; i++)
-        epicResearchCost[i] = epicResearchBaseCost[i].times(Decimal.pow(1.25, data.epicResearch[i]))
+    for(let i = 0; i < epicResearches.length; i++)
+        epicResearchCost[i] = epicResearches[i].baseCost.times(Decimal.pow(1.25, data.epicResearch[i]))
 }
 //Epic Section
-const epicResearchNames = ['Epic Internal Hatcheries','Lab Upgrade','Soul Food','Prestige Bonus','Epic Comfy Nests','Accounting Tricks','Tier I-V Automator','Tier VI-X Automator',
-    'Start with 1 Chicken','Promotion Automator','Tier XI-XIV Automator']
-const epicResearchDescs = ['Increase Chicken Gain by 5%','Reduce Research Costs by 5%','Increase Soul Egg Bonus by 1%',
-    '+10% More Soul Eggs per Prestige','Egg Laying Rate +5%','Increase Egg Value by 5%','Automate Tier I-V Research','Automate Tier VI-X Research',
-    'Start with 1 Chicken on any Reset','Automatic Promotions','Automated Tier XI-XIV Research']
-const epicResearchMaxLevel = [D(20),D(10),D(140),D(20),D(20),D(20),D(1),D(1),D(1),D(1),D(1)]
-const epicResearchBaseCost = [D(100),D(1e5),D(1e6),D(5e6),D(1e3),D(1e3),D(1e4),D(1e7),D(1e6),D(1e9),D(1e9)]
-let epicResearchCost = []
-for(let i = 0; i < epicResearchNames.length; i++) {
-    epicResearchCost[i] = epicResearchBaseCost[i].times(Decimal.pow(1.25, data.epicResearch[i]))
-    DOMCacheGetOrSet(`er${i}`).innerText = `${epicResearchNames[i]}\n${epicResearchDescs[i]}\nLevel: ${format(data.epicResearch[i],0)}/${format(epicResearchMaxLevel[i],0)}\n
+
+for(let i = 0; i < epicResearches.length; i++) {
+    epicResearchCost[i] = epicResearches[i].baseCost.times(Decimal.pow(1.25, data.epicResearch[i]))
+    DOMCacheGetOrSet(`er${i}`).innerText = `${epicResearches[i].name}\n${epicResearches[i].desc}\nLevel: ${format(data.epicResearch[i],0)}/${format(epicResearches[i].maxLevel,0)}\n
     Cost: ${format(epicResearchCost[i])} Soul Eggs`
 }
 function purchaseEpicResearch(i) {
