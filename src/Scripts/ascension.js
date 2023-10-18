@@ -1,67 +1,67 @@
 const gemObjs = [
     {
         name: 'Normal Gem',
-        src: 'Imgs/Gems/gem.png',
+        src: '/Images/Gems/gem.png',
     },
     {
         name: 'Prestige Gem',
-        src: 'Imgs/Gems/prestigeGem.png',
+        src: '/Images/Gems/prestigeGem.png',
     },
     {
         name: 'Ascension Gem',
-        src: 'Imgs/Gems/ascensionGem.png',
+        src: '/Images/Gems/ascensionGem.png',
     },
     {
         name: 'Tachyon Gem',
-        src: 'Imgs/Gems/tachyonGem.png',
+        src: '/Images/Gems/tachyonGem.png',
     },
     {
         name: 'Dark Matter Gem',
-        src: 'Imgs/Gems/darkmatterGem.png',
+        src: '/Images/Gems/darkmatterGem.png',
     },
     {
         name: 'Antimatter Gem',
-        src: 'Imgs/Gems/antimatterGem.png',
+        src: '/Images/Gems/antimatterGem.png',
     },
     {
         name: 'Nebula Gem',
-        src: 'Imgs/Gems/nebulaGem.png',
+        src: '/Images/Gems/nebulaGem.png',
     },
     {
         name: 'Soul Gem',
-        src: 'Imgs/Gems/soulGem.png',
+        src: '/Images/Gems/soulGem.png',
     },
     {
         name: 'Void Gem',
-        src: 'Imgs/Gems/voidGem.png',
+        src: '/Images/Gems/voidGem.png',
     },
     {
         name: 'Quantum Gem',
-        src: 'Imgs/Gems/quantumGem.png',
+        src: '/Images/Gems/quantumGem.png',
     },
     {
         name: 'Universe Gem',
-        src: 'Imgs/Gems/universeGem.png',
+        src: '/Images/Gems/universeGem.png',
     },
     {
         name: 'Knowledge Gem',
-        src: 'Imgs/Gems/knowledgeGem.png',
+        src: '/Images/Gems/knowledgeGem.png',
     },
     {
         name: 'Χ Gem',
-        src: 'Imgs/Gems/chiGem.png',
+        src: '/Images/Gems/chiGem.png',
     },
     {
         name: 'Ψ Gem',
-        src: 'Imgs/Gems/psiGem.png',
+        src: '/Images/Gems/psiGem.png',
     },
     {
         name: 'Ω Gem',
-        src: 'Imgs/Gems/omegaGem.png',
+        src: '/Images/Gems/omegaGem.png',
     },
     {
         name: 'Singularity Gem',
-        src: 'Imgs/Gems/singularityGem.png',
+        src: '/Images/Gems/singularityGem.png',
     }
 ]
 

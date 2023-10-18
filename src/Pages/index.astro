@@ -1,29 +1,640 @@
 ---
-import "../Styles/styles.css"
-import "../Scripts/Internal/jquery-3.6.0.min.js"
-import "../Scripts/Internal/notify.js"
+import "..\\Styles\\styles.css"
 ---
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mrbacon470.github.io/Coop-Co/">
-    <meta property="og:title" content="Coop Co v1.1.5">
-    <meta property="og:description" content="Coop Co made by VoidCloud.">
-    <meta property="og:image" content="https://mrbacon470.github.io/Coop-Co/Imgs/Eggs/egg.png">
-    <link id="faviconLink" rel="icon" type="image/png" href="./public/Images/egg.png">
+    <link id="faviconLink" rel="icon" type="image/png" href="Images/Eggs/egg.png">
     <title>Coop Co</title>
 </head>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<body>
+    <div id="promptContainer" class="modalContainer">
+        <div id="prompt">
+            <h3 id="promptTitle"></h3>
+            <input id="promptInput" type="text" placeholder="Enter text">
+            <button id="promptButton">Submit</button>
+        </div>
+    </div>
+    <div id="alertContainer" class="modalContainer">
+        <div id="alert">
+            <h3 id="alertTitle">Welcome back gamer!</h3>
+            <p id="alertContent">New things have been added since last time</p>
+            <button id="closeAlert" onclick="closeModal(0)">Thanks!</button>
+            <br>
+        </div>
+    </div>
+    <div id="confirmContainer" class="modalContainer">
+        <div id="confirm" class="flexCol">
+            <h3 id="confirmTitle">Are you sure?</h3>
+            <p id="confirmContent" style="margin-bottom:1vh">New things have been added since last time</p>
+            <div class="flexRow">
+                <button id="noConfirm" class="redButton" style="margin-right:0.5vw">No!</button>
+                <button id="yesConfirm" class="greenButton" style="margin-left:0.5vw">Yes!</button>
+            </div>
+            <br>
+        </div>
+    </div>
+    <div id="mainHeader" class="flexRow">
+        <img id="currentEggImgHeader" src="/Images/Eggs/egg.png">
+        <button id="eggPromoteButton" class="redButton promoteButton" onclick="promoteEgg()">Promote to Next Egg</button>
+        <h2 id="moneyText">$0.00</h2>
+        <p id="chickensText">Chickens: 0</p>
+        <button id="prestigeButton" class="purpleButtonHeader" onclick="createConfirmation('prestige')">???</button>
+        <button id="ascensionButton" class="orangeButtonHeader" onclick="createConfirmation('ascension')">Ascend</button>
+    </div>
+    <div id="newsHolder">
+        <div id="news">
+            
+        </div>
+    </div>
+    <div id="game" class="flexCol" style="margin-top:0.5vh;align-self: center;">
+        <div id="navBar" class="flexRow" style="align-items: center;">
+            <button id="tabButton0">Eggs</button>
+            <button id="tabButton1">Research</button>
+            <button id="tabButton2">Contracts</button>
+            <button id="tabButton5" class="blueButton">Eggspeditions</button>
+            <button id="tabButton4" class="purpleButton">Prestige</button>
+            <button id="tabButton7" class="orangeButton">Ascension</button>
+            <button id="tabButton6">Achievements</button>
+            <button id="tabButton3">Settings</button>
+        </div>
+        <div id="eggTab" class="flexCol tabHolder">
+            <h3>Eggs</h3>
+            <div class="flexRow">
+                <div class="flexRow">
+                    <img id="currentEggImg" src="/Images/Eggs/egg.png">
+                    <h4 id="currentEggText">Current Egg: Regular</h4>
+                </div>
+                <p style="margin-left:1vw;margin-right:1vw;">======></p>
+                <div class="flexRow">
+                    <img id="nextEggImg" src="/Images/Eggs/question.png">
+                    <h4 id="nextEggText">Next Egg: Not Discovered</h4>
+                </div>
+            </div>
+            <div class="flexCol tabHolder">
+                <h4>Discovered Eggs</h4>
+                <div class="flexRow">
+                    <div class="flexCol flexEgg">
+                        <div class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/egg.png">
+                            <h4 id="currentEggText">Regular Egg</h4>
+                        </div>
+                        <div id="eggHold0" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/superfood.png">
+                            <h4 id="currentEggText">Superfood Egg</h4>
+                        </div>
+                        <div id="eggHold1" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/medical.png">
+                            <h4 id="currentEggText">Medical Egg</h4>
+                        </div>
+                        <div id="eggHold2" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/rocketfuel.png">
+                            <h4 id="currentEggText">Rocket Fuel Egg</h4>
+                        </div>
+                        <div id="eggHold3" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/supermaterial.png">
+                            <h4 id="currentEggText">Super Material Egg</h4>
+                        </div>
+                        <div id="eggHold4" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/fusion.png">
+                            <h4 id="currentEggText">Fusion Egg</h4>
+                        </div>
+                        <div id="eggHold5" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/quantum.png">
+                            <h4 id="currentEggText">Quantum Egg</h4>
+                        </div>
+                        <div id="eggHold6" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/immortality.png">
+                            <h4 id="currentEggText">Immortality Egg</h4>
+                        </div>
+                    </div>
+                    <div class="flexCol flexEgg">
+                        <div id="eggHold7" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/tachyon.png">
+                            <h4 id="currentEggText">Tachyon Egg</h4>
+                        </div>
+                        <div id="eggHold8" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/graviton.png">
+                            <h4 id="currentEggText">Graviton Egg</h4>
+                        </div>
+                        <div id="eggHold9" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/dilithium.png">
+                            <h4 id="currentEggText">Dilithium Egg</h4>
+                        </div>
+                        <div id="eggHold10" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/prodigy.png">
+                            <h4 id="currentEggText">Prodigy Egg</h4>
+                        </div>
+                        <div id="eggHold11" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/terraform.png">
+                            <h4 id="currentEggText">Terraform Egg</h4>
+                        </div>
+                        <div id="eggHold12" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/antimatter.png">
+                            <h4 id="currentEggText">Antimatter Egg</h4>
+                        </div>
+                        <div id="eggHold13" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/darkmatter.png">
+                            <h4 id="currentEggText">Darkmatter Egg</h4>
+                        </div>
+                        <div id="eggHold14" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/ai.png">
+                            <h4 id="currentEggText">AI Egg</h4>
+                        </div>
+                    </div>
+                    <div class="flexCol flexEgg">
+                        <div id="eggHold15" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/nebula.png">
+                            <h4 id="currentEggText">Nebula Egg</h4>
+                        </div>
+                        <div id="eggHold16" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/universe.png">
+                            <h4 id="currentEggText">Universe Egg</h4>
+                        </div>
+                        <div id="eggHold17" class="flexRow">
+                            <img id="currentEggImg" src="/Images/Eggs/enlightenment.png">
+                            <h4 id="currentEggText">Enlightenment Egg</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button id="mainButton" class="redButton">Click to Hatch +1 Chicken</button>
+        </div>
+        <div id="researchTab" class="flexCol tabHolder">
+            <h3>Research</h3>
+            <div id="researchHolder" class="flexRow" style="margin: 1vh;">
+                <div id="researchCol" class="flexCol">
+                    <p>Tier I</p>
+                    <button id="r0">Research-01</button>
+                    <button id="r1">Research-02</button>
+                    <p>Tier II</p>
+                    <button id="r2">Research-03</button>
+                    <button id="r3">Research-04</button>
+                </div>
+                <div id="researchCol" class="flexCol">
+                    <p>Tier III</p>
+                    <button id="r4">Research-01</button>
+                    <button id="r5">Research-02</button>
+                    <p>Tier IV</p>
+                    <button id="r6">Research-03</button>
+                    <button id="r7">Research-04</button>
+                </div>
+                <div id="researchCol" class="flexCol">
+                    <p>Tier V</p>
+                    <button id="r8">Research-01</button>
+                    <button id="r9">Research-02</button>
+                    <p>Tier VI</p>
+                    <button id="r10">Research-03</button>
+                    <button id="r11">Research-04</button>
+                </div>
+                <div id="researchCol" class="flexCol">
+                    <p>Tier VII</p>
+                    <button id="r12">Research-01</button>
+                    <button id="r13">Research-02</button>
+                    <p>Tier VIII</p>
+                    <button id="r14">Research-03</button>
+                    <button id="r15">Research-04</button>
+                </div>
+                <div id="researchCol" class="flexCol">
+                    <p>Tier IX</p>
+                    <button id="r16">Research-01</button>
+                    <button id="r17">Research-02</button>
+                    <p>Tier X</p>
+                    <button id="r18">Research-03</button>
+                    <button id="r19">Research-04</button>
+                </div>
+                <div id="researchCol" class="flexCol">
+                    <p>Tier XI</p>
+                    <button id="r20">Research-01</button>
+                    <button id="r21">Research-02</button>
+                    <p>Tier XII</p>
+                    <button id="r22">Research-03</button>
+                    <button id="r23">Research-04</button>
+                </div>
+                <div id="researchCol" class="flexCol">
+                    <p>Tier XIII</p>
+                    <button id="r24">Research-01</button>
+                    <button id="r25">Research-02</button>
+                    <p>Tier XIV</p>
+                    <button id="r26">Research-03</button>
+                    <button id="r27">Research-04</button>
+                </div>
+            </div>
+            <button id="ba0">Buy Amount: 1</button>
+            <div>All Research Bonuses Compound</div>
+            <div>
+                <button id="auto0"></button>
+                <button id="auto1"></button>
+                <button id="auto3"></button>
+            </div>
+        </div>
+        <div id="contractsTab" class="flexCol tabHolder">
+            <h3>Contracts</h3>
+            <div style="margin-bottom:1vh">
+                <button onclick="changeSubTab(1,0)" class="purpleButton">Prestige Contracts</button>
+            </div>
+            <div id="conSub0" class="flexCol">
+                <div class="flexRow">
+                    <div class="contractHolder flexCol" style="border-color:var(--purple)">
+                        <h2 id="infContractTitle0">Super Fusion</h2>
+                        <h4 id="infContractDesc0">Be Stuck on Fusion Egg with .25x Production</h4>
+                        <h4 id="infContractGoal0">Reach: $1.00e76</h4>
+                        <h4 id="infContractReward0">1.00 Prophecy Eggs</h4>
+                        <button id="infContractButton0">Start | Leave Contract</button>
+                    </div>
+                    <div class="contractHolder flexCol" style="border-color:var(--purple)">
+                        <h2 id="infContractTitle1">Super Fusion</h2>
+                        <h4 id="infContractDesc1">Be Stuck on Fusion Egg with .25x Production</h4>
+                        <h4 id="infContractGoal1">Reach: $1.00e76</h4>
+                        <h4 id="infContractReward1">1.00 Prophecy Eggs</h4>
+                        <button id="infContractButton1">Start | Leave Contract</button>
+                    </div>
+                    <div class="contractHolder flexCol" style="border-color:var(--purple)">
+                        <h2 id="infContractTitle2">Super Fusion</h2>
+                        <h4 id="infContractDesc2">Be Stuck on Fusion Egg with .25x Production</h4>
+                        <h4 id="infContractGoal2">Reach: $1.00e76</h4>
+                        <h4 id="infContractReward2">1.00 Prophecy Eggs</h4>
+                        <button id="infContractButton2">Start | Leave Contract</button>
+                    </div>
+                </div>
+                <p style="color:var(--red)">!Warning These Contracts will Force a Prestige Reset Upon Starting!</p>
+            </div>
+        </div>
+        <div id="prestigeTab" class="flexCol tabHolder">
+            <h3 style="color:var(--purple)">Prestige</h3>
+            <div class="flexRow">
+                <img src="/Images/Eggs/soul.png">
+                <h4 id="soulEggText" style="color:var(--purple)">Soul Eggs: 0.00</h4>
+            </div>
+            <div id="epicResearchRow" class="flexRow" style="margin-bottom: 1vh;">
+                <button id="er0"></button>
+                <button id="er1"></button>
+                <button id="er2"></button>
+            </div>
+            <div id="epicResearchRow" class="flexRow" style="margin-bottom: 1vh;">
+                <button id="er3"></button>
+                <button id="er4"></button>
+                <button id="er5"></button>
+                <button id="er9"></button>
+            </div>
+            <div id="epicResearchRow" class="flexRow" style="margin-bottom: 1vh;">
+                <button id="er6"></button>
+                <button id="er7"></button>
+                <button id="er10"></button>
+                <button id="er8"></button>
+            </div>
+            <div>
+                <button id="ba1" class="purpleButton">Buy Amount: 1</button>
+                <button id="auto2"></button>
+            </div>
+            <div class="flexRow">
+                <img src="/Images/Eggs/prophecy.png">
+                <h4 id="prophecyEggText" style="color:var(--yellow)">Prophecy Eggs: 0.00</h4>
+            </div>
+            <div>
+                <p id="prophecyEggSoftCapText" style="color:var(--red);text-align: center;">Prophecy Egg boost is being decreased by: 1e6</p>
+            </div>
+        </div>
+        <div id="eggpeditionTab" class="flexCol tabHolder" style="text-align:center">
+            <h3 style="color:var(--blue)">Eggspeditions</h3>
+            <div class="flexCol">
+                <div id="planetRow">
+                    <img id="planet0" src="/Images/planet1.png">
+                    <img id="planet1" src="/Images/planet2.png">
+                    <img id="planet2" src="/Images/planet3.png">
+                </div>
+                <div id="planetRow">
+                    <img id="planet3" src="/Images/planet4.png">
+                    <img id="planet4" src="/Images/planet5.png">
+                    <img id="planet5" src="/Images/planet6.png">
+                </div>
+            </div>
+            <p id="planetHoverText">Click on a planet to see what it is</p>
+            <div style="margin-top:1em;margin-bottom:1em">
+                <button id="discoveryButton">Discover Planet</button>
+                <button id="eggspeditionButton">Go on an Eggspedition</button>
+            </div>
+            <p id="discoveryText">Discover Planet: Cost 50 Million Rocket Fuel Eggs</p>
+            <p style="color:var(--red)">!Warning! - Journeying to any planet will cause a reset on the main farm.</p>
+        </div>
+        <div id="ascensionTab" class="flexCol tabHolder">
+            <h3 style="color: var(--orange)">Ascension</h3>
+            <div style="margin-bottom:1vh">
+                <button onclick="changeSubTab(2,0)" class="orangeButton">Ascension</button>
+                <button onclick="changeSubTab(2,1)" class="orangeButton">Gemology</button>
+            </div>
+            <div id="ascSub0" class="flexCol">
+                <div class="flexRow" style="margin-bottom: 1vh;">
+                    <img src="/Images/Eggs/knowlegg.png">
+                    <h4 id="knowleggText" style="color:var(--yellow)">Knowlegg: 0.00</h4>
+                </div>
+                <div class="flexCol" style="margin-bottom: 1vh;">
+                    <div id="legendaryResearchRow" class="flexRow">
+                        <button id="lr0">LegRes0</button>
+                        <button id="lr1">LegRes1</button>
+                        <button id="lr2">LegRes2</button>
+                        <button id="lr3">LegRes3</button>
+                    </div>
+                </div>
+            </div>
+            <div id="ascSub1" class="flexCol">
+                <div id="gemologyHolder" class="flexRow" style="margin-bottom:1vh;">
+                    <img id="gemSlot0" class="gemSlot" src="/Images/Gems/gem.png">
+                    <select id="gemOperations">
+                        <option value="0">Mutate</option>
+                        <option value="1">Combine</option>
+                        <option value="2">Absorb</option>
+                    </select>
+                    <img id="gemSlot1" class="gemSlot" src="/Images/Gems/gem.png">
+                    <p style="color:var(--orange)">Result =></p>
+                    <img id="gemSlot2" class="gemSlot" src="/Images/Gems/gem.png">
+                </div>
+                <p style="color:var(--orange);margin-bottom:1vh;">Reliquary</p>
+                <div id="gemHolder" class="flexRow" style="margin-bottom:1vh;">
+                    <div class="flexCol" style="margin:1em;align-items: flex-start;">
+                        <div class="flexRow">
+                            <img id="gem0Img" class="gemSlot">
+                            <p id="gem0Text">Gem 0 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem1Img" class="gemSlot">
+                            <p id="gem1Text">Gem 1 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem2Img" class="gemSlot">
+                            <p id="gem2Text">Gem 2 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem3Img" class="gemSlot">
+                            <p id="gem3Text">Gem 3 - Boost</p>
+                        </div>
+                    </div>
+                    <div class="flexCol" style="margin:1em;align-items: flex-start;">
+                        <div class="flexRow">
+                            <img id="gem4Img" class="gemSlot">
+                            <p id="gem4Text">Gem 4 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem5Img" class="gemSlot">
+                            <p id="gem5Text">Gem 5 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem6Img" class="gemSlot">
+                            <p id="gem6Text">Gem 6 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem7Img" class="gemSlot">
+                            <p id="gem7Text">Gem 7 - Boost</p>
+                        </div>
+                    </div>
+                    <div class="flexCol" style="margin:1em;align-items: flex-start;">
+                        <div class="flexRow">
+                            <img id="gem8Img" class="gemSlot">
+                            <p id="gem8Text">Gem 8 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem9Img" class="gemSlot">
+                            <p id="gem9Text">Gem 9 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem10Img" class="gemSlot">
+                            <p id="gem10Text">Gem 10 - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem11Img" class="gemSlot">
+                            <p id="gem11Text">Gem 11 - Boost</p>
+                        </div>
+                    </div>
+                    <div class="flexCol" style="margin:1em;align-items: flex-start;">
+                        <div class="flexRow">
+                            <img id="gem12Img" class="gemSlot">
+                            <p id="gem12Text">Gem Χ - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem13Img" class="gemSlot">
+                            <p id="gem13Text">Gem Ψ - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem14Img" class="gemSlot">
+                            <p id="gem14Text">Gem Ω - Boost</p>
+                        </div>
+                        <div class="flexRow">
+                            <img id="gem15Img" class="gemSlot">
+                            <p id="gem15Text">Gem 15 - Boost</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="achievementTab" class="flexCol tabHolder">
+            <h3>Achievements</h3>
+            <div style="display:flex;flex-direction: row;margin: 0 1vh 1vw 1vh;">
+                <div class="flexCol">
+                    <img id="ach0">
+                    <img id="ach1">
+                    <img id="ach2">
+                    <img id="ach3">
+                    <img id="ach4">
+                    <img id="ach5">
+                    <img id="ach6">
+                    <img id="ach7">
+                </div>
+                <div class="flexCol">
+                    <img id="ach8">
+                    <img id="ach9">
+                    <img id="ach10">
+                    <img id="ach11">
+                    <img id="ach12">
+                    <img id="ach13">
+                    <img id="ach14">
+                    <img id="ach15">
+                </div>  
+                <div class="flexCol">
+                    <img id="ach16">
+                    <img id="ach17">
+                    <img id="ach18">
+                    <div class="achPlaceholder"></div>
+                    <img id="ach19">
+                    <img id="ach20">
+                    <img id="ach21">
+                    <img id="ach22">
+                </div>  
+                <div class="flexCol">
+                    <img id="ach23">
+                    <img id="ach24">
+                    <img id="ach25">
+                    <img id="ach26">
+                    <img id="ach27">
+                    <img id="ach28">
+                    <img id="ach29">
+                    <img id="ach30">
+                </div>
+                <div class="flexCol">
+                    <img id="ach31">
+                    <img id="ach32">
+                    <img id="ach33">
+                    <img id="ach34">
+                    <img id="ach35">
+                    <img id="ach36">
+                    <div class="achPlaceholder"></div>
+                    <div class="achPlaceholder"></div>
+                </div>
+                <div class="flexCol">
+                    <img id="ach37">
+                    <img id="ach38">
+                    <img id="ach39">
+                    <img id="ach40">
+                    <img id="ach41">
+                    <img id="ach42">
+                    <img id="ach43">
+                    <img id="ach44">
+                </div>
+            </div>
+            <p id="achHoverText" style="text-align:center">Hover Over An Image to See Its Description</p>
+            <h4 id="achCompletionText">Achievements Completed: 0/36 [0.00%]</h4>
+        </div>
+        <div id="settingsTab" class="flexCol tabHolder">
+            <div style="margin-bottom:1vh">
+                <button onclick="changeSubTab(0,0)">Settings</button>
+                <button onclick="changeSubTab(0,1)">Stats</button>
+                <button onclick="changeSubTab(0,2)">Credits</button>
+                <button onclick="changeSubTab(0,3)">Help</button>
+            </div>
+            <div id="setSub0" class="flexCol">
+                <div style="margin-bottom:1vh">
+                    <button class="greenButton" onclick="save()">Save Game</button>
+                    <button onclick="exportSave()">Export Save</button>
+                    <button onclick="createPrompt('Import Save',0)">Import Save</button>
+                    <button class="redButton" onclick="createConfirmation('reset')">Delete Save (Exports)</button>
+                </div>
+                <div style="margin-bottom:1vh">
+                    <button onclick="toggle(0)" id="setTog0"></button>
+                    <button onclick="toggle(1);scrollNextMessage()" id="setTog1"></button>
+                    <button onclick="toggle(2)" id="setTog2"></button>
+                    <button onclick="toggle(3)" id="setTog3"></button>
+                    <!--<button onclick="changeTheme()" id="setTog4"></button>-->
+                </div>
+                <div style="margin-bottom:1vh">
+                    <a style="color:var(--purple)" href="https://discord.com/invite/JkQUnubuhx">Discord Link!</a>
+                    <a style="color:var(--blue)" href="https://github.com/MrBacon470/Coop-Co">Github Repo!</a>
+                    <a style="color:var(--yellow)" href="https://mrbacon470.github.io/Coop-Co/changelog.html">Changelog!</a>
+                </div>
+                <p id="currentVersionText">Current Version: v0.0.0</p>
+            </div>
+            <div id="setSub1" class="flexCol">
+                <h3>Stats</h3>
+                <div style="display:flex;flex-direction:row;margin-right: 1vw;">
+                    <div style="display:flex;flex-direction:column;">
+                        <h4 id="stat0" style="color:var(--green)">Best Money: $0.00</h4>
+                        <h4 id="stat1" style="color:var(--blue)">Best Egg: Regular</h4>
+                        <h4 id="stat2" style="color:var(--blue)">Best Chickens: 0.00</h4>
+                        <h4 id="stat3" style="color:var(--blue)">Contracts Completed: 0</h4>
+                        <h4 id="stat4" style="color:var(--blue)">Time Played (Includes Time Away): 0</h4>
+                    </div>
+                    <div style="display:flex;flex-direction:column;margin-left: 1vw;">
+                        <h3>Last 3 Prestiges</h3>
+                        <h4 id="stat5" style="color:var(--purple)">Prestige 1: 0 Soul Eggs</h4>
+                        <h4 id="stat6" style="color:var(--purple)">Prestige 2: 0 Soul Eggs</h4>
+                        <h4 id="stat7" style="color:var(--purple)">Prestige 3: 0 Soul Eggs</h4>
+                        <h3>Other Prestige Stats</h3>
+                        <h4 id="stat9" style="color:var(--purple)">Best Soul Eggs: 0</h4>
+                        <h4 id="stat10" style="color:var(--yellow)">Best Prophecy Eggs: 0</h4>
+                        <h4 id="stat8" style="color:var(--blue)">Time in Current Prestige: 0</h4>
+                    </div>
+                </div>
+            </div>
+            <div id="setSub2" class="flexCol">
+                <h3>Programmers</h3>
+                <div style="flex-direction:row;">
+                    <div style="flex-direction:column">
+                        <div class="credit">
+                            <img src="https://avatars.githubusercontent.com/u/72811949?s=64&v=4">
+                            <a>VoidCloud</a>
+                        </div>
+                        <div class="credit">
+                            <img src="https://avatars.githubusercontent.com/u/20068737?s=64&v=4">
+                            <a>Dimava</a>
+                        </div>
+                        <div class="credit">
+                            <img src="https://avatars.githubusercontent.com/u/26186257?s=64&v=4">
+                            <a>Gazyn</a>
+                        </div>
+                        <div class="credit">
+                            <img src="https://avatars.githubusercontent.com/u/71836730?s=64&v=4">
+                            <a>Gapples2</a>
+                        </div>
+                        <div class="credit">
+                            <img src="https://avatars.githubusercontent.com/u/61973821?s=60&v=4">
+                            <a>MrRedShark77</a>
+                        </div>
+                        <div class="credit">
+                            <img src="https://avatars.githubusercontent.com/u/627469?s=64&v=4">
+                            <a>AkumaNoTsubasa</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="setSub3" class="flexCol">
+                <h4>Coop Co Help Menu</h4>
+                <button class="accordion">Production</button>
+                <div class="panel">
+                    <p>Coop Co's main currency is <span style="color:var(--green)">$$$</span> which is generated based off the egg's value, current chicken count and egg laying rate.</p>
+                </div>
+                <button class="accordion"><span style="color:var(--gray)">Common</span> Research</button>
+                <div class="panel">
+                    <p>The main upgrade system of Coop Co is the standard <span style="color:var(--gray)">Common</span> Research which is purchased with <span style="color:var(--green)">$$$</span>, and costs increase quite rapidly at some point you may be able to automate its purchasing.</p>
+                </div>
+                <button id="help0" class="accordion"><span style="color:var(--purple)">Prestige</span></button>
+                <div class="panel">
+                    <p><span style="color:var(--purple)">Prestige</span> is the first main reset of the game that unlocks at Rocket Fuel Eggs, <span style="color:var(--purple)">Prestige</span> rewards <span style="color:var(--purple)">Soul Eggs</span> on reset which can be used in <span style="color:var(--purple)">Epic</span> Researches and they provide a special earnings boost based off of best <span style="color:var(--purple)">Prestige</span> rewards <span style="color:var(--purple)">Soul Eggs</span> and current <span style="color:var(--purple)">Prestige</span> rewards <span style="color:var(--purple)">Soul Eggs</span>.</p>
+                </div>
+                <button id="help1" class="accordion"><span style="color:var(--purple)">Epic</span> Research</button>
+                <div class="panel">
+                    <p><span style="color:var(--purple)">Epic</span> Research is the second set of researches in game, they provide special permanent bonuses, automation for boring tasks and QoL things to keep you sane at the cost of  <span style="color:var(--purple)">Soul Eggs</span></p>
+                </div>
+                <button id="help2" class="accordion"><span style="color:var(--blue)">Eggspeditions</span></button>
+                <div class="panel">
+                    <p><span style="color:var(--blue)">Eggspeditions</span> add 6 discoverable planets each with their own egg, special challenge and boost reward, it is recommended to start with the Chicken Gain Boost planet first as the price to discover planets increases rapidly.</p>
+                </div>
+                <button id="help3" class="accordion">Contracts</button>
+                <div class="panel">
+                    <p>Contracts are a simple system they force a reset on your farm and you're stuck in the contract's assigned egg until you reach the <span style="color:var(--green)">$$$</span> goal, upon successfully completing a contract you will recieve <span style="color:var(--yellow)">Prophecy Eggs</span> which boost contract rewards, difficulty and provide a massive multiplicative boost to <span style="color:var(--purple)">Soul Eggs</span>.</p>
+                </div>
+                <button class="accordion">Achievements</button>
+                <div class="panel">
+                    <p>Coop Co achievements are the best way to keep track of your progress through the game, they don't provide any boosts or special unlocks (for now) but they give a "sense" of accomplishment.</p>
+                </div>
+                <button id="help4" class="accordion"><span style="color:var(--orange)">Ascension</span></button>
+                <div class="panel">
+                   <p><span style="color:var(--orange)">Ascension</span> is the 2nd major reset of Coop Co and it resets all previous progress in the game in exchange for <span style="color:var(--yellow)">Knowleggs</span> (funny egg pun), which can be used for the next topic <span style="color:var(--orange)">Legendary</span> Research, as well this reset unlocks ascension tier contracts.</p>
+                </div>
+                <button id="help5" class="accordion"><span style="color:var(--orange)">Legendary</span> Research</button>
+                <div class="panel">
+                    <p><span style="color:var(--orange)">Legendary</span> Research much like <span style="color:var(--purple)">Epic</span> Research, gives special permanent bonuses, Automators and QoL Upgrades in exchange for your precious <span style="color:var(--yellow)">Knowleggs</span>.</p>
+                </div>
+                <button id="help6" class="accordion"><span style="color:var(--orange)">Gemology</span></button>
+                <div class="panel">
+                    <p><span style="color:var(--orange)">Gemology</span> is unlocked quite a bit later in the ascension reset but provides an interesting mechanic</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!--
+<script src="../Scripts/Internal/BreakEternity.js"></script>
+<script src="../Scripts/Internal/Cache.js"></script>
+<script src="../Scripts/Internal/Formatting.js"></script>
+<script src="../Scripts/Internal/MyMath.js"></script>
+<script src="../Scripts/data.js"></script>
+<script src="../Scripts/main.js"></script>
+<script src="../Scripts/update.js"></script>
+<script src="../Scripts/egghandler.js"></script>
+<script src="../Scripts/research.js"></script>
+<script src="../Scripts/prestige.js"></script>
+<script src="../Scripts/contracts.js"></script>
+<script src="../Scripts/automation.js"></script>
+<script src="../Scripts/newsticker.js"></script>
+<script src="../Scripts/achievements.js"></script>
+<script src="../Scripts/eggspeditions.js"></script>
+<script src="../Scripts/ascension.js"></script>
+ -->

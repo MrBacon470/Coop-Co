@@ -1,5 +1,5 @@
 let diff = 0;
-const eggImgPath = 'Imgs/Eggs/'
+const eggImgPath = '/Images/Eggs/'
 
 function generateHTMLAndHandlers() {
     for(let i = 0; i < tabIDs.length; i++) {

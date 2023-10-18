@@ -10,10 +10,10 @@ let planetHoverIndex = -1
 let planetBoosts = new Array(6).fill(D(0))
 function updateEggspeditionsUI() {
     for(let i = 0; i < data.planetsDiscovered.length; i++) {
-        if(data.planetsDiscovered[i] === false && planetHoverIndex === i && DOMCacheGetOrSet('planet'+i).getAttribute('src') !== 'Imgs/planetactive.png')
-            DOMCacheGetOrSet('planet'+i).src = `Imgs/planetactive.png`
-        else if((DOMCacheGetOrSet('planet'+i).getAttribute('src') !== `Imgs/planet${i+1}.png` && data.planetsDiscovered[i] === true) || (DOMCacheGetOrSet('planet'+i).getAttribute('src') !== `Imgs/questionplanet.png` && data.planetsDiscovered[i] === false && planetHoverIndex !== i))
-            DOMCacheGetOrSet('planet'+i).src = data.planetsDiscovered[i] === true ? `Imgs/planet${i+1}.png` : `Imgs/questionplanet.png`
+        if(data.planetsDiscovered[i] === false && planetHoverIndex === i && DOMCacheGetOrSet('planet'+i).getAttribute('src') !== '/Images/planetactive.png')
+            DOMCacheGetOrSet('planet'+i).src = `/Images/planetactive.png`
+        else if((DOMCacheGetOrSet('planet'+i).getAttribute('src') !== `/Images/planet${i+1}.png` && data.planetsDiscovered[i] === true) || (DOMCacheGetOrSet('planet'+i).getAttribute('src') !== `/Images/questionplanet.png` && data.planetsDiscovered[i] === false && planetHoverIndex !== i))
+            DOMCacheGetOrSet('planet'+i).src = data.planetsDiscovered[i] === true ? `/Images/planet${i+1}.png` : `/Images/questionplanet.png`
     }
     DOMCacheGetOrSet('discoveryButton').classList = data.currentEgg === discoveryEggIndexes[data.discoveries] && data.chickens.gte(discoveryReqs[data.discoveries]) && data.planetsDiscovered[planetHoverIndex] === false ? 'greenButton' : 'redButton'
     DOMCacheGetOrSet('discoveryButton').innerText = data.planetsDiscovered[planetHoverIndex] === true ? 'Already Discovered' : `Discover Planet`
