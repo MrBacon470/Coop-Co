@@ -9,12 +9,138 @@
 </head>
 <body>
     <div id="changelogHolder">
-       
+        <h1>Changelog :O</h1>
+        <h1>Public Release</h1>
+        <h2><strong>v2.0.0</strong> <span class="badge-green">Major Update</span></h2>
+        <p>Ascension! Contract Overhaul! Enlightenments Removed! UI Redux! More Eggs! More Achievements</p>
+        <h2><strong>v1.1.5</strong> <span class="badge-blue">Minor Update</span></h2>
+        <p>Cleaned up Styling and removed almost all inline styling, Added Multi-Theme support (3 Themes Currently: Original, Void Stream (my take on the Star Stream theme in NG+3C) and Flashbang) and Changed the progress bar to be yellow is progress to discovery and green is unlock progress</p>
+        <h2><strong>v1.1.4</strong> <span class="badge-red">Major Rebalance</span></h2>
+        <p>Massive Prophecy Egg Boost Softcap, All End Game Saves reset to a default End Game Save due to rebalance,<br>Contract Rebalance Part 6 (ono), Enlightenment Buy Amount Implemented, Prestige based off of best money on the current egg, Auto Promotion Stop Toggle and Prevent Entering contracts while being enlightened.</p>
+        <h2><strong>v1.1.3</strong> <span class="badge-red">Rebalance</span></h2>
+        <p>New Planet Boost (Knowledge Gain), Knowledge and Enlightenment Rebalance, Achievement 38-41 Rebalance, Next Egg Not Being Hidden Fixed</p>
+        <h2><strong>v1.1.2</strong> <span class="badge-yellow">Bug Fix</span></h2>
+        <p>Quick Patch for Eggspedition Button being missing</p>
+        <h2><strong>v1.1.1</strong> <span class="badge-yellow">Bug Fix & Rebalance</span></h2>
+        <p>Eggspedition Discovery Rebalance, Contract Notification Toggle, Warning for eggspeditions</p>
+        <h2><strong>v1.1.0</strong> <span class="badge-green">Major Update</span></h2>
+        <p>Enlightenments, Eggpeditions, Notifications via Notify.js, Tier XI-XIV Auto,<br>Error NAN Display Fix, New Formatter, Auto Save is 30s Interval Now (Originally 10s), Stats Screen, Achievements</p>
+        <h2><strong>v1.0.11</strong> <span class="badge-red">Rebalance</span></h2>
+        <p>Contract Rebalance pt 5 (I'm probably going to stop rebalancing now)</p>
+        <h2><strong>v1.0.10</strong> <span class="badge-yellow">Bug Fix & Rebalance</span></h2>
+        <p>More 1.0.3 Fixes, New Prophecy Egg Boost and Contract Rebalance pt 4 (finale?)</p>
+        <h2><strong>v1.0.9</strong> <span class="badge-yellow">Bug Fix</span></h2>
+        <p>More Fixes for bugs introduced by 1.0.3</p>
+        <h2><strong>v1.0.8</strong> <span class="badge-green">Major Update</span></h2>
+        <p>New Formatter (by Dimava), Optimized Common Research Buyer and Optimized Prophecy Egg Reward (by Gazyn)</p>
+        <h2><strong>v1.0.7</strong> <span class="badge-red">Rebalance</span></h2>
+        <p>Contract Rebalance Part 3 | Soul Egg Rewards Removed Entirely from Contracts</p>
+        <h2><strong>v1.0.6</strong> <span class="badge-yellow">Bug Fix</span></h2>
+        <p>Fully Working Double Progress Bar (by Dimava)</p>
+        <h2><strong>v1.0.5</strong> <span class="badge-yellow">Bug Fix</span> </h2>
+        <p>Fix Major Bug Introduced in 1.0.3</p>
+        <h2><strong>v1.0.4</strong> <span class="badge-blue">Minor Update</span></h2>
+        <p>Newsticker Added In Game</p>
+        <h2><strong>v1.0.3</strong> <span class="badge-green">Major Update</span></h2>
+        <p>Egg Promotion Progress Bar, Egg Promotion and Prestige Buttons Hidden When In Contract, and Slightly Better Code (by gapples2)</p>
+        <h2><strong>v1.0.2</strong> <span class="badge-red">Rebalance</span></h2>
+        <p>Contract Rebalancing Part 2, Delete Save Confirmation</p>
+        <h2><strong>v1.0.1</strong> <span class="badge-blue">Minor Update</span></h2>
+        <p>Minor Bug Fixes, 2 New Epic Researches, Favicon changes based on current egg, and Contract Rebalancing Part 1</p>
+        <h2><strong>v1.0.0</strong> <span class="badge-yellow">Bug Fix</span></h2>
+        <p>Patching and Polishing</p>
+        <h1>Alpha Versions (α)</h1>
+        <h2><strong>v0.0.3</strong> <span class="badge-green">Major Update</span></h2>
+        <p>Contracts,Automation and Internal Hatchery Buff</p>
+        <h2><strong>v0.0.2</strong> <span class="badge-green">Major Update</span></h2>
+        <p>Prestige!</p>
+        <h2><strong>v0.0.1</strong> <span class="badge-green">Major Update</span></h2>
+        <p>All Eggs, 28 "Common" Researches, Egg Promotion System</p>
     </div>
 </body>
 
-<style>
-    body {
-        background-color: black;
-    }
+<style is:inline>
+    @font-face {
+    font-family: 'Martian Mono';
+    src: url('/Fonts/MartianMono-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('/Fonts/RobotoMono-Medium.ttf');
+}
+
+:root {
+    --bg-color: #171b1b;
+    --header-color: lightgrey;
+    --gray: #999999;
+    --white: #e7e7e7;
+    --green: #65be67;
+    --red: #d74444;
+    --blue: #4481d7;
+    --purple: #a144d7;
+    --yellow: #d7d744;
+    --orange: #d77f44;
+}
+
+* {
+    margin: 0%;
+    font-family: 'Martian Mono';
+    color: whitesmoke;
+    text-align: center;
+}
+body {
+    user-select: none;
+    background-color: var(--bg-color);
+}
+button {
+    user-select: none;
+    background-color: var(--bg-color);
+    border-width: 2px;
+    border-color: whitesmoke;
+    border-style: solid;
+    border-radius: 5px;
+    transition-duration: 0.5s;
+}
+button:hover {
+    background-color: whitesmoke;
+    color: var(--bg-color);
+    
+    transition-duration: 0.5s;
+}
+img {height: 3.25em; width: 3.25em;}
+h1,h2,h3,h4,p { margin-bottom: 1vh;}
+
+.badge-red {
+    background-color: var(--red);
+    color: whitesmoke;
+    padding: 2px 4px;
+    text-align: center;
+}
+
+.badge-green {
+    background-color: var(--green);
+    color: whitesmoke;
+    padding: 2px 4px;
+    text-align: center;
+}
+
+.badge-blue {
+    background-color: var(--blue);
+    color: whitesmoke;
+    padding: 2px 4px;
+    text-align: center;
+}
+
+.badge-yellow {
+    background-color: var(--yellow);
+    color: var(--bg-color);
+    padding: 2px 4px;
+    text-align: center;
+}
+
+#changeLogHolder {
+    padding: 1em;
+    margin: 1em;
+}
 </style>
