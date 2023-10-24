@@ -7,7 +7,7 @@ const prestigeContracts = [
       baseReward: D(2),
     },
     {
-      name: 'GPT-2.0',
+      name: 'GPT-10.0',
       desc: 'To make the ultimate version of ChatGPT, AI Eggs are needed',
       eggIndex: 15,
       baseGoal: D(1e27),

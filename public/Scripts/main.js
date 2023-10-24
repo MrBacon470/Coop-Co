@@ -1,6 +1,9 @@
 let diff = 0;
 const eggImgPath = '/Images/Eggs/'
 
+const subAmts = [4,2]
+const subIDs = ['set','asc']
+
 function generateHTMLAndHandlers() {
     for(let i = 0; i < tabIDs.length; i++) {
         DOMCacheGetOrSet(`tabButton${i}`).addEventListener('click', () => {changeTab(i)})
@@ -47,8 +50,14 @@ function generateHTMLAndHandlers() {
             DOMCacheGetOrSet(`setTog${i}`).classList = data.settingsToggles[i] ? 'greenButton' : 'redButton'
     }
 
-    var acc = document.getElementsByClassName("accordion");
-    var i;
+    for(let i = 0; i < subIDs.length; i++) {
+        for(let j = 0; j < subAmts[i]; j++) {
+            DOMCacheGetOrSet(`${subIDs[i]}SubButton${j}`).addEventListener('click',() => changeSubTab(i,j))
+        }
+    }
+
+    const acc = document.getElementsByClassName("accordion");
+    let i;
 
     for (i = 0; i < acc.length; i++) {
         acc[i].addEventListener("click", function() {
@@ -57,7 +66,7 @@ function generateHTMLAndHandlers() {
         this.classList.toggle("active");
 
     /* Toggle between hiding and showing the active panel */
-        var panel = this.nextElementSibling;
+        let panel = this.nextElementSibling;
         if (panel.style.display === "block") {
           panel.style.display = "none";
         } else {
@@ -128,8 +137,7 @@ function changeTab(i) {
 }
 
 function changeSubTab(a,b) {
-    const subAmts = [4,2,2]
-    const subIDs = ['set','con','asc']
+    
     data.currentSubTab[a] = b
     for(let i = 0; i < subAmts[a]; i++) {
         DOMCacheGetOrSet(`${subIDs[a]}Sub${i}`).style.display = i === data.currentSubTab[a] ? 'flex' : 'none'
@@ -229,31 +237,6 @@ function closeModal(i) {
             document.getElementById('confirmContainer').style.display = 'none'
             break
     }
-    
-}
-
-function setTheme() {
-    const themeNames = ['Original','StarStream','White']
-    document.querySelectorAll("link").forEach( function(e) {
-        if (e.href.includes("Theme")) e.remove();
-    });
-
-    var head = document.head;
-    var link = document.createElement('link');
-
-    link.type = 'text/css';
-    link.rel = 'stylesheet';
-    link.href = "CSS/Theme-" + themeNames[data.themeIndex] + ".css";
-
-    head.appendChild(link);
-}
-
-function changeTheme() {
-    const themeDisplayNames = ['Original','Void Stream','Flashbang']
-    data.themeIndex++
-    if(data.themeIndex >= themeDisplayNames.length) data.themeIndex = 0
-    DOMCacheGetOrSet('setTog4').innerText = `Theme: ${themeDisplayNames[data.themeIndex]}`
-    setTheme()
 }
 
 window.setInterval(function() {
