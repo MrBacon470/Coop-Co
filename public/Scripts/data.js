@@ -45,7 +45,7 @@ function getDefaultObject() {
         currentTab: 0,
         currentSubTab: new Array(3).fill(0),
         settingsToggles: new Array(4).fill(true),
-        currentUpdate: 'v1.1.5',
+        currentUpdate: 'v2.0.0',
         devSpeed: 1,
     }
 }
@@ -56,7 +56,7 @@ let data = getDefaultObject()
 const saveName = 'coopCo'
 function save(){
     window.localStorage.setItem(saveName, JSON.stringify(data))
-    //$.notify('Game Saved','info')
+    generateNotification('Game Saved','info')
 }
 function load() {
     let savedata = JSON.parse(window.localStorage.getItem(saveName))
@@ -99,17 +99,17 @@ function exportSave(){
     exportedDataText.setSelectionRange(0, 99999);
     document.execCommand("copy");
     document.body.removeChild(exportedDataText);
-    //$.notify('Save File Exported to Clip Board','success')
+    generateNotification('Save File Exported to Clip Board','success')
 }
 function importSave(){
     let importedData = DOMCacheGetOrSet('promptInput').value
     if(importedData.length <= 0 || importedData === undefined) {
-        //$.notify('No Data Imported','error')
+        generateNotification('No Data Imported','error')
         DOMCacheGetOrSet('promptContainer').style.display = 'none'
         return
     }
     else if(importedData.toLowerCase() === '69' || importedData.toLowerCase() === '420'){
-        //$.notify('Nice','success')
+        generateNotification('Nice','success')
         DOMCacheGetOrSet('promptContainer').style.display = 'none'
         return
     }
@@ -125,7 +125,7 @@ window.onload = function (){
     load()
     generateHTMLAndHandlers()
     diff = (Date.now()-data.time)*data.devSpeed/1000
-    //$.notify('Welcome Back!\nYou were gone for ' + formatTime(diff), 'info')
+    generateNotification('Welcome Back!\nYou were gone for ' + formatTime(diff), 'info')
     
     changeTab(data.currentTab)
     for(let i = 0; i < data.currentSubTab.length; i++) {
@@ -133,7 +133,7 @@ window.onload = function (){
     }
     scrollNextMessage()
     DOMCacheGetOrSet('currentVersionText').innerText = `Current Version: ${getDefaultObject().currentUpdate}`
-    //$.notify('Game Loaded','info')
+    generateNotification('Game Loaded','info')
     updateAchClass()
     //const themeDisplayNames = ['Original','Void Stream','Flashbang']
     //DOMCacheGetOrSet('setTog4').innerText = `Theme: ${themeDisplayNames[data.themeIndex]}`

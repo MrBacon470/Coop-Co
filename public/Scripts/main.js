@@ -8,6 +8,9 @@ function generateHTMLAndHandlers() {
     for(let i = 0; i < tabIDs.length; i++) {
         DOMCacheGetOrSet(`tabButton${i}`).addEventListener('click', () => {changeTab(i)})
     }
+    DOMCacheGetOrSet('prestigeButton').addEventListener('click', () => createConfirmation('prestige'))
+    DOMCacheGetOrSet('eggPromoteButton').addEventListener('click', () => promoteEgg())
+    DOMCacheGetOrSet('ascensionButton').addEventListener('click', () => createConfirmation('ascension'))
     //Egg Tab
     DOMCacheGetOrSet('mainButton').addEventListener('click', () => {data.chickens = data.chickens.plus(1)})
     //Research Tab
@@ -43,12 +46,21 @@ function generateHTMLAndHandlers() {
         DOMCacheGetOrSet(`auto${i}`).addEventListener('click', () => { data.autoActive[i] = !data.autoActive[i] })
     }
 
-    for(let i = 1; i < data.settingsToggles.length; i++) {
+    for(let i = 0; i < data.settingsToggles.length; i++) {
         if(i === 3)
             DOMCacheGetOrSet(`setTog${i}`).classList = data.settingsToggles[i] ? 'yellowButton' : 'blueButton'
-        else if(i !== 0 || i !== 3)
+        else if(i !== 0 && i !== 3)
             DOMCacheGetOrSet(`setTog${i}`).classList = data.settingsToggles[i] ? 'greenButton' : 'redButton'
+        
+        if(i === 1)
+            DOMCacheGetOrSet(`setTog${i}`).addEventListener('click', () => {toggle(i);scrollNextMessage();})
+        else
+            DOMCacheGetOrSet(`setTog${i}`).addEventListener('click', () => {toggle(i)})
     }
+    DOMCacheGetOrSet('saveButton').addEventListener('click', () => save())
+    DOMCacheGetOrSet('exportButton').addEventListener('click',() => exportSave())
+    DOMCacheGetOrSet('importButton').addEventListener('click',() => createPrompt('Import Save',0))
+    DOMCacheGetOrSet('deleteButton').addEventListener('click', () => createConfirmation('reset'))
 
     for(let i = 0; i < subIDs.length; i++) {
         for(let j = 0; j < subAmts[i]; j++) {

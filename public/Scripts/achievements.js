@@ -51,7 +51,7 @@ function updateAchText(i) {
 function getAchievement(i) {
     if(data.achievements[i] === true) return
     data.achievements[i] = true
-    
+    generateNotification(`${achievementObjs[i].name} Unlocked!`,'success')
     updateAchClass()
 }
 

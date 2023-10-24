@@ -44,6 +44,15 @@ function getRandomDecimal(min,max) {
     return Decimal.floor(D(Math.random()).times(max.sub(min))).plus(min)
 }
 
+function calculateMaxCost(baseCost,level,maxLevel,interval,rate,currency) {
+    let remainder = interval
+    if(interval.gte(maxLevel.sub(level)))
+        remainder = maxLevel.sub(level)
+
+    
+    
+}
+
 function decimalRemainder(num1, num2) {
     if(num1.eq(0)){
            return D(0);
