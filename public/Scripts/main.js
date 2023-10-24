@@ -76,7 +76,7 @@ function mainLoop() {
     updatePrestige()
     updateAscension()
     updateAutomation()
-    if(data.chickens.lt(1) && data.epicResearch[8].gte(epicResearchMaxLevel[8]))
+    if(data.chickens.lt(1) && data.epicResearch[8].gte(epicResearches[8].maxLevel))
         data.chickens = D(1)
     for(let i = 0; i < data.contractActive.length; i++) {
         if(data.contractActive[i])

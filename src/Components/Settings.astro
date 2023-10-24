@@ -1,0 +1,127 @@
+<div id="settingsTab" class="flexCol tabHolder">
+    <div style="margin-bottom:1vh">
+        <button>Settings</button>
+        <button>Stats</button>
+        <button>Credits</button>
+        <button>Help</button>
+    </div>
+    <div id="setSub0" class="flexCol">
+        <div style="margin-bottom:1vh">
+            <button class="greenButton">Save Game</button>
+            <button>Export Save</button>
+            <button>Import Save</button>
+            <button class="redButton">Delete Save (Exports)</button>
+        </div>
+        <div style="margin-bottom:1vh">
+            <button id="setTog0"></button>
+            <button id="setTog1"></button>
+            <button id="setTog2"></button>
+            <button id="setTog3"></button>
+            <!--<button onclick="changeTheme()" id="setTog4"></button>-->
+        </div>
+        <div style="margin-bottom:1vh">
+            <a style="color:var(--purple)" href="https://discord.com/invite/JkQUnubuhx">Discord Link!</a>
+            <a style="color:var(--blue)" href="https://github.com/MrBacon470/Coop-Co">Github Repo!</a>
+            <a style="color:var(--yellow)" href="https://mrbacon470.github.io/Coop-Co/changelog.html">Changelog!</a>
+        </div>
+        <p id="currentVersionText">Current Version: v0.0.0</p>
+    </div>
+    <div id="setSub1" class="flexCol">
+        <h3>Stats</h3>
+        <div style="display:flex;flex-direction:row;margin-right: 1vw;">
+            <div style="display:flex;flex-direction:column;">
+                <h4 id="stat0" style="color:var(--green)">Best Money: $0.00</h4>
+                <h4 id="stat1" style="color:var(--blue)">Best Egg: Regular</h4>
+                <h4 id="stat2" style="color:var(--blue)">Best Chickens: 0.00</h4>
+                <h4 id="stat3" style="color:var(--blue)">Contracts Completed: 0</h4>
+                <h4 id="stat4" style="color:var(--blue)">Time Played (Includes Time Away): 0</h4>
+            </div>
+            <div style="display:flex;flex-direction:column;margin-left: 1vw;">
+                <h3>Last 3 Prestiges</h3>
+                <h4 id="stat5" style="color:var(--purple)">Prestige 1: 0 Soul Eggs</h4>
+                <h4 id="stat6" style="color:var(--purple)">Prestige 2: 0 Soul Eggs</h4>
+                <h4 id="stat7" style="color:var(--purple)">Prestige 3: 0 Soul Eggs</h4>
+                <h3>Other Prestige Stats</h3>
+                <h4 id="stat9" style="color:var(--purple)">Best Soul Eggs: 0</h4>
+                <h4 id="stat10" style="color:var(--yellow)">Best Prophecy Eggs: 0</h4>
+                <h4 id="stat8" style="color:var(--blue)">Time in Current Prestige: 0</h4>
+            </div>
+        </div>
+    </div>
+    <div id="setSub2" class="flexCol">
+        <h3>Programmers</h3>
+        <div style="flex-direction:row;">
+            <div style="flex-direction:column">
+                <div class="credit">
+                    <img src="https://avatars.githubusercontent.com/u/72811949?s=64&v=4">
+                    <a>VoidCloud</a>
+                </div>
+                <div class="credit">
+                    <img src="https://avatars.githubusercontent.com/u/20068737?s=64&v=4">
+                    <a>Dimava</a>
+                </div>
+                <div class="credit">
+                    <img src="https://avatars.githubusercontent.com/u/26186257?s=64&v=4">
+                    <a>Gazyn</a>
+                </div>
+                <div class="credit">
+                    <img src="https://avatars.githubusercontent.com/u/71836730?s=64&v=4">
+                    <a>Gapples2</a>
+                </div>
+                <div class="credit">
+                    <img src="https://avatars.githubusercontent.com/u/61973821?s=60&v=4">
+                    <a>MrRedShark77</a>
+                </div>
+                <div class="credit">
+                    <img src="https://avatars.githubusercontent.com/u/627469?s=64&v=4">
+                    <a>AkumaNoTsubasa</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="setSub3" class="flexCol">
+        <h4>Coop Co Help Menu</h4>
+        <button class="accordion">Production</button>
+        <div class="panel">
+            <p>Coop Co's main currency is <span style="color:var(--green)">$$$</span> which is generated based off the egg's value, current chicken count and egg laying rate.</p>
+        </div>
+        <button class="accordion"><span style="color:var(--gray)">Common</span> Research</button>
+        <div class="panel">
+            <p>The main upgrade system of Coop Co is the standard <span style="color:var(--gray)">Common</span> Research which is purchased with <span style="color:var(--green)">$$$</span>, and costs increase quite rapidly at some point you may be able to automate its purchasing.</p>
+        </div>
+        <button id="help0" class="accordion"><span style="color:var(--purple)">Prestige</span></button>
+        <div class="panel">
+            <p><span style="color:var(--purple)">Prestige</span> is the first main reset of the game that unlocks at Rocket Fuel Eggs, <span style="color:var(--purple)">Prestige</span> rewards <span style="color:var(--purple)">Soul Eggs</span> on reset which can be used in <span style="color:var(--purple)">Epic</span> Researches and they provide a special earnings boost based off of best <span style="color:var(--purple)">Prestige</span> rewards <span style="color:var(--purple)">Soul Eggs</span> and current <span style="color:var(--purple)">Prestige</span> rewards <span style="color:var(--purple)">Soul Eggs</span>.</p>
+        </div>
+        <button id="help1" class="accordion"><span style="color:var(--purple)">Epic</span> Research</button>
+        <div class="panel">
+            <p><span style="color:var(--purple)">Epic</span> Research is the second set of researches in game, they provide special permanent bonuses, automation for boring tasks and QoL things to keep you sane at the cost of  <span style="color:var(--purple)">Soul Eggs</span></p>
+        </div>
+        <button id="help2" class="accordion"><span style="color:var(--blue)">Eggspeditions</span></button>
+        <div class="panel">
+            <p><span style="color:var(--blue)">Eggspeditions</span> add 6 discoverable planets each with their own egg, special challenge and boost reward, it is recommended to start with the Chicken Gain Boost planet first as the price to discover planets increases rapidly.</p>
+        </div>
+        <button id="help3" class="accordion">Contracts</button>
+        <div class="panel">
+            <p>Contracts are a simple system they force a reset on your farm and you're stuck in the contract's assigned egg until you reach the <span style="color:var(--green)">$$$</span> goal, upon successfully completing a contract you will recieve <span style="color:var(--yellow)">Prophecy Eggs</span> which boost contract rewards, difficulty and provide a massive multiplicative boost to <span style="color:var(--purple)">Soul Eggs</span>.</p>
+        </div>
+        <button class="accordion">Achievements</button>
+        <div class="panel">
+            <p>Coop Co achievements are the best way to keep track of your progress through the game, they don't provide any boosts or special unlocks (for now) but they give a "sense" of accomplishment.</p>
+        </div>
+        <button id="help4" class="accordion"><span style="color:var(--orange)">Ascension</span></button>
+        <div class="panel">
+           <p><span style="color:var(--orange)">Ascension</span> is the 2nd major reset of Coop Co and it resets all previous progress in the game in exchange for <span style="color:var(--yellow)">Knowleggs</span> (funny egg pun), which can be used for the next topic <span style="color:var(--orange)">Legendary</span> Research, as well this reset unlocks ascension tier contracts.</p>
+        </div>
+        <button id="help5" class="accordion"><span style="color:var(--orange)">Legendary</span> Research</button>
+        <div class="panel">
+            <p><span style="color:var(--orange)">Legendary</span> Research much like <span style="color:var(--purple)">Epic</span> Research, gives special permanent bonuses, Automators and QoL Upgrades in exchange for your precious <span style="color:var(--yellow)">Knowleggs</span>.</p>
+        </div>
+        <button id="help6" class="accordion"><span style="color:var(--orange)">Gemology</span></button>
+        <div class="panel">
+            <p><span style="color:var(--orange)">Gemology</span> is unlocked quite a bit later in the ascension reset but provides an interesting mechanic</p>
+        </div>
+    </div>
+</div>
+</div>
