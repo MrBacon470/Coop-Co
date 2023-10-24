@@ -106,8 +106,8 @@ function startContract(i) {
       prestige()
       data.currentEgg = prestigeContracts[data.contracts[i].id].eggIndex
       data.contractActive[i] = true
-      if(data.settingsToggles[2] === true) 
-        $.notify(`Contract ${prestigeContracts[data.contracts[i].id].name} Started!`, 'warn')
+      //if(data.settingsToggles[2] === true) 
+        
     }
     else {
       data.contractActive[i] = false
@@ -119,8 +119,8 @@ function startContract(i) {
       data.chickens = D(0)
       data.money = D(0)
       data.currentEgg = 0
-      if(data.settingsToggles[2] === true) 
-        $.notify(`Contract ${prestigeContracts[data.contracts[i].id].name} Left!`, 'warn')
+      //if(data.settingsToggles[2] === true) 
+        
     }
 }
 
@@ -129,7 +129,7 @@ function runContract(i) {
       data.contractActive[i] = false
       data.prophecyEggs = data.prophecyEggs.plus(data.contracts[i].reward)
       if(data.settingsToggles[2] === true) 
-        $.notify(`Contract ${prestigeContracts[data.contracts[i].id].name} Completed!`, 'success')
+        
       for(let i = 0; i < 3; i++)
         generateContract(i)
       for(let i = 0; i < data.research.length; i++)
