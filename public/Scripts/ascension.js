@@ -1,70 +1,3 @@
-const gemObjs = [
-    {
-        name: 'Normal Gem',
-        src: '/Images/Gems/gem.png',
-    },
-    {
-        name: 'Prestige Gem',
-        src: '/Images/Gems/prestigeGem.png',
-    },
-    {
-        name: 'Ascension Gem',
-        src: '/Images/Gems/ascensionGem.png',
-    },
-    {
-        name: 'Tachyon Gem',
-        src: '/Images/Gems/tachyonGem.png',
-    },
-    {
-        name: 'Dark Matter Gem',
-        src: '/Images/Gems/darkmatterGem.png',
-    },
-    {
-        name: 'Antimatter Gem',
-        src: '/Images/Gems/antimatterGem.png',
-    },
-    {
-        name: 'Nebula Gem',
-        src: '/Images/Gems/nebulaGem.png',
-    },
-    {
-        name: 'Soul Gem',
-        src: '/Images/Gems/soulGem.png',
-    },
-    {
-        name: 'Void Gem',
-        src: '/Images/Gems/voidGem.png',
-    },
-    {
-        name: 'Quantum Gem',
-        src: '/Images/Gems/quantumGem.png',
-    },
-    {
-        name: 'Universe Gem',
-        src: '/Images/Gems/universeGem.png',
-    },
-    {
-        name: 'Knowledge Gem',
-        src: '/Images/Gems/knowledgeGem.png',
-    },
-    {
-        name: 'Χ Gem',
-        src: '/Images/Gems/chiGem.png',
-    },
-    {
-        name: 'Ψ Gem',
-        src: '/Images/Gems/psiGem.png',
-    },
-    {
-        name: 'Ω Gem',
-        src: '/Images/Gems/omegaGem.png',
-    },
-    {
-        name: 'Singularity Gem',
-        src: '/Images/Gems/singularityGem.png',
-    }
-]
-
 const legendaryResearchObjs = [
     {
         name: 'Enlightened Thinkers',
@@ -78,6 +11,18 @@ const legendaryResearchObjs = [
         max: D(1),
         base: D(100)
     },
+]
+
+const artifacts = [
+
+]
+
+const gems = [
+
+]
+
+const ingredients = [
+    
 ]
 
 let knowleggGain = D(1)
