@@ -1,7 +1,7 @@
 let diff = 0;
 const eggImgPath = '/Images/Eggs/'
 
-const subAmts = [4,2]
+const subAmts = [4,4]
 const subIDs = ['set','asc']
 
 function generateHTMLAndHandlers() {
@@ -34,10 +34,7 @@ function generateHTMLAndHandlers() {
         DOMCacheGetOrSet(`er${i}`).onclick = () => purchaseEpicResearch(i)
     }
     //Ascension Tab
-    for(let i = 0; i < gemObjs.length; i++) {
-        DOMCacheGetOrSet(`gem${i}Img`).src = gemObjs[i].src
-        DOMCacheGetOrSet(`gem${i}Text`).innerText = gemObjs[i].name
-    }
+    
     //Achievements Tab
     for(let i = 0; i < achievementObjs.length; i++) 
         DOMCacheGetOrSet('ach' + i).addEventListener('mouseover', () => updateAchText(i))
