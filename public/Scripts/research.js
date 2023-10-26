@@ -288,7 +288,7 @@ function purchaseEpicResearch(i) {
     const buyAmountNums = [1,5,10,20]
     for(let j = 0; j < buyAmountNums[data.buyAmounts[1]]; j++) {
         updateResearch()
-        if(data.soulEggs.gte(epicResearchCost[i]) && data.epicResearch[i].lt(epicResearchMaxLevel[i])) {
+        if(data.soulEggs.gte(epicResearchCost[i]) && data.epicResearch[i].lt(epicResearches[i].maxLevel)) {
             data.soulEggs = data.soulEggs.sub(epicResearchCost[i])
             data.epicResearch[i] = data.epicResearch[i].add(1)
             updateHTML()

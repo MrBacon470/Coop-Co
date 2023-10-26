@@ -51,34 +51,30 @@ const prestigeContracts = [
 ]
 
 function updateContractsHTML() {
-  if(data.currentSubTab[1] === 0) {
-    for(let i = 0; i < 3; i++) {
-      if(data.contracts[i].id === -1) {
-        DOMCacheGetOrSet(`infContractTitle${i}`).innerText = 'No Contract'
-        DOMCacheGetOrSet(`infContractDesc${i}`).innerText = 'No Contract'
-        DOMCacheGetOrSet(`infContractGoal${i}`).innerText = 'No Contract'
-        DOMCacheGetOrSet(`infContractReward${i}`).innerText = 'No Contract'
-        DOMCacheGetOrSet(`infContractButton${i}`).innerText = 'No Contract'
-      } else {
-        DOMCacheGetOrSet(`infContractTitle${i}`).innerText = prestigeContracts[data.contracts[i].id].name
-        DOMCacheGetOrSet(`infContractDesc${i}`).innerText = prestigeContracts[data.contracts[i].id].desc
-        DOMCacheGetOrSet(`infContractGoal${i}`).innerText = `Goal: $${format(data.contracts[i].goal)}`
-        DOMCacheGetOrSet(`infContractReward${i}`).innerText = `Reward: ${format(data.contracts[i].reward)} Prophecy Eggs`
-      }
-      if(contractActive() || data.inPath || data.onPlanet || data.contracts[i].id === -1) {
-        DOMCacheGetOrSet(`infContractButton${i}`).innerText = !data.contractActive[i] ? 'Can\'t Start' : 'Exit Contract'
-        DOMCacheGetOrSet(`infContractButton${i}`).classList = !data.contractActive[i] ? 'redButton' : 'greenButton'
-      }
-      else {
-        DOMCacheGetOrSet(`infContractButton${i}`).innerText = 'Start Contract'
-        DOMCacheGetOrSet(`infContractButton${i}`).classList = 'greenButton'
-      }
+  for(let i = 0; i < 3; i++) {
+    if(data.contracts[i].id === -1) {
+      DOMCacheGetOrSet(`infContractTitle${i}`).innerText = 'No Contract'
+      DOMCacheGetOrSet(`infContractDesc${i}`).innerText = 'No Contract'
+      DOMCacheGetOrSet(`infContractGoal${i}`).innerText = 'No Contract'
+      DOMCacheGetOrSet(`infContractReward${i}`).innerText = 'No Contract'
+      DOMCacheGetOrSet(`infContractButton${i}`).innerText = 'No Contract'
+    } else {
+      DOMCacheGetOrSet(`infContractTitle${i}`).innerText = prestigeContracts[data.contracts[i].id].name
+      DOMCacheGetOrSet(`infContractDesc${i}`).innerText = prestigeContracts[data.contracts[i].id].desc
+      DOMCacheGetOrSet(`infContractGoal${i}`).innerText = `Goal: $${format(data.contracts[i].goal)}`
+      DOMCacheGetOrSet(`infContractReward${i}`).innerText = `Reward: ${format(data.contracts[i].reward)} Prophecy Eggs`
     }
-  }
-  else if(data.currentSubTab[1] === 1) {
-    //Implement Ascension Contracts
-  }
+    if(contractActive() || data.inPath || data.onPlanet || data.contracts[i].id === -1) {
+      DOMCacheGetOrSet(`infContractButton${i}`).innerText = !data.contractActive[i] ? 'Can\'t Start' : 'Exit Contract'
+      DOMCacheGetOrSet(`infContractButton${i}`).classList = !data.contractActive[i] ? 'redButton' : 'greenButton'
+    }
+    else {
+      DOMCacheGetOrSet(`infContractButton${i}`).innerText = 'Start Contract'
+      DOMCacheGetOrSet(`infContractButton${i}`).classList = 'greenButton'
+    }
+  }    
 }
+
 
 function contractActive(){
   for(let x=0;x<data.contractActive.length;x++){
@@ -106,8 +102,8 @@ function startContract(i) {
       prestige()
       data.currentEgg = prestigeContracts[data.contracts[i].id].eggIndex
       data.contractActive[i] = true
-      //if(data.settingsToggles[2] === true) 
-        
+      if(data.settingsToggles[2]) 
+        generateNotification(`Contract ${prestigeContracts[data.contracts[i].id].name} Started!`, 'warn')
     }
     else {
       data.contractActive[i] = false
@@ -119,8 +115,8 @@ function startContract(i) {
       data.chickens = D(0)
       data.money = D(0)
       data.currentEgg = 0
-      //if(data.settingsToggles[2] === true) 
-        
+      if(data.settingsToggles[2] === true) 
+        generateNotification(`Contract ${prestigeContracts[data.contracts[i].id].name} Left!`, 'warn')
     }
 }
 
@@ -129,7 +125,7 @@ function runContract(i) {
       data.contractActive[i] = false
       data.prophecyEggs = data.prophecyEggs.plus(data.contracts[i].reward)
       if(data.settingsToggles[2] === true) 
-        
+        generateNotification(`Contract ${prestigeContracts[data.contracts[i].id].name} Completed!\n+${format(data.contracts[i].reward)} Prophecy Eggs`, 'success')
       for(let i = 0; i < 3; i++)
         generateContract(i)
       for(let i = 0; i < data.research.length; i++)

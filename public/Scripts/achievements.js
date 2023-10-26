@@ -30,21 +30,23 @@ const achievementObjs = [
     { name: 'Prophet II', description: 'Get 100 Prophecy Eggs', img: `${eggImgPath}prophecy.png`},
     { name: 'Prophet III', description: 'Get 1 Thousand Prophecy Eggs', img: `${eggImgPath}prophecy.png`},
     { name: 'Prophet IV', description: 'Get 10 Thousand Prophecy Eggs', img: `${eggImgPath}prophecy.png`},
-    { name: 'Planetary I', description: 'Unlock the 1st Planet', img: `/Images/planet1.png`},
-    { name: 'Planetary II', description: 'Unlock the 2nd Planet', img: `/Images/planet2.png`},
-    { name: 'Planetary III', description: 'Unlock the 3rd Planet', img: `/Images/planet3.png`},
-    { name: 'Planetary IV', description: 'Unlock the 4th Planet', img: `/Images/planet4.png`},
-    { name: 'Planetary V', description: 'Unlock the 5th Planet', img: `/Images/planet5.png`},
-    { name: 'Planetary VI', description: 'Unlock the 6th Planet', img: `/Images/planet6.png`},
+    { name: 'Energy Too', description: 'Travel to Arcturus', img: `/Images/planet1.png`},
+    { name: 'Outta Time', description: 'Travel to Ravnar', img: `/Images/planet2.png`},
+    { name: 'At last. Peace', description: 'Travel to Xylok', img: `/Images/planet3.png`},
+    { name: 'The Void', description: 'Travel to Triton', img: `/Images/planet4.png`},
+    { name: 'Great Balls of Fire!', description: 'Travel to Hereth', img: `/Images/planet5.png`},
+    { name: 'Aaaaa Light Mode', description: 'Travel to Malak', img: `/Images/planet6.png`},
     { name: 'Ascendance', description: 'Obtain 1 Knowlegg', img: `${eggImgPath}knowlegg.png`},
     { name: 'Knowledge is the Key', description: 'Obtain 100 Knowlegg', img: `${eggImgPath}knowlegg.png`},
 ]
 
 function updateAchText(i) {
     if(i < 19)
-    DOMCacheGetOrSet('achHoverText').innerText = `[${i+1}] - ${!data.achievements[i] ? '???' :achievementObjs[i].name}\n${achievementObjs[i].description}`
-    else 
-    DOMCacheGetOrSet('achHoverText').innerText = `[${i+1}] - ${achievementObjs[i].name}\n${achievementObjs[i].description}`
+        DOMCacheGetOrSet('achHoverText').innerText = `[${i+1}] - ${!data.achievements[i] ? '???' :achievementObjs[i].name}\n${achievementObjs[i].description}`
+    else if(i >= 31 && i <= 36)
+        DOMCacheGetOrSet('achHoverText').innerText = `[${i+1}] - ${!data.achievements[i] ? '???' : achievementObjs[i].name}\n${!data.achievements[i] ? '???' : achievementObjs[i].description}`
+    else
+        DOMCacheGetOrSet('achHoverText').innerText = `[${i+1}] - ${achievementObjs[i].name}\n${achievementObjs[i].description}`
     DOMCacheGetOrSet('achHoverText').style.color = data.achievements[i] ? 'var(--green)' : 'var(--red)'
 }
 
@@ -93,7 +95,10 @@ function updateAchClass() {
         DOMCacheGetOrSet('ach'+i).src = data.achievements[i] ? achievementObjs[i].img : `${eggImgPath}question.png`
     }
     for(let i = 19; i < achievementObjs.length; i++) {
-        DOMCacheGetOrSet('ach'+i).src = achievementObjs[i].img
+        if(i >= 31 && i <= 36)
+            DOMCacheGetOrSet('ach'+i).src = !data.achievements[i] ? '/Images/questionplanet.png' : achievementObjs[i].img
+        else
+            DOMCacheGetOrSet('ach'+i).src = achievementObjs[i].img
     }
     DOMCacheGetOrSet('achCompletionText').innerText = `Achievements Completed: ${getAchievementsCompleted()}/${achievementObjs.length} [${format(getAchievementsCompleted()/achievementObjs.length*100,2)}%]`
 }

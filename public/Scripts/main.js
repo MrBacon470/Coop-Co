@@ -36,13 +36,35 @@ function generateHTMLAndHandlers() {
     //Ascension Tab
     let count = 0;
     for(let i = 0; i <= parseInt(artifacts.length / 8); i++) {
-        addHTML('artifactStorage',`<div id="artifactCol${i}" class=flexCol></div>`)
+        addHTML('artifactStorage',`<div id="artifactCol${i}" class="flexCol"></div>`)
         for(let j = 0; j < 8; j++) {
             if(count >= artifacts.length) break;
             addHTML(`artifactCol${i}`,`<img id="artifactSlot${count}" class="artifactSlot" src="${artifacts[count].img}">`)
             count++
         }
     }
+    count = 0;
+    addHTML('artifactStorage',`<div class="flexCol" style="width:4em"></div>`)
+    for(let i = 0; i <= parseInt(gems.length / 6); i++) {
+        addHTML('artifactStorage',`<div id="gemCol${i}" class="flexCol"></div>`)
+        for(let j = 0; j < 6; j++) {
+            if(count >= gems.length) break;
+            addHTML(`gemCol${i}`,`<img id="gemSlot${count}" class="artifactSlot" src="${gems[count].img}">`)
+            count++
+        }
+    }
+    
+    // count = 0;
+    // addHTML('artifactStorage',`<div class="flexCol" style="width:4em"></div>`)
+    // for(let i = 0; i <= parseInt(ingredients.length / 8); i++) {
+    //     addHTML('artifactStorage',`<div id="ingredientCol${i}" class="flexCol"></div>`)
+    //     for(let j = 0; j < 8; j++) {
+    //         if(count >= ingredients.length) break;
+    //         addHTML(`ingredientCol${i}`,`<img id="ingredientSlot${count}" class="artifactSlot" src="${ingredients[count].img}">`)
+    //         count++
+    //     }
+    // }
+    
     //Achievements Tab
     for(let i = 0; i < achievementObjs.length; i++) 
         DOMCacheGetOrSet('ach' + i).addEventListener('mouseover', () => updateAchText(i))

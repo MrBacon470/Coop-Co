@@ -193,9 +193,9 @@ function updateEggValueBonus() {
     eggValueBonus = data.research[24].gt(0) ? eggValueBonus.times((D(0.01).times(data.research[24])).plus(1)) : eggValueBonus.times(D(1))
     eggValueBonus = data.research[25].gt(0) ? eggValueBonus.times((D(.01).times(data.research[25])).plus(1)) : eggValueBonus.times(D(1))
     eggValueBonus = data.research[26].gt(0) ? eggValueBonus.times((D(10).times(data.research[26]))) : eggValueBonus.times(D(1))
+
     eggValueBonus = data.epicResearch[5].gt(0) ? eggValueBonus.times((D(0.05).times(data.epicResearch[5])).plus(1)) : eggValueBonus.times(D(1))
-    eggValueBonus = data.enlightenments[3].gt(0) ? eggValueBonus.times((D(0.10).times(data.enlightenments[3])).plus(1)) : eggValueBonus.times(D(1))
-    eggValueBonus = eggValueBonus.times(planetBoosts[5])
+    eggValueBonus = !data.onPlanet ? eggValueBonus.times(planetBoosts[5]) : eggValueBonus
     if(data.onPlanet === true)
       eggValueBonus = eggValueBonus.times(planetBoosts[0])
 }
@@ -210,7 +210,7 @@ function updateIntHatch() {
     chickenGain = chickenGain.plus(D(50).times(data.research[19]))
     chickenGain = chickenGain.times(4)
     chickenGain = chickenGain.times((D(0.05).times(data.epicResearch[0])).plus(1))
-    chickenGain = chickenGain.times(planetBoosts[4])
+    chickenGain = !data.onPlanet ? chickenGain.times(planetBoosts[4]) : chickenGain
 }
 
 function updateLayRate() {
@@ -221,7 +221,7 @@ function updateLayRate() {
     layRate = data.research[16].gt(0) ? layRate.times((D(0.1).times(data.research[16])).plus(1)) : layRate.times(D(1))
     layRate = data.research[27].gt(0) ? layRate.times((D(0.1).times(data.research[27])).plus(1)) : layRate.times(D(1))
     layRate = data.epicResearch[4].gt(0) ? layRate.times((D(0.5).times(data.epicResearch[4])).plus(1)) : layRate.times(D(1))
-    layRate = layRate.times(planetBoosts[1])
+    layRate = !data.onPlanet ? layRate.times(planetBoosts[1]) : layRate
     if(data.onPlanet && data.currentPlanetIndex === 4)
       layRate = layRate.times(D(0.5))
 }
