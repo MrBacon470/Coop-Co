@@ -99,3 +99,7 @@ function formatPrefix(a,b) {
         return `${format(a.divide(amts[index]))} ${prefixes[index]}${b.toLowerCase()}`
     }
 }
+
+function addHTML(target,htmlStr) {
+    document.getElementById(target).insertAdjacentHTML('beforeend',htmlStr)
+}

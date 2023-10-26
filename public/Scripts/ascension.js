@@ -14,15 +14,167 @@ const legendaryResearchObjs = [
 ]
 
 const artifacts = [
-
+    {
+        name: 'Eggcell \'85',
+        img: '/Images/Artifacts/Eggcell-85.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Quickeggn',
+        img: '/Images/Artifacts/Quickeggn.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Egg Books',
+        img: '/Images/Artifacts/Egg-Books.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Turbo Hatch',
+        img: '/Images/Artifacts/Turbo-Hatch.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Tattered Scroll',
+        img: '/Images/Artifacts/Tattered-Scroll.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Prophetic Scroll',
+        img: '/Images/Artifacts/Prophetic-Scroll.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Gilded Scroll',
+        img: '/Images/Artifacts/Gilded-Scroll.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Enlightened Scroll',
+        img: '/Images/Artifacts/Enlightened-Scroll.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Prophetic Book',
+        img: '/Images/Artifacts/Prophetic-Book.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Gilded Book',
+        img: '/Images/Artifacts/Gilded-Book.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Ascended Book',
+        img: '/Images/Artifacts/Ascended-Book.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Knowlegg Book',
+        img: '/Images/Artifacts/Knowlegg-Book.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Torn Lantern',
+        img: '/Images/Artifacts/Torn-Lantern.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Soul Lantern',
+        img: '/Images/Artifacts/Soul-Lantern.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Gilded Lantern',
+        img: '/Images/Artifacts/Gilded-Lantern.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Prestige Lantern',
+        img: '/Images/Artifacts/Prestige-Lantern.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Hammer',
+        img: '/Images/Artifacts/Hammer.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Hammer & Pick',
+        img: '/Images/Artifacts/Hammer-Pick.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Hammer & Wrench',
+        img: '/Images/Artifacts/Hammer-Wrench.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Crane',
+        img: '/Images/Artifacts/Crane.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Ancient Analysis',
+        img: '/Images/Artifacts/Alembic.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Basic Analysis',
+        img: '/Images/Artifacts/Chemical-Tube.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Advanced Analysis',
+        img: '/Images/Artifacts/Production-Tube.png',
+        crafting: [],
+        effect: D(0)
+    },
+    {
+        name: 'Superior Analysis',
+        img: '/Images/Artifacts/Microscope.png',
+        crafting: [],
+        effect: D(0)
+    }
 ]
 
 const gems = [
-
+    {
+        name: '',
+        img: '',
+        crafting: [],
+        effect: D(0)
+    }
 ]
 
 const ingredients = [
-    
+    {
+        name: '',
+        img: '',
+        crafting: []
+    }
 ]
 
 let knowleggGain = D(1)
