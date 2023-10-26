@@ -2,21 +2,6 @@ let artifactSelector = {status: false, id: -1}
 let gemSelector = {status: false, id: -1}
 let artifactHoverIndex = -1
 
-const legendaryResearchObjs = [
-    {
-        name: 'Enlightened Thinkers',
-        description: '5x more knowlegg gain',
-        max: D(20),
-        base: D(5)
-    },
-    {
-        name: 'Ascended Contracting',
-        description: 'Unlock Ascension Contracts',
-        max: D(1),
-        base: D(100)
-    },
-]
-
 const artifacts = [
     {
         name: 'Eggcell \'85',
@@ -278,13 +263,13 @@ const gems = [
 const ingredients = []
 
 let knowleggGain = D(1)
-let legendaryResearchCosts = new Array(legendaryResearchObjs.length).fill(D(0))
+let legendaryResearchCosts = new Array(legendaryResearches.length).fill(D(0))
 
 function updateAscensionHTML() {
     if(data.currentSubTab[2] === 0) {
-        for(let i = 0; i < legendaryResearchObjs.length; i++) {
-            DOMCacheGetOrSet(`lr${i}`).innerText = `${legendaryResearchObjs[i].name}\n${legendaryResearchObjs[i].description}\nLevel: ${toPlaces(data.legendaryResearch[i],0,data.legendaryResearch[i].plus(1))}/${toPlaces(legendaryResearchObjs[i].max,0,legendaryResearchObjs[i].max.plus(1))}\nCost: ${data.legendaryResearch[i].gte(legendaryResearchObjs[i].max) ? '[MAXED]' : `${format(legendaryResearchCosts[i])} Knowleggs`}`
-            if(data.legendaryResearch[i].lt(legendaryResearchObjs[i].max))
+        for(let i = 0; i < legendaryResearches.length; i++) {
+            DOMCacheGetOrSet(`lr${i}`).innerText = `${legendaryResearches[i].name}\n${legendaryResearches[i].description}\nLevel: ${toPlaces(data.legendaryResearch[i],0,data.legendaryResearch[i].plus(1))}/${toPlaces(legendaryResearches[i].max,0,legendaryResearches[i].max.plus(1))}\nCost: ${data.legendaryResearch[i].gte(legendaryResearches[i].max) ? '[MAXED]' : `${format(legendaryResearchCosts[i])} Knowleggs`}`
+            if(data.legendaryResearch[i].lt(legendaryResearches[i].max))
                 DOMCacheGetOrSet(`lr${i}`).classList = data.knowlegg.gte(legendaryResearchCosts[i]) ? 'orangeButton' : 'redButton'
             else
                 DOMCacheGetOrSet(`lr${i}`).classList = 'blueButton'
@@ -296,8 +281,8 @@ function updateAscensionHTML() {
 }
 
 function updateAscension() {
-    for(let i = 0; i < legendaryResearchObjs.length; i++) {
-        legendaryResearchCosts[i] = legendaryResearchObjs[i].base.times(Decimal.pow(1.15, data.legendaryResearch[i]))
+    for(let i = 0; i < legendaryResearches.length; i++) {
+        legendaryResearchCosts[i] = legendaryResearches[i].base.times(Decimal.pow(1.15, data.legendaryResearch[i]))
     }
     knowleggGain = data.money.gte(1e45) && data.currentEgg >= 18 ? (data.money.div(1e45).log(20)).times(data.legendaryResearch[0].gt(0) ? D(5).times(data.legendaryResearch[i]) : D(1)) : D(1)
 }
@@ -307,6 +292,47 @@ function ascend() {
 }
 
 function updateAscensionHoverText(id,type) {
+    switch(type) {
+        case 'artifact':
+            if(id < 4)
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[i].effect.times(100),2,(artifacts[i].effect.times(100)).plus(1))}% Egg Value\n You have: ${format(data.artifacts[id])}`
+            else if(id >= 4 && id < 8)
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[i].effect.times(100),2,(artifacts[i].effect.times(100)).plus(1))}% Enlightenment Egg Value\n You have: ${format(data.artifacts[id])}`
+            else if(id >= 8 && id < 12)
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[i].effect.times(100),2,(artifacts[i].effect.times(100)).plus(1))}% Prophecy Egg Bonus\n You have: ${format(data.artifacts[id])}`
+            else if(id >= 12 && id < 16)
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[i].effect.times(100),2,(artifacts[i].effect.times(100)).plus(1))}% Soul Egg Bonus\n You have: ${format(data.artifacts[id])}`
+            else if(id >= 16 && id < 20)
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[i].effect.times(100),2,(artifacts[i].effect.times(100)).plus(1))}% Internal Hatchery\n You have: ${format(data.artifacts[id])}`
+            else if(id >= 20 && id < 24)
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | -${toPlaces(artifacts[i].effect.times(100),2,(artifacts[i].effect.times(100)).plus(1))}% Research Cost\n You have: ${format(data.artifacts[id])}`
+            break;        
+        case 'gem':
+            if(id < 3)
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[i].effect.times(100),2,(gems[i].effect.times(100)).plus(1))}% of Host Effect\n You have: ${format(data.gems[id])}`
+            else if(id >= 3 && id < 6)
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[i].effect.times(100),2,(gems[i].effect.times(100)).plus(1))}% Hatchery Rate\n You have: ${format(data.gems[id])}`
+            else if(id >= 6 && id < 9)
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[i].effect.times(100),2,(gems[i].effect.times(100)).plus(1))}% Egg Value\n You have: ${format(data.gems[id])}` 
+            else if(id >= 9 && id < 12)
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[i].effect.times(100),2,(gems[i].effect.times(100)).plus(1))}% Egg Laying Rate\n You have: ${format(data.gems[id])}`
+            else if(id >= 12 && id < 15)
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[i].effect.times(100),2,(gems[i].effect.times(100)).plus(1))}% Soul Egg Bonus\n You have: ${format(data.gems[id])}`
+            else if(id >= 15 && id < 18)
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[i].effect.times(100),2,(gems[i].effect.times(100)).plus(1))}% Prophecy Egg Bonus\n You have: ${format(data.gems[id])}`
+
+            break;
+        default:
+            console.warn('Invalid Type Used')
+            break;
+    }
+}
+
+function activateArtifactSelect(slotID) {
+
+}
+
+function activateGemSelect(slotID) {
 
 }
 

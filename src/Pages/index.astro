@@ -180,86 +180,6 @@ div .flexRow button, div .flexRow a {
 }
 .tabHolder {padding:1vw 1vh 1vw 1vh;}
 
-.artifactHolder-active {
-    margin: .25em;
-    border: 2px solid var(--darkgray);
-    border-radius: 5px;
-    background-color: var(--orange);
-    padding: 2px;
-    height: 6em;
-    width: 6em;
-}
-
-.artifactHolder-inactive {
-    margin: .25em;
-    border: 2px solid var(--darkgray);
-    border-radius: 5px;
-    background-color: var(--gray);
-    padding: 2px;
-    height: 6em;
-    width: 6em;
-}
-
-.gemHolder-active {
-    margin: .25em;
-    border: 2px solid var(--darkgray);
-    border-radius: 5px;
-    background-color: var(--orange);
-    padding: 2px;
-    height: 2em;
-    width: 2em;
-}
-
-.gemHolder-inactive {
-    margin: .25em;
-    border: 2px solid var(--darkgray);
-    border-radius: 5px;
-    background-color: var(--gray);
-    padding: 2px;
-    height: 2em;
-    width: 2em;
-}
-
-.gemHolder-restricted {
-    margin: .25em;
-    border: 2px solid var(--darkgray);
-    border-radius: 5px;
-    background-color: var(--red);
-    padding: 2px;
-    height: 2em;
-    width: 2em;
-}
-
-.artifactSlot {
-    height: 2em; 
-    width: 2em; 
-    margin: .25em; 
-    padding: 2px; 
-    border: 2px solid var(--darkgray); 
-    border-radius: 5px; 
-    background-color: var(--gray);
-}
-
-.artifactSlot-orange {
-    height: 2em; 
-    width: 2em; 
-    margin: .25em; 
-    padding: 2px; 
-    border: 2px solid var(--darkgray); 
-    border-radius: 5px; 
-    background-color: var(--orange);
-}
-
-.artifactSlot-blue {
-    height: 2em; 
-    width: 2em; 
-    margin: .25em; 
-    padding: 2px; 
-    border: 2px solid var(--darkgray); 
-    border-radius: 5px; 
-    background-color: var(--blue);
-}
-
 .notification-info {
     background-color: var(--blue);
     border: 5px solid #1f539b;
@@ -320,19 +240,6 @@ div .flexRow button, div .flexRow a {
 .greenButtonPromote {border-color:var(--green); color: var(--green);}
 .greenButtonPromote:hover { border-color:var(--green); color: var(--green);}
 
-.achUnlock {height: 2em; width: 2em; margin: .25em; padding: 2px; border: 2px solid var(--white); border-radius: 5px; background-color: var(--green);}
-.achLock {height: 2em; width: 2em; margin: .25em; padding: 2px; border: 2px solid var(--white); border-radius: 5px; background-color: var(--red);}
-.achPlaceholder {height: 2em; width: 2em; margin: .25em; padding: 2px; border: 2px solid var(--white); border-radius: 5px; background-color: var(--gray);}
-
-.credit {
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-.credit img {width: 1.5em; height: 1.5em; margin-right:1em;}
-.credit a {text-align: center; font-size: 1.2em;}
 
 .contractHolder {
     border: 2px solid var(--white);
@@ -343,76 +250,6 @@ div .flexRow button, div .flexRow a {
     height: 25em;
     text-align: center;
 }
-
-.gemSlot {
-    height: 2em;
-    width: 2em;
-    background-color: var(--orange);
-    border: 2px solid var(--white);
-    border-radius: 5px;
-    margin:.25em;
-    padding: 5px;
-}
-
-.gemSlotSelected {
-    height: 2em;
-    width: 2em;
-    background-color: var(--green);
-    border: 2px solid var(--white);
-    border-radius: 5px;
-    margin:.25em;
-    padding: 5px;
-}
-
-.gemSlotFailed {
-    height: 2em;
-    width: 2em;
-    background-color: var(--red);
-    border: 2px solid var(--white);
-    border-radius: 5px;
-    margin:.25em;
-    padding: 5px;
-}
-
-.accordion {
-    background-color: var(--bg-color);
-    color: var(--white);
-    border: 2px solid var(--white);
-    border-radius: 5px;
-    width: 50em;
-    padding: 18px;
-    text-align: left;
-    outline: none;
-    transition: 0.4s;
-}
-
-.active, .accordion:hover {
-    border: 2px solid var(--white);
-    border-radius: 5px;
-    background-color: var(--white);
-    color: var(--bg-color)
-} 
- 
-.panel {
-    padding: 0 18px;
-    width: 39em;
-    border: 2px solid var(--white);
-    border-radius: 5px;
-    background-color: var(--bg-color);
-    display: none;
-}
-
-.accordion:after  {
-    content: '\25B2'; /* Unicode character for "plus" sign (+) */
-    font-size: 13px;
-    float: right;
-    margin-left: 5px;
-  }
-  
-.active:after {
-    content: "\25BC"; /* Unicode character for "minus" sign (-) */
-}
-
 
 /*IDs*/
 
@@ -436,13 +273,7 @@ div .flexRow button, div .flexRow a {
     font-size: 1.5em;
     top: 95%;
 }
-#researchCol {margin:4px;}
-#researchCol button {margin-bottom: 1vh;}
-@media only screen and (max-width: 480px) {
-    #researchHolder {
-        overflow: scroll;
-    }
-}
+
 #newsHolder {
     border: 2px solid whitesmoke;
     padding: 2px;
@@ -478,9 +309,6 @@ div .flexRow button, div .flexRow a {
 
 #planetRow img {width: 5em; height: 5em; margin:1em}
 
-#changelogHolder h4, #changelogHolder h3, #changelogHolder p {margin-bottom: 1vh;}
-#changelogHolder {max-width: 85%;}
-
 #mainHeader img, #mainHeader h2, #mainHeader div {background-color: var(--header-color);}
 #mainHeader h2, #mainHeader div {margin: 1vh; color:black}
 
@@ -495,12 +323,6 @@ div .flexRow button, div .flexRow a {
     border: 2px solid var(--orange);
     border-radius: 5px;
     color: var(--orange);
-    transition-duration: 0.5s;
-}
-
-#gemOperations:hover {
-    background-color: var(--orange);
-    color: var(--bg-color);
     transition-duration: 0.5s;
 }
 

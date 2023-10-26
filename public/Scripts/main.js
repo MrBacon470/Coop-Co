@@ -40,6 +40,7 @@ function generateHTMLAndHandlers() {
         for(let j = 0; j < 8; j++) {
             if(count >= artifacts.length) break;
             addHTML(`artifactCol${i}`,`<img id="artifactSlot${count}" class="artifactSlot" src="${artifacts[count].img}">`)
+            DOMCacheGetOrSet(`artifactSlot${count}`).addEventListener('mouseover', () => updateAscensionHoverText(count,'artifact'))
             count++
         }
     }
@@ -50,6 +51,7 @@ function generateHTMLAndHandlers() {
         for(let j = 0; j < 6; j++) {
             if(count >= gems.length) break;
             addHTML(`gemCol${i}`,`<img id="gemSlot${count}" class="artifactSlot" src="${gems[count].img}">`)
+            DOMCacheGetOrSet(`gemSlot${count}`).addEventListener('mouseover', () => updateAscensionHoverText(count,'gem'))
             count++
         }
     }

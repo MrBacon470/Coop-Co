@@ -1,4 +1,3 @@
-//Common Section
 const commonResearches = [
     {
       name: 'Comfortable Nests',
@@ -168,7 +167,8 @@ const commonResearches = [
       maxLevel: D(14),
       baseCost: D(1.4474e54)
     }
-];
+]
+
 const epicResearches = [
     {
       name: 'Epic Internal Hatcheries',
@@ -236,7 +236,16 @@ const epicResearches = [
       maxLevel: D(1),
       baseCost: D(1e9)
     }
-];
+]
+
+const legendaryResearches = [
+  {
+      name: 'Enlightened Thinkers',
+      description: '5x more knowlegg gain',
+      max: D(20),
+      base: D(5)
+  },
+]
 let commonResearchCost = []
 let epicResearchCost = []
 
