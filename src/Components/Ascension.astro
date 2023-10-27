@@ -22,6 +22,59 @@
     </div>
     <div id="ascSub1" class="flexCol">
         <h3 style="color: var(--orange)">Harvesters</h3>
+        <div class="flexRow" style="margin-bottom:1em;">
+            <div id="harvesterHolder0" class="flexRow harvesterHolder">
+                <img id="harvesterImg0" class="harvesterImg-inactive" src="/Images/Pickaxe.png">
+                <div class="flexCol">
+                    <p id="harvesterText0" style="color:var(--orange)">Arcturus Harvester - Level: 1</p>
+                    <button id="harvesterButton0" class="orangeButton">Test</button>
+                </div>
+            </div>
+            <div id="harvesterHolder1" class="flexRow harvesterHolder">
+                <img id="harvesterImg1" class="harvesterImg-inactive" src="/Images/Pickaxe.png">
+                <div class="flexCol">
+                    <p id="harvesterText1" style="color:var(--orange)">Ravnar Harvester - Level: 1</p>
+                    <button id="harvesterButton1" class="orangeButton">Test</button>
+                </div>
+            </div>
+            <div id="harvesterHolder2" class="flexRow harvesterHolder">
+                <img id="harvesterImg2" class="harvesterImg-inactive" src="/Images/Pickaxe.png">
+                <div class="flexCol">
+                    <p id="harvesterText2" style="color:var(--orange)">Xylok Harvester - Level: 1</p>
+                    <button id="harvesterButton2" class="orangeButton">Test</button>
+                </div>
+            </div>
+        </div>
+        <div class="flexRow" style="margin-bottom:1em;">
+            <div id="harvesterHolder3" class="flexRow harvesterHolder">
+                <img id="harvesterImg3" class="harvesterImg-inactive" src="/Images/Pickaxe.png">
+                <div class="flexCol">
+                    <p id="harvesterText3" style="color:var(--orange)">Trition Harvester - Level: 1</p>
+                    <button id="harvesterButton3" class="orangeButton">Test</button>
+                </div>
+            </div>
+            <div id="harvesterHolder4" class="flexRow harvesterHolder">
+                <img id="harvesterImg4" class="harvesterImg-inactive" src="/Images/Pickaxe.png">
+                <div class="flexCol">
+                    <p id="harvesterText4" style="color:var(--orange)">Hereth Harvester - Level: 1</p>
+                    <button id="harvesterButton4" class="orangeButton">Test</button>
+                </div>
+            </div>
+            <div id="harvesterHolder5" class="flexRow harvesterHolder">
+                <img id="harvesterImg5" class="harvesterImg-inactive" src="/Images/Pickaxe.png">
+                <div class="flexCol">
+                    <p id="harvesterText5" style="color:var(--orange)">Malak Harvester - Level: 1</p>
+                    <button id="harvesterButton5" class="orangeButton">Test</button>
+                </div>
+            </div>
+        </div>
+        <p id="harvesterHoverText" style="color:var(--orange);text-align:center;margin-bottom:1em;">
+            Malak Harvester | Level 1<br>
+            Harvestable Artifact: (Artifact Name) - [Drop Interval Ex: 1-3]<br>
+            Harvestable Gem: Gem name - Drop Interval<br>
+            Upgrade to Level 2 | Cost: (900/1000) Lava Egg Chickens
+        </p>
+        <button id="harvesterUpgradeButton" class="orangeButton">Upgrade Harvester!</button>
     </div>
     <div id="ascSub2" class="flexRow">
         <div class="flexCol">
@@ -52,14 +105,15 @@
                     <img id="gemHolder11" src="" class="gemHolder-restricted">
                 </div>
             </div>
-            <p id="artifactSelectionText" style="color: var(--orange);margin-bottom:3vh">No Slot Selected</p>
+            <p id="artifactSelectionText" style="color: var(--orange);margin-bottom:3vh">Click an Artifact Slot or Gem Slot Above to Select</p>
             <h3 style="color: var(--orange);margin-bottom:1vh">Artifact Storage</h3>
             <div id="artifactStorage" class="flexRow"></div>
-            <p id="artifactHoverText" style="color:var(--orange)"></p>
+            <p id="artifactHoverText" style="color:var(--orange)">Hover over an Artifact or Gem to see information</p>
         </div>
     </div>
     <div id="ascSub3" class="flexCol">
         <h3 style="color: var(--orange)">Forge</h3>
+        
     </div>
 </div>
 
@@ -124,7 +178,7 @@
     background-color: var(--gray);
 }
 
-.artifactSlot-orange {
+.artifactSlot-active {
     height: 2em; 
     width: 2em; 
     margin: .25em; 
@@ -134,7 +188,7 @@
     background-color: var(--orange);
 }
 
-.artifactSlot-blue {
+.artifactSlot-selected {
     height: 2em; 
     width: 2em; 
     margin: .25em; 
@@ -142,5 +196,43 @@
     border: 2px solid var(--darkgray); 
     border-radius: 5px; 
     background-color: var(--blue);
+}
+
+.harvesterImg-inactive {
+    margin: .25em;
+    border: 2px solid var(--darkgray);
+    border-radius: 5px;
+    background-color: var(--gray);
+    padding: 2px;
+    height: 4em;
+    width: 4em;
+}
+
+.harvesterHolder {
+    height: 5em;
+    padding: 2px;
+    margin: .5em;
+    border: 2px solid var(--orange);
+    border-radius: 5px;
+}
+
+.harvesterImg-active {
+    margin: .25em;
+    border: 2px solid var(--darkgray);
+    border-radius: 5px;
+    background-color: var(--green);
+    padding: 2px;
+    height: 4em;
+    width: 4em;
+}
+
+.harvesterImg-selected {
+    margin: .25em;
+    border: 2px solid var(--darkgray);
+    border-radius: 5px;
+    background-color: var(--blue);
+    padding: 2px;
+    height: 4em;
+    width: 4em;
 }
 </style>

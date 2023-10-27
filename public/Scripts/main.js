@@ -56,6 +56,9 @@ function generateHTMLAndHandlers() {
         }
     }
     
+    for(let i = 0; i < data.harvesters.length; i++) {
+        DOMCacheGetOrSet(`harvesterHolder${i}`).addEventListener('mouseover',() => {harvesterHoverIndex = i})
+    }
     // count = 0;
     // addHTML('artifactStorage',`<div class="flexCol" style="width:4em"></div>`)
     // for(let i = 0; i <= parseInt(ingredients.length / 8); i++) {

@@ -43,8 +43,7 @@ function updateHTML() {
         for(let i = 0; i < commonResearches.length; i++) {
             //const buyAmountNums = [1,5,10,20]
             //const researchMaxCost = data.research[i].gte(commonResearches[i].maxLevel) ? D(0) : calculateResearchMaxCost(commonResearches[i].baseCost,data.research[i],commonResearches[i].maxLevel,D(buyAmountNums[data.buyAmounts[0]]),data.money)
-            DOMCacheGetOrSet(`r${i}`).innerText = data.research[i].lt(commonResearches[i].maxLevel) ? `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.plus(1))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.plus(1))}
-            \nCost: $${format(commonResearchCost[i])}` : `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.plus(1))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.plus(1))}\nCost: [MAXED]`
+            DOMCacheGetOrSet(`r${i}`).innerText = data.research[i].lt(commonResearches[i].maxLevel) ? `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.plus(1))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.plus(1))}\nCost: $${format(commonResearchCost[i])}` : `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.plus(1))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.plus(1))}\nCost: [MAXED]`
         }
     }
     else if(data.currentTab === 2) {

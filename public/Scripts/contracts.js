@@ -61,8 +61,8 @@ function updateContractsHTML() {
     } else {
       DOMCacheGetOrSet(`infContractTitle${i}`).innerText = prestigeContracts[data.contracts[i].id].name
       DOMCacheGetOrSet(`infContractDesc${i}`).innerText = prestigeContracts[data.contracts[i].id].desc
-      DOMCacheGetOrSet(`infContractGoal${i}`).innerText = `Goal: $${format(data.contracts[i].goal)}`
-      DOMCacheGetOrSet(`infContractReward${i}`).innerText = `Reward: ${format(data.contracts[i].reward)} Prophecy Eggs`
+      DOMCacheGetOrSet(`infContractGoal${i}`).innerHTML = `Goal: <span style="color:var(--green)">$${format(data.contracts[i].goal)}</span>`
+      DOMCacheGetOrSet(`infContractReward${i}`).innerHTML = `Reward: <span style="color:var(--yellow)">${format(data.contracts[i].reward)} Prophecy Eggs</span>`
     }
     if(contractActive() || data.inPath || data.onPlanet || data.contracts[i].id === -1) {
       DOMCacheGetOrSet(`infContractButton${i}`).innerText = !data.contractActive[i] ? 'Can\'t Start' : 'Exit Contract'

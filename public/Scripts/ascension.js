@@ -1,6 +1,37 @@
 let artifactSelector = {status: false, id: -1}
 let gemSelector = {status: false, id: -1}
 let artifactHoverIndex = -1
+let harvesterHoverIndex = -1
+
+const harvesterUpgradeCost = []
+const itemYields = []
+
+const harvesterItems = [
+    {
+        artifactID: 0,
+        gemID: 0,
+    },
+    {
+        artifactID: 4,
+        gemID: 3,
+    },
+    {
+        artifactID: 8,
+        gemID: 6,
+    },
+    {
+        artifactID: 12,
+        gemID: 9,
+    },
+    {
+        artifactID: 16,
+        gemID: 12,
+    },
+    {
+        artifactID: 20,
+        gemID: 15,
+    },
+]
 
 const artifacts = [
     {
@@ -266,7 +297,7 @@ let knowleggGain = D(1)
 let legendaryResearchCosts = new Array(legendaryResearches.length).fill(D(0))
 
 function updateAscensionHTML() {
-    if(data.currentSubTab[2] === 0) {
+    if(data.currentSubTab[1] === 0) {
         for(let i = 0; i < legendaryResearches.length; i++) {
             DOMCacheGetOrSet(`lr${i}`).innerText = `${legendaryResearches[i].name}\n${legendaryResearches[i].description}\nLevel: ${toPlaces(data.legendaryResearch[i],0,data.legendaryResearch[i].plus(1))}/${toPlaces(legendaryResearches[i].max,0,legendaryResearches[i].max.plus(1))}\nCost: ${data.legendaryResearch[i].gte(legendaryResearches[i].max) ? '[MAXED]' : `${format(legendaryResearchCosts[i])} Knowleggs`}`
             if(data.legendaryResearch[i].lt(legendaryResearches[i].max))
@@ -275,7 +306,12 @@ function updateAscensionHTML() {
                 DOMCacheGetOrSet(`lr${i}`).classList = 'blueButton'
         }
     }
-    else if(data.currentSubTab[2] === 1) {
+    else if(data.currentSubTab[1] === 1) {
+        const artifactName = harvesterHoverIndex === -1 ? '' : `${artifacts[(harvesterItems[harvesterHoverIndex].artifactID) + parseInt(data.harvesters[harvesterHoverIndex].level/ 5)].name}`
+        const gemName = harvesterHoverIndex === -1 ? '' : `${gems[(harvesterItems[harvesterHoverIndex].gemID) + parseInt(data.harvesters[harvesterHoverIndex].level/ 5)].name}`
+        DOMCacheGetOrSet('harvesterHoverText').innerText = harvesterHoverIndex === -1 ? '' : 
+        `${planetNames[harvesterHoverIndex]} Harvester | Level ${data.harvesters[harvesterHoverIndex].level}\n` + `Harvestable Artifact: ${artifactName} | Yield: 0-0\n` 
+        + (data.harvesters[harvesterHoverIndex].level < 5 ? '' : `Harvestable Gem ${gemName} | Yield: 0-0\n`) +  ``
 
     }
 }
