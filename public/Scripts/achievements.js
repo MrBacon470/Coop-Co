@@ -75,7 +75,7 @@ function getAchievementsCompleted() {
 
 function checkAchievements() {
     //Eggs
-    if(data.achievements[0] === false) getAchievement(0)
+    if(data.achievements[0] === false) data.achievements[0] = true;
     for(let i = 1; i < 19; i++) {
         if(data.unlockedEgg[i-1] === true && data.achievements[i] === false) getAchievement(i)
     }

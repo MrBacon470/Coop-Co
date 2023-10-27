@@ -282,7 +282,7 @@ function updateResearch() {
     for(let i = 0; i < commonResearches.length; i++) {
       const buyAmountNums = [1,5,10,20]
       commonResearchCost[i] = ((commonResearches[i].baseCost).sub(commonResearches[i].baseCost.times(D(0.05).times(data.epicResearch[1])))) //Base Cost Calc
-      commonResearchCostDisplay[i] = getTotalCost(commonResearchCost[i],data.onPlanet === true && data.currentPlanetIndex === 0 ? D(1.35) : D(1.15),data.research[i],D(buyAmountNums[data.buyAmounts[0]]))
+      commonResearchCostDisplay[i] = getTotalCost(commonResearchCost[i],data.onPlanet === true && data.currentPlanetIndex === 0 ? D(1.35) : D(1.15),data.research[i],commonResearches[i].maxLevel,D(buyAmountNums[data.buyAmounts[0]]))
       if(data.onPlanet === false)
         commonResearchCost[i] = commonResearchCost[i].times(Decimal.pow(1.15, data.research[i]))
       else if(data.onPlanet === true && data.currentPlanetIndex === 0)

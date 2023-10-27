@@ -9,7 +9,7 @@ function runAuto(a) {
                 purchaseResearch(i)
             break
         case 2:
-            if(data.money.gte(eggData[data.currentEgg].unlockReq) && data.onPlanet === false && data.inPath === false && ((data.currentEgg < 17 && !data.settingsToggles[3]) || (data.currentEgg < 18 && data.settingsToggles[3])))
+            if(data.money.gte(eggData[data.currentEgg].unlockReq) && data.onPlanet === false && ((data.currentEgg < 17 && !data.settingsToggles[3]) || (data.currentEgg < 18 && data.settingsToggles[3])))
                 promoteEgg()
             break
         case 3:

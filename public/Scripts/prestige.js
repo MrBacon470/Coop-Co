@@ -18,7 +18,7 @@ function updatePrestige() {
     
     soulEggBoost = D(1).plus(soulAvg.times(D(0.01).plus(D(0.01).times(data.epicResearch[2]))).times(prophecyEggBoost))
     contractRewardBoost = D(1).plus(Decimal.sqrt(data.prophecyEggs.times(D(0.25))))
-    contractGoalBoost = D(1).plus(Decimal.sqrt(data.prophecyEggs.times(D(0.1))))
+    contractGoalBoost = D(1).plus(Decimal.sqrt(data.prophecyEggs.times(D(0.15))))
     if(data.inPath === true || (data.onPlanet === true && data.currentPlanetIndex === 3)) {
         soulEggBoost = D(1)
         prophecyEggBoost = D(1)

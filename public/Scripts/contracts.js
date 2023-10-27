@@ -4,7 +4,7 @@ const prestigeContracts = [
       desc: 'A Californian Energy Shortage means more demand for Fusion Eggs.',
       eggIndex: 5,
       baseGoal: D(1e17),
-      baseReward: D(2),
+      baseReward: D(1),
     },
     {
       name: 'GPT-10.0',
@@ -18,35 +18,35 @@ const prestigeContracts = [
       desc: 'A Pandemic is covering the world, Medical Eggs are needed to save lives.',
       eggIndex: 2,
       baseGoal: D(1e12),
-      baseReward: D(5),
+      baseReward: D(1),
     },
     {
       name: 'Supreme Diets',
       desc: 'Dieting is back in fashion people need more Superfood Eggs.',
       eggIndex: 1,
       baseGoal: D(1e11),
-      baseReward: D(6),
+      baseReward: D(1),
     },
     {
       name: 'Fountain of Youth',
       desc: 'People are wanting to stay youthful, Immortality Eggs are needed to keep them that way.',
       eggIndex: 7,
       baseGoal: D(1e19),
-      baseReward: D(4),
+      baseReward: D(1),
     },
     {
       name: 'Supply Chain Crisis',
       desc: 'Supply Chain Issues have caused resource shortages, Supermaterial Eggs are needed to offset the shortage.',
       eggIndex: 4,
       baseGoal: D(1e14),
-      baseReward: D(5),
+      baseReward: D(1),
     },
     {
       name: 'Temporal Tear',
       desc: 'A Temporal Tear has caused a rift in the space-time continuum, Tachyon Eggs are needed to fix it.',
       eggIndex: 8,
       baseGoal: D(1e20),
-      baseReward: D(3),
+      baseReward: D(1),
     }
 ]
 
@@ -89,8 +89,9 @@ function generateContract(i) {
       id = getRandom(0, prestigeContracts.length)
     }
     if(id > prestigeContracts.length - 1) index = prestigeContracts.length - 1
-    let goal = prestigeContracts[id].baseGoal.times(eggData[prestigeContracts[id].eggIndex].value.times(0.25).times(contractGoalBoost.times(soulEggBoost.times(0.75))))
+    let goal = prestigeContracts[id].baseGoal.times((eggData[prestigeContracts[id].eggIndex].value).times(contractGoalBoost.times(soulEggBoost)))
     let reward = prestigeContracts[id].baseReward.times(contractRewardBoost)
+    reward = reward.times(Decimal.ln((prestigeContracts[id].baseGoal.times(0.5)).plus(1)))
     data.contracts[i].id = id
     data.contracts[i].goal = goal
     data.contracts[i].reward = reward

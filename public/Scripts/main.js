@@ -33,6 +33,7 @@ function generateHTMLAndHandlers() {
         DOMCacheGetOrSet(`er${i}`).classList = 'redButton'
         DOMCacheGetOrSet(`er${i}`).onclick = () => purchaseEpicResearch(i)
     }
+    DOMCacheGetOrSet(`ba1`).addEventListener('click',() => toggleBA(1))
     //Ascension Tab
     let count = 0;
     for(let i = 0; i <= parseInt(artifacts.length / 8); i++) {
@@ -88,6 +89,8 @@ function generateHTMLAndHandlers() {
             if(achievementDisplayArr[count] === 'ach') {
                 if(achCount >= achievementObjs.length) break
                 addHTML(`achCol${i}`,`<img id="ach${achCount}">`)
+                if(achCount === 0)
+                    DOMCacheGetOrSet(`ach0`).classList = 'achUnlock'
                 achCount++
             }
             else {

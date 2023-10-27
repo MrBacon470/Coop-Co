@@ -100,10 +100,14 @@ function formatPrefix(a,b) {
     }
 }
 
-function getTotalCost(base,rate,level,interval) {
+function getTotalCost(base,rate,level,maxLevel,interval) {
     let totalCost = D(0)
+
+    if((level.plus(interval)).gt(maxLevel))
+        interval = maxLevel.sub(level)
+
     if(interval !== 1)
-        totalCost = base.times((Decimal.pow(rate,level)).times(((Decimal.pow(rate,interval).sub(1)).div(interval.sub(1)))))
+        totalCost = base.times((Decimal.pow(rate,level).sub(Decimal.pow(rate,level.plus(interval)))).div(D(1).sub(rate)))
     else
         totalCost = base.times(Decimal.pow(rate,level))
     return totalCost;
