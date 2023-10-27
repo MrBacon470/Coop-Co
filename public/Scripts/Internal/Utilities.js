@@ -100,6 +100,15 @@ function formatPrefix(a,b) {
     }
 }
 
+function getTotalCost(base,rate,level,interval) {
+    let totalCost = D(0)
+    if(interval !== 1)
+        totalCost = base.times((Decimal.pow(rate,level)).times(((Decimal.pow(rate,interval).sub(1)).div(interval.sub(1)))))
+    else
+        totalCost = base.times(Decimal.pow(rate,level))
+    return totalCost;
+}
+
 function addHTML(target,htmlStr) {
     document.getElementById(target).insertAdjacentHTML('beforeend',htmlStr)
 }

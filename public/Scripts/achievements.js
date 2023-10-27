@@ -40,6 +40,14 @@ const achievementObjs = [
     { name: 'Knowledge is the Key', description: 'Obtain 100 Knowlegg', img: `${eggImgPath}knowlegg.png`},
 ]
 
+const achievementDisplayArr = new Array(achievementObjs.length+9).fill('blank')
+for(let i = 0; i < 19; i++)
+    achievementDisplayArr[i] = 'ach'
+for(let i = 20; i < 38; i++)
+    achievementDisplayArr[i] = 'ach'
+for(let i = 40; i < 42; i++)
+    achievementDisplayArr[i] = 'ach'
+
 function updateAchText(i) {
     if(i < 19)
         DOMCacheGetOrSet('achHoverText').innerText = `[${i+1}] - ${!data.achievements[i] ? '???' :achievementObjs[i].name}\n${achievementObjs[i].description}`

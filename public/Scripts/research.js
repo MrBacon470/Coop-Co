@@ -246,14 +246,17 @@ const legendaryResearches = [
       base: D(5)
   },
 ]
-let commonResearchCost = []
-let epicResearchCost = []
+let commonResearchCost = new Array(commonResearches.length).fill(D(0))
+let commonResearchCostDisplay = new Array(commonResearches.length).fill(D(0))
+let epicResearchCost = new Array(epicResearches.length).fill(D(0))
+let epicResearchCostDisplay = new Array(epicResearches.length).fill(D(0))
 
 for(let i = 0; i < commonResearches.length; i++) {
+    commonResearchCost[i] = ((commonResearches[i].baseCost).sub(commonResearches[i].baseCost.times(D(0.05).times(data.epicResearch[1])))) //Base Cost Calc
     if(data.onPlanet === false)
-        commonResearchCost[i] = (commonResearches[i].baseCost.sub(commonResearches[i].baseCost.times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.15, data.research[i]))
+        commonResearchCost[i] = commonResearchCost[i].times(Decimal.pow(1.15, data.research[i]))
     else if(data.onPlanet === true && data.currentPlanetIndex === 0)
-        commonResearchCost[i] = ((commonResearches[i].baseCost).sub(commonResearches[i].baseCost.times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.35, data.research[i]))
+        commonResearchCost[i] = commonResearchCost[i].times(Decimal.pow(1.35, data.research[i]))
     DOMCacheGetOrSet(`r${i}`).innerText = `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${format(data.research[i],0)}/${format(commonResearches[i].maxLevel,0)}\n
     Cost: $${format(commonResearchCost[i])}`
 
@@ -277,14 +280,19 @@ function purchaseResearch(i) {
 }
 function updateResearch() {
     for(let i = 0; i < commonResearches.length; i++) {
-        if(data.onPlanet === false)
-            commonResearchCost[i] = (commonResearches[i].baseCost.sub(commonResearches[i].baseCost.times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.15, data.research[i]))
-        else if(data.onPlanet === true && data.currentPlanetIndex === 0)
-            commonResearchCost[i] = ((commonResearches[i].baseCost).sub(commonResearches[i].baseCost.times(D(0.05).times(data.epicResearch[1])))).times(Decimal.pow(1.35, data.research[i]))
+      const buyAmountNums = [1,5,10,20]
+      commonResearchCost[i] = ((commonResearches[i].baseCost).sub(commonResearches[i].baseCost.times(D(0.05).times(data.epicResearch[1])))) //Base Cost Calc
+      commonResearchCostDisplay[i] = getTotalCost(commonResearchCost[i],data.onPlanet === true && data.currentPlanetIndex === 0 ? D(1.35) : D(1.15),data.research[i],D(buyAmountNums[data.buyAmounts[0]]))
+      if(data.onPlanet === false)
+        commonResearchCost[i] = commonResearchCost[i].times(Decimal.pow(1.15, data.research[i]))
+      else if(data.onPlanet === true && data.currentPlanetIndex === 0)
+        commonResearchCost[i] = commonResearchCost[i].times(Decimal.pow(1.35, data.research[i]))
     }
         
-    for(let i = 0; i < epicResearches.length; i++)
+    for(let i = 0; i < epicResearches.length; i++) {
         epicResearchCost[i] = epicResearches[i].baseCost.times(Decimal.pow(1.25, data.epicResearch[i]))
+    }
+        
 }
 //Epic Section
 

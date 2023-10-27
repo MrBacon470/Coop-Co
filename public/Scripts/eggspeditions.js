@@ -1,5 +1,5 @@
 const planetNames = ['Arcturus','Ravnar','Xylok','Triton','Hereth','Malak']
-const planetDescs = ['Dark Energy Abounds (Higher Research Scaling)','Tick Tock (Time Speed 1/4th)','Peace and Tranquility (No World Debuff)','The Abyss Watches (No Soul or Prophecy Egg Boost)','A World of Lava (Slower Chicken Gain)','Light in the Dark (Low Egg Value)']
+const planetDescs = ['Dark Energy Abounds (Higher Research Scaling)','Tick Tock (Time Speed 1/4th)','Peace and Tranquility (No Soul Egg Boosts Work Here)','The Abyss Watches (No Soul or Prophecy Egg Boost)','A World of Lava (Slower Chicken Gain)','Light in the Dark (Low Egg Value)']
 const planetEggImgIDs = ['darkenergy','time','peace','abyss','lava','light']
 const planetEggNames = ['Dark Energy','Time','Peace','Abyss','Lava','Light']
 const planetBoostNames = ['Planet Egg Value','Lay Rate','Knowlegg Gain','Soul Egg Gain','Chicken Gain','Egg Value']
@@ -9,6 +9,9 @@ const discoveryReqs = [D(2.5e4),D(1e5),D(1e6),D(5e6),D(7.5e6),D(1e7)]
 let planetHoverIndex = -1
 let planetBoosts = new Array(6).fill(D(0))
 function updateEggspeditionsUI() {
+
+    DOMCacheGetOrSet('planet2').style.display = data.hasAscended ? 'inline' : 'none'
+
     for(let i = 0; i < data.planetsDiscovered.length; i++) {
         if(data.planetsDiscovered[i] === false && planetHoverIndex === i && DOMCacheGetOrSet('planet'+i).getAttribute('src') !== '/Images/planetactive.png')
             DOMCacheGetOrSet('planet'+i).src = `/Images/planetactive.png`

@@ -40,10 +40,14 @@ function generateHTMLAndHandlers() {
         for(let j = 0; j < 8; j++) {
             if(count >= artifacts.length) break;
             addHTML(`artifactCol${i}`,`<img id="artifactSlot${count}" class="artifactSlot" src="${artifacts[count].img}">`)
-            DOMCacheGetOrSet(`artifactSlot${count}`).addEventListener('mouseover', () => updateAscensionHoverText(count,'artifact'))
             count++
         }
     }
+
+    for(let i = 0; i < artifacts.length; i++) {
+        DOMCacheGetOrSet(`artifactSlot${i}`).addEventListener('mouseover', () => updateAscensionHoverText(i,'artifact'))
+    } 
+
     count = 0;
     addHTML('artifactStorage',`<div class="flexCol" style="width:4em"></div>`)
     for(let i = 0; i <= parseInt(gems.length / 6); i++) {
@@ -51,13 +55,16 @@ function generateHTMLAndHandlers() {
         for(let j = 0; j < 6; j++) {
             if(count >= gems.length) break;
             addHTML(`gemCol${i}`,`<img id="gemSlot${count}" class="artifactSlot" src="${gems[count].img}">`)
-            DOMCacheGetOrSet(`gemSlot${count}`).addEventListener('mouseover', () => updateAscensionHoverText(count,'gem'))
             count++
         }
     }
+
+    for(let i = 0; i < gems.length; i++) {
+        DOMCacheGetOrSet(`gemSlot${i}`).addEventListener('mouseover', () => updateAscensionHoverText(i,'gem'))
+    } 
     
     for(let i = 0; i < data.harvesters.length; i++) {
-        DOMCacheGetOrSet(`harvesterHolder${i}`).addEventListener('mouseover',() => {harvesterHoverIndex = i})
+        DOMCacheGetOrSet(`harvesterHolder${i}`).addEventListener('mouseover',() => {updateHarvesterHoverText(i)})
     }
     // count = 0;
     // addHTML('artifactStorage',`<div class="flexCol" style="width:4em"></div>`)
@@ -71,6 +78,25 @@ function generateHTMLAndHandlers() {
     // }
     
     //Achievements Tab
+    count = 0
+    let achCount = 0
+    for(let i = 0; i <= parseInt(achievementDisplayArr.length / 8); i++) {
+        addHTML('achievementHolder',`<div id="achCol${i}" class="flexCol"></div>`)
+        for(let j = 0; j < 8; j++) {
+            if(count >= achievementDisplayArr.length) break
+            
+            if(achievementDisplayArr[count] === 'ach') {
+                if(achCount >= achievementObjs.length) break
+                addHTML(`achCol${i}`,`<img id="ach${achCount}">`)
+                achCount++
+            }
+            else {
+                addHTML(`achCol${i}`,'<div class="achPlaceholder"></div>')
+            }
+            count++
+        }
+    }
+
     for(let i = 0; i < achievementObjs.length; i++) 
         DOMCacheGetOrSet('ach' + i).addEventListener('mouseover', () => updateAchText(i))
     //Automators
@@ -140,7 +166,10 @@ function mainLoop() {
     }
     currentEggValue = data.onPlanet === false ? eggData[data.currentEgg].value.times(eggValueBonus) : planetEggValue[data.currentPlanetIndex].times(eggValueBonus)
     data.chickens = data.onPlanet === true && data.currentPlanetIndex === 1 ? data.chickens.plus(chickenGain.times(diff/60)) : data.chickens.plus(chickenGain.times(diff/15))
-    data.money = data.onPlanet === true && data.currentPlanetIndex === 1 ? data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff/4)).times(data.chickens.times(layRate))) : data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff)).times(data.chickens.times(layRate)))
+    if(data.onPlanet === true && data.currentPlanetIndex === 2)
+        data.money.add(((currentEggValue.times(soulEggBoost))).times(data.chickens.times(layRate)))
+    else
+        data.money = data.onPlanet === true && data.currentPlanetIndex === 1 ? data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff/4)).times(data.chickens.times(layRate))) : data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff)).times(data.chickens.times(layRate)))
     if(data.bestRunMoney.lt(data.money)) data.bestRunMoney = data.money
     //Stats Updates
     for(let i = data.unlockedEgg.length - 1; i > -1; i--) {

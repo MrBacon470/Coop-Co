@@ -307,11 +307,7 @@ function updateAscensionHTML() {
         }
     }
     else if(data.currentSubTab[1] === 1) {
-        const artifactName = harvesterHoverIndex === -1 ? '' : `${artifacts[(harvesterItems[harvesterHoverIndex].artifactID) + parseInt(data.harvesters[harvesterHoverIndex].level/ 5)].name}`
-        const gemName = harvesterHoverIndex === -1 ? '' : `${gems[(harvesterItems[harvesterHoverIndex].gemID) + parseInt(data.harvesters[harvesterHoverIndex].level/ 5)].name}`
-        DOMCacheGetOrSet('harvesterHoverText').innerText = harvesterHoverIndex === -1 ? '' : 
-        `${planetNames[harvesterHoverIndex]} Harvester | Level ${data.harvesters[harvesterHoverIndex].level}\n` + `Harvestable Artifact: ${artifactName} | Yield: 0-0\n` 
-        + (data.harvesters[harvesterHoverIndex].level < 5 ? '' : `Harvestable Gem ${gemName} | Yield: 0-0\n`) +  ``
+        
 
     }
 }
@@ -328,8 +324,16 @@ function ascend() {
 }
 
 function updateAscensionHoverText(id,type) {
+    const selectedEls = document.getElementsByClassName('artifactSlot-selected')
+
+    for(let i = 0; i < selectedEls.length; i++)
+        selectedEls[i].classList = 'artifactSlot'
+    
+    
+
     switch(type) {
         case 'artifact':
+            DOMCacheGetOrSet(`artifactSlot${id}`).classList = 'artifactSlot-selected'
             if(id < 4)
                 DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[i].effect.times(100),2,(artifacts[i].effect.times(100)).plus(1))}% Egg Value\n You have: ${format(data.artifacts[id])}`
             else if(id >= 4 && id < 8)
@@ -342,8 +346,9 @@ function updateAscensionHoverText(id,type) {
                 DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[i].effect.times(100),2,(artifacts[i].effect.times(100)).plus(1))}% Internal Hatchery\n You have: ${format(data.artifacts[id])}`
             else if(id >= 20 && id < 24)
                 DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | -${toPlaces(artifacts[i].effect.times(100),2,(artifacts[i].effect.times(100)).plus(1))}% Research Cost\n You have: ${format(data.artifacts[id])}`
-            break;        
+            break
         case 'gem':
+            DOMCacheGetOrSet(`gemSlot${id}`).classList = 'artifactSlot-selected'
             if(id < 3)
                 DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[i].effect.times(100),2,(gems[i].effect.times(100)).plus(1))}% of Host Effect\n You have: ${format(data.gems[id])}`
             else if(id >= 3 && id < 6)
@@ -357,11 +362,30 @@ function updateAscensionHoverText(id,type) {
             else if(id >= 15 && id < 18)
                 DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[i].effect.times(100),2,(gems[i].effect.times(100)).plus(1))}% Prophecy Egg Bonus\n You have: ${format(data.gems[id])}`
 
-            break;
+            break
         default:
             console.warn('Invalid Type Used')
-            break;
+            break
     }
+}
+
+function updateHarvesterHoverText(id) {
+    harvesterHoverIndex = id
+
+    const selectedEls = document.getElementsByClassName('harvesterImg-selected')
+
+    for(let i = 0; i < selectedEls.length; i++)
+        selectedEls[i].classList = 'harvesterImg-inactive'
+
+    DOMCacheGetOrSet(`harvesterImg${id}`).classList = 'harvesterImg-selected'
+
+    const artifactName = harvesterHoverIndex === -1 ? '' : `${artifacts[(harvesterItems[harvesterHoverIndex].artifactID) + Math.floor(data.harvesters[harvesterHoverIndex].level/ 5)].name}`
+    let gemName = ''
+    if(harvesterHoverIndex !== -1)
+        gemName = data.harvesters[harvesterHoverIndex].level < 5 ? '' : `${gems[(harvesterItems[harvesterHoverIndex].gemID) + (Math.floor(data.harvesters[harvesterHoverIndex].level - 5/ 5))].name}`
+    DOMCacheGetOrSet('harvesterHoverText').innerText = harvesterHoverIndex === -1 ? 'Hover over Harvester to see info' : 
+    `${planetNames[harvesterHoverIndex]} Harvester | Level ${data.harvesters[harvesterHoverIndex].level}\n` + `Harvestable Artifact: ${artifactName} | Yield: 0-0\n` 
+    + (data.harvesters[harvesterHoverIndex].level < 5 ? '' : `Harvestable Gem: ${gemName} | Yield: 0-0\n`) +  ``
 }
 
 function activateArtifactSelect(slotID) {
@@ -373,7 +397,10 @@ function activateGemSelect(slotID) {
 }
 
 function selectArtifact(slotID,artifactID) {
-    
+    if(artifactAlreadyActive(artifactID)) {
+        generateNotification('Artifact is already active','error')
+        return
+    }
 }
 
 function selectGem(slotID,gemID) {
