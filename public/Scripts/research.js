@@ -279,8 +279,8 @@ function purchaseResearch(i) {
     updateHTML();
 }
 function updateResearch() {
+  const buyAmountNums = [1,5,10,20]
     for(let i = 0; i < commonResearches.length; i++) {
-      const buyAmountNums = [1,5,10,20]
       commonResearchCost[i] = ((commonResearches[i].baseCost).sub(commonResearches[i].baseCost.times(D(0.05).times(data.epicResearch[1])))) //Base Cost Calc
       commonResearchCostDisplay[i] = getTotalCost(commonResearchCost[i],data.onPlanet === true && data.currentPlanetIndex === 0 ? D(1.35) : D(1.15),data.research[i],commonResearches[i].maxLevel,D(buyAmountNums[data.buyAmounts[0]]))
       if(data.onPlanet === false)
@@ -291,6 +291,7 @@ function updateResearch() {
         
     for(let i = 0; i < epicResearches.length; i++) {
         epicResearchCost[i] = epicResearches[i].baseCost.times(Decimal.pow(1.25, data.epicResearch[i]))
+        epicResearchCostDisplay[i] = getTotalCost(epicResearches[i].baseCost,D(1.25),data.epicResearch[i],epicResearches[i].maxLevel,D(buyAmountNums[data.buyAmounts[1]]))
     }
         
 }
