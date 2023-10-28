@@ -80,12 +80,12 @@ function updateHTML() {
         DOMCacheGetOrSet('prophecyEggText').innerText = `Prophecy Eggs: ${format(data.prophecyEggs)}\nSoul Boost: x${format(prophecyEggBoost)}\nContract Reward Boost: x${format(contractRewardBoost)}`
         for(let i = 0; i < epicResearchCost.length; i++)
             if(data.epicResearch[i].lt(epicResearches[i].maxLevel)) {
-                if(data.buyAmounts[0] === 0)
-                    DOMCacheGetOrSet(`r${i}`).classList = data.money.gte(commonResearchCostDisplay[i]) ? 'purpleButton' : 'redButton'
-                else if(data.buyAmounts[0] !== 0 && data.money.gte(commonResearchCost[i]))
-                    DOMCacheGetOrSet(`r${i}`).classList = data.money.gte(commonResearchCostDisplay[i]) ? 'purpleButton' : 'yellowButton'
+                if(data.buyAmounts[1] === 0)
+                    DOMCacheGetOrSet(`er${i}`).classList = data.soulEggs.gte(epicResearchCostDisplay[i]) ? 'purpleButton' : 'redButton'
+                else if(data.buyAmounts[1] !== 0 && data.soulEggs.gte(epicResearchCost[i]))
+                    DOMCacheGetOrSet(`er${i}`).classList = data.soulEggs.gte(epicResearchCostDisplay[i]) ? 'purpleButton' : 'yellowButton'
                 else
-                    DOMCacheGetOrSet(`r${i}`).classList = 'redButton'
+                    DOMCacheGetOrSet(`er${i}`).classList = 'redButton'
             }
             else
                 DOMCacheGetOrSet(`er${i}`).classList = 'blueButton'

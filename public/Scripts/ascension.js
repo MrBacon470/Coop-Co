@@ -308,6 +308,23 @@ function updateAscensionHTML() {
     }
     else if(data.currentSubTab[1] === 1) {
         
+    }
+    else if(data.currentSubTab[1] === 2) {
+        for(let i = 0; i < data.unlockedArtifact.length; i++) {
+            if(data.unlockedArtifact[i] && DOMCacheGetOrSet(`artifactSlot${i}`).getAttribute('src') !== artifacts[i].img)
+                DOMCacheGetOrSet(`artifactSlot${i}`).src = artifacts[i].img
+            else if(!data.unlockedArtifact[i] && DOMCacheGetOrSet(`artifactSlot${i}`).getAttribute('src') !== '/Images/QuestionMark.png')
+                DOMCacheGetOrSet(`artifactSlot${i}`).src = '/Images/QuestionMark.png'
+        }
+
+        for(let i = 0; i < data.unlockedGem.length; i++) {
+            if(data.unlockedGem[i] && DOMCacheGetOrSet(`gemSlot${i}`).getAttribute('src') !== gems[i].img)
+                DOMCacheGetOrSet(`gemSlot${i}`).src = artifacts[i].img
+            else if(!data.unlockedGem[i] && DOMCacheGetOrSet(`gemSlot${i}`).getAttribute('src') !== '/Images/QuestionMark.png')
+                DOMCacheGetOrSet(`gemSlot${i}`).src = '/Images/QuestionMark.png'
+        }
+    }
+    else if(data.currentSubTab[1] === 3) {
 
     }
 }
