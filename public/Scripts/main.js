@@ -1,7 +1,7 @@
 let diff = 0;
 const eggImgPath = '/Images/Eggs/'
 
-const subAmts = [4,4]
+const subAmts = [4,3]
 const subIDs = ['set','asc']
 
 function generateHTMLAndHandlers() {

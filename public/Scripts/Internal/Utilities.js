@@ -102,11 +102,12 @@ function formatPrefix(a,b) {
 
 function getTotalCost(base,rate,level,maxLevel,interval) {
     let totalCost = D(0)
+    let actInterval = interval
+    
+    if((level.plus(actInterval)).gt(maxLevel))
+        actInterval = maxLevel.sub(level)
 
-    if((level.plus(interval)).gt(maxLevel))
-        interval = maxLevel.sub(level)
-
-    if(interval !== 1)
+    if(!actInterval.eq(1))
         totalCost = base.times((Decimal.pow(rate,level).sub(Decimal.pow(rate,level.plus(interval)))).div(D(1).sub(rate)))
     else
         totalCost = base.times(Decimal.pow(rate,level))

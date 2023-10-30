@@ -4,7 +4,6 @@
         <button id="ascSubButton0" class="orangeButton">Ascension</button>
         <button id="ascSubButton1" class="orangeButton">Harvesters</button>
         <button id="ascSubButton2" class="orangeButton">Reliquary</button>
-        <button id="ascSubButton3" class="orangeButton">Forge</button>
     </div>
     <div id="ascSub0" class="flexCol">
         <div class="flexRow" style="margin-bottom: 1vh;">
@@ -103,14 +102,22 @@
                 </div>
             </div>
             <p id="artifactSelectionText" style="color: var(--orange);margin-bottom:3vh">Click an Artifact Slot or Gem Slot Above to Select</p>
-            <h3 style="color: var(--orange);margin-bottom:1vh">Artifact Storage</h3>
-            <div id="artifactStorage" class="flexRow"></div>
-            <p id="artifactHoverText" style="color:var(--orange)">Hover over an Artifact or Gem to see information</p>
+            <div class="flexRow">
+                <div class="flexCol">
+                    <h3 style="color: var(--orange);margin-bottom:1vh">Artifact Storage</h3>
+                    <div id="artifactStorage" class="flexRow"></div>
+                    <p id="artifactHoverText" style="color:var(--orange)">Hover over an Artifact or Gem to see information</p>
+                </div>
+                <div class="verticalDivider"></div>
+                <div class="flexCol">
+                    <h3 style="color: var(--orange); margin-bottom: 1vh;">Artifact Forging</h3>
+                    <p id="artifactCraftingInfo" style="color: var(--orange); margin-bottom: 1vh;">
+                        Hover over an Artifact or Gem<br>to see crafting info!
+                    </p>
+                    <button id="artifactCraftingButton">Craft!</button>
+                </div>
+            </div>
         </div>
-    </div>
-    <div id="ascSub3" class="flexCol">
-        <h3 style="color: var(--orange)">Forge</h3>
-        
     </div>
 </div>
 
@@ -233,5 +240,11 @@
     width: 4em;
 }
 
-
+.verticalDivider {
+    margin-left: 2em;
+    margin-right: 2em;
+    border-left: 2px solid var(--orange);
+    height: 20em;
+    display: inline-block;
+}
 </style>

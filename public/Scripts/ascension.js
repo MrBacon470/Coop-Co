@@ -1,6 +1,6 @@
 let artifactSelector = {status: false, id: -1}
 let gemSelector = {status: false, id: -1}
-let artifactHoverIndex = -1
+let artifactHoverIndex = {id: -1, type: null}
 let harvesterHoverIndex = -1
 
 const harvesterUpgradeCost = []
@@ -32,7 +32,7 @@ const harvesterItems = [
         gemID: 15,
     },
 ]
-
+// Crafting Item Object {id,type,count}
 const artifacts = [
     {
         name: 'Eggcell \'85',
@@ -323,6 +323,12 @@ function updateAscensionHTML() {
             else if(!data.unlockedGem[i] && DOMCacheGetOrSet(`gemSlot${i}`).getAttribute('src') !== '/Images/QuestionMark.png')
                 DOMCacheGetOrSet(`gemSlot${i}`).src = '/Images/QuestionMark.png'
         }
+        if(artifactHoverIndex.id !== -1) {
+            DOMCacheGetOrSet(`artifactCraftingInfo`).innerText = generateArtifactCraftingInfo(artifactHoverIndex.id,artifactHoverIndex.type)
+            DOMCacheGetOrSet(`artifactCraftingButton`).classList = canCraftArtifact(artifactHoverIndex.id,artifactHoverIndex.type) ? 'greenButton' : 'redButton'
+            DOMCacheGetOrSet(`artifactCraftingButton`).innerText = canCraftArtifact(artifactHoverIndex.id,artifactHoverIndex.type) ? 'Craft!' : 'Can\'t Craft'
+        }
+        DOMCacheGetOrSet(`artifactCraftingButton`).style.display = artifactHoverIndex.id !== -1 ? 'block' : 'none'
     }
     else if(data.currentSubTab[1] === 3) {
 
@@ -333,7 +339,7 @@ function updateAscension() {
     for(let i = 0; i < legendaryResearches.length; i++) {
         legendaryResearchCosts[i] = legendaryResearches[i].base.times(Decimal.pow(1.15, data.legendaryResearch[i]))
     }
-    knowleggGain = data.money.gte(1e45) && data.currentEgg >= 18 ? (data.money.div(1e45).log(20)).times(data.legendaryResearch[0].gt(0) ? D(5).times(data.legendaryResearch[i]) : D(1)) : D(1)
+    knowleggGain = data.money.gte(1e45) && data.currentEgg >= 18 ? (data.bestRunMoney.div(1e45).log(20)).times(data.legendaryResearch[0].gt(0) ? D(5).times(data.legendaryResearch[i]) : D(1)) : D(1)
 }
 
 function ascend() {
@@ -341,6 +347,8 @@ function ascend() {
 }
 
 function updateAscensionHoverText(id,type) {
+    artifactHoverIndex.id = id
+    artifactHoverIndex.type = type
     const selectedEls = document.getElementsByClassName('artifactSlot-selected')
 
     for(let i = 0; i < selectedEls.length; i++)
@@ -429,4 +437,59 @@ function artifactAlreadyActive(artifactID) {
         if(data.activeArtifacts[i] === artifactID) return true;
     }
     return false;
+}
+
+function generateArtifactCraftingInfo(artifactID,type) {
+    let str
+    if((type === 'artifact' && data.unlockedArtifact[artifactID]) || (type === 'gem' && data.unlockedGem[artifactID]))
+        str = `${type === 'artifact' ? artifacts[artifactID].name : gems[artifactID].name}\n`
+    else {
+        return `${type === 'artifact' ? 'Artifact' : 'Gem'} not unlocked :(`
+    }
+    
+    if(artifacts[artifactID].crafting.length === 0 && type === 'artifact') return str + 'Item Not Craftable'
+    if(gems[artifactID].crafting.length === 0 && type === 'gem') return str + 'Item Not Craftable'
+
+    switch(type) {
+        case 'artifact':
+                const artifactCraftArr = artifacts[artifactID].crafting
+                for(let i = 0; i < artifactCraftArr.length; i++) {
+                    if(craftingArr[i].type === 'artifact') {
+                        str += `${artifacts[artifactCraftArr[i].id].name}: x${toPlaces(artifactCraftArr[i].count,0,artifactCraftArr[i].count.plus(1))} (${toPlaces(data.artifacts[artifactCraftArr[i].id].count,0,data.artifacts[artifactCraftArr[i].id].count.plus(1))})\n`
+                    }
+                    else {
+                        str += `${gems[artifactCraftArr[i].id].name}: x${toPlaces(artifactCraftArr[i].count,0,artifactCraftArr[i].count.plus(1))} (${toPlaces(data.gems[artifactCraftArr[i].id].count,0,data.gems[artifactCraftArr[i].id].count.plus(1))})\n`
+                    }
+                }
+            break
+        case 'gem':
+            const gemCraftArr = gems[artifactID].crafting
+            for(let i = 0; i < gemCraftArr.length; i++) {
+                    str += `${gems[gemCraftArr[i].id].name}: x${toPlaces(gemCraftArr[i].count,0,gemCraftArr[i].count.plus(1))} (${toPlaces(data.gems[gemCraftArr[i].id].count,0,data.gems[gemCraftArr[i].id].count.plus(1))})\n`
+            }
+            break
+        default:
+            console.error('Invalid Input in generateArtifactCraftingInfo()')
+            return null
+    }
+    return str
+}
+
+function canCraftArtifact(artifactID,type) {
+    if(type !== 'artifact' && type !== 'gem') {console.error('Invalid Type in canCraftArtifact()'); return false}
+    if((type === 'artifact' && !data.unlockedArtifact[artifactID]) || (type === 'gem' && !data.unlockedGem[artifactID])) return false
+
+    let craftingArr = type === 'artifact' ? artifacts[artifactID].crafting : gems[artifactID].crafting
+    if(craftingArr.length === 0) return false
+
+    for(let i = 0; i < craftingArr.length; i++) {
+        if(craftingArr[i].type === 'artifact') {
+            if(data.artifacts[craftingArr[i].id].lt(craftingArr[i].count)) return false
+        }
+        else {
+            if(data.gems[craftingArr[i].id].lt(craftingArr[i].count)) return false
+        }
+    }
+
+    return true
 }
