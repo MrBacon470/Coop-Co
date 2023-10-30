@@ -104,11 +104,11 @@ function getTotalCost(base,rate,level,maxLevel,interval) {
     let totalCost = D(0)
     let actInterval = interval
     
-    if((level.plus(actInterval)).gt(maxLevel))
+    if((level.plus(interval)).gt(maxLevel))
         actInterval = maxLevel.sub(level)
 
     if(!actInterval.eq(1))
-        totalCost = base.times((Decimal.pow(rate,level).sub(Decimal.pow(rate,level.plus(interval)))).div(D(1).sub(rate)))
+        totalCost = base.times((Decimal.pow(rate,level).sub(Decimal.pow(rate,level.plus(actInterval)))).div(D(1).sub(rate)))
     else
         totalCost = base.times(Decimal.pow(rate,level))
     return totalCost;
