@@ -43,19 +43,25 @@ const artifacts = [
     {
         name: 'Quickeggn',
         img: '/Images/Artifacts/Quickeggn.png',
-        crafting: [],
+        crafting: [
+            {id:0,type:'artifact',count:D(10)},
+        ],
         effect: D(0.35)
     },
     {
         name: 'Egg Books',
         img: '/Images/Artifacts/Egg-Books.png',
-        crafting: [],
+        crafting: [
+            {id:0,type:'artifact',count:D(14)},
+        ],
         effect: D(0.75)
     },
     {
         name: 'Turbo Hatch',
         img: '/Images/Artifacts/Turbo-Hatch.png',
-        crafting: [],
+        crafting: [
+            {id:0,type:'artifact',count:D(18)},
+        ],
         effect: D(2.0)
     },
     {
@@ -67,19 +73,25 @@ const artifacts = [
     {
         name: 'Prophetic Scroll',
         img: '/Images/Artifacts/Prophetic-Scroll.png',
-        crafting: [],
+        crafting: [
+            {id:4,type:'artifact',count:D(10)},
+        ],
         effect: D(1.2)
     },
     {
         name: 'Gilded Scroll',
         img: '/Images/Artifacts/Gilded-Scroll.png',
-        crafting: [],
+        crafting: [
+            {id:5,type:'artifact',count:D(14)},
+        ],
         effect: D(14)
     },
     {
         name: 'Enlightened Scroll',
         img: '/Images/Artifacts/Enlightened-Scroll.png',
-        crafting: [],
+        crafting: [
+            {id:6,type:'artifact',count:D(18)},
+        ],
         effect: D(250)
     },
     {
@@ -91,19 +103,25 @@ const artifacts = [
     {
         name: 'Gilded Book',
         img: '/Images/Artifacts/Gilded-Book.png',
-        crafting: [],
+        crafting: [
+            {id:8,type:'artifact',count:D(10)},
+        ],
         effect: D(0.005)
     },
     {
         name: 'Ascended Book',
         img: '/Images/Artifacts/Ascended-Book.png',
-        crafting: [],
+        crafting: [
+            {id:9,type:'artifact',count:D(14)},
+        ],
         effect: D(0.008)
     },
     {
         name: 'Knowlegg Book',
         img: '/Images/Artifacts/Knowlegg-Book.png',
-        crafting: [],
+        crafting: [
+            {id:10,type:'artifact',count:D(18)},
+        ],
         effect: D(0.012)
     },
     {
@@ -115,19 +133,25 @@ const artifacts = [
     {
         name: 'Soul Lantern',
         img: '/Images/Artifacts/Soul-Lantern.png',
-        crafting: [],
+        crafting: [
+            {id:12,type:'artifact',count:D(10)},
+        ],
         effect: D(1)
     },
     {
         name: 'Gilded Lantern',
         img: '/Images/Artifacts/Gilded-Lantern.png',
-        crafting: [],
+        crafting: [
+            {id:13,type:'artifact',count:D(14)},
+        ],
         effect: D(5)
     },
     {
         name: 'Prestige Lantern',
         img: '/Images/Artifacts/Prestige-Lantern.png',
-        crafting: [],
+        crafting: [
+            {id:14,type:'artifact',count:D(18)},
+        ],
         effect: D(14)
     },
     {
@@ -139,19 +163,25 @@ const artifacts = [
     {
         name: 'Hammer & Pick',
         img: '/Images/Artifacts/Hammer-Pick.png',
-        crafting: [],
+        crafting: [
+            {id:16,type:'artifact',count:D(10)},
+        ],
         effect: D(0.14)
     },
     {
         name: 'Hammer & Wrench',
         img: '/Images/Artifacts/Hammer-Wrench.png',
-        crafting: [],
+        crafting: [
+            {id:17,type:'artifact',count:D(14)},
+        ],
         effect: D(0.25)
     },
     {
         name: 'Crane',
         img: '/Images/Artifacts/Crane.png',
-        crafting: [],
+        crafting: [
+            {id:18,type:'artifact',count:D(18)},
+        ],
         effect: D(0.4)
     },
     {
@@ -163,19 +193,25 @@ const artifacts = [
     {
         name: 'Basic Analysis',
         img: '/Images/Artifacts/Chemical-Tube.png',
-        crafting: [],
+        crafting: [
+            {id:20,type:'artifact',count:D(10)},
+        ],
         effect: D(0.15)
     },
     {
         name: 'Advanced Analysis',
         img: '/Images/Artifacts/Production-Tube.png',
-        crafting: [],
+        crafting: [
+            {id:21,type:'artifact',count:D(14)},
+        ],
         effect: D(0.22)
     },
     {
         name: 'Superior Analysis',
         img: '/Images/Artifacts/Microscope.png',
-        crafting: [],
+        crafting: [
+            {id:2,type:'artifact',count:D(18)},
+        ],
         effect: D(0.60)
     }
 ]
@@ -339,11 +375,34 @@ function updateAscension() {
     for(let i = 0; i < legendaryResearches.length; i++) {
         legendaryResearchCosts[i] = legendaryResearches[i].base.times(Decimal.pow(1.15, data.legendaryResearch[i]))
     }
-    knowleggGain = data.money.gte(1e45) && data.currentEgg >= 18 ? (data.bestRunMoney.div(1e45).log(20)).times(data.legendaryResearch[0].gt(0) ? D(5).times(data.legendaryResearch[i]) : D(1)) : D(1)
+    knowleggGain = data.money.gte(1e45) && data.currentEgg === 18 ? (data.bestRunMoney.div(1e45).log(20)).times(data.legendaryResearch[0].gt(0) ? D(5).times(data.legendaryResearch[i]) : D(1)) : D(1)
+    knowleggGain.times(planetBoosts[2])
+    knowleggGain = Decimal.round(knowleggGain)
 }
 
 function ascend() {
+    if(data.money.lt(1e45) || data.currentEgg !== 18) return
 
+    data.stats.ascensions[2] = data.stats.ascensions[1]
+    data.stats.ascensions[1] = data.stats.ascensions[0]
+    data.stats.ascensions[0] = knowleggGain
+    data.stats.timeInAscension = data.stats.timeInPrestige = D(0)
+
+    data.knowlegg = data.knowlegg.plus(knowleggGain)
+    if(data.knowlegg.gt(data.bestKnowlegg)) data.bestKnowlegg = data.stats.bestKnowleggs = data.knowlegg
+    data.soulEggs = D(0)
+    data.prophecyEggs = D(0)
+    for(let i = 0; i < 6; i++)
+        data.epicResearch[i] = D(0)
+    for(let i; i < 3; i++)
+        generateContract(i)
+    eggValueBonus = D(1)
+    chickenGain = D(0)
+    layRate = D(1)
+    data.chickens = D(0)
+    data.money = D(0)
+    data.bestRunMoney = D(0)
+    data.currentEgg = 0
 }
 
 function updateAscensionHoverText(id,type) {

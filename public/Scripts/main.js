@@ -8,9 +8,9 @@ function generateHTMLAndHandlers() {
     for(let i = 0; i < tabIDs.length; i++) {
         DOMCacheGetOrSet(`tabButton${i}`).addEventListener('click', () => {changeTab(i)})
     }
-    DOMCacheGetOrSet('prestigeButton').addEventListener('click', () => createConfirmation('prestige'))
+    DOMCacheGetOrSet('prestigeButton').addEventListener('click', () => {createConfirmation('prestige')})
     DOMCacheGetOrSet('eggPromoteButton').addEventListener('click', () => promoteEgg())
-    DOMCacheGetOrSet('ascensionButton').addEventListener('click', () => createConfirmation('ascension'))
+    DOMCacheGetOrSet('ascensionButton').addEventListener('click', () => {createConfirmation('ascension')})
     //Egg Tab
     DOMCacheGetOrSet('mainButton').addEventListener('click', () => {data.chickens = data.chickens.plus(1)})
     //Research Tab
@@ -188,8 +188,10 @@ function mainLoop() {
     if(data.stats.bestChickens.lt(data.chickens)) data.stats.bestChickens = data.chickens
     if(data.stats.bestSoulEggs.lt(data.bestSoulEggs)) data.stats.bestSoulEggs = data.bestSoulEggs
     if(data.stats.bestProphecyEggs.lt(data.prophecyEggs)) data.stats.bestProphecyEggs = data.prophecyEggs
+    if(data.stats.bestKnowleggs.lt(data.bestKnowlegg)) data.stats.bestKnowleggs = data.prophecyEggs
     data.stats.timePlayed = data.stats.timePlayed.plus(diff)
     data.stats.timeInPrestige = data.stats.timeInPrestige.plus(diff)
+    data.stats.timeInAscension = data.stats.timeInAscension.plus(diff)
     if(!data.unlockedContracts && data.unlockedEgg[5]) data.unlockedContracts = true;
     if(!data.generatedContracts && data.unlockedContracts) {
         for(let i = 0; i < 3; i++)
@@ -279,23 +281,36 @@ function createConfirmation(a) {
     old_element.parentNode.replaceChild(new_element, old_element);
     switch(a) {
         case 'prestige':
-            if(data.currentEgg < 3) return
-            document.getElementById('confirmContainer').style.border = `4px solid #8e3dcf`
+            if(data.currentEgg < 3 || contractActive()) return
+            if(!data.settingsToggles[4]) {prestige(); return}
+            document.getElementById('confirmContainer').style.border = `4px solid var(--purple)`
             document.getElementById('confirmTitle').innerText = 'Are you sure you want to prestige?'
-            document.getElementById('confirmContent').innerText = 'This will reset all progress for Soul Eggs'
+            document.getElementById('confirmContent').innerText = 'This will reset everything for Soul Eggs'
             document.getElementById('confirm').style.display = 'block'
             document.getElementById('confirmContainer').style.display = 'block'
             document.getElementById('noConfirm').addEventListener('click', () => {closeModal(2)})
             document.getElementById('yesConfirm').addEventListener('click', () => {prestige();closeModal(2)})
             break
         case 'reset':
-            document.getElementById('confirmContainer').style.border = `4px solid #812626`
+            document.getElementById('confirmContainer').style.border = `4px solid var(--red)`
             document.getElementById('confirmTitle').innerText = 'Are you sure you want to reset your game?'
             document.getElementById('confirmContent').innerText = 'This will export your savefile to the clipboard but delete your save game in local storage.'
             document.getElementById('confirm').style.display = 'block'
             document.getElementById('confirmContainer').style.display = 'block'
             document.getElementById('noConfirm').addEventListener('click', () => {closeModal(2)})
             document.getElementById('yesConfirm').addEventListener('click', () => {fullReset();closeModal(2)})
+            break
+        case 'ascension':
+            if(data.money.lt(1e45) || data.currentEgg !== 18) return
+            if(!data.settingsToggles[5]) {ascend(); return}
+            document.getElementById('confirmContainer').style.border = `4px solid var(--orange)`
+            document.getElementById('confirmTitle').innerText = 'Are you sure you want to ascend?'
+            document.getElementById('confirmContent').innerText = 'This will reset everything for Knowleggs'
+            document.getElementById('confirm').style.display = 'block'
+            document.getElementById('confirmContainer').style.display = 'block'
+            document.getElementById('noConfirm').addEventListener('click', () => {closeModal(2)})
+            document.getElementById('yesConfirm').addEventListener('click', () => {ascend();closeModal(2)})
+            break
     }
 }
 function closeModal(i) {

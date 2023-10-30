@@ -240,16 +240,42 @@ const epicResearches = [
 
 const legendaryResearches = [
   {
-      name: 'Enlightened Thinkers',
-      description: '5x more knowlegg gain',
-      max: D(20),
-      base: D(5)
+    name: 'Planetary Discovery',
+    description: 'Unlock a final planet for discovery',
+    max: D(1),
+    base: D(1)
+  },
+  {
+    name: 'Basic Harvesting & Artifacts',
+    description: 'Unlock Harvesters & The Reliquary',
+    max: D(1),
+    base: D(10)
+  },
+  {
+    name: 'Upgraded Harvesters',
+    description: '+5 More Levels to Harvester Level Cap\nUnlock Tier II Artifacts & Tier I Gems',
+    max: D(1),
+    base: D(15)
+  },
+  {
+    name: 'Advanced Harvesters',
+    description: '+5 More Levels to Harvester Level Cap\nUnlock Tier III Artifacts & Tier II Gems',
+    max: D(1),
+    base: D(20)
+  },
+  {
+    name: 'Superior Harvesters',
+    description: '+5 More Levels to Harvester Level Cap\nUnlock Tier IV Artifacts & Tier III Gems',
+    max: D(1),
+    base: D(20)
   },
 ]
 let commonResearchCost = new Array(commonResearches.length).fill(D(0))
 let commonResearchCostDisplay = new Array(commonResearches.length).fill(D(0))
 let epicResearchCost = new Array(epicResearches.length).fill(D(0))
 let epicResearchCostDisplay = new Array(epicResearches.length).fill(D(0))
+let legendaryResearchCost = new Array(legendaryResearches.length).fill(D(0))
+let legendaryResearchCostDisplay = new Array(legendaryResearches.length).fill(D(0))
 
 for(let i = 0; i < commonResearches.length; i++) {
     commonResearchCost[i] = ((commonResearches[i].baseCost).sub(commonResearches[i].baseCost.times(D(0.05).times(data.epicResearch[1])))) //Base Cost Calc
