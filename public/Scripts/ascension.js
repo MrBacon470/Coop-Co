@@ -334,6 +334,7 @@ let legendaryResearchCosts = new Array(legendaryResearches.length).fill(D(0))
 
 function updateAscensionHTML() {
     if(data.currentSubTab[1] === 0) {
+        DOMCacheGetOrSet(`knowleggText`).innerText = `${format(data.knowlegg)} Knowleggs`
         for(let i = 0; i < legendaryResearches.length; i++) {
             DOMCacheGetOrSet(`lr${i}`).innerText = `${legendaryResearches[i].name}\n${legendaryResearches[i].description}\nLevel: ${toPlaces(data.legendaryResearch[i],0,data.legendaryResearch[i].plus(1))}/${toPlaces(legendaryResearches[i].max,0,legendaryResearches[i].max.plus(1))}\nCost: ${data.legendaryResearch[i].gte(legendaryResearches[i].max) ? '[MAXED]' : `${format(legendaryResearchCosts[i])} Knowleggs`}`
             if(data.legendaryResearch[i].lt(legendaryResearches[i].max))
@@ -390,7 +391,12 @@ function ascend() {
     data.knowlegg = data.knowlegg.plus(knowleggGain)
     if(data.knowlegg.gt(data.bestKnowlegg)) data.bestKnowlegg = data.stats.bestKnowleggs = data.knowlegg
     data.soulEggs = D(0)
+    data.bestSoulEggs = D(0)
     data.prophecyEggs = D(0)
+    for(let i = 0; i < 6; i++) {
+        data.planetData[i] = {money: D(0), chickens: D(0), research: new Array(28).fill(D(0))}
+    }
+    data.research = new Array(28).fill(D(0))
     for(let i = 0; i < 6; i++)
         data.epicResearch[i] = D(0)
     for(let i; i < 3; i++)

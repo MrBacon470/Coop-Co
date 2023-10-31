@@ -104,7 +104,7 @@ function getTotalCost(base,rate,level,maxLevel,interval) {
     let totalCost = D(0)
     let actInterval = interval
     
-    if((level.plus(interval)).gt(maxLevel))
+    if((D(level).plus(interval)).gt(maxLevel))
         actInterval = maxLevel.sub(level)
 
     if(!actInterval.eq(1))
