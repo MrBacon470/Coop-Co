@@ -377,7 +377,6 @@ function updateAscension() {
     }
     knowleggGain = data.money.gte(1e45) && data.currentEgg === 18 ? (data.bestRunMoney.div(1e45).log(20)).times(data.legendaryResearch[0].gt(0) ? D(5).times(data.legendaryResearch[i]) : D(1)) : D(1)
     knowleggGain.times(planetBoosts[2])
-    knowleggGain = Decimal.round(knowleggGain)
 }
 
 function ascend() {

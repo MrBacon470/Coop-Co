@@ -252,6 +252,12 @@ const legendaryResearches = [
     base: D(10)
   },
   {
+    name: 'Prestige Automator',
+    description: 'Unlock Automated Prestiges',
+    max: D(1),
+    base: D(10)
+  },
+  {
     name: 'Upgraded Harvesters',
     description: '+5 More Levels to Harvester Level Cap\nUnlock Tier II Artifacts & Tier I Gems',
     max: D(1),
@@ -330,6 +336,20 @@ for(let i = 0; i < epicResearches.length; i++) {
 }
 function purchaseEpicResearch(i) {
     const buyAmountNums = [1,5,10,20]
+    for(let j = 0; j < buyAmountNums[data.buyAmounts[1]]; j++) {
+        updateResearch()
+        if(data.soulEggs.gte(epicResearchCost[i]) && data.epicResearch[i].lt(epicResearches[i].maxLevel)) {
+            data.soulEggs = data.soulEggs.sub(epicResearchCost[i])
+            data.epicResearch[i] = data.epicResearch[i].add(1)
+            updateHTML()
+        }
+        else
+            break
+    }
+}
+
+function purchaseLegendaryResearch(i) {
+  const buyAmountNums = [1,5,10,20]
     for(let j = 0; j < buyAmountNums[data.buyAmounts[1]]; j++) {
         updateResearch()
         if(data.soulEggs.gte(epicResearchCost[i]) && data.epicResearch[i].lt(epicResearches[i].maxLevel)) {

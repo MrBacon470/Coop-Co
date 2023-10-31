@@ -27,7 +27,7 @@ function getDefaultObject() {
         knowlegg: D(0),
         bestKnowlegg: D(0),
         hasAscended: false,
-        legendaryResearch: new Array(5).fill(D(0)),
+        legendaryResearch: new Array(6).fill(D(0)),
         artifacts: new Array(24).fill(D(0)),
         gems: new Array(18).fill(D(0)),
         unlockedArtifact: new Array(24).fill(false),
