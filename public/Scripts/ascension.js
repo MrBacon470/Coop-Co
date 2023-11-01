@@ -2,8 +2,9 @@ let artifactSelector = {status: false, id: -1}
 let gemSelector = {status: false, id: -1}
 let artifactHoverIndex = {id: -1, type: null}
 let harvesterHoverIndex = -1
+let harvesterMaxLevel = 5
 
-const harvesterUpgradeCost = []
+const harvesterUpgradeCost = [D(1e3),D(2.5e3),D(5e3),D(7.5e3),D(1e4),D(2.5e4),D(5e4),D(7.5e4),D(1e5),D(2.5e5),D(5e5),D(7.5e5),D(1e6),D(2.5e6),D(5e6),D(7.5e6),D(1e7),D(2.5e7),D(5e7)]
 const itemYields = []
 
 const harvesterItems = [
@@ -346,6 +347,18 @@ function updateAscensionHTML() {
     else if(data.currentSubTab[1] === 1) {
         for(let i = 0; i < 6; i++) {
             DOMCacheGetOrSet(`harvesterText${i}`).innerText = data.harvesters[i].level === 0 ? `Construct Harvester to Use` : `${planetNames[i]} Harvester - Level ${data.harvesters.level}`
+            DOMCacheGetOrSet('harvesterUpgradeButton').style.display = harvesterHoverIndex !== -1 ? 'block' : 'none'
+            if(harvesterHoverIndex !== -1) {
+                if(data.harvesters[harvesterHoverIndex].level < 20 || data.harvesters[harvesterHoverIndex].level < harvesterMaxLevel) {
+                    DOMCacheGetOrSet('harvesterUpgradeButton').innerText = data.harvesters[harvesterHoverIndex].level === 0 ? `Construct Harvester` : `Upgrade Harvester`
+                    DOMCacheGetOrSet('harvesterUpgradeButton').classList = data.planetData[harvesterHoverIndex].chickens.gte(harvesterUpgradeCost[data.harvesters[harvesterHoverIndex].level]) ? 'greenButton' : 'redButton'
+                }
+                else {
+                    DOMCacheGetOrSet('harvesterUpgradeButton').innerText = '[MAX LEVEL]'
+                    DOMCacheGetOrSet('harvesterUpgradeButton').classList = 'blueButton'
+                }
+                
+            }
         }
     }
     else if(data.currentSubTab[1] === 2) {
@@ -468,14 +481,12 @@ function updateHarvesterHoverText(id) {
 
     DOMCacheGetOrSet(`harvesterImg${id}`).classList = 'harvesterImg-selected'
 
-    const artifactName = harvesterHoverIndex === -1 ? '' : `${artifacts[(harvesterItems[harvesterHoverIndex].artifactID) + Math.floor(data.harvesters[harvesterHoverIndex].level/ 5)].name}`
-    let gemName = ''
-    if(harvesterHoverIndex !== -1)
-        gemName = data.harvesters[harvesterHoverIndex].level < 5 ? '' : `${gems[(harvesterItems[harvesterHoverIndex].gemID) + (Math.floor(data.harvesters[harvesterHoverIndex].level - 5/ 5))].name}`
+   
     if(harvesterHoverIndex === -1)     
         DOMCacheGetOrSet('harvesterHoverText').innerText = 'Hover over Harvester to see info'
-    //else
-        //DOMCacheGetOrSet('harvesterHoverText').innerText = data.harvesters[id].level === 0 ? `Harvester Construction Cost: ${}`
+    else
+        DOMCacheGetOrSet('harvesterHoverText').innerText = data.harvesters[id].level === 0 ? `Harvester Construction Cost: ${format(harvesterUpgradeCost[data.harvesters[id].level])} ${planetEggNames[id]} Chickens` :
+        `${planetNames[id]} Harvester | Level: ${data.harvesters[id].level}/${harvesterMaxLevel}\n${getHarvesterYieldString(id)}\n${data.harvesters[i].level < 20 || data.harvesters[i].level >= harvesterMaxLevel ? `Upgrade to Level ${data.harvesters[id].level+1}: ${format(harvesterUpgradeCost[data.harvesters[id].level])} ${planetEggNames[id]} Chickens` : '[MAX LEVEL]'}`
     //`${planetNames[harvesterHoverIndex]} Harvester | Level ${data.harvesters[harvesterHoverIndex].level}\n` + `Harvestable Artifact: ${artifactName} | Yield: 0-0\n` 
    // + (data.harvesters[harvesterHoverIndex].level < 5 ? '' : `Harvestable Gem: ${gemName} | Yield: 0-0\n`) +  ``
 }
@@ -559,4 +570,17 @@ function canCraftArtifact(artifactID,type) {
     }
 
     return true
+}
+
+function upgradeHarvester() {
+    if(harvesterHoverIndex === -1) return
+    else if(data.harvesters[harvesterHoverIndex].level === 20 || data.harvesters[harvesterHoverIndex].level === harvesterMaxLevel) return
+    else if(data.planetData[harvesterHoverIndex].chickens.lt(harvesterUpgradeCost[data.harvesters[harvesterHoverIndex].level])) return
+    data.harvesters[harvesterHoverIndex].level++
+    data.planetData[harvesterHoverIndex].chickens = data.planetData[harvesterHoverIndex].chickens.sub(harvesterUpgradeCost[data.harvesters[harvesterHoverIndex].level])
+    updateHarvesterHoverText(harvesterHoverIndex);
+}
+
+function getHarvesterYieldString(id) {
+    
 }

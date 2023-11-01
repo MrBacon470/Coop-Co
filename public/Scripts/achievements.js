@@ -72,7 +72,10 @@ function getAchievementsCompleted() {
     }
     return count
 }
-
+const contractCompleteReq = [D(1),D(10),D(100),D(1e3)]
+const soulAchReq = [D(1e3),D(1e6),D(1e9),D(1e12)]
+const prophecyAchReq = [D(10),D(10),D(1e3),D(1e4)]
+const knowleggAchReq = [D(1),D(100)]
 function checkAchievements() {
     //Eggs
     if(data.achievements[0] === false) data.achievements[0] = true;
@@ -80,19 +83,21 @@ function checkAchievements() {
         if(data.unlockedEgg[i-1] === true && data.achievements[i] === false) getAchievement(i)
     }
     //Soul and Prophecy
-    const contractCompleteReq = [D(1),D(10),D(100),D(1e3)]
+    
     for(let i = 19; i < 23; i++) {
         if(data.stats.contractsComplete.gte(contractCompleteReq[i-19]) && data.achievements[i] === false) getAchievement(i)
     }
-    const soulAchReq = [D(1e3),D(1e6),D(1e9),D(1e12)]
+    
     for(let i = 23; i < 27; i++)
         if(data.soulEggs.gte(soulAchReq[i-23]) && data.achievements[i] === false) getAchievement(i)
-    const prophecyAchReq = [D(10),D(10),D(1e3),D(1e4)]
+    
     for(let i = 27; i < 31; i++)
         if(data.prophecyEggs.gte(prophecyAchReq[i-27]) && data.achievements[i] === false) getAchievement(i)
     //Planets and Knowledge
     for(let i = 31; i < 37; i++)
         if(data.planetsDiscovered[i-31] === true && data.achievements[i] === false) getAchievement(i)
+    for(let i = 37; i < 39; i++)
+        if(data.bestKnowlegg.gte(knowleggAchReq[i-37]) && !data.achievements[i]) getAchievement(i)
 }
 
 function updateAchClass() {

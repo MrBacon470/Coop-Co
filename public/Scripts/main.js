@@ -337,4 +337,4 @@ function closeModal(i) {
 
 window.setInterval(function() {
     mainLoop()
-},50)
+},60)
