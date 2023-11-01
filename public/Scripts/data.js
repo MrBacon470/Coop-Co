@@ -48,7 +48,7 @@ function getDefaultObject() {
             bestProphecyEggs: D(0),
             bestKnowleggs: D(0),
         },
-        buyAmounts: [0,0],
+        buyAmounts: [0,0,0],
         time: Date.now(),
         currentTab: 0,
         currentSubTab: new Array(3).fill(0),
@@ -75,10 +75,9 @@ function load() {
         createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details`,"812626")
         data.currentUpdate = getDefaultObject().currentUpdate  
     }
-    for(let i = 0; i < data.buyAmounts.length-1; i++) {
+    for(let i = 0; i < data.buyAmounts.length; i++) {
         const numString = ['1','5','10','20']
         DOMCacheGetOrSet(`ba${i}`).innerText = `Buy Amount: ${numString[data.buyAmounts[i]]}`
-        DOMCacheGetOrSet(`ba${i}`).onclick = () => {toggleBA(i)}
     }
 }
 //fix saves

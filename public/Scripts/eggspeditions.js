@@ -10,7 +10,7 @@ let planetHoverIndex = -1
 let planetBoosts = new Array(6).fill(D(0))
 function updateEggspeditionsUI() {
 
-    DOMCacheGetOrSet('planet2').style.display = data.hasAscended ? 'inline' : 'none'
+    DOMCacheGetOrSet('planet2').style.display = data.legendaryResearch[0].gte(1) ? 'inline' : 'none'
 
     for(let i = 0; i < data.planetsDiscovered.length; i++) {
         if(data.planetsDiscovered[i] === false && planetHoverIndex === i && DOMCacheGetOrSet('planet'+i).getAttribute('src') !== '/Images/planetactive.png')

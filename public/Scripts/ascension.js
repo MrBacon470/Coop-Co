@@ -336,15 +336,17 @@ function updateAscensionHTML() {
     if(data.currentSubTab[1] === 0) {
         DOMCacheGetOrSet(`knowleggText`).innerText = `${format(data.knowlegg)} Knowleggs`
         for(let i = 0; i < legendaryResearches.length; i++) {
-            DOMCacheGetOrSet(`lr${i}`).innerText = `${legendaryResearches[i].name}\n${legendaryResearches[i].description}\nLevel: ${toPlaces(data.legendaryResearch[i],0,data.legendaryResearch[i].plus(1))}/${toPlaces(legendaryResearches[i].max,0,legendaryResearches[i].max.plus(1))}\nCost: ${data.legendaryResearch[i].gte(legendaryResearches[i].max) ? '[MAXED]' : `${format(legendaryResearchCosts[i])} Knowleggs`}`
+            DOMCacheGetOrSet(`lr${i}`).innerText = `${legendaryResearches[i].name}\n${legendaryResearches[i].description}\nLevel: ${toPlaces(data.legendaryResearch[i],0,data.legendaryResearch[i].plus(1))}/${toPlaces(legendaryResearches[i].max,0,legendaryResearches[i].max.plus(1))}\nCost: ${data.legendaryResearch[i].gte(legendaryResearches[i].max) ? '[MAXED]' : `${format(legendaryResearchCostDisplay[i])} Knowleggs`}`
             if(data.legendaryResearch[i].lt(legendaryResearches[i].max))
-                DOMCacheGetOrSet(`lr${i}`).classList = data.knowlegg.gte(legendaryResearchCosts[i]) ? 'orangeButton' : 'redButton'
+                DOMCacheGetOrSet(`lr${i}`).classList = data.knowlegg.gte(legendaryResearchCostDisplay[i]) ? 'orangeButton' : 'redButton'
             else
                 DOMCacheGetOrSet(`lr${i}`).classList = 'blueButton'
         }
     }
     else if(data.currentSubTab[1] === 1) {
-        
+        for(let i = 0; i < 6; i++) {
+            DOMCacheGetOrSet(`harvesterText${i}`).innerText = data.harvesters[i].level === 0 ? `Construct Harvester to Use` : `${planetNames[i]} Harvester - Level ${data.harvesters.level}`
+        }
     }
     else if(data.currentSubTab[1] === 2) {
         for(let i = 0; i < data.unlockedArtifact.length; i++) {
@@ -373,16 +375,13 @@ function updateAscensionHTML() {
 }
 
 function updateAscension() {
-    for(let i = 0; i < legendaryResearches.length; i++) {
-        legendaryResearchCosts[i] = legendaryResearches[i].base.times(Decimal.pow(1.15, data.legendaryResearch[i]))
-    }
     knowleggGain = data.money.gte(1e45) && data.currentEgg === 18 ? (data.bestRunMoney.div(1e45).log(20)).times(data.legendaryResearch[0].gt(0) ? D(5).times(data.legendaryResearch[i]) : D(1)) : D(1)
     knowleggGain.times(planetBoosts[2])
 }
 
 function ascend() {
     if(data.money.lt(1e45) || data.currentEgg !== 18) return
-
+    data.hasAscended = true
     data.stats.ascensions[2] = data.stats.ascensions[1]
     data.stats.ascensions[1] = data.stats.ascensions[0]
     data.stats.ascensions[0] = knowleggGain
@@ -394,6 +393,7 @@ function ascend() {
     data.bestSoulEggs = D(0)
     data.prophecyEggs = D(0)
     for(let i = 0; i < 6; i++) {
+        if(i !== 2)
         data.planetData[i] = {money: D(0), chickens: D(0), research: new Array(28).fill(D(0))}
     }
     data.research = new Array(28).fill(D(0))
@@ -472,9 +472,12 @@ function updateHarvesterHoverText(id) {
     let gemName = ''
     if(harvesterHoverIndex !== -1)
         gemName = data.harvesters[harvesterHoverIndex].level < 5 ? '' : `${gems[(harvesterItems[harvesterHoverIndex].gemID) + (Math.floor(data.harvesters[harvesterHoverIndex].level - 5/ 5))].name}`
-    DOMCacheGetOrSet('harvesterHoverText').innerText = harvesterHoverIndex === -1 ? 'Hover over Harvester to see info' : 
-    `${planetNames[harvesterHoverIndex]} Harvester | Level ${data.harvesters[harvesterHoverIndex].level}\n` + `Harvestable Artifact: ${artifactName} | Yield: 0-0\n` 
-    + (data.harvesters[harvesterHoverIndex].level < 5 ? '' : `Harvestable Gem: ${gemName} | Yield: 0-0\n`) +  ``
+    if(harvesterHoverIndex === -1)     
+        DOMCacheGetOrSet('harvesterHoverText').innerText = 'Hover over Harvester to see info'
+    //else
+        //DOMCacheGetOrSet('harvesterHoverText').innerText = data.harvesters[id].level === 0 ? `Harvester Construction Cost: ${}`
+    //`${planetNames[harvesterHoverIndex]} Harvester | Level ${data.harvesters[harvesterHoverIndex].level}\n` + `Harvestable Artifact: ${artifactName} | Yield: 0-0\n` 
+   // + (data.harvesters[harvesterHoverIndex].level < 5 ? '' : `Harvestable Gem: ${gemName} | Yield: 0-0\n`) +  ``
 }
 
 function activateArtifactSelect(slotID) {

@@ -243,37 +243,37 @@ const legendaryResearches = [
     name: 'Planetary Discovery',
     description: 'Unlock a final planet for discovery',
     max: D(1),
-    base: D(1)
+    baseCost: D(1)
   },
   {
     name: 'Basic Harvesting & Artifacts',
     description: 'Unlock Harvesters & The Reliquary',
     max: D(1),
-    base: D(10)
+    baseCost: D(10)
   },
   {
     name: 'Prestige Automator',
     description: 'Unlock Automated Prestiges',
     max: D(1),
-    base: D(10)
+    baseCost: D(10)
   },
   {
     name: 'Upgraded Harvesters',
     description: '+5 More Levels to Harvester Level Cap\nUnlock Tier II Artifacts & Tier I Gems',
     max: D(1),
-    base: D(15)
+    baseCost: D(15)
   },
   {
     name: 'Advanced Harvesters',
     description: '+5 More Levels to Harvester Level Cap\nUnlock Tier III Artifacts & Tier II Gems',
     max: D(1),
-    base: D(20)
+    baseCost: D(20)
   },
   {
     name: 'Superior Harvesters',
     description: '+5 More Levels to Harvester Level Cap\nUnlock Tier IV Artifacts & Tier III Gems',
     max: D(1),
-    base: D(20)
+    baseCost: D(20)
   },
 ]
 let commonResearchCost = new Array(commonResearches.length).fill(D(0))
@@ -311,7 +311,7 @@ function purchaseResearch(i) {
     updateHTML();
 }
 function updateResearch() {
-  const buyAmountNums = [1,5,10,20]
+    const buyAmountNums = [1,5,10,20]
     for(let i = 0; i < commonResearches.length; i++) {
       commonResearchCost[i] = ((commonResearches[i].baseCost).sub(commonResearches[i].baseCost.times(D(0.05).times(data.epicResearch[1])))) //Base Cost Calc
       commonResearchCostDisplay[i] = getTotalCost(commonResearchCost[i],data.onPlanet === true && data.currentPlanetIndex === 0 ? D(1.35) : D(1.15),data.research[i],commonResearches[i].maxLevel,D(buyAmountNums[data.buyAmounts[0]]))
@@ -325,7 +325,11 @@ function updateResearch() {
         epicResearchCost[i] = epicResearches[i].baseCost.times(Decimal.pow(1.25, data.epicResearch[i]))
         epicResearchCostDisplay[i] = getTotalCost(epicResearches[i].baseCost,D(1.25),data.epicResearch[i],epicResearches[i].maxLevel,D(buyAmountNums[data.buyAmounts[1]]))
     }
-        
+    
+    for(let i = 0; i < legendaryResearches.length; i++) {
+        legendaryResearchCost[i] = legendaryResearches[i].baseCost.times(Decimal.pow(1.45,data.legendaryResearch[i]))
+        legendaryResearchCostDisplay[i] = getTotalCost(legendaryResearches[i].baseCost,D(1.45),data.legendaryResearch[i],legendaryResearches[i].max,D(buyAmountNums[data.buyAmounts[2]]))
+    }
 }
 //Epic Section
 
@@ -350,11 +354,12 @@ function purchaseEpicResearch(i) {
 
 function purchaseLegendaryResearch(i) {
   const buyAmountNums = [1,5,10,20]
-    for(let j = 0; j < buyAmountNums[data.buyAmounts[1]]; j++) {
+  if(data.legendaryResearch[i].gte(legendaryResearches[i].max)) return
+    for(let j = 0; j < buyAmountNums[data.buyAmounts[2]]; j++) {
         updateResearch()
-        if(data.soulEggs.gte(epicResearchCost[i]) && data.epicResearch[i].lt(epicResearches[i].maxLevel)) {
-            data.soulEggs = data.soulEggs.sub(epicResearchCost[i])
-            data.epicResearch[i] = data.epicResearch[i].add(1)
+        if(data.knowlegg.gte(legendaryResearchCost[i]) && data.legendaryResearch[i].lt(legendaryResearches[i].max)) {
+            data.knowlegg = data.knowlegg.sub(legendaryResearchCost[i])
+            data.legendaryResearch[i] = data.legendaryResearch[i].add(1)
             updateHTML()
         }
         else

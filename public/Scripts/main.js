@@ -35,6 +35,11 @@ function generateHTMLAndHandlers() {
     }
     DOMCacheGetOrSet(`ba1`).addEventListener('click',() => toggleBA(1))
     //Ascension Tab
+    DOMCacheGetOrSet(`ba2`).addEventListener('click',() => toggleBA(2))
+    for(let i = 0; i < data.legendaryResearch.length; i++) {
+        DOMCacheGetOrSet(`lr${i}`).addEventListener('click',() => purchaseLegendaryResearch(i))
+    }
+
     let count = 0;
     for(let i = 0; i <= parseInt(artifacts.length / 8); i++) {
         addHTML('artifactStorage',`<div id="artifactCol${i}" class="flexCol"></div>`)
