@@ -142,6 +142,7 @@ window.onload = function (){
     DOMCacheGetOrSet('currentVersionText').innerText = `Current Version: ${getDefaultObject().currentUpdate}`
     generateNotification('Game Loaded','info')
     updateAchClass()
+    updateCommonResearchHTML()
     //const themeDisplayNames = ['Original','Void Stream','Flashbang']
     //DOMCacheGetOrSet('setTog4').innerText = `Theme: ${themeDisplayNames[data.themeIndex]}`
     //setTheme()

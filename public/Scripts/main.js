@@ -109,7 +109,7 @@ function generateHTMLAndHandlers() {
         DOMCacheGetOrSet('ach' + i).addEventListener('mouseover', () => updateAchText(i))
     //Automators
     for(let i = 0; i < data.autoActive.length; i++) {
-        DOMCacheGetOrSet(`auto${i}`).addEventListener('click', () => { data.autoActive[i] = !data.autoActive[i] })
+        DOMCacheGetOrSet(`auto${i}`).addEventListener('click', () => { toggleAuto(i) })
     }
 
     for(let i = 0; i < data.settingsToggles.length; i++) {

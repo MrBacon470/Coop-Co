@@ -35,22 +35,14 @@ function updateHTML() {
         updateEggPage()
     }
     else if(data.currentTab === 1) {
-        for(let i = 0; i < commonResearchCost.length; i++)
-            if(data.research[i].lt(commonResearches[i].maxLevel)) {
-                if(data.buyAmounts[0] === 0)
-                    DOMCacheGetOrSet(`r${i}`).classList = data.money.gte(commonResearchCostDisplay[i]) ? 'greenButton' : 'redButton'
-                else if(data.buyAmounts[0] !== 0 && data.money.gte(commonResearchCost[i]))
-                    DOMCacheGetOrSet(`r${i}`).classList = data.money.gte(commonResearchCostDisplay[i]) ? 'greenButton' : 'yellowButton'
-                else
-                    DOMCacheGetOrSet(`r${i}`).classList = 'redButton'
-            }
-            else
-                DOMCacheGetOrSet(`r${i}`).classList = 'blueButton'
-        for(let i = 0; i < commonResearches.length; i++) {
-            //const buyAmountNums = [1,5,10,20]
-            //const researchMaxCost = data.research[i].gte(commonResearches[i].maxLevel) ? D(0) : calculateResearchMaxCost(commonResearches[i].baseCost,data.research[i],commonResearches[i].maxLevel,D(buyAmountNums[data.buyAmounts[0]]),data.money)
-            DOMCacheGetOrSet(`r${i}`).innerText = data.research[i].lt(commonResearches[i].maxLevel) ? `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.plus(1))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.plus(1))}\nCost: $${format(commonResearchCostDisplay[i])}` : `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.plus(1))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.plus(1))}\nCost: [MAXED]`
+        for(let i = 0; i < 2; i++) {
+            DOMCacheGetOrSet(`auto${i}`).style.display = data.epicResearch[6+i].gte(epicResearches[6+i].maxLevel) ? 'inline-block' : 'none'
+            DOMCacheGetOrSet(`auto${i}`).classList = data.autoActive[i] ? 'greenButton' : 'redButton'
+            DOMCacheGetOrSet(`auto${i}`).innerText = data.autoActive[i] ? `${autoNames[i]}: On` : `${autoNames[i]}: Off`
         }
+        DOMCacheGetOrSet(`auto3`).style.display = data.epicResearch[10].gte(epicResearches[10].maxLevel) ? 'inline-block' : 'none'
+        DOMCacheGetOrSet(`auto3`).classList = data.autoActive[3] ? 'greenButton' : 'redButton'
+        DOMCacheGetOrSet(`auto3`).innerText = data.autoActive[3] ? `${autoNames[3]}: On` : `${autoNames[3]}: Off`
     }
     else if(data.currentTab === 2) {
         updateContractsHTML()
@@ -96,6 +88,9 @@ function updateHTML() {
             `${epicResearches[i].name}\n${epicResearches[i].desc}\nLevel: ${toPlaces(data.epicResearch[i],0,epicResearches[i].maxLevel.plus(1))}/${toPlaces(epicResearches[i].maxLevel,0,epicResearches[i].maxLevel.plus(1))}\nCost: [MAXED]`
         }
         DOMCacheGetOrSet('prophecyEggSoftCapText').innerText = prophecyEggBoost.gte(1e6) ? `Prophecy Egg Boost is being divided by: ${format(softCapAmts[1])}` : `Prophecy Egg Boost Softcap takes effect at ${format(D(1e6))}`
+        DOMCacheGetOrSet('auto2').style.display = data.epicResearch[9].gte(epicResearches[9].maxLevel) ? 'inline-block' : 'none'
+        DOMCacheGetOrSet(`auto2`).classList = data.autoActive[2] ? 'greenButton' : 'redButton'
+        DOMCacheGetOrSet(`auto2`).innerText = data.autoActive[2] ? `${autoNames[2]}: On` : `${autoNames[2]}: Off`
     }
     else if(data.currentTab === 5) {
         updateEggspeditionsUI()

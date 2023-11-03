@@ -294,9 +294,25 @@ for(let i = 0; i < commonResearches.length; i++) {
 
 }
 
+function updateCommonResearchHTML() {
+  for(let i = 0; i < commonResearchCost.length; i++) {
+    if(data.research[i].lt(commonResearches[i].maxLevel)) {
+      if(data.buyAmounts[0] === 0)
+        DOMCacheGetOrSet(`r${i}`).classList = data.money.gte(commonResearchCostDisplay[i]) ? 'greenButton' : 'redButton'
+      else if(data.buyAmounts[0] !== 0 && data.money.gte(commonResearchCost[i]))
+        DOMCacheGetOrSet(`r${i}`).classList = data.money.gte(commonResearchCostDisplay[i]) ? 'greenButton' : 'yellowButton'
+      else
+        DOMCacheGetOrSet(`r${i}`).classList = 'redButton'
+  }
+  else
+    DOMCacheGetOrSet(`r${i}`).classList = 'blueButton'
+    DOMCacheGetOrSet(`r${i}`).innerText = data.research[i].lt(commonResearches[i].maxLevel) ? `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.plus(1))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.plus(1))}\nCost: $${format(commonResearchCostDisplay[i])}` : `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.plus(1))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.plus(1))}\nCost: [MAXED]`
+  }
+}
+
 function purchaseResearch(i) {
     const buyAmountNums = [1,5,10,20]
-    updateResearch();
+    updateResearch()
     let buyAmount = data.research[i].plus(buyAmountNums[data.buyAmounts[0]]).lte(commonResearches[i].maxLevel) ? buyAmountNums[data.buyAmounts[0]] : commonResearches[i].maxLevel.minus(data.research[i]);
     // prevent going over max level
     let costMult = Decimal.pow(1.15, buyAmount).minus(1).div(0.15);
@@ -308,7 +324,7 @@ function purchaseResearch(i) {
     }
     data.money = data.money.sub(commonResearchCost[i].times(costMult));
     data.research[i] = data.research[i].add(buyAmount);
-    updateHTML();
+    updateCommonResearchHTML()
 }
 function updateResearch() {
     const buyAmountNums = [1,5,10,20]
@@ -365,4 +381,11 @@ function purchaseLegendaryResearch(i) {
         else
             break
     }
+}
+
+function isCommonResearchMaxed(start,end) {
+  for(let i = start; i <= end; i++) {
+    if(data.research[i].lt(commonResearches[i].maxLevel)) return false
+  }
+  return true
 }
