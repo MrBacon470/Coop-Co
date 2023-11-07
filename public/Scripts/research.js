@@ -252,8 +252,8 @@ const legendaryResearches = [
     baseCost: D(10)
   },
   {
-    name: 'Prestige Automator',
-    description: 'Unlock Automated Prestiges',
+    name: 'Epic Research Autobuyer',
+    description: 'Automatically Purchase Epic Researches',
     max: D(1),
     baseCost: D(10)
   },

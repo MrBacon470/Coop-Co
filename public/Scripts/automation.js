@@ -32,4 +32,35 @@ function toggleAuto(id) {
     data.autoActive[id] = !data.autoActive[id]
 }
 
+/* myname solution
+const autos = {
+  autoPurchaseFirstBatch: {
+    description: "...",
+    condition: () => !isCommonResearchMaxed(0, 9),
+    action: () => Array.from(new Array(10).keys()).forEach(i => purchaseResearch(i))
+  },
+  autoPurchaseSecondBatch: {
+    description: "...",
+    condition: () => !isCommonResearchMaxed(10, 19),
+    action: () => Array.from(new Array(10).keys()).forEach(i => purchaseResearch(i + 10))
+  },
+  autoPurchaseThirdBatch: {
+    description: "...",
+    condition: () => !isCommonResearchMaxed(20, 27),
+    action: () => Array.from(new Array(8).keys()).forEach(i => purchaseResearch(i + 20))
+  },
+  whateverCaseTwoIs: {
+    description: "...",
+    condition: data.money.gte(eggData[data.currentEgg].unlockReq) && data.onPlanet === false && ((data.currentEgg < 17 && !data.settingsToggles[3]) || (data.currentEgg < 18 && data.settingsToggles[3])))
+    action: () => promoteEgg()
+  }
+};
 
+function updateAutomation() {
+  data.autoActive.forEach(automation => {
+    if (autos[automation].condition()) {
+      autos[automation].action();
+    }
+  });
+}
+*/

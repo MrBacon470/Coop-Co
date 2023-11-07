@@ -68,6 +68,8 @@ function generateHTMLAndHandlers() {
     for(let i = 0; i < gems.length; i++) {
         DOMCacheGetOrSet(`gemSlot${i}`).addEventListener('mouseover', () => updateAscensionHoverText(i,'gem'))
     } 
+
+    DOMCacheGetOrSet(`harvesterUpgradeButton`).addEventListener('click',() => upgradeHarvester())
     
     for(let i = 0; i < data.harvesters.length; i++) {
         DOMCacheGetOrSet(`harvesterHolder${i}`).addEventListener('mouseover',() => {updateHarvesterHoverText(i)})

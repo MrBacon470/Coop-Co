@@ -2,7 +2,7 @@ let artifactSelector = {status: false, id: -1}
 let gemSelector = {status: false, id: -1}
 let artifactHoverIndex = {id: -1, type: null}
 let harvesterHoverIndex = -1
-let harvesterMaxLevel = 5
+let harvesterMaxLevel = 0
 
 const harvesterUpgradeCost = [D(1e3),D(2.5e3),D(5e3),D(7.5e3),D(1e4),D(2.5e4),D(5e4),D(7.5e4),D(1e5),D(2.5e5),D(5e5),D(7.5e5),D(1e6),D(2.5e6),D(5e6),D(7.5e6),D(1e7),D(2.5e7),D(5e7)]
 const itemYields = []
@@ -390,6 +390,11 @@ function updateAscensionHTML() {
 function updateAscension() {
     knowleggGain = data.money.gte(1e45) && data.currentEgg === 18 ? (data.bestRunMoney.div(1e45).log(20)).times(data.legendaryResearch[0].gt(0) ? D(5).times(data.legendaryResearch[i]) : D(1)) : D(1)
     knowleggGain.times(planetBoosts[2])
+    harvesterMaxLevel = 0
+    harvesterMaxLevel += data.legendaryResearch[0].gte(legendaryResearches[0].max) ? 5 : 0
+    harvesterMaxLevel += data.legendaryResearch[3].gte(legendaryResearches[3].max) ? 5 : 0
+    harvesterMaxLevel += data.legendaryResearch[4].gte(legendaryResearches[4].max) ? 5 : 0
+    harvesterMaxLevel += data.legendaryResearch[5].gte(legendaryResearches[5].max) ? 5 : 0
 }
 
 function ascend() {
@@ -412,8 +417,6 @@ function ascend() {
     data.research = new Array(28).fill(D(0))
     for(let i = 0; i < 6; i++)
         data.epicResearch[i] = D(0)
-    for(let i; i < 3; i++)
-        generateContract(i)
     eggValueBonus = D(1)
     chickenGain = D(0)
     layRate = D(1)
@@ -421,6 +424,8 @@ function ascend() {
     data.money = D(0)
     data.bestRunMoney = D(0)
     data.currentEgg = 0
+    for(let i = 0; i < 3; i++)
+        generateContract(i)
 }
 
 function updateAscensionHoverText(id,type) {
@@ -574,7 +579,7 @@ function canCraftArtifact(artifactID,type) {
 
 function upgradeHarvester() {
     if(harvesterHoverIndex === -1) return
-    else if(data.harvesters[harvesterHoverIndex].level === 20 || data.harvesters[harvesterHoverIndex].level === harvesterMaxLevel) return
+    else if(data.harvesters[harvesterHoverIndex].level >= 20 || data.harvesters[harvesterHoverIndex].level === harvesterMaxLevel) return
     else if(data.planetData[harvesterHoverIndex].chickens.lt(harvesterUpgradeCost[data.harvesters[harvesterHoverIndex].level])) return
     data.harvesters[harvesterHoverIndex].level++
     data.planetData[harvesterHoverIndex].chickens = data.planetData[harvesterHoverIndex].chickens.sub(harvesterUpgradeCost[data.harvesters[harvesterHoverIndex].level])

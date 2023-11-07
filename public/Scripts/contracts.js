@@ -47,7 +47,21 @@ const prestigeContracts = [
       eggIndex: 8,
       baseGoal: D(1e20),
       baseReward: D(1),
-    }
+    },
+    {
+      name: 'Space-Egg',
+      desc: 'Egglon Musk needs massive amounts of rocketfuel eggs for his new Chicken-9 Rocket',
+      eggIndex: 3,
+      baseGoal: D(1e14),
+      baseReward: D(1),
+    },
+    {
+      name: 'Terraforming Venus',
+      desc: 'In order to terraform all of Venus we need mass production of Terraform Eggs',
+      eggIndex: 12,
+      baseGoal: D(1e23),
+      baseReward: D(1),
+    },
 ]
 
 function updateContractsHTML() {
