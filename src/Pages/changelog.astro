@@ -12,7 +12,7 @@
         <h1>Changelog :O</h1>
         <h1>Public Release</h1>
         <h2><strong>v2.0.0</strong> <span class="badge-green">Major Update</span></h2>
-        <p>Ascension! Contract Overhaul! Enlightenments Removed! UI Redux! More Eggs! More Achievements</p>
+        <p>Enlightenment Removal, UI Overhaul, Code Refactoring, Bug Squashing, Rebalancing, More Achievements, Removed Multi Theme, More QoL features.</p>
         <h2><strong>v1.1.5</strong> <span class="badge-blue">Minor Update</span></h2>
         <p>Cleaned up Styling and removed almost all inline styling, Added Multi-Theme support (3 Themes Currently: Original, Void Stream (my take on the Star Stream theme in NG+3C) and Flashbang) and Changed the progress bar to be yellow is progress to discovery and green is unlock progress</p>
         <h2><strong>v1.1.4</strong> <span class="badge-red">Major Rebalance</span></h2>
@@ -92,6 +92,7 @@
 body {
     user-select: none;
     background-color: var(--bg-color);
+    text-align: left;
 }
 button {
     user-select: none;
@@ -109,38 +110,51 @@ button:hover {
     transition-duration: 0.5s;
 }
 img {height: 3.25em; width: 3.25em;}
-h1,h2,h3,h4,p { margin-bottom: 1vh;}
+h1,h2,h3,h4,p { margin-bottom: 1vh; text-align: left;}
 
 .badge-red {
     background-color: var(--red);
     color: whitesmoke;
     padding: 2px 4px;
+    border-radius: 5px;
     text-align: center;
+    margin-left: 1vw;
+    margin-right: 1vw;
 }
 
 .badge-green {
     background-color: var(--green);
     color: whitesmoke;
     padding: 2px 4px;
+    border-radius: 5px;
     text-align: center;
+    margin-left: 1vw;
+    margin-right: 1vw;
 }
 
 .badge-blue {
     background-color: var(--blue);
     color: whitesmoke;
     padding: 2px 4px;
+    border-radius: 5px;
     text-align: center;
+    margin-left: 1vw;
+    margin-right: 1vw;
 }
 
 .badge-yellow {
     background-color: var(--yellow);
     color: var(--bg-color);
     padding: 2px 4px;
+    border-radius: 5px;
     text-align: center;
+    margin-left: 1vw;
+    margin-right: 1vw;
 }
 
 #changeLogHolder {
     padding: 1em;
     margin: 1em;
+    text-align: left;
 }
 </style>

@@ -346,7 +346,16 @@ function updateAscensionHTML() {
     }
     else if(data.currentSubTab[1] === 1) {
         for(let i = 0; i < 6; i++) {
-            DOMCacheGetOrSet(`harvesterText${i}`).innerText = data.harvesters[i].level === 0 ? `Construct Harvester to Use` : `${planetNames[i]} Harvester - Level ${data.harvesters.level}`
+            DOMCacheGetOrSet(`harvesterText${i}`).innerText = data.harvesters[i].level === 0 ? `Construct Harvester to Use` : `${planetNames[i]} Harvester - Level ${data.harvesters[i].level}`
+            if(data.harvesters[i].level === 0) {
+                DOMCacheGetOrSet(`harvesterButton${i}`).innerText = 'Locked'
+                DOMCacheGetOrSet(`harvesterButton${i}`).classList = 'redButton'
+            }
+            else {
+                DOMCacheGetOrSet(`harvesterButton${i}`).innerText = data.harvesters[i].timeRemaining > 0 ? `${formatTimeAlternate(data.harvesters[i].timeRemaining)}` : 'Run Harvester'
+                DOMCacheGetOrSet(`harvesterButton${i}`).classList = data.harvesters[i].timeRemaining > 0 ? 'redButton' : 'greenButton'
+            }
+                
             DOMCacheGetOrSet('harvesterUpgradeButton').style.display = harvesterHoverIndex !== -1 ? 'block' : 'none'
             if(harvesterHoverIndex !== -1) {
                 if(data.harvesters[harvesterHoverIndex].level < 20 || data.harvesters[harvesterHoverIndex].level < harvesterMaxLevel) {
@@ -388,8 +397,8 @@ function updateAscensionHTML() {
 }
 
 function updateAscension() {
-    knowleggGain = data.money.gte(1e45) && data.currentEgg === 18 ? (data.bestRunMoney.div(1e45).log(20)).times(data.legendaryResearch[0].gt(0) ? D(5).times(data.legendaryResearch[i]) : D(1)) : D(1)
-    knowleggGain.times(planetBoosts[2])
+    knowleggGain = data.money.gte(1e45) && data.currentEgg === 18 ? (data.bestRunMoney.div(1e45).log(20)).plus(1) : D(0)
+    knowleggGain = knowleggGain.times(planetBoosts[2])
     harvesterMaxLevel = 0
     harvesterMaxLevel += data.legendaryResearch[0].gte(legendaryResearches[0].max) ? 5 : 0
     harvesterMaxLevel += data.legendaryResearch[3].gte(legendaryResearches[3].max) ? 5 : 0
@@ -424,8 +433,7 @@ function ascend() {
     data.money = D(0)
     data.bestRunMoney = D(0)
     data.currentEgg = 0
-    for(let i = 0; i < 3; i++)
-        generateContract(i)
+    data.unlockedContracts = false
 }
 
 function updateAscensionHoverText(id,type) {
@@ -471,7 +479,7 @@ function updateAscensionHoverText(id,type) {
 
             break
         default:
-            console.warn('Invalid Type Used')
+            console.error('Invalid Type Used')
             break
     }
 }
@@ -485,15 +493,12 @@ function updateHarvesterHoverText(id) {
         selectedEls[i].classList = 'harvesterImg-inactive'
 
     DOMCacheGetOrSet(`harvesterImg${id}`).classList = 'harvesterImg-selected'
-
    
     if(harvesterHoverIndex === -1)     
         DOMCacheGetOrSet('harvesterHoverText').innerText = 'Hover over Harvester to see info'
     else
         DOMCacheGetOrSet('harvesterHoverText').innerText = data.harvesters[id].level === 0 ? `Harvester Construction Cost: ${format(harvesterUpgradeCost[data.harvesters[id].level])} ${planetEggNames[id]} Chickens` :
-        `${planetNames[id]} Harvester | Level: ${data.harvesters[id].level}/${harvesterMaxLevel}\n${getHarvesterYieldString(id)}\n${data.harvesters[i].level < 20 || data.harvesters[i].level >= harvesterMaxLevel ? `Upgrade to Level ${data.harvesters[id].level+1}: ${format(harvesterUpgradeCost[data.harvesters[id].level])} ${planetEggNames[id]} Chickens` : '[MAX LEVEL]'}`
-    //`${planetNames[harvesterHoverIndex]} Harvester | Level ${data.harvesters[harvesterHoverIndex].level}\n` + `Harvestable Artifact: ${artifactName} | Yield: 0-0\n` 
-   // + (data.harvesters[harvesterHoverIndex].level < 5 ? '' : `Harvestable Gem: ${gemName} | Yield: 0-0\n`) +  ``
+        `${planetNames[id]} Harvester | Level: ${data.harvesters[id].level}/${harvesterMaxLevel}\n${getHarvesterYieldString(id)}\n${data.harvesters[id].level < 20 || data.harvesters[id].level >= harvesterMaxLevel ? `Upgrade to Level ${data.harvesters[id].level+1}: ${format(harvesterUpgradeCost[data.harvesters[id].level])} ${planetEggNames[id]} Chickens` : '[MAX LEVEL]'}`
 }
 
 function activateArtifactSelect(slotID) {
@@ -587,5 +592,5 @@ function upgradeHarvester() {
 }
 
 function getHarvesterYieldString(id) {
-    
+    return "Not Implemented Yet"
 }

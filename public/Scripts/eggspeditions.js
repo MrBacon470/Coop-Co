@@ -1,5 +1,5 @@
 const planetNames = ['Arcturus','Ravnar','Xylok','Triton','Hereth','Malak']
-const planetDescs = ['Dark Energy Abounds (Higher Research Scaling)','Tick Tock (Time Speed 1/4th)','Peace and Tranquility (No Soul Egg Boosts Work Here)','The Abyss Watches (No Soul or Prophecy Egg Boost)','A World of Lava (Slower Chicken Gain)','Light in the Dark (Low Egg Value)']
+const planetDescs = ['Dark Energy Abounds (Higher Research Scaling)','Tick Tock (Time Speed 1/4th)','Peace and Tranquility (Acts like Enlightenment Egg)','The Abyss Watches (No Soul or Prophecy Egg Boost)','A World of Lava (Slower Chicken Gain)','Light in the Dark (Low Egg Value)']
 const planetEggImgIDs = ['darkenergy','time','peace','abyss','lava','light']
 const planetEggNames = ['Dark Energy','Time','Peace','Abyss','Lava','Light']
 const planetBoostNames = ['Planet Egg Value','Lay Rate','Knowlegg Gain','Soul Egg Gain','Chicken Gain','Egg Value']

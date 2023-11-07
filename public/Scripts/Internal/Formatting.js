@@ -115,6 +115,14 @@ function formatTime(time) {
   } else return Decimal.floor(time % 60) + " seconds"
 }
 
+function formatTimeAlternate(time) {
+    if (time >= 3600) {
+        return Decimal.floor(time / 3600) + ":" + Decimal.floor((time % 3600) / 60) + ":" + Decimal.floor(time % 60)
+    } else if (time >= 60) {
+        return "00:" + Decimal.floor(time / 60) + ":" + Decimal.floor(time % 60) + ""
+    } else return "00:00:" + Decimal.floor(time % 60)
+}
+
 function toPlaces(x, precision, maxAccepted) {
     x = new Decimal(x)
     let result = x.toStringWithDecimalPlaces(precision)
