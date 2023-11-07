@@ -35,6 +35,7 @@ function updateHTML() {
         updateEggPage()
     }
     else if(data.currentTab === 1) {
+        updateCommonResearchHTML()
         for(let i = 0; i < 2; i++) {
             DOMCacheGetOrSet(`auto${i}`).style.display = data.epicResearch[6+i].gte(epicResearches[6+i].maxLevel) ? 'inline-block' : 'none'
             DOMCacheGetOrSet(`auto${i}`).classList = data.autoActive[i] ? 'greenButton' : 'redButton'

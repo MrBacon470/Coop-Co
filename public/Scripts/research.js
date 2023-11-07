@@ -324,7 +324,6 @@ function purchaseResearch(i) {
     }
     data.money = data.money.sub(commonResearchCost[i].times(costMult));
     data.research[i] = data.research[i].add(buyAmount);
-    updateCommonResearchHTML()
 }
 function updateResearch() {
     const buyAmountNums = [1,5,10,20]
