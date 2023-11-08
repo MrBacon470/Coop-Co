@@ -73,6 +73,7 @@ function generateHTMLAndHandlers() {
     
     for(let i = 0; i < data.harvesters.length; i++) {
         DOMCacheGetOrSet(`harvesterHolder${i}`).addEventListener('mouseover',() => {updateHarvesterHoverText(i)})
+        DOMCacheGetOrSet(`harvesterButton${i}`).addEventListener('click', () => startHarvester(i))
     }
     // count = 0;
     // addHTML('artifactStorage',`<div class="flexCol" style="width:4em"></div>`)

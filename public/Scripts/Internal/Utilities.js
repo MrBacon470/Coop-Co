@@ -37,11 +37,11 @@ class Notation {
 notate = new Notation().bind()
 
 function getRandom(min, max) {
-    return Math.floor(Math.random() * (max - min) ) + min
+    return Math.floor((Math.random() * (max - min))) + min 
 }
 
 function getRandomDecimal(min,max) {
-    return Decimal.floor(D(Math.random()).times(max.sub(min))).plus(min)
+    return Decimal.floor(D(Math.random()).times(D(max).sub(min))).plus(min)
 }
 
 function decimalRemainder(num1, num2) {

@@ -377,6 +377,9 @@ function updateAscension() {
     harvesterMaxLevel += data.legendaryResearch[3].gte(legendaryResearches[3].max) ? 5 : 0
     harvesterMaxLevel += data.legendaryResearch[4].gte(legendaryResearches[4].max) ? 5 : 0
     harvesterMaxLevel += data.legendaryResearch[5].gte(legendaryResearches[5].max) ? 5 : 0
+
+    for(let i = 0; i < data.harvesters.length; i++)
+        runHarvester(i)
 }
 
 function ascend() {
@@ -556,6 +559,41 @@ function canCraftArtifact(artifactID,type) {
     return true
 }
 
+function startHarvester(id) {
+    if(data.harvesters[id].timeRemaining > 0) return
+    data.harvesters[id].timeRemaining = 5 * data.harvesters[id].level
+    data.harvesters[id].running = true
+}
+
+function runHarvester(id) {
+    if(data.harvesters[id].running && data.harvesters[id].timeRemaining <= 0) {
+        const harvesterYield = calculateHarvesterYield(id)
+        data.harvesters[id].running = false
+        data.harvesters[id].timeRemaining = 0
+
+        for(let i = 0; i < harvesterYield.artifacts.length; i++) {
+            data.artifacts[harvesterYield.artifacts[i].id] = data.artifacts[harvesterYield.artifacts[i].id].plus(getRandom(harvesterYield.artifacts[i].lower,harvesterYield.artifacts[i].upper))
+        }
+        
+        for(let i = 0; i < harvesterYield.gems.length; i++) {
+            data.gems[harvesterYield.gems[i].id] = data.gems[harvesterYield.gems[i].id].plus(getRandom(harvesterYield.gems[i].lower,harvesterYield.gems[i].upper))
+        }
+
+        for(let i = 0; i < data.unlockedArtifact.length; i++) {
+            if(data.artifacts[i].gt(0) && !data.unlockedArtifact[i])
+                data.unlockedArtifact[i] = true
+        }
+    
+        for(let i = 0; i < data.unlockedGem.length; i++) {
+            if(data.gems[0].gt(0) && !data.unlockedGem[i])
+                data.unlockedGem = true
+        }
+    }
+    else if(data.harvesters[id].running && data.harvesters[id].timeRemaining > 0) {
+        data.harvesters[id].timeRemaining -= diff
+    }
+}
+
 function upgradeHarvester() {
     if(harvesterHoverIndex === -1) return
     else if(data.harvesters[harvesterHoverIndex].level >= 20 || data.harvesters[harvesterHoverIndex].level === harvesterMaxLevel) return
@@ -594,7 +632,7 @@ function calculateHarvesterYield(id) {
     }
 
     for(let i = 0; i <= harvesterInterval; i++) {
-        yieldObj.artifacts.push({id: ((id * 4) + i),lower: ((harvesterInterval - i) * 5), upper: (data.harvesters[id].level - (5 * i))})
+        yieldObj.artifacts.push({id: ((id * 4) + i),lower: ((harvesterInterval - i) * 5), upper: (data.harvesters[id].level - (5 * i)) + 1})
     }
 
     for(let i = 1; i <= harvesterInterval; i++) {
