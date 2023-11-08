@@ -5,34 +5,7 @@ let harvesterHoverIndex = -1
 let harvesterMaxLevel = 0
 
 const harvesterUpgradeCost = [D(1e3),D(2.5e3),D(5e3),D(7.5e3),D(1e4),D(2.5e4),D(5e4),D(7.5e4),D(1e5),D(2.5e5),D(5e5),D(7.5e5),D(1e6),D(2.5e6),D(5e6),D(7.5e6),D(1e7),D(2.5e7),D(5e7)]
-const itemYields = []
 
-const harvesterItems = [
-    {
-        artifactID: 0,
-        gemID: 0,
-    },
-    {
-        artifactID: 4,
-        gemID: 3,
-    },
-    {
-        artifactID: 8,
-        gemID: 6,
-    },
-    {
-        artifactID: 12,
-        gemID: 9,
-    },
-    {
-        artifactID: 16,
-        gemID: 12,
-    },
-    {
-        artifactID: 20,
-        gemID: 15,
-    },
-]
 // Crafting Item Object {id,type,count}
 const artifacts = [
     {
@@ -363,7 +336,7 @@ function updateAscensionHTML() {
                     DOMCacheGetOrSet('harvesterUpgradeButton').classList = data.planetData[harvesterHoverIndex].chickens.gte(harvesterUpgradeCost[data.harvesters[harvesterHoverIndex].level]) ? 'greenButton' : 'redButton'
                 }
                 else {
-                    DOMCacheGetOrSet('harvesterUpgradeButton').innerText = '[MAX LEVEL]'
+                    DOMCacheGetOrSet('harvesterUpgradeButton').innerText = 'Max Level'
                     DOMCacheGetOrSet('harvesterUpgradeButton').classList = 'blueButton'
                 }
                 
@@ -496,9 +469,10 @@ function updateHarvesterHoverText(id) {
    
     if(harvesterHoverIndex === -1)     
         DOMCacheGetOrSet('harvesterHoverText').innerText = 'Hover over Harvester to see info'
-    else
+    else 
         DOMCacheGetOrSet('harvesterHoverText').innerText = data.harvesters[id].level === 0 ? `Harvester Construction Cost: ${format(harvesterUpgradeCost[data.harvesters[id].level])} ${planetEggNames[id]} Chickens` :
-        `${planetNames[id]} Harvester | Level: ${data.harvesters[id].level}/${harvesterMaxLevel}\n${getHarvesterYieldString(id)}\n${data.harvesters[id].level < 20 || data.harvesters[id].level >= harvesterMaxLevel ? `Upgrade to Level ${data.harvesters[id].level+1}: ${format(harvesterUpgradeCost[data.harvesters[id].level])} ${planetEggNames[id]} Chickens` : '[MAX LEVEL]'}`
+        `${planetNames[id]} Harvester | Level: ${data.harvesters[id].level}/${harvesterMaxLevel}\n${getHarvesterYieldString(id)}\n${data.harvesters[id].level < harvesterMaxLevel ? `Upgrade to Level ${data.harvesters[id].level+1}: ${format(harvesterUpgradeCost[data.harvesters[id].level])} ${planetEggNames[id]} Chickens` : ''}`
+       
 }
 
 function activateArtifactSelect(slotID) {
@@ -592,5 +566,42 @@ function upgradeHarvester() {
 }
 
 function getHarvesterYieldString(id) {
-    return "Not Implemented Yet"
+    const harvesterInterval = Math.floor((data.harvesters[id].level - 1) / 5)
+    const harvesterYieldObj = calculateHarvesterYield(id)
+    switch(harvesterInterval) {
+        case 0:
+            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper}`
+        case 1:
+            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper}\n${artifacts[harvesterYieldObj.artifacts[1].id].name} | Yield: ${harvesterYieldObj.artifacts[1].lower} - ${harvesterYieldObj.artifacts[1].upper}` +
+            `\n-=Harvestable Gems=-\n${gems[harvesterYieldObj.gems[0].id].name} | Yield: ${harvesterYieldObj.gems[0].lower} - ${harvesterYieldObj.gems[0].upper}`
+        case 2:
+            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper}\n${artifacts[harvesterYieldObj.artifacts[1].id].name} | Yield: ${harvesterYieldObj.artifacts[1].lower} - ${harvesterYieldObj.artifacts[1].upper}\n${artifacts[harvesterYieldObj.artifacts[2].id].name} | Yield: ${harvesterYieldObj.artifacts[2].lower} - ${harvesterYieldObj.artifacts[2].upper}` +
+            `\n-=Harvestable Gems=-\n${gems[harvesterYieldObj.gems[0].id].name} | Yield: ${harvesterYieldObj.gems[0].lower} - ${harvesterYieldObj.gems[0].upper}\n${gems[harvesterYieldObj.gems[1].id].name} | Yield: ${harvesterYieldObj.gems[1].lower} - ${harvesterYieldObj.gems[1].upper}`
+        case 3:
+            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper}\n${artifacts[harvesterYieldObj.artifacts[1].id].name} | Yield: ${harvesterYieldObj.artifacts[1].lower} - ${harvesterYieldObj.artifacts[1].upper}\n${artifacts[harvesterYieldObj.artifacts[2].id].name} | Yield: ${harvesterYieldObj.artifacts[2].lower} - ${harvesterYieldObj.artifacts[2].upper}\n${artifacts[harvesterYieldObj.artifacts[3].id].name} | Yield: ${harvesterYieldObj.artifacts[3].lower} - ${harvesterYieldObj.artifacts[3].upper}` +
+            `\n-=Harvestable Gems=-\n${gems[harvesterYieldObj.gems[0].id].name} | Yield: ${harvesterYieldObj.gems[0].lower} - ${harvesterYieldObj.gems[0].upper}\n${gems[harvesterYieldObj.gems[1].id].name} | Yield: ${harvesterYieldObj.gems[1].lower} - ${harvesterYieldObj.gems[1].upper}\n${gems[harvesterYieldObj.gems[2].id].name} | Yield: ${harvesterYieldObj.gems[2].lower} - ${harvesterYieldObj.gems[2].upper}`
+        default:
+            return 'Error in Yield String'
+    }
+}
+
+function calculateHarvesterYield(id) {
+    if(data.harvesters[id].level === 0) return undefined
+    const harvesterInterval = Math.floor((data.harvesters[id].level - 1) / 5)
+    let yieldObj = {
+        artifacts: [],
+        gems: []
+    }
+
+    for(let i = 0; i <= harvesterInterval; i++) {
+        yieldObj.artifacts.push({id: ((id * 4) + i),lower: ((harvesterInterval - i) * 5), upper: (data.harvesters[id].level - (5 * i))})
+    }
+
+    for(let i = 1; i <= harvesterInterval; i++) {
+        yieldObj.gems.push({id: ((id * 3) + i),lower: (Math.floor( (data.harvesters[id].level - (5 * (i-1))) / 3)) - 2, upper: ((harvesterInterval - (i-1)) * 3)})
+        if(i === 3)
+            yieldObj.gems[2].lower -= 2
+    }
+
+    return yieldObj
 }
