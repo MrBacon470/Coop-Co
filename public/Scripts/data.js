@@ -52,7 +52,7 @@ function getDefaultObject() {
         time: Date.now(),
         currentTab: 0,
         currentSubTab: new Array(3).fill(0),
-        settingsToggles: new Array(6).fill(true),
+        settingsToggles: new Array(7).fill(true),
         currentUpdate: 'v2.0.0',
         devSpeed: 1,
     }

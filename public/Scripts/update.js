@@ -56,6 +56,7 @@ function updateHTML() {
             DOMCacheGetOrSet(`setTog3`).innerText = data.settingsToggles[3] ? `Auto Promote Stops at: Enlightenment` : `Auto Promote Stops at: Universe`
             DOMCacheGetOrSet(`setTog4`).innerText = data.settingsToggles[4] ? `Prestige Confirmation: On` : `Prestige Confirmation: Off`
             DOMCacheGetOrSet(`setTog5`).innerText = data.settingsToggles[5] ? `Ascension Confirmation: On` : `Ascension Confirmation: Off`
+            DOMCacheGetOrSet(`setTog6`).innerText = data.settingsToggles[6] ? `Harvester Notifications: On` : `Harvester Notifications: Off`
         }
         else if(data.currentSubTab[0] === 1) {
             updateStats()

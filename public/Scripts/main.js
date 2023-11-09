@@ -45,13 +45,13 @@ function generateHTMLAndHandlers() {
         addHTML('artifactStorage',`<div id="artifactCol${i}" class="flexCol"></div>`)
         for(let j = 0; j < 8; j++) {
             if(count >= artifacts.length) break;
-            addHTML(`artifactCol${i}`,`<img id="artifactSlot${count}" class="artifactSlot" src="${artifacts[count].img}">`)
+            addHTML(`artifactCol${i}`,`<img id="artifactSlot${count}" class="artifactSlot" src="/Images/QuestionMark.png">`)
             count++
         }
     }
 
     for(let i = 0; i < artifacts.length; i++) {
-        DOMCacheGetOrSet(`artifactSlot${i}`).addEventListener('mouseover', () => updateAscensionHoverText(i,'artifact'))
+        DOMCacheGetOrSet(`artifactSlot${i}`).addEventListener('click', () => updateAscensionHoverText(i,'artifact'))
     } 
 
     count = 0;
@@ -60,13 +60,13 @@ function generateHTMLAndHandlers() {
         addHTML('artifactStorage',`<div id="gemCol${i}" class="flexCol"></div>`)
         for(let j = 0; j < 6; j++) {
             if(count >= gems.length) break;
-            addHTML(`gemCol${i}`,`<img id="gemSlot${count}" class="artifactSlot" src="${gems[count].img}">`)
+            addHTML(`gemCol${i}`,`<img id="gemSlot${count}" class="artifactSlot" src="/Images/QuestionMark.png">`)
             count++
         }
     }
 
     for(let i = 0; i < gems.length; i++) {
-        DOMCacheGetOrSet(`gemSlot${i}`).addEventListener('mouseover', () => updateAscensionHoverText(i,'gem'))
+        DOMCacheGetOrSet(`gemSlot${i}`).addEventListener('click', () => updateAscensionHoverText(i,'gem'))
     } 
 
     DOMCacheGetOrSet(`harvesterUpgradeButton`).addEventListener('click',() => upgradeHarvester())

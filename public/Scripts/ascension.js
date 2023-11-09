@@ -26,7 +26,7 @@ const artifacts = [
         name: 'Egg Books',
         img: '/Images/Artifacts/Egg-Books.png',
         crafting: [
-            {id:0,type:'artifact',count:D(14)},
+            {id:1,type:'artifact',count:D(14)},
         ],
         effect: D(0.75)
     },
@@ -34,7 +34,7 @@ const artifacts = [
         name: 'Turbo Hatch',
         img: '/Images/Artifacts/Turbo-Hatch.png',
         crafting: [
-            {id:0,type:'artifact',count:D(18)},
+            {id:2,type:'artifact',count:D(18)},
         ],
         effect: D(2.0)
     },
@@ -331,7 +331,7 @@ function updateAscensionHTML() {
                 
             DOMCacheGetOrSet('harvesterUpgradeButton').style.display = harvesterHoverIndex !== -1 ? 'block' : 'none'
             if(harvesterHoverIndex !== -1) {
-                if(data.harvesters[harvesterHoverIndex].level < 20 || data.harvesters[harvesterHoverIndex].level < harvesterMaxLevel) {
+                if(data.harvesters[harvesterHoverIndex].level < 20 && data.harvesters[harvesterHoverIndex].level < harvesterMaxLevel) {
                     DOMCacheGetOrSet('harvesterUpgradeButton').innerText = data.harvesters[harvesterHoverIndex].level === 0 ? `Construct Harvester` : `Upgrade Harvester`
                     DOMCacheGetOrSet('harvesterUpgradeButton').classList = data.planetData[harvesterHoverIndex].chickens.gte(harvesterUpgradeCost[data.harvesters[harvesterHoverIndex].level]) ? 'greenButton' : 'redButton'
                 }
@@ -426,32 +426,32 @@ function updateAscensionHoverText(id,type) {
         case 'artifact':
             DOMCacheGetOrSet(`artifactSlot${id}`).classList = 'artifactSlot-selected'
             if(id < 4)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[i].effect.times(100),2,(artifacts[i].effect.times(100)).plus(1))}% Egg Value\n You have: ${format(data.artifacts[id])}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).plus(1))}% Egg Value\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].plus(1))}`
             else if(id >= 4 && id < 8)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[i].effect.times(100),2,(artifacts[i].effect.times(100)).plus(1))}% Enlightenment Egg Value\n You have: ${format(data.artifacts[id])}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).plus(1))}% Enlightenment Egg Value\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].plus(1))}`
             else if(id >= 8 && id < 12)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[i].effect.times(100),2,(artifacts[i].effect.times(100)).plus(1))}% Prophecy Egg Bonus\n You have: ${format(data.artifacts[id])}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).plus(1))}% Prophecy Egg Bonus\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].plus(1))}`
             else if(id >= 12 && id < 16)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[i].effect.times(100),2,(artifacts[i].effect.times(100)).plus(1))}% Soul Egg Bonus\n You have: ${format(data.artifacts[id])}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).plus(1))}% Soul Egg Bonus\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].plus(1))}`
             else if(id >= 16 && id < 20)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[i].effect.times(100),2,(artifacts[i].effect.times(100)).plus(1))}% Internal Hatchery\n You have: ${format(data.artifacts[id])}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).plus(1))}% Internal Hatchery\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].plus(1))}`
             else if(id >= 20 && id < 24)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | -${toPlaces(artifacts[i].effect.times(100),2,(artifacts[i].effect.times(100)).plus(1))}% Research Cost\n You have: ${format(data.artifacts[id])}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | -${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).plus(1))}% Research Cost\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].plus(1))}`
             break
         case 'gem':
             DOMCacheGetOrSet(`gemSlot${id}`).classList = 'artifactSlot-selected'
             if(id < 3)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[i].effect.times(100),2,(gems[i].effect.times(100)).plus(1))}% of Host Effect\n You have: ${format(data.gems[id])}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).plus(1))}% of Host Effect\n You have: ${toPlaces(data.gems[id],0,data.gems[id].plus(1))}`
             else if(id >= 3 && id < 6)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[i].effect.times(100),2,(gems[i].effect.times(100)).plus(1))}% Hatchery Rate\n You have: ${format(data.gems[id])}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).plus(1))}% Hatchery Rate\n You have: ${toPlaces(data.gems[id],0,data.gems[id].plus(1))}`
             else if(id >= 6 && id < 9)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[i].effect.times(100),2,(gems[i].effect.times(100)).plus(1))}% Egg Value\n You have: ${format(data.gems[id])}` 
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).plus(1))}% Egg Value\n You have: ${toPlaces(data.gems[id],0,data.gems[id].plus(1))}` 
             else if(id >= 9 && id < 12)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[i].effect.times(100),2,(gems[i].effect.times(100)).plus(1))}% Egg Laying Rate\n You have: ${format(data.gems[id])}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).plus(1))}% Egg Laying Rate\n You have: ${toPlaces(data.gems[id],0,data.gems[id].plus(1))}`
             else if(id >= 12 && id < 15)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[i].effect.times(100),2,(gems[i].effect.times(100)).plus(1))}% Soul Egg Bonus\n You have: ${format(data.gems[id])}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).plus(1))}% Soul Egg Bonus\n You have: ${toPlaces(data.gems[id],0,data.gems[id].plus(1))}`
             else if(id >= 15 && id < 18)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[i].effect.times(100),2,(gems[i].effect.times(100)).plus(1))}% Prophecy Egg Bonus\n You have: ${format(data.gems[id])}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).plus(1))}% Prophecy Egg Bonus\n You have: ${toPlaces(data.gems[id],0,data.gems[id].plus(1))}`
 
             break
         default:
@@ -517,20 +517,20 @@ function generateArtifactCraftingInfo(artifactID,type) {
 
     switch(type) {
         case 'artifact':
-                const artifactCraftArr = artifacts[artifactID].crafting
+                let artifactCraftArr = artifacts[artifactID].crafting
                 for(let i = 0; i < artifactCraftArr.length; i++) {
-                    if(craftingArr[i].type === 'artifact') {
-                        str += `${artifacts[artifactCraftArr[i].id].name}: x${toPlaces(artifactCraftArr[i].count,0,artifactCraftArr[i].count.plus(1))} (${toPlaces(data.artifacts[artifactCraftArr[i].id].count,0,data.artifacts[artifactCraftArr[i].id].count.plus(1))})\n`
+                    if(artifactCraftArr[i].type === 'artifact') {
+                        str += `${artifacts[artifactCraftArr[i].id].name}: x${toPlaces(artifactCraftArr[i].count,0,artifactCraftArr[i].count.plus(1))} (${toPlaces(data.artifacts[artifactCraftArr[i].id],0,data.artifacts[artifactCraftArr[i].id].plus(1))})\n`
                     }
                     else {
-                        str += `${gems[artifactCraftArr[i].id].name}: x${toPlaces(artifactCraftArr[i].count,0,artifactCraftArr[i].count.plus(1))} (${toPlaces(data.gems[artifactCraftArr[i].id].count,0,data.gems[artifactCraftArr[i].id].count.plus(1))})\n`
+                        str += `${gems[artifactCraftArr[i].id].name}: x${toPlaces(artifactCraftArr[i].count,0,artifactCraftArr[i].count.plus(1))} (${toPlaces(data.gems[artifactCraftArr[i].id],0,data.gems[artifactCraftArr[i].id].plus(1))})\n`
                     }
                 }
             break
         case 'gem':
-            const gemCraftArr = gems[artifactID].crafting
+            let gemCraftArr = gems[artifactID].crafting
             for(let i = 0; i < gemCraftArr.length; i++) {
-                    str += `${gems[gemCraftArr[i].id].name}: x${toPlaces(gemCraftArr[i].count,0,gemCraftArr[i].count.plus(1))} (${toPlaces(data.gems[gemCraftArr[i].id].count,0,data.gems[gemCraftArr[i].id].count.plus(1))})\n`
+                    str += `${gems[gemCraftArr[i].id].name}: x${toPlaces(gemCraftArr[i],0,gemCraftArr[i].plus(1))} (${toPlaces(data.gems[gemCraftArr[i].id],0,data.gems[gemCraftArr[i].id].plus(1))})\n`
             }
             break
         default:
@@ -567,6 +567,7 @@ function startHarvester(id) {
 
 function runHarvester(id) {
     if(data.harvesters[id].running && data.harvesters[id].timeRemaining <= 0) {
+        generateNotification(`${planetNames[id]} Harvester Finished!`,'success')
         const harvesterYield = calculateHarvesterYield(id)
         data.harvesters[id].running = false
         data.harvesters[id].timeRemaining = 0
@@ -608,15 +609,15 @@ function getHarvesterYieldString(id) {
     const harvesterYieldObj = calculateHarvesterYield(id)
     switch(harvesterInterval) {
         case 0:
-            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper}`
+            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper - 1}`
         case 1:
-            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper}\n${artifacts[harvesterYieldObj.artifacts[1].id].name} | Yield: ${harvesterYieldObj.artifacts[1].lower} - ${harvesterYieldObj.artifacts[1].upper}` +
+            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper - 1}\n${artifacts[harvesterYieldObj.artifacts[1].id].name} | Yield: ${harvesterYieldObj.artifacts[1].lower} - ${harvesterYieldObj.artifacts[1].upper - 1}` +
             `\n-=Harvestable Gems=-\n${gems[harvesterYieldObj.gems[0].id].name} | Yield: ${harvesterYieldObj.gems[0].lower} - ${harvesterYieldObj.gems[0].upper}`
         case 2:
-            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper}\n${artifacts[harvesterYieldObj.artifacts[1].id].name} | Yield: ${harvesterYieldObj.artifacts[1].lower} - ${harvesterYieldObj.artifacts[1].upper}\n${artifacts[harvesterYieldObj.artifacts[2].id].name} | Yield: ${harvesterYieldObj.artifacts[2].lower} - ${harvesterYieldObj.artifacts[2].upper}` +
+            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper - 1}\n${artifacts[harvesterYieldObj.artifacts[1].id].name} | Yield: ${harvesterYieldObj.artifacts[1].lower} - ${harvesterYieldObj.artifacts[1].upper - 1}\n${artifacts[harvesterYieldObj.artifacts[2].id].name} | Yield: ${harvesterYieldObj.artifacts[2].lower} - ${harvesterYieldObj.artifacts[2].upper - 1}` +
             `\n-=Harvestable Gems=-\n${gems[harvesterYieldObj.gems[0].id].name} | Yield: ${harvesterYieldObj.gems[0].lower} - ${harvesterYieldObj.gems[0].upper}\n${gems[harvesterYieldObj.gems[1].id].name} | Yield: ${harvesterYieldObj.gems[1].lower} - ${harvesterYieldObj.gems[1].upper}`
         case 3:
-            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper}\n${artifacts[harvesterYieldObj.artifacts[1].id].name} | Yield: ${harvesterYieldObj.artifacts[1].lower} - ${harvesterYieldObj.artifacts[1].upper}\n${artifacts[harvesterYieldObj.artifacts[2].id].name} | Yield: ${harvesterYieldObj.artifacts[2].lower} - ${harvesterYieldObj.artifacts[2].upper}\n${artifacts[harvesterYieldObj.artifacts[3].id].name} | Yield: ${harvesterYieldObj.artifacts[3].lower} - ${harvesterYieldObj.artifacts[3].upper}` +
+            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper - 1}\n${artifacts[harvesterYieldObj.artifacts[1].id].name} | Yield: ${harvesterYieldObj.artifacts[1].lower} - ${harvesterYieldObj.artifacts[1].upper - 1}\n${artifacts[harvesterYieldObj.artifacts[2].id].name} | Yield: ${harvesterYieldObj.artifacts[2].lower} - ${harvesterYieldObj.artifacts[2].upper - 1}\n${artifacts[harvesterYieldObj.artifacts[3].id].name} | Yield: ${harvesterYieldObj.artifacts[3].lower} - ${harvesterYieldObj.artifacts[3].upper - 1}` +
             `\n-=Harvestable Gems=-\n${gems[harvesterYieldObj.gems[0].id].name} | Yield: ${harvesterYieldObj.gems[0].lower} - ${harvesterYieldObj.gems[0].upper}\n${gems[harvesterYieldObj.gems[1].id].name} | Yield: ${harvesterYieldObj.gems[1].lower} - ${harvesterYieldObj.gems[1].upper}\n${gems[harvesterYieldObj.gems[2].id].name} | Yield: ${harvesterYieldObj.gems[2].lower} - ${harvesterYieldObj.gems[2].upper}`
         default:
             return 'Error in Yield String'

@@ -23,7 +23,7 @@ function generateNotification(text,type) {
         }
     }
 
-    notification.addEventListener('click',() => removeNotification(id,type))
+    //notification.addEventListener('click',() => removeNotification(id,type))
     setTimeout(() => removeNotification(id,type),3000)
 }
 
