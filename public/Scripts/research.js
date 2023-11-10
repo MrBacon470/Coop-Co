@@ -388,3 +388,10 @@ function isCommonResearchMaxed(start,end) {
   }
   return true
 }
+
+function isEpicResearchMaxed(start,end) {
+  for(let i = start; i <= end; i++) {
+    if(data.epicResearch[i].lt(epicResearches[i].maxLevel)) return false
+  }
+  return true
+}

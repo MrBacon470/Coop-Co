@@ -17,7 +17,7 @@ function getDefaultObject() {
         unlockedEgg: new Array(18).fill(false),
         research: new Array(28).fill(D(0)),
         epicResearch: new Array(11).fill(D(0)),
-        autoActive: new Array(4).fill(false),
+        autoActive: new Array(5).fill(false),
         planetsDiscovered: new Array(6).fill(false),
         discoveries: 0,
         currentPlanetIndex: 0,

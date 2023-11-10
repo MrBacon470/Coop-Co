@@ -93,6 +93,9 @@ function updateHTML() {
         DOMCacheGetOrSet('auto2').style.display = data.epicResearch[9].gte(epicResearches[9].maxLevel) ? 'inline-block' : 'none'
         DOMCacheGetOrSet(`auto2`).classList = data.autoActive[2] ? 'greenButton' : 'redButton'
         DOMCacheGetOrSet(`auto2`).innerText = data.autoActive[2] ? `${autoNames[2]}: On` : `${autoNames[2]}: Off`
+        DOMCacheGetOrSet('auto4').style.display = data.legendaryResearch[2].gte(legendaryResearches[2].max) ? 'inline-block' : 'none'
+        DOMCacheGetOrSet(`auto4`).classList = data.autoActive[4] ? 'greenButton' : 'redButton'
+        DOMCacheGetOrSet(`auto4`).innerText = data.autoActive[4] ? `${autoNames[4]}: On` : `${autoNames[4]}: Off`
     }
     else if(data.currentTab === 5) {
         updateEggspeditionsUI()

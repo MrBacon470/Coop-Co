@@ -103,9 +103,9 @@ function generateContract(i) {
       id = getRandom(0, prestigeContracts.length)
     }
     if(id > prestigeContracts.length - 1) index = prestigeContracts.length - 1
-    let goal = prestigeContracts[id].baseGoal.times((eggData[prestigeContracts[id].eggIndex].value).times(contractGoalBoost.times(soulEggBoost)))
-    let reward = prestigeContracts[id].baseReward.times(contractRewardBoost)
-    reward = reward.times(Decimal.ln((prestigeContracts[id].baseGoal.times(0.5)).plus(1)))
+    let goal = (prestigeContracts[id].baseGoal.times((eggData[prestigeContracts[id].eggIndex].value).times(contractGoalBoost.times(soulEggBoost))))
+    let reward = Decimal.ln(Decimal.log10(prestigeContracts[id].baseGoal)).times(contractRewardBoost.plus(1))
+    reward = reward.times(Decimal.log(contractGoalBoost,2)).plus(1)
     data.contracts[i].id = id
     data.contracts[i].goal = goal
     data.contracts[i].reward = reward
