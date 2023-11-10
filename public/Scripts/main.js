@@ -69,7 +69,11 @@ function generateHTMLAndHandlers() {
         DOMCacheGetOrSet(`gemSlot${i}`).addEventListener('click', () => updateAscensionHoverText(i,'gem'))
     } 
 
-    DOMCacheGetOrSet(`harvesterUpgradeButton`).addEventListener('click',() => upgradeHarvester())
+    DOMCacheGetOrSet(`harvesterUpgradeButton`).addEventListener('click', () => upgradeHarvester())
+    DOMCacheGetOrSet('runAllHarvestersButton').addEventListener('click', () => {
+        for(let i = 0; i < data.harvesters.length; i++)
+            startHarvester(i)
+    })
     
     for(let i = 0; i < data.harvesters.length; i++) {
         DOMCacheGetOrSet(`harvesterHolder${i}`).addEventListener('mouseover',() => {updateHarvesterHoverText(i)})

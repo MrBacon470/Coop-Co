@@ -409,7 +409,13 @@ function ascend() {
     data.money = D(0)
     data.bestRunMoney = D(0)
     data.currentEgg = 0
-    data.unlockedContracts = false
+    updateResearch()
+    updateEggValueBonus()
+    updateIntHatch()
+    updateLayRate()
+    updatePrestige()
+    for(let i = 0; i < 3; i++)
+        generateContract(i)
 }
 
 function updateAscensionHoverText(id,type) {
