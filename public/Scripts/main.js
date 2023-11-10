@@ -93,7 +93,7 @@ function generateHTMLAndHandlers() {
     //Achievements Tab
     count = 0
     let achCount = 0
-    for(let i = 0; i <= parseInt(achievementDisplayArr.length / 8); i++) {
+    for(let i = 0; i <= Math.floor(achievementDisplayArr.length / 8); i++) {
         addHTML('achievementHolder',`<div id="achCol${i}" class="flexCol"></div>`)
         for(let j = 0; j < 8; j++) {
             if(count >= achievementDisplayArr.length) break
@@ -113,7 +113,7 @@ function generateHTMLAndHandlers() {
     }
 
     for(let i = 0; i < achievementObjs.length; i++) 
-        DOMCacheGetOrSet('ach' + i).addEventListener('mouseover', () => updateAchText(i))
+        DOMCacheGetOrSet(`ach${i}`).addEventListener('mouseover', () => updateAchText(i))
     //Automators
     for(let i = 0; i < data.autoActive.length; i++) {
         DOMCacheGetOrSet(`auto${i}`).addEventListener('click', () => { toggleAuto(i) })

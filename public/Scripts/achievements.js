@@ -37,16 +37,28 @@ const achievementObjs = [
     { name: 'Great Balls of Fire!', description: 'Travel to Hereth', img: `/Images/planet5.png`},
     { name: 'Aaaaa Light Mode', description: 'Travel to Malak', img: `/Images/planet6.png`},
     { name: 'Ascendance', description: 'Obtain 1 Knowlegg', img: `${eggImgPath}knowlegg.png`},
-    { name: 'Knowledge is the Key', description: 'Obtain 100 Knowlegg', img: `${eggImgPath}knowlegg.png`},
+    { name: 'Knowledge is the Key', description: 'Obtain 100 Knowleggs', img: `${eggImgPath}knowlegg.png`},
+    { name: 'Lightbulb...', description: 'Obtain 1,000 Knowleggs', img: `${eggImgPath}knowlegg.png`},
+    { name: 'Library of Alexandria', description: 'Obtain 10,000 Knowleggs', img: `${eggImgPath}knowlegg.png`},
+    { name: 'Dusty Garbage', description: 'Acquire your first Tier I Artifact', img: '/Images/Fragmented.png'},
+    { name: 'Restoration Expert', description: 'Acquire your first Tier II Artifact', img: '/Images/Restored.png'},
+    { name: 'Master Reforger', description: 'Acquire your first Tier III Artifact', img: '/Images/Upgraded.png'},
+    { name: 'Ultimate Craftsman', description: 'Acquire your first Tier IV Artifact', img: '/Images/Gilded.png'},
+    { name: 'Scrounger', description: 'Acquire a Gem Fragment', img: '/Images/Gems/Knowledge-Fragment.png'},
+    { name: 'Gemsmith', description: 'Acquire a Gem Shard', img: '/Images/Gems/Knowledge-Shard.png'},
+    { name: 'Gemologist', description: 'Acquire a Gemstone', img: '/Images/Gems/Knowledge-Gem.png'},
 ]
 
-const achievementDisplayArr = new Array(achievementObjs.length+9).fill('blank')
+const achievementDisplayArr = new Array(achievementObjs.length+8).fill('blank')
 for(let i = 0; i < 19; i++)
     achievementDisplayArr[i] = 'ach'
+
 for(let i = 20; i < 38; i++)
     achievementDisplayArr[i] = 'ach'
-for(let i = 40; i < 42; i++)
+
+for(let i = 40; i < 51; i++)
     achievementDisplayArr[i] = 'ach'
+
 
 function updateAchText(i) {
     if(i < 19)
@@ -75,7 +87,7 @@ function getAchievementsCompleted() {
 const contractCompleteReq = [D(1),D(10),D(100),D(1e3)]
 const soulAchReq = [D(1e3),D(1e6),D(1e9),D(1e12)]
 const prophecyAchReq = [D(10),D(10),D(1e3),D(1e4)]
-const knowleggAchReq = [D(1),D(100)]
+const knowleggAchReq = [D(1),D(100),D(1000),D(10000)]
 function checkAchievements() {
     //Eggs
     if(data.achievements[0] === false) data.achievements[0] = true;
@@ -96,8 +108,66 @@ function checkAchievements() {
     //Planets and Knowledge
     for(let i = 31; i < 37; i++)
         if(data.planetsDiscovered[i-31] === true && data.achievements[i] === false) getAchievement(i)
-    for(let i = 37; i < 39; i++)
+    for(let i = 37; i < 41; i++)
         if(data.bestKnowlegg.gte(knowleggAchReq[i-37]) && !data.achievements[i]) getAchievement(i)
+    // Artifact Achievements
+    if(!data.achievements[41]) {
+        for(let i = 0; i < 6; i++) {
+            if(data.artifacts[i * 4].gte(1)) {
+                getAchievement(41)
+                break
+            }
+        }
+    }
+    if(!data.achievements[42]) {
+        for(let i = 0; i < 6; i++) {
+            if(data.artifacts[(i * 4)+1].gte(1)) {
+                getAchievement(42)
+                break
+            }
+        }
+    }
+    if(!data.achievements[43]) {
+        for(let i = 0; i < 6; i++) {
+            if(data.artifacts[(i * 4)+2].gte(1)) {
+                getAchievement(43)
+                break
+            }
+        }
+    }
+    if(!data.achievements[44]) {
+        for(let i = 0; i < 6; i++) {
+            if(data.artifacts[(i * 4)+3].gte(1)) {
+                getAchievement(44)
+                break
+            }
+        }
+    }
+    // Gem Achievements
+    if(!data.achievements[45]) {
+        for(let i = 0; i < 6; i++) {
+            if(data.gems[i * 3].gt(0)) {
+                getAchievement(45)
+                break
+            }
+        }
+    }
+    if(!data.achievements[46]) {
+        for(let i = 0; i < 6; i++) {
+            if(data.gems[(i * 3)+1].gt(0)) {
+                getAchievement(46)
+                break
+            }
+        }
+    }
+    if(!data.achievements[47]) {
+        for(let i = 0; i < 6; i++) {
+            if(data.gems[(i * 3)+2].gt(0)) {
+                getAchievement(47)
+                break
+            }
+        }
+    }
 }
 
 function updateAchClass() {
