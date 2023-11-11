@@ -21,15 +21,15 @@ const achievementObjs = [
     { name: 'Contracted', description: 'Completed a Contract', img: '/Images/greencheck.png'},
     { name: 'Contractual', description: 'Complete 10 Contracts', img: '/Images/greencheck.png'},
     { name: 'Contractful', description: 'Complete 100 Contracts', img: '/Images/greencheck.png'},
-    { name: 'Contractor', description: 'Complete a Thousand Contracts', img: '/Images/greencheck.png'},
-    { name: 'Soulful I', description: 'Get 1 Thousand Soul Eggs', img: `${eggImgPath}soul.png`},
-    { name: 'Soulful II', description: 'Get 1 Million Soul Eggs', img: `${eggImgPath}soul.png`},
-    { name: 'Soulful III', description: 'Get 1 Billion Soul Eggs', img: `${eggImgPath}soul.png`},
-    { name: 'Soulful IV', description: 'Get 1 Trillion Soul Eggs', img: `${eggImgPath}soul.png`},
-    { name: 'Prophet I', description: 'Get 10 Prophecy Eggs', img: `${eggImgPath}prophecy.png`},
-    { name: 'Prophet II', description: 'Get 100 Prophecy Eggs', img: `${eggImgPath}prophecy.png`},
-    { name: 'Prophet III', description: 'Get 1 Thousand Prophecy Eggs', img: `${eggImgPath}prophecy.png`},
-    { name: 'Prophet IV', description: 'Get 10 Thousand Prophecy Eggs', img: `${eggImgPath}prophecy.png`},
+    { name: 'Contractor', description: 'Complete 250 Contracts', img: '/Images/greencheck.png'},
+    { name: 'You got a Soul', description: 'Get 1 Thousand Soul Eggs', img: `${eggImgPath}soul.png`},
+    { name: 'Quite a few Souls', description: 'Get 1 Million Soul Eggs', img: `${eggImgPath}soul.png`},
+    { name: 'Lotta Souls', description: 'Get 1 Billion Soul Eggs', img: `${eggImgPath}soul.png`},
+    { name: 'No More Souls Please', description: 'Get 1 Trillion Soul Eggs', img: `${eggImgPath}soul.png`},
+    { name: 'Elijah', description: 'Get 10 Prophecy Eggs', img: `${eggImgPath}prophecy.png`},
+    { name: 'Elisha', description: 'Get 100 Prophecy Eggs', img: `${eggImgPath}prophecy.png`},
+    { name: 'Daniel', description: 'Get 1 Thousand Prophecy Eggs', img: `${eggImgPath}prophecy.png`},
+    { name: 'Isaiah', description: 'Get 10 Thousand Prophecy Eggs', img: `${eggImgPath}prophecy.png`},
     { name: 'Energy Too', description: 'Travel to Arcturus', img: `/Images/planet1.png`},
     { name: 'Outta Time', description: 'Travel to Ravnar', img: `/Images/planet2.png`},
     { name: 'At last. Peace', description: 'Travel to Xylok', img: `/Images/planet3.png`},
@@ -84,7 +84,7 @@ function getAchievementsCompleted() {
     }
     return count
 }
-const contractCompleteReq = [D(1),D(10),D(100),D(1e3)]
+const contractCompleteReq = [D(1),D(10),D(100),D(250)]
 const soulAchReq = [D(1e3),D(1e6),D(1e9),D(1e12)]
 const prophecyAchReq = [D(10),D(10),D(1e3),D(1e4)]
 const knowleggAchReq = [D(1),D(100),D(1000),D(10000)]
