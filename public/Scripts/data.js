@@ -33,6 +33,7 @@ function getDefaultObject() {
         unlockedArtifact: new Array(24).fill(false),
         unlockedGem: new Array(18).fill(false),
         activeArtifacts: new Array(4).fill(-1),
+        activeGems: new Array(12).fill(-1),
         harvesters: [{level:0,timeRemaining:0,running:false},{level:0,timeRemaining:0,running:false},{level:0,timeRemaining:0,running:false},{level:0,timeRemaining:0,running:false},{level:0,timeRemaining:0,running:false},{level:0,timeRemaining:0,running:false}],
         stats: {
             bestMoney: D(0),

@@ -1,5 +1,4 @@
-let artifactSelector = {status: false, id: -1}
-let gemSelector = {status: false, id: -1}
+let selectingArtifactGem = {status: false, type: null, slotID: -1}
 let artifactHoverIndex = {id: -1, type: null}
 let harvesterHoverIndex = -1
 let harvesterMaxLevel = 0
@@ -353,7 +352,7 @@ function updateAscensionHTML() {
 
         for(let i = 0; i < data.unlockedGem.length; i++) {
             if(data.unlockedGem[i] && DOMCacheGetOrSet(`gemSlot${i}`).getAttribute('src') !== gems[i].img)
-                DOMCacheGetOrSet(`gemSlot${i}`).src = artifacts[i].img
+                DOMCacheGetOrSet(`gemSlot${i}`).src = gems[i].img
             else if(!data.unlockedGem[i] && DOMCacheGetOrSet(`gemSlot${i}`).getAttribute('src') !== '/Images/QuestionMark.png')
                 DOMCacheGetOrSet(`gemSlot${i}`).src = '/Images/QuestionMark.png'
         }
@@ -485,22 +484,33 @@ function updateHarvesterHoverText(id) {
 }
 
 function activateArtifactSelect(slotID) {
-
+    if(selectingArtifactGem.status) return
+    selectingArtifactGem.status = true
+    selectingArtifactGem.type = 'artifact'
+    selectingArtifactGem.slotID = slotID
 }
 
 function activateGemSelect(slotID) {
-
+    if(selectingArtifactGem.status) return
+    selectingArtifactGem.status = true
+    selectingArtifactGem.type = 'gem'
+    selectingArtifactGem.slotID = slotID
 }
 
-function selectArtifact(slotID,artifactID) {
+function selectArtifact(artifactID) {
+    if(!selectingArtifactGem.status || selectingArtifactGem.type !== 'artifact') return
     if(artifactAlreadyActive(artifactID)) {
         generateNotification('Artifact is already active','error')
         return
     }
+    data.activeArtifacts[selectingArtifactGem.slotID] = artifactID
+    selectingArtifactGem.status = false
+    selectingArtifactGem.type = null
+    selectingArtifactGem.slotID = -1
 }
 
-function selectGem(slotID,gemID) {
-
+function selectGem(gemID) {
+    if(!selectingArtifactGem.status || selectingArtifactGem.type !== 'gem') return
 }
 
 function artifactAlreadyActive(artifactID) {
@@ -518,8 +528,8 @@ function generateArtifactCraftingInfo(artifactID,type) {
         return `${type === 'artifact' ? 'Artifact' : 'Gem'} not unlocked :(`
     }
     
-    if(artifacts[artifactID].crafting.length === 0 && type === 'artifact') return str + 'Item Not Craftable'
-    if(gems[artifactID].crafting.length === 0 && type === 'gem') return str + 'Item Not Craftable'
+    if(type === 'artifact' && artifacts[artifactID].crafting.length === 0) return str + 'Item Not Craftable'
+    if(type === 'gem' && gems[artifactID].crafting.length === 0) return str + 'Item Not Craftable'
 
     switch(type) {
         case 'artifact':
@@ -579,21 +589,21 @@ function runHarvester(id) {
         data.harvesters[id].timeRemaining = 0
 
         for(let i = 0; i < harvesterYield.artifacts.length; i++) {
-            data.artifacts[harvesterYield.artifacts[i].id] = data.artifacts[harvesterYield.artifacts[i].id].plus(getRandom(harvesterYield.artifacts[i].lower,harvesterYield.artifacts[i].upper))
+            data.artifacts[harvesterYield.artifacts[i].id] = data.artifacts[harvesterYield.artifacts[i].id].plus(getRandom(harvesterYield.artifacts[i].lower,harvesterYield.artifacts[i].upper+1))
         }
         
         for(let i = 0; i < harvesterYield.gems.length; i++) {
-            data.gems[harvesterYield.gems[i].id] = data.gems[harvesterYield.gems[i].id].plus(getRandom(harvesterYield.gems[i].lower,harvesterYield.gems[i].upper))
+            data.gems[harvesterYield.gems[i].id] = data.gems[harvesterYield.gems[i].id].plus(getRandom(harvesterYield.gems[i].lower,harvesterYield.gems[i].upper+1))
         }
 
         for(let i = 0; i < data.unlockedArtifact.length; i++) {
-            if(data.artifacts[i].gt(0) && !data.unlockedArtifact[i])
+            if(data.artifacts[i].gte(1) && !data.unlockedArtifact[i])
                 data.unlockedArtifact[i] = true
         }
     
         for(let i = 0; i < data.unlockedGem.length; i++) {
-            if(data.gems[0].gt(0) && !data.unlockedGem[i])
-                data.unlockedGem = true
+            if(data.gems[i].gte(1) && !data.unlockedGem[i])
+                data.unlockedGem[i] = true
         }
     }
     else if(data.harvesters[id].running && data.harvesters[id].timeRemaining > 0) {
@@ -602,12 +612,13 @@ function runHarvester(id) {
 }
 
 function upgradeHarvester() {
-    if(harvesterHoverIndex === -1) return
-    else if(data.harvesters[harvesterHoverIndex].level >= 20 || data.harvesters[harvesterHoverIndex].level === harvesterMaxLevel) return
-    else if(data.planetData[harvesterHoverIndex].chickens.lt(harvesterUpgradeCost[data.harvesters[harvesterHoverIndex].level])) return
-    data.harvesters[harvesterHoverIndex].level++
-    data.planetData[harvesterHoverIndex].chickens = data.planetData[harvesterHoverIndex].chickens.sub(harvesterUpgradeCost[data.harvesters[harvesterHoverIndex].level])
-    updateHarvesterHoverText(harvesterHoverIndex);
+    const id = harvesterHoverIndex // To prevent somehow changing the id while upgrading
+    if(id === -1) return
+    else if(data.harvesters[id].level >= 20 || data.harvesters[id].level === harvesterMaxLevel) return
+    else if(data.planetData[id].chickens.lt(harvesterUpgradeCost[data.harvesters[id].level])) return
+    data.harvesters[id].level++
+    data.planetData[id].chickens = data.planetData[id].chickens.sub(harvesterUpgradeCost[data.harvesters[id].level])
+    updateHarvesterHoverText(id);
 }
 
 function getHarvesterYieldString(id) {
@@ -615,15 +626,15 @@ function getHarvesterYieldString(id) {
     const harvesterYieldObj = calculateHarvesterYield(id)
     switch(harvesterInterval) {
         case 0:
-            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper - 1}`
+            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper}`
         case 1:
-            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper - 1}\n${artifacts[harvesterYieldObj.artifacts[1].id].name} | Yield: ${harvesterYieldObj.artifacts[1].lower} - ${harvesterYieldObj.artifacts[1].upper - 1}` +
+            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper}\n${artifacts[harvesterYieldObj.artifacts[1].id].name} | Yield: ${harvesterYieldObj.artifacts[1].lower} - ${harvesterYieldObj.artifacts[1].upper }` +
             `\n-=Harvestable Gems=-\n${gems[harvesterYieldObj.gems[0].id].name} | Yield: ${harvesterYieldObj.gems[0].lower} - ${harvesterYieldObj.gems[0].upper}`
         case 2:
-            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper - 1}\n${artifacts[harvesterYieldObj.artifacts[1].id].name} | Yield: ${harvesterYieldObj.artifacts[1].lower} - ${harvesterYieldObj.artifacts[1].upper - 1}\n${artifacts[harvesterYieldObj.artifacts[2].id].name} | Yield: ${harvesterYieldObj.artifacts[2].lower} - ${harvesterYieldObj.artifacts[2].upper - 1}` +
+            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper}\n${artifacts[harvesterYieldObj.artifacts[1].id].name} | Yield: ${harvesterYieldObj.artifacts[1].lower} - ${harvesterYieldObj.artifacts[1].upper }\n${artifacts[harvesterYieldObj.artifacts[2].id].name} | Yield: ${harvesterYieldObj.artifacts[2].lower} - ${harvesterYieldObj.artifacts[2].upper}` +
             `\n-=Harvestable Gems=-\n${gems[harvesterYieldObj.gems[0].id].name} | Yield: ${harvesterYieldObj.gems[0].lower} - ${harvesterYieldObj.gems[0].upper}\n${gems[harvesterYieldObj.gems[1].id].name} | Yield: ${harvesterYieldObj.gems[1].lower} - ${harvesterYieldObj.gems[1].upper}`
         case 3:
-            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper - 1}\n${artifacts[harvesterYieldObj.artifacts[1].id].name} | Yield: ${harvesterYieldObj.artifacts[1].lower} - ${harvesterYieldObj.artifacts[1].upper - 1}\n${artifacts[harvesterYieldObj.artifacts[2].id].name} | Yield: ${harvesterYieldObj.artifacts[2].lower} - ${harvesterYieldObj.artifacts[2].upper - 1}\n${artifacts[harvesterYieldObj.artifacts[3].id].name} | Yield: ${harvesterYieldObj.artifacts[3].lower} - ${harvesterYieldObj.artifacts[3].upper - 1}` +
+            return `-=Harvestable Artifacts=-\n${artifacts[harvesterYieldObj.artifacts[0].id].name} | Yield: ${harvesterYieldObj.artifacts[0].lower} - ${harvesterYieldObj.artifacts[0].upper}\n${artifacts[harvesterYieldObj.artifacts[1].id].name} | Yield: ${harvesterYieldObj.artifacts[1].lower} - ${harvesterYieldObj.artifacts[1].upper}\n${artifacts[harvesterYieldObj.artifacts[2].id].name} | Yield: ${harvesterYieldObj.artifacts[2].lower} - ${harvesterYieldObj.artifacts[2].upper}\n${artifacts[harvesterYieldObj.artifacts[3].id].name} | Yield: ${harvesterYieldObj.artifacts[3].lower} - ${harvesterYieldObj.artifacts[3].upper}` +
             `\n-=Harvestable Gems=-\n${gems[harvesterYieldObj.gems[0].id].name} | Yield: ${harvesterYieldObj.gems[0].lower} - ${harvesterYieldObj.gems[0].upper}\n${gems[harvesterYieldObj.gems[1].id].name} | Yield: ${harvesterYieldObj.gems[1].lower} - ${harvesterYieldObj.gems[1].upper}\n${gems[harvesterYieldObj.gems[2].id].name} | Yield: ${harvesterYieldObj.gems[2].lower} - ${harvesterYieldObj.gems[2].upper}`
         default:
             return 'Error in Yield String'
@@ -639,11 +650,11 @@ function calculateHarvesterYield(id) {
     }
 
     for(let i = 0; i <= harvesterInterval; i++) {
-        yieldObj.artifacts.push({id: ((id * 4) + i),lower: ((harvesterInterval - i) * 5), upper: (data.harvesters[id].level - (5 * i)) + 1})
+        yieldObj.artifacts.push({id: ((id * 4) + i),lower: ((harvesterInterval - i) * 5), upper: (data.harvesters[id].level - (5 * i))})
     }
 
-    for(let i = 1; i <= harvesterInterval; i++) {
-        yieldObj.gems.push({id: ((id * 3) + i),lower: (Math.floor( (data.harvesters[id].level - (5 * (i-1))) / 3)) - 2, upper: ((harvesterInterval - (i-1)) * 3)})
+    for(let i = 0; i <= harvesterInterval - 1; i++) {
+        yieldObj.gems.push({id: ((id * 3) + i),lower: (Math.floor( (data.harvesters[id].level - (5 * (i))) / 3)) - 2, upper: ((harvesterInterval - (i)) * 3)})
         if(i === 3)
             yieldObj.gems[2].lower -= 2
     }

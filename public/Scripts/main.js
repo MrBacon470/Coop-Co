@@ -33,9 +33,9 @@ function generateHTMLAndHandlers() {
         DOMCacheGetOrSet(`er${i}`).classList = 'redButton'
         DOMCacheGetOrSet(`er${i}`).onclick = () => purchaseEpicResearch(i)
     }
-    DOMCacheGetOrSet(`ba1`).addEventListener('click',() => toggleBA(1))
+
     //Ascension Tab
-    DOMCacheGetOrSet(`ba2`).addEventListener('click',() => toggleBA(2))
+
     for(let i = 0; i < data.legendaryResearch.length; i++) {
         DOMCacheGetOrSet(`lr${i}`).addEventListener('click',() => purchaseLegendaryResearch(i))
     }
@@ -115,6 +115,11 @@ function generateHTMLAndHandlers() {
     for(let i = 0; i < achievementObjs.length; i++) 
         DOMCacheGetOrSet(`ach${i}`).addEventListener('mouseover', () => updateAchText(i))
     //Automators
+
+    for(let i = 0; i < data.buyAmounts.length; i++) {
+        DOMCacheGetOrSet(`ba${i}`).addEventListener('click', () => toggleBA(i))
+    }
+
     for(let i = 0; i < data.autoActive.length; i++) {
         DOMCacheGetOrSet(`auto${i}`).addEventListener('click', () => { toggleAuto(i) })
     }
