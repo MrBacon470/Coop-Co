@@ -2,7 +2,7 @@ let selectingArtifactGem = {status: false, type: null, slotID: -1}
 let artifactHoverIndex = {id: -1, type: null}
 let harvesterHoverIndex = -1
 let harvesterMaxLevel = 0
-
+let selectedLoadout = -1
 const harvesterUpgradeCost = [D(1e3),D(2.5e3),D(5e3),D(7.5e3),D(1e4),D(2.5e4),D(5e4),D(7.5e4),D(1e5),D(2.5e5),D(5e5),D(7.5e5),D(1e6),D(2.5e6),D(5e6),D(7.5e6),D(1e7),D(2.5e7),D(5e7)]
 
 // Crafting Item Object {id,type,count}
@@ -343,6 +343,41 @@ function updateAscensionHTML() {
         }
     }
     else if(data.currentSubTab[1] === 2) {
+
+        for(let i = 0; i < data.activeArtifacts.length; i++) {
+
+            if(data.activeArtifacts[i] !== -1 && DOMCacheGetOrSet(`artifactHolder${i}`).getAttribute('src') !== artifacts[data.activeArtifacts[i]].img)
+                DOMCacheGetOrSet(`artifactHolder${i}`).setAttribute('src',artifacts[data.activeArtifacts[i]].img)
+            else if(data.activeArtifacts[i] === -1 && DOMCacheGetOrSet(`artifactHolder${i}`).getAttribute('src') !== '')
+                DOMCacheGetOrSet(`artifactHolder${i}`).setAttribute('src','')
+
+
+            if((!selectingArtifactGem.status && selectingArtifactGem.type !== 'artifact') || (selectingArtifactGem.status && selectingArtifactGem.type === 'artifact' && selectingArtifactGem.slotID !== i)) {
+                DOMCacheGetOrSet(`artifactHolder${i}`).classList = data.activeArtifacts[i] !== -1 ? 'artifactHolder-active' : 'artifactHolder-inactive'
+            }
+            else if(selectingArtifactGem.status && selectingArtifactGem.type === 'artifact' && selectingArtifactGem.slotID === i) {
+                DOMCacheGetOrSet(`artifactHolder${i}`).classList = 'artifactHolder-selected'
+            }
+        }
+
+        for(let i = 0; i < data.activeGems.length; i++) {
+
+            if(data.activeGems[i] !== -1 && DOMCacheGetOrSet(`gemHolder${i}`).getAttribute('src') !== gems[data.activeGems[i]].img)
+                DOMCacheGetOrSet(`gemHolder${i}`).setAttribute('src',gems[data.activeGems[i]].img)
+            else if(data.activeGems[i] === -1 && DOMCacheGetOrSet(`gemHolder${i}`).getAttribute('src') !== '')
+                DOMCacheGetOrSet(`gemHolder${i}`).setAttribute('src','')
+
+            if(!gemSlotAvailable(i)) {
+                DOMCacheGetOrSet(`gemHolder${i}`).classList = 'gemHolder-restricted'
+            }
+            else if((!selectingArtifactGem.status && selectingArtifactGem.type !== 'gem') || (selectingArtifactGem.status && selectingArtifactGem.type === 'gem' && selectingArtifactGem.slotID !== i)) {
+                DOMCacheGetOrSet(`gemHolder${i}`).classList = data.activeGems[i] !== -1 ? 'gemHolder-active' : 'gemHolder-inactive'
+            }
+            else if(selectingArtifactGem.status && selectingArtifactGem.type === 'gem' && selectingArtifactGem.slotID === i) {
+                DOMCacheGetOrSet(`gemHolder${i}`).classList = 'gemHolder-selected'
+            }
+        }
+
         for(let i = 0; i < data.unlockedArtifact.length; i++) {
             if(data.unlockedArtifact[i] && DOMCacheGetOrSet(`artifactSlot${i}`).getAttribute('src') !== artifacts[i].img)
                 DOMCacheGetOrSet(`artifactSlot${i}`).src = artifacts[i].img
@@ -364,7 +399,7 @@ function updateAscensionHTML() {
         DOMCacheGetOrSet(`artifactCraftingButton`).style.display = artifactHoverIndex.id !== -1 ? 'block' : 'none'
     }
     else if(data.currentSubTab[1] === 3) {
-
+        DOMCacheGetOrSet('activeLoadoutText').innerText = selectedLoadout !== -1 ? `Active Loadout: #${data.currentLoadout+1}\nSelected Loadout: #${selectedLoadout+1}` : `Active Loadout: #${data.currentLoadout+1}\nSelected Loadout: None`
     }
 }
 
@@ -484,6 +519,12 @@ function updateHarvesterHoverText(id) {
 }
 
 function activateArtifactSelect(slotID) {
+    if(selectingArtifactGem.status && selectingArtifactGem.type === 'artifact' && selectingArtifactGem.slotID === slotID) {
+        selectingArtifactGem.status = false
+        selectingArtifactGem.type = null
+        selectingArtifactGem.slotID = -1
+        return
+    }
     if(selectingArtifactGem.status) return
     selectingArtifactGem.status = true
     selectingArtifactGem.type = 'artifact'
@@ -491,7 +532,14 @@ function activateArtifactSelect(slotID) {
 }
 
 function activateGemSelect(slotID) {
+    if(selectingArtifactGem.status && selectingArtifactGem.type === 'gem' && selectingArtifactGem.slotID === slotID) {
+        selectingArtifactGem.status = false
+        selectingArtifactGem.type = null
+        selectingArtifactGem.slotID = -1
+        return
+    }
     if(selectingArtifactGem.status) return
+    if(!gemSlotAvailable(slotID)) return
     selectingArtifactGem.status = true
     selectingArtifactGem.type = 'gem'
     selectingArtifactGem.slotID = slotID
@@ -499,18 +547,64 @@ function activateGemSelect(slotID) {
 
 function selectArtifact(artifactID) {
     if(!selectingArtifactGem.status || selectingArtifactGem.type !== 'artifact') return
+    if(data.artifacts[artifactID].lte(0) || !data.unlockedArtifact[artifactID]) return
     if(artifactAlreadyActive(artifactID)) {
         generateNotification('Artifact is already active','error')
         return
     }
+    if(data.activeArtifacts[selectingArtifactGem.slotID] != -1) {
+        data.artifacts[data.activeArtifacts[selectingArtifactGem.slotID]] = data.artifacts[data.activeArtifacts[selectingArtifactGem.slotID]].plus(1)
+    }
     data.activeArtifacts[selectingArtifactGem.slotID] = artifactID
+    for(let i = 0; i < 3; i++) {
+        if(!gemSlotAvailable(i+(selectingArtifactGem.slotID*3)) && data.activeGems[i+(selectingArtifactGem.slotID*3)] !== -1)
+            data.gems[data.activeGems[i+(selectingArtifactGem.slotID*3)]] = data.gems[data.activeGems[i+(selectingArtifactGem.slotID*3)]].plus(1)
+            data.activeGems[i+(selectingArtifactGem.slotID*3)] = -1;
+    }
     selectingArtifactGem.status = false
     selectingArtifactGem.type = null
     selectingArtifactGem.slotID = -1
+    data.artifacts[artifactID] = data.artifacts[artifactID].sub(1)
 }
 
 function selectGem(gemID) {
     if(!selectingArtifactGem.status || selectingArtifactGem.type !== 'gem') return
+    if(!data.unlockedGem[gemID] || data.gems[gemID].lte(0)) return
+    if(data.activeGems[selectingArtifactGem.slotID] != -1) {
+        data.gems[data.activeGems[selectingArtifactGem.slotID]] = data.gems[data.activeGems[selectingArtifactGem.slotID]].plus(1)
+    }
+    data.activeGems[selectingArtifactGem.slotID] = gemID
+    selectingArtifactGem.status = false
+    selectingArtifactGem.type = null
+    selectingArtifactGem.slotID = -1
+    data.gems[gemID] = data.gems[gemID].sub(1)
+}
+
+function gemSlotAvailable(slotID) {
+    const artifactSlotID = Math.floor(slotID/3)
+    const artifactID = data.activeArtifacts[artifactSlotID]
+    const artifactTier = calculateArtifactTier(artifactID)
+    const slotTier = (slotID % 3) + 1
+
+    return (artifactTier - 1) >= slotTier;
+}
+
+function calculateArtifactTier(artifactID) {
+    const tier2Base = 1;
+    const tier3Base = 2;
+    const tier4Base = 3;
+
+    const gemSlotIncrement = 4;
+
+    if (artifactID % gemSlotIncrement === tier2Base) {
+        return 2;
+    } else if (artifactID % gemSlotIncrement === tier3Base) {
+        return 3;
+    } else if (artifactID % gemSlotIncrement === tier4Base) {
+        return 4;
+    } else {
+        return 1; // Default to tier 1 if none of the conditions match
+    }
 }
 
 function artifactAlreadyActive(artifactID) {
@@ -660,4 +754,51 @@ function calculateHarvesterYield(id) {
     }
 
     return yieldObj
+}
+
+function selectLoadout(id) {
+    selectedLoadout = id;
+    for(let i = 0; i < data.artifactLoadouts.length; i++) {
+        DOMCacheGetOrSet(`artifactLoadoutButton${i}`).classList = i === id ? 'orangeButton-active' : 'orangeButton'
+    }
+}
+
+function loadLoadout() {
+    if(selectedLoadout === -1) {
+        generateNotification('No Loadout Selected','error')
+        return
+    }
+    const loadout = data.artifactLoadouts[selectedLoadout]
+    data.currentLoadout = selectedLoadout
+    for(let i = 0; i < loadout.artifactIDs.length; i++) {
+        data.activeArtifacts[i] = loadout.artifactIDs[i]
+    }
+    for(let i = 0; i < loadout.gemIDs.length; i++) {
+        data.activeGems[i] = loadout.gemIDs[i]
+    }
+    DOMCacheGetOrSet(`artifactLoadoutButton${selectedLoadout}`).classList = 'orangeButton'
+    selectedLoadout = -1
+}
+
+function saveLoadout() {
+    if(selectedLoadout === -1) {
+        generateNotification('No Loadout Selected','error')
+        return
+    }
+    for(let i = 0; i < data.artifactLoadouts[selectedLoadout].artifactIDs.length; i++) {
+        data.artifactLoadouts[selectedLoadout].artifactIDs[i] = data.activeArtifacts[i]
+    }
+    for(let i = 0; i < data.artifactLoadouts[selectedLoadout].gemIDs.length; i++) {
+        data.artifactLoadouts[selectedLoadout].gemIDs[i] = data.activeGems[i]
+    }
+    DOMCacheGetOrSet(`artifactLoadoutButton${selectedLoadout}`).classList = 'orangeButton'
+    selectedLoadout = -1
+}
+
+function getActiveArtifactBoost(groupID) {
+
+}
+
+function getActiveGemBoost(groupID) {
+    
 }

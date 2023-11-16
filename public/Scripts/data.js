@@ -35,6 +35,21 @@ function getDefaultObject() {
         activeArtifacts: new Array(4).fill(-1),
         activeGems: new Array(12).fill(-1),
         harvesters: [{level:0,timeRemaining:0,running:false},{level:0,timeRemaining:0,running:false},{level:0,timeRemaining:0,running:false},{level:0,timeRemaining:0,running:false},{level:0,timeRemaining:0,running:false},{level:0,timeRemaining:0,running:false}],
+        artifactLoadouts: [
+            {
+                artifactIDs: new Array(4).fill(-1),
+                gemIDs: new Array(12).fill(-1)
+            },
+            {
+                artifactIDs: new Array(4).fill(-1),
+                gemIDs: new Array(12).fill(-1)
+            },
+            {
+                artifactIDs: new Array(4).fill(-1),
+                gemIDs: new Array(12).fill(-1)
+            },
+        ],
+        currentLoadout: 0,
         stats: {
             bestMoney: D(0),
             bestEgg: '',

@@ -4,6 +4,7 @@
         <button id="ascSubButton0" class="orangeButton">Ascension</button>
         <button id="ascSubButton1" class="orangeButton">Harvesters</button>
         <button id="ascSubButton2" class="orangeButton">Reliquary</button>
+        <button id="ascSubButton3" class="orangeButton">Stats & Loadouts</button>
     </div>
     <div id="ascSub0" class="flexCol">
         <div class="flexRow" style="margin-bottom: 1vh;">
@@ -132,6 +133,29 @@
             </div>
         </div>
     </div>
+    <div id="ascSub3" class="flexCol">
+        <h3 style="color:var(--orange);margin-bottom:1em">Reliquary Stats & Loadouts</h3>
+        <div class="flexRow" style="margin-bottom:1em">
+            <div class="flexCol" style="margin-right:1vw">
+                <h3 style="color:var(--orange)">Artifact Boosts</h3>
+                <p id="artifactBoostStats" style="color:var(--orange)"></p>
+            </div>
+            <div class="flexCol" style="margin-left:1vw">
+                <h3 style="color:var(--orange)">Gem Boosts</h3>
+                <p id="gemBoostStats" style="color:var(--orange)"></p>
+            </div>
+        </div>
+        <p id="activeLoadoutText" style="color:var(--orange)">Current Loadout: 1</p>
+        <div class="flexRow">
+            <button id="artifactLoadoutButton0" class="orangeButton">Select Loadout 1</button>
+            <button id="artifactLoadoutButton1" class="orangeButton">Select Loadout 2</button>
+            <button id="artifactLoadoutButton2" class="orangeButton">Select Loadout 3</button>
+        </div>
+        <div class="flexRow">
+            <button id="saveLoadoutButton" class="orangeButton">Save Selected Loadout</button>
+            <button id="loadLoadoutButton" class="orangeButton">Load Selected Loadout</button>
+        </div>
+    </div>
 </div>
 
 <style is:inline>
@@ -150,6 +174,16 @@
     border: 2px solid var(--darkgray);
     border-radius: 5px;
     background-color: var(--gray);
+    padding: 2px;
+    height: 6em;
+    width: 6em;
+}
+
+.artifactHolder-selected {
+    margin: .25em;
+    border: 2px solid var(--darkgray);
+    border-radius: 5px;
+    background-color: var(--blue);
     padding: 2px;
     height: 6em;
     width: 6em;
@@ -180,6 +214,16 @@
     border: 2px solid var(--darkgray);
     border-radius: 5px;
     background-color: var(--red);
+    padding: 2px;
+    height: 2em;
+    width: 2em;
+}
+
+.gemHolder-selected {
+    margin: .25em;
+    border: 2px solid var(--darkgray);
+    border-radius: 5px;
+    background-color: var(--blue);
     padding: 2px;
     height: 2em;
     width: 2em;

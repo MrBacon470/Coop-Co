@@ -1,7 +1,7 @@
 let diff = 0;
 const eggImgPath = '/Images/Eggs/'
 
-const subAmts = [4,3]
+const subAmts = [4,4]
 const subIDs = ['set','asc']
 
 function generateHTMLAndHandlers() {
@@ -52,6 +52,7 @@ function generateHTMLAndHandlers() {
 
     for(let i = 0; i < artifacts.length; i++) {
         DOMCacheGetOrSet(`artifactSlot${i}`).addEventListener('click', () => updateAscensionHoverText(i,'artifact'))
+        DOMCacheGetOrSet(`artifactSlot${i}`).addEventListener('click', () => selectArtifact(i))
     } 
 
     count = 0;
@@ -67,7 +68,16 @@ function generateHTMLAndHandlers() {
 
     for(let i = 0; i < gems.length; i++) {
         DOMCacheGetOrSet(`gemSlot${i}`).addEventListener('click', () => updateAscensionHoverText(i,'gem'))
+        DOMCacheGetOrSet(`gemSlot${i}`).addEventListener('click', () => selectGem(i))
     } 
+
+    for(let i = 0; i < data.activeArtifacts.length; i++) {
+        DOMCacheGetOrSet(`artifactHolder${i}`).addEventListener('click', () => activateArtifactSelect(i))
+    }
+
+    for(let i = 0; i < data.activeGems.length; i++) {
+        DOMCacheGetOrSet(`gemHolder${i}`).addEventListener('click',() => activateGemSelect(i))
+    }
 
     DOMCacheGetOrSet(`harvesterUpgradeButton`).addEventListener('click', () => upgradeHarvester())
     DOMCacheGetOrSet('runAllHarvestersButton').addEventListener('click', () => {
@@ -79,6 +89,13 @@ function generateHTMLAndHandlers() {
         DOMCacheGetOrSet(`harvesterHolder${i}`).addEventListener('mouseover',() => {updateHarvesterHoverText(i)})
         DOMCacheGetOrSet(`harvesterButton${i}`).addEventListener('click', () => startHarvester(i))
     }
+
+    for(let i = 0; i < data.artifactLoadouts.length; i++) {
+        DOMCacheGetOrSet(`artifactLoadoutButton${i}`).addEventListener('click',() => selectLoadout(i))
+    }
+    DOMCacheGetOrSet('saveLoadoutButton').addEventListener('click',() => saveLoadout())
+    DOMCacheGetOrSet('loadLoadoutButton').addEventListener('click',() => loadLoadout())
+
     // count = 0;
     // addHTML('artifactStorage',`<div class="flexCol" style="width:4em"></div>`)
     // for(let i = 0; i <= parseInt(ingredients.length / 8); i++) {
