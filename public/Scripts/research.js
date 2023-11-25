@@ -334,6 +334,8 @@ function updateResearch() {
         commonResearchCost[i] = commonResearchCost[i].times(Decimal.pow(1.15, data.research[i]))
       else if(data.onPlanet === true && data.currentPlanetIndex === 0)
         commonResearchCost[i] = commonResearchCost[i].times(Decimal.pow(1.35, data.research[i]))
+      commonResearchCost[i] = commonResearchCost[i].div(getActiveArtifactBoost(5))
+      commonResearchCostDisplay[i] = commonResearchCostDisplay[i].div(getActiveArtifactBoost(5))
     }
         
     for(let i = 0; i < epicResearches.length; i++) {

@@ -45,8 +45,8 @@ const achievementObjs = [
     { name: 'Master Reforger', description: 'Acquire your first Tier III Artifact', img: '/Images/Upgraded.png'},
     { name: 'Ultimate Craftsman', description: 'Acquire your first Tier IV Artifact', img: '/Images/Gilded.png'},
     { name: 'Scrounger', description: 'Acquire a Gem Fragment', img: '/Images/Gems/Knowledge-Fragment.png'},
-    { name: 'Gemsmith', description: 'Acquire a Gem Shard', img: '/Images/Gems/Knowledge-Shard.png'},
-    { name: 'Gemologist', description: 'Acquire a Gemstone', img: '/Images/Gems/Knowledge-Gem.png'},
+    { name: 'Gemsmith', description: 'Acquire a Gem Shard', img: '/Images/Gems/Soul-Shard.png'},
+    { name: 'Gemologist', description: 'Acquire a Gemstone', img: '/Images/Gems/Ascension-Gem.png'},
 ]
 
 const achievementDisplayArr = new Array(achievementObjs.length+8).fill('blank')

@@ -198,6 +198,9 @@ function updateEggValueBonus() {
     eggValueBonus = !data.onPlanet ? eggValueBonus.times(planetBoosts[5]) : eggValueBonus
     if(data.onPlanet === true)
       eggValueBonus = eggValueBonus.times(planetBoosts[0])
+    eggValueBonus = eggValueBonus.times(getActiveArtifactBoost(0))
+    eggValueBonus = eggValueBonus.times(getActiveArtifactBoost(1))
+    eggValueBonus = eggValueBonus.times(getActiveGemBoost(2))
 }
 
 function updateIntHatch() {
@@ -211,6 +214,8 @@ function updateIntHatch() {
     chickenGain = chickenGain.times(4)
     chickenGain = chickenGain.times((D(0.05).times(data.epicResearch[0])).plus(1))
     chickenGain = !data.onPlanet ? chickenGain.times(planetBoosts[4]) : chickenGain
+    chickenGain = chickenGain.times(getActiveArtifactBoost(4))
+    chickenGain = chickenGain.times(getActiveGemBoost(1))
 }
 
 function updateLayRate() {
@@ -222,6 +227,7 @@ function updateLayRate() {
     layRate = data.research[27].gt(0) ? layRate.times((D(0.1).times(data.research[27])).plus(1)) : layRate.times(D(1))
     layRate = data.epicResearch[4].gt(0) ? layRate.times((D(0.5).times(data.epicResearch[4])).plus(1)) : layRate.times(D(1))
     layRate = !data.onPlanet ? layRate.times(planetBoosts[1]) : layRate
+    layRate = layRate.times(getActiveGemBoost(3))
     if(data.onPlanet && data.currentPlanetIndex === 4)
       layRate = layRate.times(D(0.5))
 }

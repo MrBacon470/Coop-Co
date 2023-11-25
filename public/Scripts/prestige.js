@@ -14,9 +14,13 @@ function updatePrestige() {
     softCapAmts[1] = prophecyEggBoost
     if(prophecyEggBoost.gte(1e6)) prophecyEggBoost = prophecyEggBoost.div(1e6).log10().add(1).mul(1e6)
     softCapAmts[1] = softCapAmts[1].div(prophecyEggBoost)
+    prophecyEggBoost = prophecyEggBoost.times(getActiveArtifactBoost(2))
+    prophecyEggBoost = prophecyEggBoost.times(getActiveGemBoost(5))
     //console.log(formatSci(prophecyEggBoost))
     
     soulEggBoost = D(1).plus(soulAvg.times(D(0.01).plus(D(0.01).times(data.epicResearch[2]))).times(prophecyEggBoost))
+    soulEggBoost = soulEggBoost.times(getActiveArtifactBoost(3))
+    soulEggBoost = soulEggBoost.times(getActiveGemBoost(4))
     contractRewardBoost = D(1).plus(Decimal.sqrt(data.prophecyEggs.times(D(0.45))))
     contractGoalBoost = D(1).plus(Decimal.sqrt(data.prophecyEggs.times(D(0.5))))
     if(data.inPath === true || (data.onPlanet === true && data.currentPlanetIndex === 3)) {

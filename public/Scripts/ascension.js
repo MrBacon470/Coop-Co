@@ -194,109 +194,109 @@ const gems = [
         name: 'Knowledge Fragment',
         img: '/Images/Gems/Knowledge-Fragment.png',
         crafting: [],
-        effect: D(0)
+        effect: D(0.25)
     },
     {
         name: 'Knowledge Shard',
         img: '/Images/Gems/Knowledge-Shard.png',
-        crafting: [],
-        effect: D(0)
+        crafting: [{id:0,type:'gem',count:D(20)}],
+        effect: D(0.5)
     },
     {
         name: 'Knowledge Gem',
         img: '/Images/Gems/Knowledge-Gem.png',
-        crafting: [],
-        effect: D(0)
+        crafting: [{id:1,type:'gem',count:D(30)},{id:17,type:'gem',count:D(2)}],
+        effect: D(1)
     },
     {
         name: 'Tachyon Fragment',
         img: '/Images/Gems/Tachyon-Fragment.png',
         crafting: [],
-        effect: D(0)
+        effect: D(0.02)
     },
     {
         name: 'Tachyon Shard',
         img: '/Images/Gems/Tachyon-Shard.png',
-        crafting: [],
-        effect: D(0)
+        crafting: [{id:3,type:'gem',count:D(20)}],
+        effect: D(0.03)
     },
     {
         name: 'Tachyon Gem',
         img: '/Images/Gems/Tachyon-Gem.png',
-        crafting: [],
-        effect: D(0)
+        crafting: [{id:4,type:'gem',count:D(12)}],
+        effect: D(0.04)
     },
     {
         name: 'Antimatter Fragment',
         img: '/Images/Gems/Antimatter-Fragment.png',
         crafting: [],
-        effect: D(0)
+        effect: D(0.05)
     },
     {
         name: 'Antimatter Shard',
         img: '/Images/Gems/Antimatter-Shard.png',
-        crafting: [],
-        effect: D(0)
+        crafting: [{id:6,type:'gem',count:D(20)}],
+        effect: D(0.08)
     },
     {
         name: 'Antimatter Gem',
         img: '/Images/Gems/Antimatter-Gem.png',
-        crafting: [],
-        effect: D(0)
+        crafting: [{id:7,type:'gem',count:D(30)}],
+        effect: D(0.1)
     },
     {
         name: 'Quantum Fragment',
         img: '/Images/Gems/Quantum-Fragment.png',
         crafting: [],
-        effect: D(0)
+        effect: D(0.02)
     },
     {
         name: 'Quantum Shard',
         img: '/Images/Gems/Quantum-Shard.png',
-        crafting: [],
-        effect: D(0)
+        crafting: [{id:9,type:'gem',count:D(20)}],
+        effect: D(0.04)
     },
     {
         name: 'Quantum Gem',
         img: '/Images/Gems/Quantum-Gem.png',
-        crafting: [],
-        effect: D(0)
+        crafting: [{id:10,type:'gem',count:D(15)}],
+        effect: D(0.05)
     },
     {
         name: 'Soul Fragment',
         img: '/Images/Gems/Soul-Fragment.png',
         crafting: [],
-        effect: D(0)
+        effect: D(0.05)
     },
     {
         name: 'Soul Shard',
         img: '/Images/Gems/Soul-Shard.png',
-        crafting: [],
-        effect: D(0)
+        crafting: [{id:12,type:'gem',count:D(20)}],
+        effect: D(0.1)
     },
     {
         name: 'Soul Gem',
         img: '/Images/Gems/Soul-Gem.png',
-        crafting: [],
-        effect: D(0)
+        crafting: [{id:13,type:'gem',count:D(15)}],
+        effect: D(0.25)
     },
     {
         name: 'Ascension Fragment',
         img: '/Images/Gems/Ascension-Fragment.png',
         crafting: [],
-        effect: D(0)
+        effect: D(0.0005)
     },
     {
         name: 'Ascension Shard',
         img: '/Images/Gems/Ascension-Shard.png',
-        crafting: [],
-        effect: D(0)
+        crafting: [{id:15,type:'gem',count:D(20)}],
+        effect: D(0.001)
     },
     {
         name: 'Ascension Gem',
         img: '/Images/Gems/Ascension-Gem.png',
-        crafting: [],
-        effect: D(0)
+        crafting: [{id:16,type:'gem',count:D(15)},{id:14,type:'gem',count:D(2)}],
+        effect: D(0.0015)
     },
 ]
 
@@ -400,6 +400,10 @@ function updateAscensionHTML() {
     }
     else if(data.currentSubTab[1] === 3) {
         DOMCacheGetOrSet('activeLoadoutText').innerText = selectedLoadout !== -1 ? `Active Loadout: #${data.currentLoadout+1}\nSelected Loadout: #${selectedLoadout+1}` : `Active Loadout: #${data.currentLoadout+1}\nSelected Loadout: None`
+        DOMCacheGetOrSet('artifactBoostStats').innerText = `+${format((getActiveArtifactBoost(0).sub(1)).times(100))}% Egg Value\n` + `+${format((getActiveArtifactBoost(1).sub(1)).times(100))}% Enlightenment Egg Value\n` + `+${format((getActiveArtifactBoost(2).sub(1)).times(100))}% Prophecy Egg Boost\n` +
+        `+${format((getActiveArtifactBoost(3).sub(1)).times(100))}% Soul Egg Boost\n` + `+${format((getActiveArtifactBoost(4).sub(1)).times(100))}% Hatchery Rate\n` + `-${format((getActiveArtifactBoost(5).sub(1)).times(100))}% Research Cost`
+        DOMCacheGetOrSet('gemBoostStats').innerText = `+${format((getActiveGemBoost(1).sub(1)).times(100))}% Hatchery Rate\n` + `+${format((getActiveGemBoost(2).sub(1)).times(100))}% Egg Value\n` +
+        `+${format((getActiveGemBoost(3).sub(1)).times(100))}% Egg Laying Rate\n` + `+${format((getActiveGemBoost(4).sub(1)).times(100))}% Soul Egg Bonus\n` + `+${format((getActiveGemBoost(5).sub(1)).times(100))}% Prophecy Egg Bonus`  
     }
 }
 
@@ -474,14 +478,14 @@ function updateAscensionHoverText(id,type) {
             else if(id >= 12 && id < 16)
                 DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).plus(1))}% Soul Egg Bonus\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].plus(1))}`
             else if(id >= 16 && id < 20)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).plus(1))}% Internal Hatchery\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].plus(1))}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).plus(1))}% Internal Hatchery Rate\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].plus(1))}`
             else if(id >= 20 && id < 24)
                 DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | -${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).plus(1))}% Research Cost\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].plus(1))}`
             break
         case 'gem':
             DOMCacheGetOrSet(`gemSlot${id}`).classList = 'artifactSlot-selected'
             if(id < 3)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).plus(1))}% of Host Effect\n You have: ${toPlaces(data.gems[id],0,data.gems[id].plus(1))}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).plus(1))}% of Host Effect on Enlightenment Egg\n You have: ${toPlaces(data.gems[id],0,data.gems[id].plus(1))}`
             else if(id >= 3 && id < 6)
                 DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).plus(1))}% Hatchery Rate\n You have: ${toPlaces(data.gems[id],0,data.gems[id].plus(1))}`
             else if(id >= 6 && id < 9)
@@ -640,7 +644,7 @@ function generateArtifactCraftingInfo(artifactID,type) {
         case 'gem':
             let gemCraftArr = gems[artifactID].crafting
             for(let i = 0; i < gemCraftArr.length; i++) {
-                    str += `${gems[gemCraftArr[i].id].name}: x${toPlaces(gemCraftArr[i],0,gemCraftArr[i].plus(1))} (${toPlaces(data.gems[gemCraftArr[i].id],0,data.gems[gemCraftArr[i].id].plus(1))})\n`
+                    str += `${gems[gemCraftArr[i].id].name}: x${toPlaces(gemCraftArr[i].count,0,gemCraftArr[i].count.plus(1))} (${toPlaces(data.gems[gemCraftArr[i].id],0,data.gems[gemCraftArr[i].id].plus(1))})\n`
             }
             break
         default:
@@ -796,9 +800,43 @@ function saveLoadout() {
 }
 
 function getActiveArtifactBoost(groupID) {
+    let boostSum = D(1)
+    let currentArtifactBoost = D(0)
+    for(let i = 0; i < data.activeArtifacts.length; i++) {
+        if(data.activeArtifacts[i] !== -1 && Math.floor(data.activeArtifacts[i] / 4) === groupID) { // Valid Artifact?
+            if(data.currentEgg !== 18 || (groupID === 1 && data.currentEgg === 18)) { // Not Enlightenment Egg or its a Scroll
+                currentArtifactBoost = artifacts[data.activeArtifacts[i]].effect
+            }
 
+            if(data.currentEgg === 18 && groupID !== 1) {
+                currentArtifactBoost = artifacts[data.activeArtifacts[i]].effect
+                if(data.activeGems[i * 3] !== -1 && Math.floor(data.activeGems[i * 3] / 3) === 0) { // Apply Knowledge Gem Boost
+                    currentArtifactBoost = currentArtifactBoost.times(gems[data.activeGems[i * 3]].effect.plus(1))
+                }
+                if(data.activeGems[(i * 3) + 1] !== -1 && Math.floor(data.activeGems[(i * 3) + 1] / 3) === 0) { // Apply Knowledge Gem Boost
+                    currentArtifactBoost = currentArtifactBoost.times(gems[data.activeGems[(i * 3) + 1]].effect.plus(1))
+                }
+                if(data.activeGems[(i * 3) + 2] !== -1 && Math.floor(data.activeGems[(i * 3) + 2] / 3) === 0) { // Apply Knowledge Gem Boost
+                    currentArtifactBoost = currentArtifactBoost.times(gems[data.activeGems[(i * 3) + 2]].effect.plus(1))
+                }
+                if(currentArtifactBoost.eq(artifacts[data.activeArtifacts[i]].effect)) {// No Knowledge Gem = No Boost
+                    currentArtifactBoost = D(0)
+                }
+            }
+            boostSum = boostSum.plus(currentArtifactBoost)
+        }
+    }
+    return boostSum
 }
 
 function getActiveGemBoost(groupID) {
-    
+    let boostSum = D(1) 
+    for(let i = 0; i < data.activeGems.length; i++) {
+        if(data.activeGems[i] !== -1 && Math.floor(data.activeGems[i] / 3) === groupID) {
+            if(data.currentEgg !== 18 || Math.floor(data.activeArtifacts[Math.floor(i / 3)] / 4) === 1) {
+                boostSum = boostSum.plus(gems[data.activeGems[i]].effect)
+            }
+        }
+    }  
+    return boostSum 
 }
