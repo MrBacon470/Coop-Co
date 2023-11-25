@@ -29,6 +29,10 @@ function updateHTML() {
     DOMCacheGetOrSet('ascensionButton').style.display = data.currentEgg >= 18 ? 'block' : 'none'
     DOMCacheGetOrSet('ascensionButton').classList = data.currentEgg >= 18 && data.money.gte(1e45) ? 'orangeButtonHeader' : 'redButtonHeader'
     DOMCacheGetOrSet('ascensionButton').innerText = data.currentEgg >= 18 && data.money.gte(1e45) ? `Ascend: +${format(knowleggGain)} Knowleggs` : `Ascend: ($${format(data.money)}/${format(1e45)})`
+    DOMCacheGetOrSet('tabButton7').style.display = data.hasAscended ? 'block' : 'none'
+    DOMCacheGetOrSet('ascSubButton1').style.display = data.legendaryResearch[1].gte(legendaryResearches[1].max) ? 'block' : 'none'
+    DOMCacheGetOrSet('ascSubButton2').style.display = data.legendaryResearch[1].gte(legendaryResearches[1].max) ? 'block' : 'none'
+    DOMCacheGetOrSet('ascSubButton3').style.display = data.legendaryResearch[3].gte(legendaryResearches[3].max) ? 'block' : 'none'
     //hm
     DOMCacheGetOrSet('tabButton5').style.display = data.unlockedEgg[3] === true ? 'block' : 'none'
     if(data.currentTab === 0) {
@@ -68,7 +72,8 @@ function updateHTML() {
             DOMCacheGetOrSet('help3').style.display = data.unlockedContracts ? 'block' : 'none'
             DOMCacheGetOrSet('help4').style.display = data.hasAscended ? 'block' : 'none'
             DOMCacheGetOrSet('help5').style.display = data.hasAscended ? 'block' : 'none'
-            DOMCacheGetOrSet('help6').style.display = data.legendaryResearch[3].gte(legendaryResearches[3].max) ? 'block' : 'none'
+            DOMCacheGetOrSet('help6').style.display = data.legendaryResearch[1].gte(legendaryResearches[1].max) ? 'block' : 'none'
+            DOMCacheGetOrSet('help7').style.display = data.legendaryResearch[3].gte(legendaryResearches[3].max) ? 'block' : 'none'
         }
     }
     else if(data.currentTab === 4) {
