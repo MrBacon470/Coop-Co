@@ -10,7 +10,7 @@ newsArray = [//always true
     ['Can\'t time skip your way out of this one.','true'],['Story not included.','true'],['This is the game, egg inc. is the copy.','true'],['the egg is very egg','true'],['We here at News Inc. don\'t actually like eggs.','true'],
     ['<a href="https://youtu.be/dQw4w9WgXcQ" target="_blank"]>Click here for free prophecy egg</a>','true'],['eggs! get your eggs here!','true'],['You mean you don\'t have 1e308 Soul Eggs? What, did you just start or something?','true'],
     ['1 star game sux!','true'],['Egg prices have dropped due to this one guy having one million chickens WTF!','true'],['Chicken nugget farmers have stolen some of your chickens!','true'],['What happened to all the chickens from the last farm?','true'],
-    ['Game is no longer being worked on','true'],['Game is still being worked on','true'],['One of your chickens crossed the road, you now have one less chicken.','true'],[`If I had a nickel for every chicken you had right now, I\'d have ${format(data.chickens)} nickles.`,'true'],
+    ['Game is no longer being worked on','true'],['Game is still being worked on','true'],['One of your chickens crossed the road, you now have one less chicken.','true','data.chickens = data.chickens.sub(1);'],[`If I had a nickel for every chicken you had right now, I\'d have ${format(data.chickens)} nickles.`,'true'],
     ['EGGS!!!','true'],['If you ever feel worthless, just remember that you\'re worth 2,200,000 regular eggs.','true'],['BREAKING NEWS: Please stop breaking the news it really hurts :(','true'],[`Hey, congrats on $${format(data.money)}!`,'true'],['Come back tomorrow for your daily egg news.','true'],
     ['Why did the egg cross the road? Scientists are still trying to figure that one out.','true'],['the game isn\'t broken, you are','true'],['That sounds like a skill issue','true'],['The USDE were bribed.','true'],['how do people buy eggs that cost trillions of dollars?','true'],
     ['BREAKING NEWS:  There are too many eggs','true'],['News Inc. is sad to announce that our former CEO has died of Ligma and has been replaced by Mike Hawk.','true'],['We egg on you to reach the top egg before taking Contracts','true'],
@@ -57,7 +57,7 @@ function scrollNextMessage() {
 
   scrollTimeouts.forEach(function(v) {clearTimeout(v);});
   scrollTimeouts = [];
-
+  
   //set the text
   s.innerHTML = newsArray[nextMsgIndex][0];
 
@@ -91,5 +91,8 @@ function scrollNextMessage() {
     //automatically start the next message scrolling after this one finishes
     //you could add more time to this timeout if you wanted to have some time between messages
     scrollTimeouts.push(setTimeout(scrollNextMessage, Math.ceil(transformDuration * 1000)));
+    if(newsArray[nextMsgIndex].length === 3) {
+      eval(newsArray[nextMsgIndex][2])
+    }
   }, 100));
 }
