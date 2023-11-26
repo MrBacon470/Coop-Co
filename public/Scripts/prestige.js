@@ -1,13 +1,13 @@
-let soulEggGain = D(0)
-let soulEggBoost = D(0)
-let prophecyEggBoost = D(0)
-let contractRewardBoost = D(1)
-let contractGoalBoost = D(1)
-let softCapAmts = [D(0),D(0)]
+let soulEggGain = Decimal.dZero
+let soulEggBoost = Decimal.dZero
+let prophecyEggBoost = Decimal.dZero
+let contractRewardBoost = Decimal.dOne
+let contractGoalBoost = Decimal.dOne
+let softCapAmts = [Decimal.dZero,Decimal.dZero]
 function updatePrestige() {
     if(data.bestSoulEggs.lt(data.soulEggs)) data.bestSoulEggs = data.soulEggs
-    const soulAvg = (data.soulEggs.plus(data.bestSoulEggs)).div(2)
-    soulEggGain = data.currentEgg >= 3 ? Decimal.floor(Decimal.sqrt(Decimal.sqrt(data.bestRunMoney)).times((D(0.1).times(data.epicResearch[3])).plus(1))) : D(0)
+    const soulAvg = (data.soulEggs.add(data.bestSoulEggs)).div(2)
+    soulEggGain = data.currentEgg >= 3 ? Decimal.floor(Decimal.sqrt(Decimal.sqrt(data.bestRunMoney)).times((D(0.1).times(data.epicResearch[3])).add(1))) : Decimal.dZero
     soulEggGain = soulEggGain.times(planetBoosts[3])
     prophecyEggBoost = Decimal.pow(1.015, data.prophecyEggs)
     //console.log(formatSci(prophecyEggBoost))
@@ -18,15 +18,15 @@ function updatePrestige() {
     prophecyEggBoost = prophecyEggBoost.times(getActiveGemBoost(5))
     //console.log(formatSci(prophecyEggBoost))
     
-    soulEggBoost = D(1).plus(soulAvg.times(D(0.01).plus(D(0.01).times(data.epicResearch[2]))).times(prophecyEggBoost))
+    soulEggBoost = Decimal.dOne.add(soulAvg.times(D(0.01).add(D(0.01).times(data.epicResearch[2]))).times(prophecyEggBoost))
     soulEggBoost = soulEggBoost.times(getActiveArtifactBoost(3))
     soulEggBoost = soulEggBoost.times(getActiveGemBoost(4))
-    contractRewardBoost = D(1).plus(Decimal.sqrt(data.prophecyEggs.times(D(0.45))))
-    contractGoalBoost = D(1).plus(Decimal.sqrt(data.prophecyEggs.times(D(0.5))))
+    contractRewardBoost = Decimal.dOne.add(Decimal.sqrt(data.prophecyEggs.times(D(0.45))))
+    contractGoalBoost = Decimal.dOne.add(Decimal.sqrt(data.prophecyEggs.times(D(0.5))))
     if(data.inPath === true || (data.onPlanet === true && data.currentPlanetIndex === 3)) {
-        soulEggBoost = D(1)
-        prophecyEggBoost = D(1)
-        contractRewardBoost = D(1)
+        soulEggBoost = Decimal.dOne
+        prophecyEggBoost = Decimal.dOne
+        contractRewardBoost = Decimal.dOne
     }
 }
 
@@ -35,15 +35,15 @@ function prestige() {
     data.stats.prestiges[2] = data.stats.prestiges[1]
     data.stats.prestiges[1] = data.stats.prestiges[0]
     data.stats.prestiges[0] = soulEggGain
-    data.stats.timeInPrestige = D(0)
-    data.soulEggs = data.soulEggs.plus(soulEggGain)
+    data.stats.timeInPrestige = Decimal.dZero
+    data.soulEggs = data.soulEggs.add(soulEggGain)
     data.hasPrestiged = true
-    data.research = new Array(28).fill(D(0))
-    eggValueBonus = D(1)
-    chickenGain = D(0)
-    layRate = D(1)
-    data.chickens = D(0)
-    data.money = D(0)
-    data.bestRunMoney = D(0)
+    data.research = new Array(28).fill(Decimal.dZero)
+    eggValueBonus = Decimal.dOne
+    chickenGain = Decimal.dZero
+    layRate = Decimal.dOne
+    data.chickens = Decimal.dZero
+    data.money = Decimal.dZero
+    data.bestRunMoney = Decimal.dZero
     data.currentEgg = 0
 }

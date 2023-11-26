@@ -4,63 +4,63 @@ const prestigeContracts = [
       desc: 'A Californian Energy Shortage means more demand for Fusion Eggs.',
       eggIndex: 5,
       baseGoal: D(1e17),
-      baseReward: D(1),
+      baseReward: Decimal.dOne,
     },
     {
       name: 'GPT-10.0',
       desc: 'To make the ultimate version of ChatGPT, AI Eggs are needed',
       eggIndex: 15,
       baseGoal: D(1e27),
-      baseReward: D(1),
+      baseReward: Decimal.dOne,
     },
     {
       name: 'Pandemic',
       desc: 'A Pandemic is covering the world, Medical Eggs are needed to save lives.',
       eggIndex: 2,
       baseGoal: D(1e12),
-      baseReward: D(1),
+      baseReward: Decimal.dOne,
     },
     {
       name: 'Supreme Diets',
       desc: 'Dieting is back in fashion people need more Superfood Eggs.',
       eggIndex: 1,
       baseGoal: D(1e11),
-      baseReward: D(1),
+      baseReward: Decimal.dOne,
     },
     {
       name: 'Fountain of Youth',
       desc: 'People are wanting to stay youthful, Immortality Eggs are needed to keep them that way.',
       eggIndex: 7,
       baseGoal: D(1e19),
-      baseReward: D(1),
+      baseReward: Decimal.dOne,
     },
     {
       name: 'Supply Chain Crisis',
       desc: 'Supply Chain Issues have caused resource shortages, Supermaterial Eggs are needed to offset the shortage.',
       eggIndex: 4,
       baseGoal: D(1e14),
-      baseReward: D(1),
+      baseReward: Decimal.dOne,
     },
     {
       name: 'Temporal Tear',
       desc: 'A Temporal Tear has caused a rift in the space-time continuum, Tachyon Eggs are needed to fix it.',
       eggIndex: 8,
       baseGoal: D(1e20),
-      baseReward: D(1),
+      baseReward: Decimal.dOne,
     },
     {
       name: 'Space-Egg',
       desc: 'Egglon Musk needs massive amounts of rocketfuel eggs for his new Chicken-9 Rocket',
       eggIndex: 3,
       baseGoal: D(1e14),
-      baseReward: D(1),
+      baseReward: Decimal.dOne,
     },
     {
       name: 'Terraforming Venus',
       desc: 'In order to terraform all of Venus we need mass production of Terraform Eggs',
       eggIndex: 12,
       baseGoal: D(1e23),
-      baseReward: D(1),
+      baseReward: Decimal.dOne,
     },
 ]
 
@@ -104,8 +104,8 @@ function generateContract(i) {
     }
     if(id > prestigeContracts.length - 1) index = prestigeContracts.length - 1
     let goal = (prestigeContracts[id].baseGoal.times((eggData[prestigeContracts[id].eggIndex].value).times(contractGoalBoost.times(soulEggBoost))))
-    let reward = Decimal.ln(Decimal.log10(prestigeContracts[id].baseGoal)).times(contractRewardBoost.plus(1))
-    reward = reward.times(Decimal.log(contractGoalBoost,2)).plus(1)
+    let reward = Decimal.ln(Decimal.log10(prestigeContracts[id].baseGoal)).times(contractRewardBoost.add(1))
+    reward = reward.times(Decimal.log(contractGoalBoost,2)).add(1)
     data.contracts[i].id = id
     data.contracts[i].goal = goal
     data.contracts[i].reward = reward
@@ -123,12 +123,12 @@ function startContract(i) {
     else {
       data.contractActive[i] = false
       for(let i = 0; i < data.research.length; i++)
-        data.research[i] = D(0)
-      eggValueBonus = D(1)
-      chickenGain = D(0)
-      layRate = D(1)
-      data.chickens = D(0)
-      data.money = D(0)
+        data.research[i] = Decimal.dZero
+      eggValueBonus = Decimal.dOne
+      chickenGain = Decimal.dZero
+      layRate = Decimal.dOne
+      data.chickens = Decimal.dZero
+      data.money = Decimal.dZero
       data.currentEgg = 0
       if(data.settingsToggles[2] === true) 
         generateNotification(`Contract ${prestigeContracts[data.contracts[i].id].name} Left!`, 'warn')
@@ -138,19 +138,19 @@ function startContract(i) {
 function runContract(i) {
     if(data.money.gte(data.contracts[i].goal)) {
       data.contractActive[i] = false
-      data.prophecyEggs = data.prophecyEggs.plus(data.contracts[i].reward)
+      data.prophecyEggs = data.prophecyEggs.add(data.contracts[i].reward)
       if(data.settingsToggles[2] === true) 
         generateNotification(`Contract ${prestigeContracts[data.contracts[i].id].name} Completed!\n+${format(data.contracts[i].reward)} Prophecy Eggs`, 'success')
       for(let i = 0; i < 3; i++)
         generateContract(i)
       for(let i = 0; i < data.research.length; i++)
-        data.research[i] = D(0)
-      eggValueBonus = D(1)
-      chickenGain = D(0)
-      layRate = D(1)
-      data.chickens = D(0)
-      data.money = D(0)
+        data.research[i] = Decimal.dZero
+      eggValueBonus = Decimal.dOne
+      chickenGain = Decimal.dZero
+      layRate = Decimal.dOne
+      data.chickens = Decimal.dZero
+      data.money = Decimal.dZero
       data.currentEgg = 0
-      data.stats.contractsComplete = data.stats.contractsComplete.plus(1)
+      data.stats.contractsComplete = data.stats.contractsComplete.add(1)
     }
 }

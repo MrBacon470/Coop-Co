@@ -12,7 +12,7 @@ function generateHTMLAndHandlers() {
     DOMCacheGetOrSet('eggPromoteButton').addEventListener('click', () => promoteEgg())
     DOMCacheGetOrSet('ascensionButton').addEventListener('click', () => {createConfirmation('ascension')})
     //Egg Tab
-    DOMCacheGetOrSet('mainButton').addEventListener('click', () => {data.chickens = data.chickens.plus(1)})
+    DOMCacheGetOrSet('mainButton').addEventListener('click', () => {data.chickens = data.chickens.add(1)})
     //Research Tab
     for(let i = 0; i < commonResearches.length; i++) {
         DOMCacheGetOrSet(`r${i}`).classList = 'redButton'
@@ -195,16 +195,16 @@ function mainLoop() {
     updateAscension()
     updateAutomation()
     if(data.chickens.lt(1) && data.epicResearch[8].gte(epicResearches[8].maxLevel))
-        data.chickens = D(1)
+        data.chickens = Decimal.dOne
     for(let i = 0; i < data.contractActive.length; i++) {
         if(data.contractActive[i])
             runContract(i)
     }
     for(let i = 0; i < 6; i++) {
-        planetBoosts[i] = data.planetData[i].money.gt(0) ? D(1).plus(Decimal.sqrt(Decimal.log(data.planetData[i].money,5))) : D(1)
+        planetBoosts[i] = data.planetData[i].money.gt(0) ? Decimal.dOne.add(Decimal.sqrt(Decimal.log(data.planetData[i].money,5))) : Decimal.dOne
     }
     currentEggValue = data.onPlanet === false ? eggData[data.currentEgg].value.times(eggValueBonus) : planetEggValue[data.currentPlanetIndex].times(eggValueBonus)
-    data.chickens = data.onPlanet === true && data.currentPlanetIndex === 1 ? data.chickens.plus(chickenGain.times(diff/60)) : data.chickens.plus(chickenGain.times(diff/15))
+    data.chickens = data.onPlanet === true && data.currentPlanetIndex === 1 ? data.chickens.add(chickenGain.times(diff/60)) : data.chickens.add(chickenGain.times(diff/15))
     if(data.onPlanet && data.currentPlanetIndex === 2)
         data.money = data.money.add(((currentEggValue)).times(data.chickens.times(layRate)))
     else
@@ -226,9 +226,9 @@ function mainLoop() {
     if(data.stats.bestSoulEggs.lt(data.bestSoulEggs)) data.stats.bestSoulEggs = data.bestSoulEggs
     if(data.stats.bestProphecyEggs.lt(data.prophecyEggs)) data.stats.bestProphecyEggs = data.prophecyEggs
     if(data.stats.bestKnowleggs.lt(data.bestKnowlegg)) data.stats.bestKnowleggs = data.prophecyEggs
-    data.stats.timePlayed = data.stats.timePlayed.plus(diff)
-    data.stats.timeInPrestige = data.stats.timeInPrestige.plus(diff)
-    data.stats.timeInAscension = data.stats.timeInAscension.plus(diff)
+    data.stats.timePlayed = data.stats.timePlayed.add(diff)
+    data.stats.timeInPrestige = data.stats.timeInPrestige.add(diff)
+    data.stats.timeInAscension = data.stats.timeInAscension.add(diff)
     if(!data.unlockedContracts && data.unlockedEgg[5]) data.unlockedContracts = true;
     if(!data.generatedContracts && data.unlockedContracts) {
         for(let i = 0; i < 3; i++)

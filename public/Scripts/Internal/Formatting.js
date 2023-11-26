@@ -80,7 +80,7 @@ function formatSci(ex, acc=2, max=6) {
     let e = ex.log10().floor()
     if (ex.log10().lt(Math.min(-acc,0)) && acc > 1) {
         let e = ex.log10().ceil()
-        let m = ex.div(e.eq(-1)?D(0.1):D(10).pow(e))
+        let m = ex.div(e.eq(-1)?D(0.1):Decimal.dTen.pow(e))
         let be = e.mul(-1).max(1).log10().gte(9)
         return neg+(be?'':m.toFixed(2))+'e'+formatSci(e, 0, max)
     } else if (e.lt(max)) {
@@ -89,9 +89,9 @@ function formatSci(ex, acc=2, max=6) {
     } else {
         if (ex.gte("eeee10")) {
             let slog = ex.slog()
-            return (slog.gte(1e9)?'':D(10).pow(slog.sub(slog.floor())).toFixed(2)) + "F" + formatSci(slog.floor(), 0)
+            return (slog.gte(1e9)?'':Decimal.dTen.pow(slog.sub(slog.floor())).toFixed(2)) + "F" + formatSci(slog.floor(), 0)
         }
-        let m = ex.div(D(10).pow(e))
+        let m = ex.div(Decimal.dTen.pow(e))
         let be = e.log10().gte(9)
         return neg+(be?'':m.toFixed(2))+'e'+formatSci(e, 0, max)
     }

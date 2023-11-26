@@ -17,7 +17,7 @@ const artifacts = [
         name: 'Quickeggn',
         img: '/Images/Artifacts/Quickeggn.png',
         crafting: [
-            {id:0,type:'artifact',count:D(10)},
+            {id:0,type:'artifact',count:Decimal.dTen},
         ],
         effect: D(0.35)
     },
@@ -47,7 +47,7 @@ const artifacts = [
         name: 'Prophetic Scroll',
         img: '/Images/Artifacts/Prophetic-Scroll.png',
         crafting: [
-            {id:4,type:'artifact',count:D(10)},
+            {id:4,type:'artifact',count:Decimal.dTen},
         ],
         effect: D(1.2)
     },
@@ -77,7 +77,7 @@ const artifacts = [
         name: 'Gilded Book',
         img: '/Images/Artifacts/Gilded-Book.png',
         crafting: [
-            {id:8,type:'artifact',count:D(10)},
+            {id:8,type:'artifact',count:Decimal.dTen},
         ],
         effect: D(0.005)
     },
@@ -107,9 +107,9 @@ const artifacts = [
         name: 'Soul Lantern',
         img: '/Images/Artifacts/Soul-Lantern.png',
         crafting: [
-            {id:12,type:'artifact',count:D(10)},
+            {id:12,type:'artifact',count:Decimal.dTen},
         ],
-        effect: D(1)
+        effect: Decimal.dOne
     },
     {
         name: 'Gilded Lantern',
@@ -137,7 +137,7 @@ const artifacts = [
         name: 'Hammer & Pick',
         img: '/Images/Artifacts/Hammer-Pick.png',
         crafting: [
-            {id:16,type:'artifact',count:D(10)},
+            {id:16,type:'artifact',count:Decimal.dTen},
         ],
         effect: D(0.14)
     },
@@ -167,7 +167,7 @@ const artifacts = [
         name: 'Basic Analysis',
         img: '/Images/Artifacts/Chemical-Tube.png',
         crafting: [
-            {id:20,type:'artifact',count:D(10)},
+            {id:20,type:'artifact',count:Decimal.dTen},
         ],
         effect: D(0.15)
     },
@@ -205,8 +205,8 @@ const gems = [
     {
         name: 'Knowledge Gem',
         img: '/Images/Gems/Knowledge-Gem.png',
-        crafting: [{id:1,type:'gem',count:D(30)},{id:17,type:'gem',count:D(2)}],
-        effect: D(1)
+        crafting: [{id:1,type:'gem',count:D(30)},{id:17,type:'gem',count:Decimal.dTwo}],
+        effect: Decimal.dOne
     },
     {
         name: 'Tachyon Fragment',
@@ -295,21 +295,21 @@ const gems = [
     {
         name: 'Ascension Gem',
         img: '/Images/Gems/Ascension-Gem.png',
-        crafting: [{id:16,type:'gem',count:D(15)},{id:14,type:'gem',count:D(2)}],
+        crafting: [{id:16,type:'gem',count:D(15)},{id:14,type:'gem',count:Decimal.dTwo}],
         effect: D(0.0015)
     },
 ]
 
 const ingredients = []
 
-let knowleggGain = D(1)
-let legendaryResearchCosts = new Array(legendaryResearches.length).fill(D(0))
+let knowleggGain = Decimal.dOne
+let legendaryResearchCosts = new Array(legendaryResearches.length).fill(Decimal.dZero)
 
 function updateAscensionHTML() {
     if(data.currentSubTab[1] === 0) {
         DOMCacheGetOrSet(`knowleggText`).innerText = `${format(data.knowlegg)} Knowleggs`
         for(let i = 0; i < legendaryResearches.length; i++) {
-            DOMCacheGetOrSet(`lr${i}`).innerText = `${legendaryResearches[i].name}\n${legendaryResearches[i].description}\nLevel: ${toPlaces(data.legendaryResearch[i],0,data.legendaryResearch[i].plus(1))}/${toPlaces(legendaryResearches[i].max,0,legendaryResearches[i].max.plus(1))}\nCost: ${data.legendaryResearch[i].gte(legendaryResearches[i].max) ? '[MAXED]' : `${format(legendaryResearchCostDisplay[i])} Knowleggs`}`
+            DOMCacheGetOrSet(`lr${i}`).innerText = `${legendaryResearches[i].name}\n${legendaryResearches[i].description}\nLevel: ${toPlaces(data.legendaryResearch[i],0,data.legendaryResearch[i].add(1))}/${toPlaces(legendaryResearches[i].max,0,legendaryResearches[i].max.add(1))}\nCost: ${data.legendaryResearch[i].gte(legendaryResearches[i].max) ? '[MAXED]' : `${format(legendaryResearchCostDisplay[i])} Knowleggs`}`
             if(data.legendaryResearch[i].lt(legendaryResearches[i].max))
                 DOMCacheGetOrSet(`lr${i}`).classList = data.knowlegg.gte(legendaryResearchCostDisplay[i]) ? 'orangeButton' : 'redButton'
             else
@@ -408,7 +408,7 @@ function updateAscensionHTML() {
 }
 
 function updateAscension() {
-    knowleggGain = data.money.gte(1e45) && data.currentEgg === 18 ? (data.bestRunMoney.div(1e45).log(20)).plus(1) : D(0)
+    knowleggGain = data.money.gte(1e45) && data.currentEgg === 18 ? (data.bestRunMoney.div(1e45).log(20)).add(1) : Decimal.dZero
     knowleggGain = knowleggGain.times(planetBoosts[2])
     harvesterMaxLevel = 0
     harvesterMaxLevel += data.legendaryResearch[0].gte(legendaryResearches[0].max) ? 5 : 0
@@ -426,26 +426,26 @@ function ascend() {
     data.stats.ascensions[2] = data.stats.ascensions[1]
     data.stats.ascensions[1] = data.stats.ascensions[0]
     data.stats.ascensions[0] = knowleggGain
-    data.stats.timeInAscension = data.stats.timeInPrestige = D(0)
+    data.stats.timeInAscension = data.stats.timeInPrestige = Decimal.dZero
 
-    data.knowlegg = data.knowlegg.plus(knowleggGain)
+    data.knowlegg = data.knowlegg.add(knowleggGain)
     if(data.knowlegg.gt(data.bestKnowlegg)) data.bestKnowlegg = data.stats.bestKnowleggs = data.knowlegg
-    data.soulEggs = D(0)
-    data.bestSoulEggs = D(0)
-    data.prophecyEggs = D(0)
+    data.soulEggs = Decimal.dZero
+    data.bestSoulEggs = Decimal.dZero
+    data.prophecyEggs = Decimal.dZero
     for(let i = 0; i < 6; i++) {
         if(i !== 2)
-        data.planetData[i] = {money: D(0), chickens: D(0), research: new Array(28).fill(D(0))}
+        data.planetData[i] = {money: Decimal.dZero, chickens: Decimal.dZero, research: new Array(28).fill(Decimal.dZero)}
     }
-    data.research = new Array(28).fill(D(0))
+    data.research = new Array(28).fill(Decimal.dZero)
     for(let i = 0; i < 6; i++)
-        data.epicResearch[i] = D(0)
-    eggValueBonus = D(1)
-    chickenGain = D(0)
-    layRate = D(1)
-    data.chickens = D(0)
-    data.money = D(0)
-    data.bestRunMoney = D(0)
+        data.epicResearch[i] = Decimal.dZero
+    eggValueBonus = Decimal.dOne
+    chickenGain = Decimal.dZero
+    layRate = Decimal.dOne
+    data.chickens = Decimal.dZero
+    data.money = Decimal.dZero
+    data.bestRunMoney = Decimal.dZero
     data.currentEgg = 0
     updateResearch()
     updateEggValueBonus()
@@ -470,32 +470,32 @@ function updateAscensionHoverText(id,type) {
         case 'artifact':
             DOMCacheGetOrSet(`artifactSlot${id}`).classList = 'artifactSlot-selected'
             if(id < 4)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).plus(1))}% Egg Value\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].plus(1))}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).add(1))}% Egg Value\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].add(1))}`
             else if(id >= 4 && id < 8)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).plus(1))}% Enlightenment Egg Value\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].plus(1))}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).add(1))}% Enlightenment Egg Value\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].add(1))}`
             else if(id >= 8 && id < 12)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).plus(1))}% Prophecy Egg Bonus\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].plus(1))}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).add(1))}% Prophecy Egg Bonus\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].add(1))}`
             else if(id >= 12 && id < 16)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).plus(1))}% Soul Egg Bonus\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].plus(1))}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).add(1))}% Soul Egg Bonus\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].add(1))}`
             else if(id >= 16 && id < 20)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).plus(1))}% Internal Hatchery Rate\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].plus(1))}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | +${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).add(1))}% Internal Hatchery Rate\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].add(1))}`
             else if(id >= 20 && id < 24)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | -${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).plus(1))}% Research Cost\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].plus(1))}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedArtifact[id] ? 'Not Discovered Yet' : `${artifacts[id].name} | -${toPlaces(artifacts[id].effect.times(100),2,(artifacts[id].effect.times(100)).add(1))}% Research Cost\n You have: ${toPlaces(data.artifacts[id],0,data.artifacts[id].add(1))}`
             break
         case 'gem':
             DOMCacheGetOrSet(`gemSlot${id}`).classList = 'artifactSlot-selected'
             if(id < 3)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).plus(1))}% of Host Effect on Enlightenment Egg\n You have: ${toPlaces(data.gems[id],0,data.gems[id].plus(1))}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).add(1))}% of Host Effect on Enlightenment Egg\n You have: ${toPlaces(data.gems[id],0,data.gems[id].add(1))}`
             else if(id >= 3 && id < 6)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).plus(1))}% Hatchery Rate\n You have: ${toPlaces(data.gems[id],0,data.gems[id].plus(1))}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).add(1))}% Hatchery Rate\n You have: ${toPlaces(data.gems[id],0,data.gems[id].add(1))}`
             else if(id >= 6 && id < 9)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).plus(1))}% Egg Value\n You have: ${toPlaces(data.gems[id],0,data.gems[id].plus(1))}` 
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).add(1))}% Egg Value\n You have: ${toPlaces(data.gems[id],0,data.gems[id].add(1))}` 
             else if(id >= 9 && id < 12)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).plus(1))}% Egg Laying Rate\n You have: ${toPlaces(data.gems[id],0,data.gems[id].plus(1))}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).add(1))}% Egg Laying Rate\n You have: ${toPlaces(data.gems[id],0,data.gems[id].add(1))}`
             else if(id >= 12 && id < 15)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).plus(1))}% Soul Egg Bonus\n You have: ${toPlaces(data.gems[id],0,data.gems[id].plus(1))}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).add(1))}% Soul Egg Bonus\n You have: ${toPlaces(data.gems[id],0,data.gems[id].add(1))}`
             else if(id >= 15 && id < 18)
-                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).plus(1))}% Prophecy Egg Bonus\n You have: ${toPlaces(data.gems[id],0,data.gems[id].plus(1))}`
+                DOMCacheGetOrSet('artifactHoverText').innerText = !data.unlockedGem[id] ? 'Not Discovered Yet' : `${gems[id].name} | +${toPlaces(gems[id].effect.times(100),2,(gems[id].effect.times(100)).add(1))}% Prophecy Egg Bonus\n You have: ${toPlaces(data.gems[id],0,data.gems[id].add(1))}`
 
             break
         default:
@@ -557,12 +557,12 @@ function selectArtifact(artifactID) {
         return
     }
     if(data.activeArtifacts[selectingArtifactGem.slotID] != -1) {
-        data.artifacts[data.activeArtifacts[selectingArtifactGem.slotID]] = data.artifacts[data.activeArtifacts[selectingArtifactGem.slotID]].plus(1)
+        data.artifacts[data.activeArtifacts[selectingArtifactGem.slotID]] = data.artifacts[data.activeArtifacts[selectingArtifactGem.slotID]].add(1)
     }
     data.activeArtifacts[selectingArtifactGem.slotID] = artifactID
     for(let i = 0; i < 3; i++) {
         if(!gemSlotAvailable(i+(selectingArtifactGem.slotID*3)) && data.activeGems[i+(selectingArtifactGem.slotID*3)] !== -1)
-            data.gems[data.activeGems[i+(selectingArtifactGem.slotID*3)]] = data.gems[data.activeGems[i+(selectingArtifactGem.slotID*3)]].plus(1)
+            data.gems[data.activeGems[i+(selectingArtifactGem.slotID*3)]] = data.gems[data.activeGems[i+(selectingArtifactGem.slotID*3)]].add(1)
             data.activeGems[i+(selectingArtifactGem.slotID*3)] = -1;
     }
     selectingArtifactGem.status = false
@@ -575,7 +575,7 @@ function selectGem(gemID) {
     if(!selectingArtifactGem.status || selectingArtifactGem.type !== 'gem') return
     if(!data.unlockedGem[gemID] || data.gems[gemID].lte(0)) return
     if(data.activeGems[selectingArtifactGem.slotID] != -1) {
-        data.gems[data.activeGems[selectingArtifactGem.slotID]] = data.gems[data.activeGems[selectingArtifactGem.slotID]].plus(1)
+        data.gems[data.activeGems[selectingArtifactGem.slotID]] = data.gems[data.activeGems[selectingArtifactGem.slotID]].add(1)
     }
     data.activeGems[selectingArtifactGem.slotID] = gemID
     selectingArtifactGem.status = false
@@ -634,17 +634,17 @@ function generateArtifactCraftingInfo(artifactID,type) {
                 let artifactCraftArr = artifacts[artifactID].crafting
                 for(let i = 0; i < artifactCraftArr.length; i++) {
                     if(artifactCraftArr[i].type === 'artifact') {
-                        str += `${artifacts[artifactCraftArr[i].id].name}: x${toPlaces(artifactCraftArr[i].count,0,artifactCraftArr[i].count.plus(1))} (${toPlaces(data.artifacts[artifactCraftArr[i].id],0,data.artifacts[artifactCraftArr[i].id].plus(1))})\n`
+                        str += `${artifacts[artifactCraftArr[i].id].name}: x${toPlaces(artifactCraftArr[i].count,0,artifactCraftArr[i].count.add(1))} (${toPlaces(data.artifacts[artifactCraftArr[i].id],0,data.artifacts[artifactCraftArr[i].id].add(1))})\n`
                     }
                     else {
-                        str += `${gems[artifactCraftArr[i].id].name}: x${toPlaces(artifactCraftArr[i].count,0,artifactCraftArr[i].count.plus(1))} (${toPlaces(data.gems[artifactCraftArr[i].id],0,data.gems[artifactCraftArr[i].id].plus(1))})\n`
+                        str += `${gems[artifactCraftArr[i].id].name}: x${toPlaces(artifactCraftArr[i].count,0,artifactCraftArr[i].count.add(1))} (${toPlaces(data.gems[artifactCraftArr[i].id],0,data.gems[artifactCraftArr[i].id].add(1))})\n`
                     }
                 }
             break
         case 'gem':
             let gemCraftArr = gems[artifactID].crafting
             for(let i = 0; i < gemCraftArr.length; i++) {
-                    str += `${gems[gemCraftArr[i].id].name}: x${toPlaces(gemCraftArr[i].count,0,gemCraftArr[i].count.plus(1))} (${toPlaces(data.gems[gemCraftArr[i].id],0,data.gems[gemCraftArr[i].id].plus(1))})\n`
+                    str += `${gems[gemCraftArr[i].id].name}: x${toPlaces(gemCraftArr[i].count,0,gemCraftArr[i].count.add(1))} (${toPlaces(data.gems[gemCraftArr[i].id],0,data.gems[gemCraftArr[i].id].add(1))})\n`
             }
             break
         default:
@@ -688,10 +688,10 @@ function craftArtifact() {
     }
 
     if(artifactHoverIndex.type === 'artifact') {
-        data.artifacts[artifactHoverIndex.id] = data.artifacts[artifactHoverIndex.id].plus(1)
+        data.artifacts[artifactHoverIndex.id] = data.artifacts[artifactHoverIndex.id].add(1)
     }
     else {
-        data.gems[artifactHoverIndex.id] = data.gems[artifactHoverIndex.id].plus(1)
+        data.gems[artifactHoverIndex.id] = data.gems[artifactHoverIndex.id].add(1)
     }
     updateAscensionHoverText(artifactHoverIndex.id,artifactHoverIndex.type)
 }
@@ -710,11 +710,11 @@ function runHarvester(id) {
         data.harvesters[id].timeRemaining = 0
 
         for(let i = 0; i < harvesterYield.artifacts.length; i++) {
-            data.artifacts[harvesterYield.artifacts[i].id] = data.artifacts[harvesterYield.artifacts[i].id].plus(getRandom(harvesterYield.artifacts[i].lower,harvesterYield.artifacts[i].upper+1))
+            data.artifacts[harvesterYield.artifacts[i].id] = data.artifacts[harvesterYield.artifacts[i].id].add(getRandom(harvesterYield.artifacts[i].lower,harvesterYield.artifacts[i].upper+1))
         }
         
         for(let i = 0; i < harvesterYield.gems.length; i++) {
-            data.gems[harvesterYield.gems[i].id] = data.gems[harvesterYield.gems[i].id].plus(getRandom(harvesterYield.gems[i].lower,harvesterYield.gems[i].upper+1))
+            data.gems[harvesterYield.gems[i].id] = data.gems[harvesterYield.gems[i].id].add(getRandom(harvesterYield.gems[i].lower,harvesterYield.gems[i].upper+1))
         }
 
         for(let i = 0; i < data.unlockedArtifact.length; i++) {
@@ -823,8 +823,8 @@ function saveLoadout() {
 }
 
 function getActiveArtifactBoost(groupID) {
-    let boostSum = D(1)
-    let currentArtifactBoost = D(0)
+    let boostSum = Decimal.dOne
+    let currentArtifactBoost = Decimal.dZero
     for(let i = 0; i < data.activeArtifacts.length; i++) {
         if(data.activeArtifacts[i] !== -1 && Math.floor(data.activeArtifacts[i] / 4) === groupID) { // Valid Artifact?
             if(data.currentEgg !== 18 || (groupID === 1 && data.currentEgg === 18)) { // Not Enlightenment Egg or its a Scroll
@@ -834,30 +834,30 @@ function getActiveArtifactBoost(groupID) {
             if(data.currentEgg === 18 && groupID !== 1) {
                 currentArtifactBoost = artifacts[data.activeArtifacts[i]].effect
                 if(data.activeGems[i * 3] !== -1 && Math.floor(data.activeGems[i * 3] / 3) === 0) { // Apply Knowledge Gem Boost
-                    currentArtifactBoost = currentArtifactBoost.times(gems[data.activeGems[i * 3]].effect.plus(1))
+                    currentArtifactBoost = currentArtifactBoost.times(gems[data.activeGems[i * 3]].effect.add(1))
                 }
                 if(data.activeGems[(i * 3) + 1] !== -1 && Math.floor(data.activeGems[(i * 3) + 1] / 3) === 0) { // Apply Knowledge Gem Boost
-                    currentArtifactBoost = currentArtifactBoost.times(gems[data.activeGems[(i * 3) + 1]].effect.plus(1))
+                    currentArtifactBoost = currentArtifactBoost.times(gems[data.activeGems[(i * 3) + 1]].effect.add(1))
                 }
                 if(data.activeGems[(i * 3) + 2] !== -1 && Math.floor(data.activeGems[(i * 3) + 2] / 3) === 0) { // Apply Knowledge Gem Boost
-                    currentArtifactBoost = currentArtifactBoost.times(gems[data.activeGems[(i * 3) + 2]].effect.plus(1))
+                    currentArtifactBoost = currentArtifactBoost.times(gems[data.activeGems[(i * 3) + 2]].effect.add(1))
                 }
                 if(currentArtifactBoost.eq(artifacts[data.activeArtifacts[i]].effect)) {// No Knowledge Gem = No Boost
-                    currentArtifactBoost = D(0)
+                    currentArtifactBoost = Decimal.dZero
                 }
             }
-            boostSum = boostSum.plus(currentArtifactBoost)
+            boostSum = boostSum.add(currentArtifactBoost)
         }
     }
     return boostSum
 }
 
 function getActiveGemBoost(groupID) {
-    let boostSum = D(1) 
+    let boostSum = Decimal.dOne 
     for(let i = 0; i < data.activeGems.length; i++) {
         if(data.activeGems[i] !== -1 && Math.floor(data.activeGems[i] / 3) === groupID) {
             if(data.currentEgg !== 18 || Math.floor(data.activeArtifacts[Math.floor(i / 3)] / 4) === 1) {
-                boostSum = boostSum.plus(gems[data.activeGems[i]].effect)
+                boostSum = boostSum.add(gems[data.activeGems[i]].effect)
             }
         }
     }  
