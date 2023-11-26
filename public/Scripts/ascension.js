@@ -693,6 +693,7 @@ function craftArtifact() {
     else {
         data.gems[artifactHoverIndex.id] = data.gems[artifactHoverIndex.id].plus(1)
     }
+    updateAscensionHoverText(artifactHoverIndex.id,artifactHoverIndex.type)
 }
 
 function startHarvester(id) {
