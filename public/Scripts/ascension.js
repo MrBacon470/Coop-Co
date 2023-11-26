@@ -655,10 +655,11 @@ function generateArtifactCraftingInfo(artifactID,type) {
 }
 
 function canCraftArtifact(artifactID,type) {
+    if(artifactID === -1 || type === null) return false
     if(type !== 'artifact' && type !== 'gem') {console.error('Invalid Type in canCraftArtifact()'); return false}
     if((type === 'artifact' && !data.unlockedArtifact[artifactID]) || (type === 'gem' && !data.unlockedGem[artifactID])) return false
 
-    let craftingArr = type === 'artifact' ? artifacts[artifactID].crafting : gems[artifactID].crafting
+    const craftingArr = type === 'artifact' ? artifacts[artifactID].crafting : gems[artifactID].crafting
     if(craftingArr.length === 0) return false
 
     for(let i = 0; i < craftingArr.length; i++) {
@@ -671,6 +672,27 @@ function canCraftArtifact(artifactID,type) {
     }
 
     return true
+}
+
+function craftArtifact() {
+    if(!canCraftArtifact(artifactHoverIndex.id,artifactHoverIndex.type)) return
+
+    const craftingArr = artifactHoverIndex.type === 'artifact' ? artifacts[artifactHoverIndex.id].crafting : gems[artifactHoverIndex.id].crafting
+    for(let i = 0; i < craftingArr.length; i++) {
+        if(craftingArr[i].type === 'artifact') {
+            data.artifacts[craftingArr[i].id] = data.artifacts[craftingArr[i].id].sub(craftingArr[i].count)
+        }
+        else {
+            data.gems[craftingArr[i].id] = data.gems[craftingArr[i].id].sub(craftingArr[i].count)
+        }
+    }
+
+    if(artifactHoverIndex.type === 'artifact') {
+        data.artifacts[artifactHoverIndex.id] = data.artifacts[artifactHoverIndex.id].plus(1)
+    }
+    else {
+        data.gems[artifactHoverIndex.id] = data.gems[artifactHoverIndex.id].plus(1)
+    }
 }
 
 function startHarvester(id) {
