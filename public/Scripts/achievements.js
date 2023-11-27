@@ -86,7 +86,7 @@ function getAchievementsCompleted() {
 }
 const contractCompleteReq = [Decimal.dOne,Decimal.dTen,D(100),D(250)]
 const soulAchReq = [D(1e3),D(1e6),D(1e9),D(1e12)]
-const prophecyAchReq = [Decimal.dTen,Decimal.dTen,D(1e3),D(1e4)]
+const prophecyAchReq = [Decimal.dTen,D(100),D(1e3),D(1e4)]
 const knowleggAchReq = [Decimal.dOne,D(100),D(1000),D(10000)]
 function checkAchievements() {
     //Eggs
