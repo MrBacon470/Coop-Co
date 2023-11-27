@@ -273,17 +273,27 @@ function toggleBA(i) {
 }
 
 function updateStats() {
+    // General Stats
     DOMCacheGetOrSet('stat0').textContent = `Best Money: $${format(data.stats.bestMoney)}`
     DOMCacheGetOrSet('stat1').textContent = `Best Egg: ${data.stats.bestEgg}`
     DOMCacheGetOrSet('stat2').textContent = `Best Chickens: ${format(data.stats.bestChickens)}`
     DOMCacheGetOrSet('stat3').textContent = `Contracts Completed: ${format(data.stats.contractsComplete)}`
     DOMCacheGetOrSet('stat4').textContent = `Time Played: ${formatTime(data.stats.timePlayed)}`
+    // Prestige Stats
     DOMCacheGetOrSet('stat5').textContent = `Prestige 1: ${format(data.stats.prestiges[0])} Soul Eggs`
     DOMCacheGetOrSet('stat6').textContent = `Prestige 2: ${format(data.stats.prestiges[1])} Soul Eggs`
     DOMCacheGetOrSet('stat7').textContent = `Prestige 3: ${format(data.stats.prestiges[2])} Soul Eggs`
-    DOMCacheGetOrSet('stat8').textContent = `Time In Current Run: ${formatTime(data.stats.timeInPrestige)}`
+    DOMCacheGetOrSet('stat8').textContent = `Time In Current Prestige: ${formatTime(data.stats.timeInPrestige)}`
     DOMCacheGetOrSet('stat9').textContent = `Best Soul Eggs: ${format(data.stats.bestSoulEggs)}`
     DOMCacheGetOrSet('stat10').textContent = `Best Prophecy Eggs: ${format(data.stats.bestProphecyEggs)}`
+    DOMCacheGetOrSet('stat16').textContent = `Average Soul Egg Gain: ${format((data.stats.prestiges[0].add(data.stats.prestiges[1]).add(data.stats.prestiges[2]).div(3)))}`
+    //  Ascension Stats
+    DOMCacheGetOrSet('stat11').textContent = `Ascension 1: ${format(data.stats.ascensions[0])} Knowleggs`
+    DOMCacheGetOrSet('stat12').textContent = `Ascension 2: ${format(data.stats.ascensions[1])} Knowleggs`
+    DOMCacheGetOrSet('stat13').textContent = `Ascension 3: ${format(data.stats.ascensions[2])} Knowleggs`
+    DOMCacheGetOrSet('stat14').textContent = `Best Knowleggs: ${format(data.stats.bestKnowleggs)}`
+    DOMCacheGetOrSet('stat15').textContent = `Time In Current Ascension: ${formatTime(data.stats.timeInAscension)}`
+    DOMCacheGetOrSet('stat17').textContent = `Average Knowlegg Egg Gain: ${format((data.stats.ascensions[0].add(data.stats.ascensions[1]).add(data.stats.ascensions[2]).div(3)))}`
 }
 
  function createAlert(a,b,c) {
