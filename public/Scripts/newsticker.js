@@ -262,7 +262,10 @@ const newsArray = [
         "'you ain't built for these streets cuh', says random prophecy egg dealer",
         true
     ],
-    ["Egg is the previous mechanic", true]
+    ["Egg is the previous mechanic", true],
+    ["The Medical Egg looks like a certain country's flag, I can't figure out which",true],
+    ["I love my new sticker",true]
+
 ];
 
 const s = DOMCacheGetOrSet("news");
