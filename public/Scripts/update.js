@@ -20,7 +20,7 @@ function updateHTML() {
         DOMCacheGetOrSet('eggPromoteButton').style.setProperty("--x", nextEggUnlockProgress.mul(100).max(0).min(100).toString() + '%')
         DOMCacheGetOrSet('eggPromoteButton').classList = data.money.gte(eggData[data.currentEgg+1].unlockReq) ? 'greenButtonPromote' : 'redButtonPromote'
     }
-    DOMCacheGetOrSet('tabButton4').style.display = data.hasPrestiged === true ? 'block' : 'none'
+    DOMCacheGetOrSet('tabButton4').style.display = data.hasPrestiged || data.currentEgg >= 3 ? 'block' : 'none'
     DOMCacheGetOrSet('prestigeButton').classList = data.currentEgg < 3 ? 'redButtonHeader' : 'purpleButtonHeader'
     DOMCacheGetOrSet('prestigeButton').style.display = contractActive() || data.onPlanet === true ? 'none' : 'block'
     DOMCacheGetOrSet('prestigeButton').textContent = data.currentEgg < 3 ? 'Reach Rocket Fuel Eggs' : `Prestige: +${format(soulEggGain)} Soul Eggs`
@@ -29,7 +29,7 @@ function updateHTML() {
     DOMCacheGetOrSet('ascensionButton').style.display = data.currentEgg >= 18 ? 'block' : 'none'
     DOMCacheGetOrSet('ascensionButton').classList = data.currentEgg >= 18 && data.money.gte(1e45) ? 'orangeButtonHeader' : 'redButtonHeader'
     DOMCacheGetOrSet('ascensionButton').innerText = data.currentEgg >= 18 && data.money.gte(1e45) ? `Ascend: +${format(knowleggGain)} Knowleggs` : `Ascend: ($${format(data.money)}/${format(1e45)})`
-    DOMCacheGetOrSet('tabButton7').style.display = data.hasAscended ? 'block' : 'none'
+    DOMCacheGetOrSet('tabButton7').style.display = data.hasAscended || data.currentEgg >= 18 ? 'block' : 'none'
     DOMCacheGetOrSet('ascSubButton1').style.display = data.legendaryResearch[1].gte(legendaryResearches[1].max) ? 'block' : 'none'
     DOMCacheGetOrSet('ascSubButton2').style.display = data.legendaryResearch[1].gte(legendaryResearches[1].max) ? 'block' : 'none'
     DOMCacheGetOrSet('ascSubButton3').style.display = data.legendaryResearch[3].gte(legendaryResearches[3].max) ? 'block' : 'none'
