@@ -213,7 +213,7 @@ function updateIntHatch() {
     chickenGain = chickenGain.add(D(50).times(data.research[19]))
     chickenGain = chickenGain.times(4)
     chickenGain = chickenGain.times((D(0.05).times(data.epicResearch[0])).add(Decimal.dOne))
-    chickenGain = !data.onPlanet ? chickenGain.times(planetBoosts[4]) : chickenGain
+    chickenGain = chickenGain.times(planetBoosts[4])
     chickenGain = chickenGain.times(getActiveArtifactBoost(4))
     chickenGain = chickenGain.times(getActiveGemBoost(1))
 }
