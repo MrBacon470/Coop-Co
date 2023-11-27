@@ -91,8 +91,8 @@ function updateHTML() {
             else
                 DOMCacheGetOrSet(`er${i}`).classList = 'blueButton'
         for(let i = 0; i < epicResearches.length; i++) {
-            DOMCacheGetOrSet(`er${i}`).innerText = data.epicResearch[i].lt(epicResearches[i].maxLevel) ? `${epicResearches[i].name}\n${epicResearches[i].desc}\nLevel: ${toPlaces(data.epicResearch[i],0,epicResearches[i].maxLevel.add(1))}/${toPlaces(epicResearches[i].maxLevel,0,epicResearches[i].maxLevel.add(1))}\nCost: ${format(epicResearchCostDisplay[i])} Soul Eggs` : 
-            `${epicResearches[i].name}\n${epicResearches[i].desc}\nLevel: ${toPlaces(data.epicResearch[i],0,epicResearches[i].maxLevel.add(1))}/${toPlaces(epicResearches[i].maxLevel,0,epicResearches[i].maxLevel.add(1))}\nCost: [MAXED]`
+            DOMCacheGetOrSet(`er${i}`).innerText = data.epicResearch[i].lt(epicResearches[i].maxLevel) ? `${epicResearches[i].name}\n${epicResearches[i].desc}\nLevel: ${toPlaces(data.epicResearch[i],0,epicResearches[i].maxLevel.add(Decimal.dOne))}/${toPlaces(epicResearches[i].maxLevel,0,epicResearches[i].maxLevel.add(Decimal.dOne))}\nCost: ${format(epicResearchCostDisplay[i])} Soul Eggs` : 
+            `${epicResearches[i].name}\n${epicResearches[i].desc}\nLevel: ${toPlaces(data.epicResearch[i],0,epicResearches[i].maxLevel.add(Decimal.dOne))}/${toPlaces(epicResearches[i].maxLevel,0,epicResearches[i].maxLevel.add(Decimal.dOne))}\nCost: [MAXED]`
         }
         DOMCacheGetOrSet('prophecyEggSoftCapText').innerText = prophecyEggBoost.gte(1e6) ? `Prophecy Egg Boost is being divided by: ${format(softCapAmts[1])}` : `Prophecy Egg Boost Softcap takes effect at ${format(D(1e6))}`
         DOMCacheGetOrSet('auto2').style.display = data.epicResearch[9].gte(epicResearches[9].maxLevel) ? 'inline-block' : 'none'

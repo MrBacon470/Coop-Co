@@ -52,7 +52,7 @@ const newsArray = [
     [
         "One of your chickens crossed the road, you now have one less chicken.",
         true,
-        "data.chickens = data.chickens.sub(1);"
+        "data.chickens = data.chickens.sub(Decimal.dOne);"
     ],
     [
         () =>

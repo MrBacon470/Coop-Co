@@ -306,7 +306,7 @@ function updateCommonResearchHTML() {
   }
   else
     DOMCacheGetOrSet(`r${i}`).classList = 'blueButton'
-    DOMCacheGetOrSet(`r${i}`).innerText = data.research[i].lt(commonResearches[i].maxLevel) ? `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.add(1))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.add(1))}\nCost: $${format(commonResearchCostDisplay[i])}` : `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.add(1))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.add(1))}\nCost: [MAXED]`
+    DOMCacheGetOrSet(`r${i}`).innerText = data.research[i].lt(commonResearches[i].maxLevel) ? `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.add(Decimal.dOne))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.add(Decimal.dOne))}\nCost: $${format(commonResearchCostDisplay[i])}` : `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.add(Decimal.dOne))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.add(Decimal.dOne))}\nCost: [MAXED]`
   }
 }
 
@@ -315,12 +315,12 @@ function purchaseResearch(i) {
     updateResearch()
     let buyAmount = data.research[i].add(buyAmountNums[data.buyAmounts[0]]).lte(commonResearches[i].maxLevel) ? buyAmountNums[data.buyAmounts[0]] : commonResearches[i].maxLevel.sub(data.research[i]);
     // prevent going over max level
-    let costMult = Decimal.pow(1.15, buyAmount).sub(1).div(0.15);
+    let costMult = Decimal.pow(1.15, buyAmount).sub(Decimal.dOne).div(0.15);
     //calculate cost of buying buyAmount researches
     if(data.money.lt(commonResearchCost[i].times(costMult))) {
-        buyAmount = Math.floor(data.money.div(commonResearchCost[i]).times(0.15).add(1).log(1.15).toNumber());
+        buyAmount = Math.floor(data.money.div(commonResearchCost[i]).times(0.15).add(Decimal.dOne).log(1.15).toNumber());
         //reverse function to get maximum buyAmount
-        costMult = Decimal.pow(1.15, buyAmount).sub(1).div(0.15);
+        costMult = Decimal.pow(1.15, buyAmount).sub(Decimal.dOne).div(0.15);
     }
     data.money = data.money.sub(commonResearchCost[i].times(costMult));
     data.research[i] = data.research[i].add(buyAmount);
@@ -361,7 +361,7 @@ function purchaseEpicResearch(i) {
         updateResearch()
         if(data.soulEggs.gte(epicResearchCost[i]) && data.epicResearch[i].lt(epicResearches[i].maxLevel)) {
             data.soulEggs = data.soulEggs.sub(epicResearchCost[i])
-            data.epicResearch[i] = data.epicResearch[i].add(1)
+            data.epicResearch[i] = data.epicResearch[i].add(Decimal.dOne)
             updateHTML()
         }
         else
@@ -376,7 +376,7 @@ function purchaseLegendaryResearch(i) {
         updateResearch()
         if(data.knowlegg.gte(legendaryResearchCost[i]) && data.legendaryResearch[i].lt(legendaryResearches[i].max)) {
             data.knowlegg = data.knowlegg.sub(legendaryResearchCost[i])
-            data.legendaryResearch[i] = data.legendaryResearch[i].add(1)
+            data.legendaryResearch[i] = data.legendaryResearch[i].add(Decimal.dOne)
             updateHTML()
         }
         else

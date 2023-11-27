@@ -12,7 +12,7 @@ function generateHTMLAndHandlers() {
     DOMCacheGetOrSet('eggPromoteButton').addEventListener('click', () => promoteEgg())
     DOMCacheGetOrSet('ascensionButton').addEventListener('click', () => {createConfirmation('ascension')})
     //Egg Tab
-    DOMCacheGetOrSet('mainButton').addEventListener('click', () => {data.chickens = data.chickens.add(1)})
+    DOMCacheGetOrSet('mainButton').addEventListener('click', () => {data.chickens = data.chickens.add(Decimal.dOne)})
     //Research Tab
     for(let i = 0; i < commonResearches.length; i++) {
         DOMCacheGetOrSet(`r${i}`).classList = 'redButton'
@@ -201,7 +201,7 @@ function mainLoop() {
             runContract(i)
     }
     for(let i = 0; i < 6; i++) {
-        planetBoosts[i] = data.planetData[i].money.gt(0) ? Decimal.dOne.add(Decimal.sqrt(Decimal.log(data.planetData[i].money,5))) : Decimal.dOne
+        planetBoosts[i] = data.planetData[i].money.gt(Decimal.dZero) ? Decimal.dOne.add(Decimal.sqrt(Decimal.log(data.planetData[i].money,5))) : Decimal.dOne
     }
     currentEggValue = data.onPlanet === false ? eggData[data.currentEgg].value.times(eggValueBonus) : planetEggValue[data.currentPlanetIndex].times(eggValueBonus)
     data.chickens = data.onPlanet === true && data.currentPlanetIndex === 1 ? data.chickens.add(chickenGain.times(diff/60)) : data.chickens.add(chickenGain.times(diff/15))

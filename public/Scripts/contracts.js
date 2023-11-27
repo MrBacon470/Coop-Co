@@ -104,8 +104,8 @@ function generateContract(i) {
     }
     if(id > prestigeContracts.length - 1) index = prestigeContracts.length - 1
     let goal = (prestigeContracts[id].baseGoal.times((eggData[prestigeContracts[id].eggIndex].value).times(contractGoalBoost.times(soulEggBoost))))
-    let reward = Decimal.ln(Decimal.log10(prestigeContracts[id].baseGoal)).times(contractRewardBoost.add(1))
-    reward = reward.times(Decimal.log(contractGoalBoost,2)).add(1)
+    let reward = Decimal.ln(Decimal.log10(prestigeContracts[id].baseGoal)).times(contractRewardBoost.add(Decimal.dOne))
+    reward = reward.times(Decimal.log(contractGoalBoost,2)).add(Decimal.dOne)
     data.contracts[i].id = id
     data.contracts[i].goal = goal
     data.contracts[i].reward = reward
@@ -151,6 +151,6 @@ function runContract(i) {
       data.chickens = Decimal.dZero
       data.money = Decimal.dZero
       data.currentEgg = 0
-      data.stats.contractsComplete = data.stats.contractsComplete.add(1)
+      data.stats.contractsComplete = data.stats.contractsComplete.add(Decimal.dOne)
     }
 }
