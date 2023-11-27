@@ -14,7 +14,7 @@ const commonResearches = [
     {
       name: 'Internal Hatcheries',
       desc: '+8 Chickens/min',
-      maxLevel: D(10),
+      maxLevel: Decimal.dTen,
       baseCost: D(1836)
     },
     {
@@ -26,19 +26,19 @@ const commonResearches = [
     {
       name: 'Bigger Eggs',
       desc: 'Doubles Egg Value',
-      maxLevel: D(1),
+      maxLevel: Decimal.dOne,
       baseCost: D(1351894)
     },
     {
       name: 'Internal Hatchery Upgrades',
       desc: '+20 Chickens/min',
-      maxLevel: D(10),
+      maxLevel: Decimal.dTen,
       baseCost: D(16029660)
     },
     {
       name: 'USDE Prime Certification',
       desc: 'Triples Egg Value',
-      maxLevel: D(1),
+      maxLevel: Decimal.dOne,
       baseCost: D(32.318e12)
     },
     {
@@ -179,7 +179,7 @@ const epicResearches = [
     {
       name: 'Lab Upgrade',
       desc: 'Reduce Research Costs by 5%',
-      maxLevel: D(10),
+      maxLevel: Decimal.dTen,
       baseCost: D(1e5)
     },
     {
@@ -209,31 +209,31 @@ const epicResearches = [
     {
       name: 'Tier I-V Automator',
       desc: 'Automate Tier I-V Research',
-      maxLevel: D(1),
+      maxLevel: Decimal.dOne,
       baseCost: D(1e4)
     },
     {
       name: 'Tier VI-X Automator',
       desc: 'Automate Tier VI-X Research',
-      maxLevel: D(1),
+      maxLevel: Decimal.dOne,
       baseCost: D(1e7)
     },
     {
       name: 'Start with 1 Chicken',
       desc: 'Start with 1 Chicken on any Reset',
-      maxLevel: D(1),
+      maxLevel: Decimal.dOne,
       baseCost: D(1e6)
     },
     {
       name: 'Promotion Automator',
       desc: 'Automatic Promotions',
-      maxLevel: D(1),
+      maxLevel: Decimal.dOne,
       baseCost: D(1e9)
     },
     {
       name: 'Tier XI-XIV Automator',
       desc: 'Automated Tier XI-XIV Research',
-      maxLevel: D(1),
+      maxLevel: Decimal.dOne,
       baseCost: D(1e9)
     }
 ]
@@ -242,46 +242,46 @@ const legendaryResearches = [
   {
     name: 'Planetary Discovery',
     description: 'Unlock a final planet for discovery',
-    max: D(1),
-    baseCost: D(1)
+    max: Decimal.dOne,
+    baseCost: Decimal.dOne
   },
   {
     name: 'Basic Harvesting & Artifacts',
     description: 'Unlock Harvesters & The Reliquary',
-    max: D(1),
-    baseCost: D(10)
+    max: Decimal.dOne,
+    baseCost: Decimal.dTen
   },
   {
     name: 'Epic Research Autobuyer',
     description: 'Automatically Purchase Epic Researches',
-    max: D(1),
-    baseCost: D(10)
+    max: Decimal.dOne,
+    baseCost: Decimal.dTen
   },
   {
     name: 'Upgraded Harvesters',
     description: '+5 More Levels to Harvester Level Cap\nUnlock Tier II Artifacts & Tier I Gems',
-    max: D(1),
+    max: Decimal.dOne,
     baseCost: D(15)
   },
   {
     name: 'Advanced Harvesters',
     description: '+5 More Levels to Harvester Level Cap\nUnlock Tier III Artifacts & Tier II Gems',
-    max: D(1),
+    max: Decimal.dOne,
     baseCost: D(20)
   },
   {
     name: 'Superior Harvesters',
     description: '+5 More Levels to Harvester Level Cap\nUnlock Tier IV Artifacts & Tier III Gems',
-    max: D(1),
+    max: Decimal.dOne,
     baseCost: D(20)
   },
 ]
-let commonResearchCost = new Array(commonResearches.length).fill(D(0))
-let commonResearchCostDisplay = new Array(commonResearches.length).fill(D(0))
-let epicResearchCost = new Array(epicResearches.length).fill(D(0))
-let epicResearchCostDisplay = new Array(epicResearches.length).fill(D(0))
-let legendaryResearchCost = new Array(legendaryResearches.length).fill(D(0))
-let legendaryResearchCostDisplay = new Array(legendaryResearches.length).fill(D(0))
+let commonResearchCost = new Array(commonResearches.length).fill(Decimal.dZero)
+let commonResearchCostDisplay = new Array(commonResearches.length).fill(Decimal.dZero)
+let epicResearchCost = new Array(epicResearches.length).fill(Decimal.dZero)
+let epicResearchCostDisplay = new Array(epicResearches.length).fill(Decimal.dZero)
+let legendaryResearchCost = new Array(legendaryResearches.length).fill(Decimal.dZero)
+let legendaryResearchCostDisplay = new Array(legendaryResearches.length).fill(Decimal.dZero)
 
 for(let i = 0; i < commonResearches.length; i++) {
     commonResearchCost[i] = ((commonResearches[i].baseCost).sub(commonResearches[i].baseCost.times(D(0.05).times(data.epicResearch[1])))) //Base Cost Calc
@@ -306,21 +306,21 @@ function updateCommonResearchHTML() {
   }
   else
     DOMCacheGetOrSet(`r${i}`).classList = 'blueButton'
-    DOMCacheGetOrSet(`r${i}`).innerText = data.research[i].lt(commonResearches[i].maxLevel) ? `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.plus(1))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.plus(1))}\nCost: $${format(commonResearchCostDisplay[i])}` : `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.plus(1))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.plus(1))}\nCost: [MAXED]`
+    DOMCacheGetOrSet(`r${i}`).innerText = data.research[i].lt(commonResearches[i].maxLevel) ? `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.add(Decimal.dOne))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.add(Decimal.dOne))}\nCost: $${format(commonResearchCostDisplay[i])}` : `${commonResearches[i].name}\n${commonResearches[i].desc}\nLevel: ${toPlaces(data.research[i],0,commonResearches[i].maxLevel.add(Decimal.dOne))}/${toPlaces(commonResearches[i].maxLevel,0,commonResearches[i].maxLevel.add(Decimal.dOne))}\nCost: [MAXED]`
   }
 }
 
 function purchaseResearch(i) {
     const buyAmountNums = [1,5,10,20]
     updateResearch()
-    let buyAmount = data.research[i].plus(buyAmountNums[data.buyAmounts[0]]).lte(commonResearches[i].maxLevel) ? buyAmountNums[data.buyAmounts[0]] : commonResearches[i].maxLevel.minus(data.research[i]);
+    let buyAmount = data.research[i].add(buyAmountNums[data.buyAmounts[0]]).lte(commonResearches[i].maxLevel) ? buyAmountNums[data.buyAmounts[0]] : commonResearches[i].maxLevel.sub(data.research[i]);
     // prevent going over max level
-    let costMult = Decimal.pow(1.15, buyAmount).minus(1).div(0.15);
+    let costMult = Decimal.pow(1.15, buyAmount).sub(Decimal.dOne).div(0.15);
     //calculate cost of buying buyAmount researches
     if(data.money.lt(commonResearchCost[i].times(costMult))) {
-        buyAmount = Math.floor(data.money.div(commonResearchCost[i]).times(0.15).plus(1).log(1.15).toNumber());
+        buyAmount = Math.floor(data.money.div(commonResearchCost[i]).times(0.15).add(Decimal.dOne).log(1.15).toNumber());
         //reverse function to get maximum buyAmount
-        costMult = Decimal.pow(1.15, buyAmount).minus(1).div(0.15);
+        costMult = Decimal.pow(1.15, buyAmount).sub(Decimal.dOne).div(0.15);
     }
     data.money = data.money.sub(commonResearchCost[i].times(costMult));
     data.research[i] = data.research[i].add(buyAmount);
@@ -361,7 +361,7 @@ function purchaseEpicResearch(i) {
         updateResearch()
         if(data.soulEggs.gte(epicResearchCost[i]) && data.epicResearch[i].lt(epicResearches[i].maxLevel)) {
             data.soulEggs = data.soulEggs.sub(epicResearchCost[i])
-            data.epicResearch[i] = data.epicResearch[i].add(1)
+            data.epicResearch[i] = data.epicResearch[i].add(Decimal.dOne)
             updateHTML()
         }
         else
@@ -376,7 +376,7 @@ function purchaseLegendaryResearch(i) {
         updateResearch()
         if(data.knowlegg.gte(legendaryResearchCost[i]) && data.legendaryResearch[i].lt(legendaryResearches[i].max)) {
             data.knowlegg = data.knowlegg.sub(legendaryResearchCost[i])
-            data.legendaryResearch[i] = data.legendaryResearch[i].add(1)
+            data.legendaryResearch[i] = data.legendaryResearch[i].add(Decimal.dOne)
             updateHTML()
         }
         else

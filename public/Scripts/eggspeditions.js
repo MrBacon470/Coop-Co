@@ -3,14 +3,14 @@ const planetDescs = ['Dark Energy Abounds (Higher Research Scaling)','Tick Tock 
 const planetEggImgIDs = ['darkenergy','time','peace','abyss','lava','light']
 const planetEggNames = ['Dark Energy','Time','Peace','Abyss','Lava','Light']
 const planetBoostNames = ['Planet Egg Value','Lay Rate','Knowlegg Gain','Soul Egg Gain','Chicken Gain','Egg Value']
-const planetEggValue = [D(1e3),D(100),D(10),D(1),D(0.5),D(0.25)]
+const planetEggValue = [D(1e3),D(100),Decimal.dTen,Decimal.dOne,D(0.5),D(0.25)]
 const discoveryEggIndexes = [3,5,6,10,13,14]
 const discoveryReqs = [D(2.5e4),D(1e5),D(1e6),D(5e6),D(7.5e6),D(1e7)]
 let planetHoverIndex = -1
-let planetBoosts = new Array(6).fill(D(0))
+let planetBoosts = new Array(6).fill(Decimal.dZero)
 function updateEggspeditionsUI() {
 
-    DOMCacheGetOrSet('planet2').style.display = data.legendaryResearch[0].gte(1) ? 'inline' : 'none'
+    DOMCacheGetOrSet('planet2').style.display = data.legendaryResearch[0].gte(Decimal.dOne) ? 'inline' : 'none'
 
     for(let i = 0; i < data.planetsDiscovered.length; i++) {
         if(data.planetsDiscovered[i] === false && planetHoverIndex === i && DOMCacheGetOrSet('planet'+i).getAttribute('src') !== '/Images/planetactive.png')
@@ -64,9 +64,9 @@ function journeyToPlanet() {
         data.chickens = data.planetData[data.currentPlanetIndex].chickens
         data.money = data.planetData[data.currentPlanetIndex].money
         data.onPlanet = true
-        eggValueBonus = D(1)
-        chickenGain = D(0)
-        layRate = D(1)
+        eggValueBonus = Decimal.dOne
+        chickenGain = Decimal.dZero
+        layRate = Decimal.dOne
         data.currentEgg = 0
     }
     else if(data.onPlanet === true) {
@@ -74,12 +74,12 @@ function journeyToPlanet() {
         data.planetData[data.currentPlanetIndex].research = data.research
         data.planetData[data.currentPlanetIndex].chickens = data.chickens
         data.planetData[data.currentPlanetIndex].money = data.money
-        data.money = D(0)
-        data.chickens = D(0)
-        data.research = new Array(28).fill(D(0))
+        data.money = Decimal.dZero
+        data.chickens = Decimal.dZero
+        data.research = new Array(28).fill(Decimal.dZero)
         data.currentEgg = 0
-        eggValueBonus = D(1)
-        chickenGain = D(0)
+        eggValueBonus = Decimal.dOne
+        chickenGain = Decimal.dZero
         data.currentPlanetIndex = -1
     }
 }

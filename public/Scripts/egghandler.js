@@ -1,13 +1,13 @@
-let currentEggValue = D(0)
-let eggValueBonus = D(1)
-let chickenGain = D(0)
-let layRate = D(1)     
+let currentEggValue = Decimal.dZero
+let eggValueBonus = Decimal.dOne
+let chickenGain = Decimal.dZero
+let layRate = Decimal.dOne     
 const eggData = [
   {
     id:"egg",
     name:"Regular",
-    discoverReq:D(0),
-    unlockReq:D(0),
+    discoverReq:Decimal.dZero,
+    unlockReq:Decimal.dZero,
     value:D(0.25)
   },
   {
@@ -174,27 +174,27 @@ function updateEggPage() {
 }
 
 function updateEggValueBonus() {
-    eggValueBonus = D(1)
-    eggValueBonus = data.research[1].gt(0) ? eggValueBonus.times((D(0.25).times(data.research[1])).plus(1)) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[3].gt(0) ? eggValueBonus.times((D(0.25).times(data.research[3])).plus(1)) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[4].gt(0) ? eggValueBonus.times((D(2).times(data.research[4]))) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[6].gt(0) ? eggValueBonus.times((D(3).times(data.research[6]))) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[8].gt(0) ? eggValueBonus.times((D(0.25).times(data.research[8])).plus(1)) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[10].gt(0) ? eggValueBonus.times((D(0.15).times(data.research[10])).plus(1)) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[11].gt(0) ? eggValueBonus.times((D(0.15).times(data.research[11])).plus(1)) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[12].gt(0) ? eggValueBonus.times((D(2).times(data.research[12]))) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[14].gt(0) ? eggValueBonus.times((D(0.1).times(data.research[14])).plus(1)) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[17].gt(0) ? eggValueBonus.times((D(2).times(data.research[17]))) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[18].gt(0) ? eggValueBonus.times((D(0.25).times(data.research[18])).plus(1)) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[20].gt(0) ? eggValueBonus.times((D(0.25).times(data.research[20])).plus(1)) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[21].gt(0) ? eggValueBonus.times((D(0.1).times(data.research[21])).plus(1)) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[22].gt(0) ? eggValueBonus.times((D(10).times(data.research[22]))) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[23].gt(0) ? eggValueBonus.times((D(0.05).times(data.research[23])).plus(1)) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[24].gt(0) ? eggValueBonus.times((D(0.01).times(data.research[24])).plus(1)) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[25].gt(0) ? eggValueBonus.times((D(.01).times(data.research[25])).plus(1)) : eggValueBonus.times(D(1))
-    eggValueBonus = data.research[26].gt(0) ? eggValueBonus.times((D(10).times(data.research[26]))) : eggValueBonus.times(D(1))
+    eggValueBonus = Decimal.dOne
+    eggValueBonus = data.research[1].gt(Decimal.dZero) ? eggValueBonus.times((D(0.25).times(data.research[1])).add(Decimal.dOne)) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[3].gt(Decimal.dZero) ? eggValueBonus.times((D(0.25).times(data.research[3])).add(Decimal.dOne)) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[4].gt(Decimal.dZero) ? eggValueBonus.times((Decimal.dTwo.times(data.research[4]))) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[6].gt(Decimal.dZero) ? eggValueBonus.times((D(3).times(data.research[6]))) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[8].gt(Decimal.dZero) ? eggValueBonus.times((D(0.25).times(data.research[8])).add(Decimal.dOne)) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[10].gt(Decimal.dZero) ? eggValueBonus.times((D(0.15).times(data.research[10])).add(Decimal.dOne)) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[11].gt(Decimal.dZero) ? eggValueBonus.times((D(0.15).times(data.research[11])).add(Decimal.dOne)) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[12].gt(Decimal.dZero) ? eggValueBonus.times((Decimal.dTwo.times(data.research[12]))) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[14].gt(Decimal.dZero) ? eggValueBonus.times((D(0.1).times(data.research[14])).add(Decimal.dOne)) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[17].gt(Decimal.dZero) ? eggValueBonus.times((Decimal.dTwo.times(data.research[17]))) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[18].gt(Decimal.dZero) ? eggValueBonus.times((D(0.25).times(data.research[18])).add(Decimal.dOne)) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[20].gt(Decimal.dZero) ? eggValueBonus.times((D(0.25).times(data.research[20])).add(Decimal.dOne)) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[21].gt(Decimal.dZero) ? eggValueBonus.times((D(0.1).times(data.research[21])).add(Decimal.dOne)) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[22].gt(Decimal.dZero) ? eggValueBonus.times((Decimal.dTen.times(data.research[22]))) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[23].gt(Decimal.dZero) ? eggValueBonus.times((D(0.05).times(data.research[23])).add(Decimal.dOne)) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[24].gt(Decimal.dZero) ? eggValueBonus.times((D(0.01).times(data.research[24])).add(Decimal.dOne)) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[25].gt(Decimal.dZero) ? eggValueBonus.times((D(.01).times(data.research[25])).add(Decimal.dOne)) : eggValueBonus.times(Decimal.dOne)
+    eggValueBonus = data.research[26].gt(Decimal.dZero) ? eggValueBonus.times((Decimal.dTen.times(data.research[26]))) : eggValueBonus.times(Decimal.dOne)
 
-    eggValueBonus = data.epicResearch[5].gt(0) ? eggValueBonus.times((D(0.05).times(data.epicResearch[5])).plus(1)) : eggValueBonus.times(D(1))
+    eggValueBonus = data.epicResearch[5].gt(Decimal.dZero) ? eggValueBonus.times((D(0.05).times(data.epicResearch[5])).add(Decimal.dOne)) : eggValueBonus.times(Decimal.dOne)
     eggValueBonus = !data.onPlanet ? eggValueBonus.times(planetBoosts[5]) : eggValueBonus
     if(data.onPlanet === true)
       eggValueBonus = eggValueBonus.times(planetBoosts[0])
@@ -204,28 +204,28 @@ function updateEggValueBonus() {
 }
 
 function updateIntHatch() {
-    chickenGain = D(0)
-    chickenGain = chickenGain.plus(D(2).times(data.research[2]))
-    chickenGain = chickenGain.plus(D(5).times(data.research[5]))
-    chickenGain = chickenGain.plus(D(10).times(data.research[9]))
-    chickenGain = chickenGain.plus(D(25).times(data.research[13]))
-    chickenGain = chickenGain.plus(D(5).times(data.research[15]))
-    chickenGain = chickenGain.plus(D(50).times(data.research[19]))
+    chickenGain = Decimal.dZero
+    chickenGain = chickenGain.add(Decimal.dTwo.times(data.research[2]))
+    chickenGain = chickenGain.add(D(5).times(data.research[5]))
+    chickenGain = chickenGain.add(Decimal.dTen.times(data.research[9]))
+    chickenGain = chickenGain.add(D(25).times(data.research[13]))
+    chickenGain = chickenGain.add(D(5).times(data.research[15]))
+    chickenGain = chickenGain.add(D(50).times(data.research[19]))
     chickenGain = chickenGain.times(4)
-    chickenGain = chickenGain.times((D(0.05).times(data.epicResearch[0])).plus(1))
+    chickenGain = chickenGain.times((D(0.05).times(data.epicResearch[0])).add(Decimal.dOne))
     chickenGain = !data.onPlanet ? chickenGain.times(planetBoosts[4]) : chickenGain
     chickenGain = chickenGain.times(getActiveArtifactBoost(4))
     chickenGain = chickenGain.times(getActiveGemBoost(1))
 }
 
 function updateLayRate() {
-    layRate = D(1)
-    layRate = data.research[0].gt(0) ? layRate.times((D(0.1).times(data.research[0])).plus(1)) : layRate.times(D(1))
-    layRate = data.research[7].gt(0) ? layRate.times((D(0.05).times(data.research[7])).plus(1)) : layRate.times(D(1))
-    layRate = data.research[10].gt(0) ? layRate.times((D(0.15).times(data.research[10])).plus(1)) : layRate.times(D(1))
-    layRate = data.research[16].gt(0) ? layRate.times((D(0.1).times(data.research[16])).plus(1)) : layRate.times(D(1))
-    layRate = data.research[27].gt(0) ? layRate.times((D(0.1).times(data.research[27])).plus(1)) : layRate.times(D(1))
-    layRate = data.epicResearch[4].gt(0) ? layRate.times((D(0.5).times(data.epicResearch[4])).plus(1)) : layRate.times(D(1))
+    layRate = Decimal.dOne
+    layRate = data.research[0].gt(Decimal.dZero) ? layRate.times((D(0.1).times(data.research[0])).add(Decimal.dOne)) : layRate.times(Decimal.dOne)
+    layRate = data.research[7].gt(Decimal.dZero) ? layRate.times((D(0.05).times(data.research[7])).add(Decimal.dOne)) : layRate.times(Decimal.dOne)
+    layRate = data.research[10].gt(Decimal.dZero) ? layRate.times((D(0.15).times(data.research[10])).add(Decimal.dOne)) : layRate.times(Decimal.dOne)
+    layRate = data.research[16].gt(Decimal.dZero) ? layRate.times((D(0.1).times(data.research[16])).add(Decimal.dOne)) : layRate.times(Decimal.dOne)
+    layRate = data.research[27].gt(Decimal.dZero) ? layRate.times((D(0.1).times(data.research[27])).add(Decimal.dOne)) : layRate.times(Decimal.dOne)
+    layRate = data.epicResearch[4].gt(Decimal.dZero) ? layRate.times((D(0.5).times(data.epicResearch[4])).add(Decimal.dOne)) : layRate.times(Decimal.dOne)
     layRate = !data.onPlanet ? layRate.times(planetBoosts[1]) : layRate
     layRate = layRate.times(getActiveGemBoost(3))
     if(data.onPlanet && data.currentPlanetIndex === 4)
@@ -241,11 +241,11 @@ function promoteEgg() {
     data.unlockedEgg[data.currentEgg] = true
     data.currentEgg++
     for(let i = 0; i < data.research.length; i++)
-        data.research[i] = D(0)
-    eggValueBonus = D(1)
-    chickenGain = D(0)
-    layRate = D(1)
-    data.chickens = D(0)
-    data.money = D(0)
-    data.bestRunMoney = D(0)
+        data.research[i] = Decimal.dZero
+    eggValueBonus = Decimal.dOne
+    chickenGain = Decimal.dZero
+    layRate = Decimal.dOne
+    data.chickens = Decimal.dZero
+    data.money = Decimal.dZero
+    data.bestRunMoney = Decimal.dZero
 }

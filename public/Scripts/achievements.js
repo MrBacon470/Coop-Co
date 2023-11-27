@@ -84,10 +84,10 @@ function getAchievementsCompleted() {
     }
     return count
 }
-const contractCompleteReq = [D(1),D(10),D(100),D(250)]
+const contractCompleteReq = [Decimal.dOne,Decimal.dTen,D(100),D(250)]
 const soulAchReq = [D(1e3),D(1e6),D(1e9),D(1e12)]
-const prophecyAchReq = [D(10),D(10),D(1e3),D(1e4)]
-const knowleggAchReq = [D(1),D(100),D(1000),D(10000)]
+const prophecyAchReq = [Decimal.dTen,Decimal.dTen,D(1e3),D(1e4)]
+const knowleggAchReq = [Decimal.dOne,D(100),D(1000),D(10000)]
 function checkAchievements() {
     //Eggs
     if(data.achievements[0] === false) data.achievements[0] = true;
@@ -113,7 +113,7 @@ function checkAchievements() {
     // Artifact Achievements
     if(!data.achievements[41]) {
         for(let i = 0; i < 6; i++) {
-            if(data.artifacts[i * 4].gte(1)) {
+            if(data.artifacts[i * 4].gte(Decimal.dOne)) {
                 getAchievement(41)
                 break
             }
@@ -121,7 +121,7 @@ function checkAchievements() {
     }
     if(!data.achievements[42]) {
         for(let i = 0; i < 6; i++) {
-            if(data.artifacts[(i * 4)+1].gte(1)) {
+            if(data.artifacts[(i * 4)+1].gte(Decimal.dOne)) {
                 getAchievement(42)
                 break
             }
@@ -129,7 +129,7 @@ function checkAchievements() {
     }
     if(!data.achievements[43]) {
         for(let i = 0; i < 6; i++) {
-            if(data.artifacts[(i * 4)+2].gte(1)) {
+            if(data.artifacts[(i * 4)+2].gte(Decimal.dOne)) {
                 getAchievement(43)
                 break
             }
@@ -137,7 +137,7 @@ function checkAchievements() {
     }
     if(!data.achievements[44]) {
         for(let i = 0; i < 6; i++) {
-            if(data.artifacts[(i * 4)+3].gte(1)) {
+            if(data.artifacts[(i * 4)+3].gte(Decimal.dOne)) {
                 getAchievement(44)
                 break
             }
@@ -146,7 +146,7 @@ function checkAchievements() {
     // Gem Achievements
     if(!data.achievements[45]) {
         for(let i = 0; i < 6; i++) {
-            if(data.gems[i * 3].gt(0)) {
+            if(data.gems[i * 3].gt(Decimal.dZero)) {
                 getAchievement(45)
                 break
             }
@@ -154,7 +154,7 @@ function checkAchievements() {
     }
     if(!data.achievements[46]) {
         for(let i = 0; i < 6; i++) {
-            if(data.gems[(i * 3)+1].gt(0)) {
+            if(data.gems[(i * 3)+1].gt(Decimal.dZero)) {
                 getAchievement(46)
                 break
             }
@@ -162,7 +162,7 @@ function checkAchievements() {
     }
     if(!data.achievements[47]) {
         for(let i = 0; i < 6; i++) {
-            if(data.gems[(i * 3)+2].gt(0)) {
+            if(data.gems[(i * 3)+2].gt(Decimal.dZero)) {
                 getAchievement(47)
                 break
             }
