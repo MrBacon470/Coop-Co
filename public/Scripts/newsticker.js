@@ -287,7 +287,7 @@ function scrollNextMessage() {
     } while (
         typeof includeThisTicker === "function"
             ? includeThisTicker()
-            : !!includeThisTicker
+            : includeThisTicker
     );
 
     scrollTimeouts.forEach(clearTimeout);
