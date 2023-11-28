@@ -736,7 +736,7 @@ function upgradeHarvester() {
     const id = harvesterHoverIndex // To prevent somehow changing the id while upgrading
     if(id === -1) return
     else if(data.harvesters[id].level >= 20 || data.harvesters[id].level === harvesterMaxLevel) return
-    else if(data.planetData[id].chickens.lt(harvesterUpgradeCost[data.harvesters[id].level])) return
+    else if((data.planetData[id].chickens.sub(harvesterUpgradeCost[data.harvesters[id].level])).lt(Decimal.dZero)) return
     data.harvesters[id].level++
     data.planetData[id].chickens = data.planetData[id].chickens.sub(harvesterUpgradeCost[data.harvesters[id].level])
     updateHarvesterHoverText(id);
