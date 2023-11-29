@@ -105,14 +105,14 @@ function formatWhole(decimal) {
 
 function formatTime(time) {
   if (time >= 31536000) {
-      return Decimal.floor(time / 31536000) + " years, " + Decimal.floor((time % 31536000) / 86400) + " days, " + Decimal.floor((time % 86400) / 3600) + " hours, " + Decimal.floor((time % 3600) / 60) + " minutes, and " + Decimal.floor(time % 60) + " seconds"
+      return Decimal.floor(time / 31536000) + "y, " + Decimal.floor((time % 31536000) / 86400) + "d, " + Decimal.floor((time % 86400) / 3600) + "m, " + Decimal.floor((time % 3600) / 60) + "m, and " + Decimal.floor(time % 60) + "s"
   } else if (time >= 86400) {
-      return Decimal.floor(time / 86400) + " days, " + Decimal.floor((time % 86400) / 3600) + " hours, " + Decimal.floor((time % 3600) / 60) + " minutes, and " + Decimal.floor(time % 60) + " seconds"
+      return Decimal.floor(time / 86400) + "d, " + Decimal.floor((time % 86400) / 3600) + "h, " + Decimal.floor((time % 3600) / 60) + "m, and " + Decimal.floor(time % 60) + "s"
   } else if (time >= 3600) {
-      return Decimal.floor(time / 3600) + " hours, " + Decimal.floor((time % 3600) / 60) + " minutes, and " + Decimal.floor(time % 60) + " seconds"
+      return Decimal.floor(time / 3600) + "h, " + Decimal.floor((time % 3600) / 60) + "m, and " + Decimal.floor(time % 60) + "s"
   } else if (time >= 60) {
-      return Decimal.floor(time / 60) + " minutes, and " + Decimal.floor(time % 60) + " seconds"
-  } else return Decimal.floor(time % 60) + " seconds"
+      return Decimal.floor(time / 60) + "m, and " + Decimal.floor(time % 60) + "s"
+  } else return Decimal.floor(time % 60) + "s"
 }
 
 function formatTimeAlternate(time) {
