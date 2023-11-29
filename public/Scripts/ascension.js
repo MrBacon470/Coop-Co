@@ -697,14 +697,15 @@ function craftArtifact() {
 }
 
 function startHarvester(id) {
-    if(data.harvesters[id].timeRemaining > 0) return
+    if(data.harvesters[id].timeRemaining > 0 && data.harvesters[id].level > 0) return
     data.harvesters[id].timeRemaining = 5 * data.harvesters[id].level
     data.harvesters[id].running = true
 }
 
 function runHarvester(id) {
     if(data.harvesters[id].running && data.harvesters[id].timeRemaining <= 0) {
-        generateNotification(`${planetNames[id]} Harvester Finished!`,'success')
+        if(data.settingsToggles[6])
+            generateNotification(`${planetNames[id]} Harvester Finished!`,'success')
         const harvesterYield = calculateHarvesterYield(id)
         data.harvesters[id].running = false
         data.harvesters[id].timeRemaining = 0

@@ -120,7 +120,10 @@ function formatTimeAlternate(time) {
         return Decimal.floor(time / 3600) + ":" + Decimal.floor((time % 3600) / 60) + ":" + Decimal.floor(time % 60)
     } else if (time >= 60) {
         return "00:" + Decimal.floor(time / 60) + ":" + Decimal.floor(time % 60) + ""
-    } else return "00:00:" + Decimal.floor(time % 60)
+    } else if (time >= 10) {
+        return "00:00:" + Decimal.floor(time % 60)
+    }
+    else return "00:00:0"+ Decimal.floor(time % 60)
 }
 
 function toPlaces(x, precision, maxAccepted) {
