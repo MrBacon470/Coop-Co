@@ -835,13 +835,13 @@ function getActiveArtifactBoost(groupID) {
             if((data.currentEgg === 18 || (data.onPlanet && data.currentPlanetIndex === 2)) && groupID !== 1) {
                 currentArtifactBoost = Decimal.dZero
                 if(data.activeGems[i * 3] !== -1 && Math.floor(data.activeGems[i * 3] / 3) === 0) { // Apply Knowledge Gem Boost
-                    currentArtifactBoost = currentArtifactBoost.plus(artifacts[data.activeArtifacts[i]].effect.times(gems[data.activeGems[i * 3]].effect))
+                    currentArtifactBoost = currentArtifactBoost.add(artifacts[data.activeArtifacts[i]].effect.times(gems[data.activeGems[i * 3]].effect))
                 }
                 if(data.activeGems[(i * 3) + 1] !== -1 && Math.floor(data.activeGems[(i * 3) + 1] / 3) === 0) { // Apply Knowledge Gem Boost
-                    currentArtifactBoost = currentArtifactBoost.plus(artifacts[data.activeArtifacts[i]].effect.times(gems[data.activeGems[(i * 3)+1]].effect))
+                    currentArtifactBoost = currentArtifactBoost.add(artifacts[data.activeArtifacts[i]].effect.times(gems[data.activeGems[(i * 3)+1]].effect))
                 }
                 if(data.activeGems[(i * 3) + 2] !== -1 && Math.floor(data.activeGems[(i * 3) + 2] / 3) === 0) { // Apply Knowledge Gem Boost
-                    currentArtifactBoost = currentArtifactBoost.plus(artifacts[data.activeArtifacts[i]].effect.times(gems[data.activeGems[(i * 3)+2]].effect))
+                    currentArtifactBoost = currentArtifactBoost.add(artifacts[data.activeArtifacts[i]].effect.times(gems[data.activeGems[(i * 3)+2]].effect))
                 }
                 if(currentArtifactBoost.eq(artifacts[data.activeArtifacts[i]].effect)) {// No Knowledge Gem = No Boost
                     currentArtifactBoost = Decimal.dZero
