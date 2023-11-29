@@ -828,20 +828,20 @@ function getActiveArtifactBoost(groupID) {
     let currentArtifactBoost = Decimal.dZero
     for(let i = 0; i < data.activeArtifacts.length; i++) {
         if(data.activeArtifacts[i] !== -1 && Math.floor(data.activeArtifacts[i] / 4) === groupID) { // Valid Artifact?
-            if(data.currentEgg !== 18 || (groupID === 1 && data.currentEgg === 18)) { // Not Enlightenment Egg or its a Scroll
+            if(data.currentEgg !== 18 || (groupID === 1 && data.currentEgg === 18) || (groupID === 1 && data.onPlanet && data.currentPlanetIndex === 2)) { // Not Enlightenment Egg or its a Scroll
                 currentArtifactBoost = artifacts[data.activeArtifacts[i]].effect
             }
 
-            if(data.currentEgg === 18 && groupID !== 1) {
+            if((data.currentEgg === 18 || (data.onPlanet && data.currentPlanetIndex === 2)) && groupID !== 1) {
                 currentArtifactBoost = artifacts[data.activeArtifacts[i]].effect
                 if(data.activeGems[i * 3] !== -1 && Math.floor(data.activeGems[i * 3] / 3) === 0) { // Apply Knowledge Gem Boost
-                    currentArtifactBoost = currentArtifactBoost.times(gems[data.activeGems[i * 3]].effect.add(Decimal.dOne))
+                    currentArtifactBoost = currentArtifactBoost.times(gems[data.activeGems[i * 3]].effect)
                 }
                 if(data.activeGems[(i * 3) + 1] !== -1 && Math.floor(data.activeGems[(i * 3) + 1] / 3) === 0) { // Apply Knowledge Gem Boost
-                    currentArtifactBoost = currentArtifactBoost.times(gems[data.activeGems[(i * 3) + 1]].effect.add(Decimal.dOne))
+                    currentArtifactBoost = currentArtifactBoost.times(gems[data.activeGems[(i * 3) + 1]].effect)
                 }
                 if(data.activeGems[(i * 3) + 2] !== -1 && Math.floor(data.activeGems[(i * 3) + 2] / 3) === 0) { // Apply Knowledge Gem Boost
-                    currentArtifactBoost = currentArtifactBoost.times(gems[data.activeGems[(i * 3) + 2]].effect.add(Decimal.dOne))
+                    currentArtifactBoost = currentArtifactBoost.times(gems[data.activeGems[(i * 3) + 2]].effect)
                 }
                 if(currentArtifactBoost.eq(artifacts[data.activeArtifacts[i]].effect)) {// No Knowledge Gem = No Boost
                     currentArtifactBoost = Decimal.dZero
@@ -857,7 +857,7 @@ function getActiveGemBoost(groupID) {
     let boostSum = Decimal.dOne 
     for(let i = 0; i < data.activeGems.length; i++) {
         if(data.activeGems[i] !== -1 && Math.floor(data.activeGems[i] / 3) === groupID) {
-            if(data.currentEgg !== 18 || Math.floor(data.activeArtifacts[Math.floor(i / 3)] / 4) === 1) {
+            if(data.currentEgg !== 18 || ((data.currentEgg === 18 || (data.onPlanet && data.currentPlanetIndex === 2)) && Math.floor(data.activeArtifacts[Math.floor(i / 3)] / 4) === 1)) {
                 boostSum = boostSum.add(gems[data.activeGems[i]].effect)
             }
         }
