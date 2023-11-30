@@ -20,10 +20,10 @@ function runAuto(a) {
               purchaseResearch(i)
             break
         case 4:
-          if(isEpicResearchMaxed(0,5) && data.epicResearch[9].gte(epicResearches[9].max)) break
-          for(let i = 0; i < 5; i++)
-            purchaseEpicResearch(i)
-          purchaseEpicResearch(9)
+          if(isEpicResearchMaxed(0,5)) break
+          for(let i = 0; i < 6; i++) {
+              purchaseEpicResearch(i)
+          }
           break
     }
 }

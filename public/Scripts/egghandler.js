@@ -201,6 +201,8 @@ function updateEggValueBonus() {
     eggValueBonus = eggValueBonus.times(getActiveArtifactBoost(0))
     eggValueBonus = eggValueBonus.times(getActiveArtifactBoost(1))
     eggValueBonus = eggValueBonus.times(getActiveGemBoost(2))
+    if(data.currentPlanetIndex === 18)
+      eggValueBonus = eggValueBonus.times(knowleggBoost)
 }
 
 function updateIntHatch() {

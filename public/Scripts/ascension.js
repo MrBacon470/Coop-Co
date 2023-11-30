@@ -4,7 +4,7 @@ let harvesterHoverIndex = -1
 let harvesterMaxLevel = 0
 let selectedLoadout = -1
 const harvesterUpgradeCost = [D(1e3),D(2.5e3),D(5e3),D(7.5e3),D(1e4),D(2.5e4),D(5e4),D(7.5e4),D(1e5),D(2.5e5),D(5e5),D(7.5e5),D(1e6),D(2.5e6),D(5e6),D(7.5e6),D(1e7),D(2.5e7),D(5e7)]
-
+let knowleggBoost = D(1)
 // Crafting Item Object {id,type,count}
 const artifacts = [
     {
@@ -307,7 +307,7 @@ let legendaryResearchCosts = new Array(legendaryResearches.length).fill(Decimal.
 
 function updateAscensionHTML() {
     if(data.currentSubTab[1] === 0) {
-        DOMCacheGetOrSet(`knowleggText`).innerText = `${format(data.knowlegg)} Knowleggs`
+        DOMCacheGetOrSet(`knowleggText`).innerText = `${format(data.knowlegg)} Knowleggs\nEnlightenment Egg Value: x${format(knowleggBoost)}`
         for(let i = 0; i < legendaryResearches.length; i++) {
             DOMCacheGetOrSet(`lr${i}`).innerText = `${legendaryResearches[i].name}\n${legendaryResearches[i].description}\nLevel: ${toPlaces(data.legendaryResearch[i],0,data.legendaryResearch[i].add(Decimal.dOne))}/${toPlaces(legendaryResearches[i].max,0,legendaryResearches[i].max.add(Decimal.dOne))}\nCost: ${data.legendaryResearch[i].gte(legendaryResearches[i].max) ? '[MAXED]' : `${format(legendaryResearchCostDisplay[i])} Knowleggs`}`
             if(data.legendaryResearch[i].lt(legendaryResearches[i].max))
@@ -410,6 +410,7 @@ function updateAscensionHTML() {
 function updateAscension() {
     knowleggGain = data.money.gte(1e45) && data.currentEgg === 18 ? (data.bestRunMoney.div(1e45).log(20)).add(Decimal.dOne) : Decimal.dZero
     knowleggGain = knowleggGain.times(planetBoosts[2])
+    knowleggBoost = D(1).add(Decimal.log((data.knowlegg.add(data.bestKnowlegg)).div(2),2))
     harvesterMaxLevel = 0
     harvesterMaxLevel += data.legendaryResearch[0].gte(legendaryResearches[0].max) ? 5 : 0
     harvesterMaxLevel += data.legendaryResearch[3].gte(legendaryResearches[3].max) ? 5 : 0
