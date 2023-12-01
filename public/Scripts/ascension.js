@@ -3,8 +3,8 @@ let artifactHoverIndex = {id: -1, type: null}
 let harvesterHoverIndex = -1
 let harvesterMaxLevel = 0
 let selectedLoadout = -1
-const harvesterUpgradeCost = [D(1e3),D(2.5e3),D(5e3),D(7.5e3),D(1e4),D(2.5e4),D(5e4),D(7.5e4),D(1e5),D(2.5e5),D(5e5),D(7.5e5),D(1e6),D(2.5e6),D(5e6),D(7.5e6),D(1e7),D(2.5e7),D(5e7)]
-let knowleggBoost = D(1)
+let harvesterUpgradeCosts = new Array(6).fill(Decimal.dZero)
+let knowleggBoost = Decimal.dOne
 // Crafting Item Object {id,type,count}
 const artifacts = [
     {
@@ -332,7 +332,7 @@ function updateAscensionHTML() {
             if(harvesterHoverIndex !== -1) {
                 if(data.harvesters[harvesterHoverIndex].level < 20 && data.harvesters[harvesterHoverIndex].level < harvesterMaxLevel) {
                     DOMCacheGetOrSet('harvesterUpgradeButton').innerText = data.harvesters[harvesterHoverIndex].level === 0 ? `Construct Harvester` : `Upgrade Harvester`
-                    DOMCacheGetOrSet('harvesterUpgradeButton').classList = data.planetData[harvesterHoverIndex].chickens.gte(harvesterUpgradeCost[data.harvesters[harvesterHoverIndex].level]) ? 'greenButton' : 'redButton'
+                    DOMCacheGetOrSet('harvesterUpgradeButton').classList = data.planetData[harvesterHoverIndex].chickens.gte(harvesterUpgradeCosts[harvesterHoverIndex]) ? 'greenButton' : 'redButton'
                 }
                 else {
                     DOMCacheGetOrSet('harvesterUpgradeButton').innerText = 'Max Level'
@@ -417,8 +417,11 @@ function updateAscension() {
     harvesterMaxLevel += data.legendaryResearch[4].gte(legendaryResearches[4].max) ? 5 : 0
     harvesterMaxLevel += data.legendaryResearch[5].gte(legendaryResearches[5].max) ? 5 : 0
 
-    for(let i = 0; i < data.harvesters.length; i++)
+    for(let i = 0; i < data.harvesters.length; i++) {
+        harvesterUpgradeCosts[i] = D(1e3).times(Decimal.pow(1.65,data.harvesters[i].level))
         runHarvester(i)
+    }
+        
 }
 
 function ascend() {
@@ -518,8 +521,8 @@ function updateHarvesterHoverText(id) {
     if(harvesterHoverIndex === -1)     
         DOMCacheGetOrSet('harvesterHoverText').innerText = 'Hover over Harvester to see info'
     else 
-        DOMCacheGetOrSet('harvesterHoverText').innerText = data.harvesters[id].level === 0 ? `Harvester Construction Cost: ${format(harvesterUpgradeCost[data.harvesters[id].level])} ${planetEggNames[id]} Chickens` :
-        `${planetNames[id]} Harvester | Level: ${data.harvesters[id].level}/${harvesterMaxLevel}\n${getHarvesterYieldString(id)}\n${data.harvesters[id].level < harvesterMaxLevel ? `Upgrade to Level ${data.harvesters[id].level+1}: ${format(harvesterUpgradeCost[data.harvesters[id].level])} ${planetEggNames[id]} Chickens` : ''}`
+        DOMCacheGetOrSet('harvesterHoverText').innerText = data.harvesters[id].level === 0 ? `Harvester Construction Cost: ${format(harvesterUpgradeCosts[id])} ${planetEggNames[id]} Chickens` :
+        `${planetNames[id]} Harvester | Level: ${data.harvesters[id].level}/${harvesterMaxLevel}\n${getHarvesterYieldString(id)}\n${data.harvesters[id].level < harvesterMaxLevel ? `Upgrade to Level ${data.harvesters[id].level+1}: ${format(harvesterUpgradeCosts[id])} ${planetEggNames[id]} Chickens` : ''}`
        
 }
 
@@ -735,11 +738,12 @@ function runHarvester(id) {
 }
 
 function upgradeHarvester() {
+    updateAscension()
     const id = harvesterHoverIndex // To prevent somehow changing the id while upgrading
     if(id === -1) return
     if(data.harvesters[id].level >= 20 || data.harvesters[id].level >= harvesterMaxLevel) return
-    if((data.planetData[id].chickens.sub(harvesterUpgradeCost[data.harvesters[id].level])).lt(Decimal.dZero)) return
-    data.planetData[id].chickens = data.planetData[id].chickens.sub(harvesterUpgradeCost[data.harvesters[id].level])
+    if(data.planetData[id].chickens.sub(harvesterUpgradeCosts[id]).lt(Decimal.dZero)) return
+    data.planetData[id].chickens = data.planetData[id].chickens.sub(harvesterUpgradeCosts[id])
     data.harvesters[id].level++
     updateHarvesterHoverText(id);
 }
