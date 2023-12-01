@@ -410,7 +410,7 @@ function updateAscensionHTML() {
 function updateAscension() {
     knowleggGain = data.money.gte(1e45) && data.currentEgg === 18 ? (data.bestRunMoney.div(1e45).log(20)).add(Decimal.dOne) : Decimal.dZero
     knowleggGain = knowleggGain.times(planetBoosts[2])
-    knowleggBoost = D(1).add(Decimal.log((data.knowlegg.add(data.bestKnowlegg)).div(2),2))
+    knowleggBoost = ((data.knowlegg.add(data.bestKnowlegg)).div(2)).gt(0) ? D(1).add(Decimal.log((data.knowlegg.add(data.bestKnowlegg)).div(2),2)) : D(1)
     harvesterMaxLevel = 0
     harvesterMaxLevel += data.legendaryResearch[0].gte(legendaryResearches[0].max) ? 5 : 0
     harvesterMaxLevel += data.legendaryResearch[3].gte(legendaryResearches[3].max) ? 5 : 0
