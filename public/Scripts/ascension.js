@@ -745,7 +745,8 @@ function upgradeHarvester() {
     if(data.planetData[id].chickens.sub(harvesterUpgradeCosts[id]).lt(Decimal.dZero)) return
     data.planetData[id].chickens = data.planetData[id].chickens.sub(harvesterUpgradeCosts[id])
     data.harvesters[id].level++
-    updateHarvesterHoverText(id);
+    updateAscension()
+    updateHarvesterHoverText(id)
 }
 
 function getHarvesterYieldString(id) {
