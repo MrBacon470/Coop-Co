@@ -348,8 +348,8 @@ function updateAscensionHTML() {
 
             if(data.activeArtifacts[i] !== -1 && DOMCacheGetOrSet(`artifactHolder${i}`).getAttribute('src') !== artifacts[data.activeArtifacts[i]].img)
                 DOMCacheGetOrSet(`artifactHolder${i}`).setAttribute('src',artifacts[data.activeArtifacts[i]].img)
-            else if(data.activeArtifacts[i] === -1 && DOMCacheGetOrSet(`artifactHolder${i}`).getAttribute('src') !== '')
-                DOMCacheGetOrSet(`artifactHolder${i}`).setAttribute('src','')
+            else if(data.activeArtifacts[i] === -1 && DOMCacheGetOrSet(`artifactHolder${i}`).getAttribute('src') !== '/Images/blank.png')
+                DOMCacheGetOrSet(`artifactHolder${i}`).setAttribute('src','/Images/blank.png')
 
 
             if((!selectingArtifactGem.status && selectingArtifactGem.type !== 'artifact') || (selectingArtifactGem.status && selectingArtifactGem.type === 'artifact' && selectingArtifactGem.slotID !== i)) {
@@ -364,8 +364,8 @@ function updateAscensionHTML() {
 
             if(data.activeGems[i] !== -1 && DOMCacheGetOrSet(`gemHolder${i}`).getAttribute('src') !== gems[data.activeGems[i]].img)
                 DOMCacheGetOrSet(`gemHolder${i}`).setAttribute('src',gems[data.activeGems[i]].img)
-            else if(data.activeGems[i] === -1 && DOMCacheGetOrSet(`gemHolder${i}`).getAttribute('src') !== '')
-                DOMCacheGetOrSet(`gemHolder${i}`).setAttribute('src','')
+            else if(data.activeGems[i] === -1 && DOMCacheGetOrSet(`gemHolder${i}`).getAttribute('src') !== '/Images/blank.png')
+                DOMCacheGetOrSet(`gemHolder${i}`).setAttribute('src','/Images/blank.png')
 
             if(!gemSlotAvailable(i)) {
                 DOMCacheGetOrSet(`gemHolder${i}`).classList = 'gemHolder-restricted'
