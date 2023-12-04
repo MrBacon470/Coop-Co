@@ -4,63 +4,63 @@ const prestigeContracts = [
       desc: 'A Californian Energy Shortage means more demand for Fusion Eggs.',
       eggIndex: 5,
       baseGoal: D(1e17),
-      baseReward: Decimal.dOne,
+      baseReward: D(5),
     },
     {
       name: 'GPT-10.0',
       desc: 'To make the ultimate version of ChatGPT, AI Eggs are needed',
       eggIndex: 15,
       baseGoal: D(1e27),
-      baseReward: Decimal.dOne,
+      baseReward: Decimal.dTen,
     },
     {
       name: 'Pandemic',
       desc: 'A Pandemic is covering the world, Medical Eggs are needed to save lives.',
       eggIndex: 2,
-      baseGoal: D(1e12),
-      baseReward: Decimal.dOne,
+      baseGoal: D(1e15),
+      baseReward: D(0.35),
     },
     {
       name: 'Supreme Diets',
       desc: 'Dieting is back in fashion people need more Superfood Eggs.',
       eggIndex: 1,
-      baseGoal: D(1e11),
-      baseReward: Decimal.dOne,
+      baseGoal: D(1e17),
+      baseReward: D(0.25),
     },
     {
       name: 'Fountain of Youth',
       desc: 'People are wanting to stay youthful, Immortality Eggs are needed to keep them that way.',
       eggIndex: 7,
       baseGoal: D(1e19),
-      baseReward: Decimal.dOne,
+      baseReward: D(5.5)
     },
     {
       name: 'Supply Chain Crisis',
       desc: 'Supply Chain Issues have caused resource shortages, Supermaterial Eggs are needed to offset the shortage.',
       eggIndex: 4,
-      baseGoal: D(1e14),
-      baseReward: Decimal.dOne,
+      baseGoal: D(1e17),
+      baseReward: D(0.5),
     },
     {
       name: 'Temporal Tear',
       desc: 'A Temporal Tear has caused a rift in the space-time continuum, Tachyon Eggs are needed to fix it.',
       eggIndex: 8,
       baseGoal: D(1e20),
-      baseReward: Decimal.dOne,
+      baseReward: D(6),
     },
     {
       name: 'Space-Egg',
       desc: 'Egglon Musk needs massive amounts of rocketfuel eggs for his new Chicken-9 Rocket',
       eggIndex: 3,
-      baseGoal: D(1e14),
-      baseReward: Decimal.dOne,
+      baseGoal: D(1e16),
+      baseReward: D(0.45),
     },
     {
       name: 'Terraforming Venus',
       desc: 'In order to terraform all of Venus we need mass production of Terraform Eggs',
       eggIndex: 12,
       baseGoal: D(1e23),
-      baseReward: Decimal.dOne,
+      baseReward: D(7),
     },
 ]
 
@@ -103,9 +103,12 @@ function generateContract(i) {
       id = getRandom(0, prestigeContracts.length)
     }
     if(id > prestigeContracts.length - 1) index = prestigeContracts.length - 1
-    let goal = (prestigeContracts[id].baseGoal.times((eggData[prestigeContracts[id].eggIndex].value).times(contractGoalBoost.times(soulEggBoost))))
-    let reward = Decimal.ln(Decimal.log10(prestigeContracts[id].baseGoal)).times(contractRewardBoost.add(Decimal.dOne))
-    reward = reward.times(Decimal.log(contractGoalBoost,2)).add(Decimal.dOne)
+    const contractBaseReward = prestigeContracts[id].baseGoal.lte(1e18) ?  
+    (D(50).times(prestigeContracts[id].baseGoal.div(D(1e18).sub(1e10))).add(1)).times(data.stats.contractsComplete) :
+    (D(50).times(prestigeContracts[id].baseGoal.div(D(1e27).sub(1e20))).add(50)).times(data.stats.contractsComplete)
+    console.log(`Contract Base Reward Val ${id}: ${format(contractBaseReward)}`)
+    let goal = (prestigeContracts[id].baseGoal.times((eggData[prestigeContracts[id].eggIndex].value))).times(contractGoalBoost.times(soulEggBoost))
+    let reward = contractBaseReward.times(Decimal.log10(contractGoalBoost).add(Decimal.dOne))
     data.contracts[i].id = id
     data.contracts[i].goal = goal
     data.contracts[i].reward = reward
