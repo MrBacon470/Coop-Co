@@ -273,7 +273,7 @@ const legendaryResearches = [
     name: 'Superior Harvesters',
     description: '+5 More Levels to Harvester Level Cap\nUnlock Tier IV Artifacts & Tier III Gems',
     max: Decimal.dOne,
-    baseCost: D(20)
+    baseCost: D(25)
   },
 ]
 let commonResearchCost = new Array(commonResearches.length).fill(Decimal.dZero)

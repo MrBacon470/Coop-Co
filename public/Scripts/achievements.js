@@ -37,9 +37,9 @@ const achievementObjs = [
     { name: 'Great Balls of Fire!', description: 'Discover Hereth', img: `/Images/planet5.png`},
     { name: 'Aaaaa Light Mode', description: 'Discover Malak', img: `/Images/planet6.png`},
     { name: 'Ascendance', description: 'Obtain 1 Knowlegg', img: `${eggImgPath}knowlegg.png`},
-    { name: 'Knowledge is the Key', description: 'Obtain 100 Knowleggs', img: `${eggImgPath}knowlegg.png`},
-    { name: 'Lightbulb...', description: 'Obtain 1,000 Knowleggs', img: `${eggImgPath}knowlegg.png`},
-    { name: 'Library of Alexandria', description: 'Obtain 10,000 Knowleggs', img: `${eggImgPath}knowlegg.png`},
+    { name: 'Knowledge is the Key', description: 'Obtain 10 Knowleggs', img: `${eggImgPath}knowlegg.png`},
+    { name: 'Lightbulb...', description: 'Obtain 25 Knowleggs', img: `${eggImgPath}knowlegg.png`},
+    { name: 'Library of Alexandria', description: 'Obtain 50 Knowleggs', img: `${eggImgPath}knowlegg.png`},
     { name: 'Dusty Garbage', description: 'Acquire your first Tier I Artifact', img: '/Images/Fragmented.png'},
     { name: 'Restoration Expert', description: 'Acquire your first Tier II Artifact', img: '/Images/Restored.png'},
     { name: 'Master Reforger', description: 'Acquire your first Tier III Artifact', img: '/Images/Upgraded.png'},
@@ -87,7 +87,7 @@ function getAchievementsCompleted() {
 const contractCompleteReq = [Decimal.dOne,Decimal.dTen,D(100),D(250)]
 const soulAchReq = [D(1e3),D(1e6),D(1e9),D(1e12)]
 const prophecyAchReq = [Decimal.dTen,D(100),D(1e3),D(1e4)]
-const knowleggAchReq = [Decimal.dOne,D(100),D(1000),D(10000)]
+const knowleggAchReq = [Decimal.dOne,Decimal.dTen,D(25),D(50)]
 function checkAchievements() {
     //Eggs
     if(data.achievements[0] === false) data.achievements[0] = true;
