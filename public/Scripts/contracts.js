@@ -10,7 +10,7 @@ const prestigeContracts = [
       name: 'GPT-10.0',
       desc: 'To make the ultimate version of ChatGPT, AI Eggs are needed',
       eggIndex: 15,
-      baseGoal: D(1e27),
+      baseGoal: D(1e25),
       baseReward: Decimal.dTen,
     },
     {
@@ -105,7 +105,7 @@ function generateContract(i) {
     if(id > prestigeContracts.length - 1) index = prestigeContracts.length - 1
     const contractBaseReward = prestigeContracts[id].baseGoal.lte(1e18) ?  
     (D(50).times(prestigeContracts[id].baseGoal.div(D(1e18).sub(1e10))).add(1)).times(data.stats.contractsComplete) :
-    (D(50).times(prestigeContracts[id].baseGoal.div(D(1e27).sub(1e20))).add(50)).times(data.stats.contractsComplete)
+    (D(50).times(prestigeContracts[id].baseGoal.div(D(1e25).sub(1e20))).add(50)).times(data.stats.contractsComplete)
     console.log(`Contract Base Reward Val ${id}: ${format(contractBaseReward)}`)
     let goal = (prestigeContracts[id].baseGoal.times((eggData[prestigeContracts[id].eggIndex].value))).times(contractGoalBoost.times(soulEggBoost))
     let reward = contractBaseReward.times(Decimal.log10(contractGoalBoost).add(Decimal.dOne))
