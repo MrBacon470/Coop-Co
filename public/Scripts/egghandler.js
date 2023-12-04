@@ -199,10 +199,12 @@ function updateEggValueBonus() {
     if(data.onPlanet === true)
       eggValueBonus = eggValueBonus.times(planetBoosts[0])
     eggValueBonus = eggValueBonus.times(getActiveArtifactBoost(0))
-    eggValueBonus = eggValueBonus.times(getActiveArtifactBoost(1))
     eggValueBonus = eggValueBonus.times(getActiveGemBoost(2))
-    if(data.currentPlanetIndex === 18)
+    if(data.currentPlanetIndex === 18) {
+      eggValueBonus = eggValueBonus.times(getActiveArtifactBoost(1))
       eggValueBonus = eggValueBonus.times(knowleggBoost)
+    }
+      
 }
 
 function updateIntHatch() {
