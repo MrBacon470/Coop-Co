@@ -62,6 +62,8 @@ function getDefaultObject() {
             bestSoulEggs: Decimal.dZero,
             bestProphecyEggs: Decimal.dZero,
             bestKnowleggs: Decimal.dZero,
+            completedGame: false,
+            completionTime: Decimal.dZero
         },
         buyAmounts: [0,0,0],
         time: Date.now(),

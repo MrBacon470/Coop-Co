@@ -237,6 +237,13 @@ function mainLoop() {
     }
 
     checkAchievements()
+    /*
+    if(Math.floor(getAchievementsCompleted()/data.achievements.length) === 1 && !data.stats.completedGame) {
+        data.stats.completedGame = true
+        data.stats.completionTime = data.stats.timePlayed
+        createAlert('!!VICTORY!!',`Congratulations you beat Coop Co ${getDefaultObject().currentUpdate}\nin ${formatTime(data.stats.completionTime)}`,`var(--green)`)
+    }
+    */
     updateHTML()
     if(DOMCacheGetOrSet('faviconLink').getAttribute('href') !== `${eggImgPath}${eggData[data.currentEgg].id}.png`)
         DOMCacheGetOrSet('faviconLink').href = `${eggImgPath}${eggData[data.currentEgg].id}.png`
@@ -296,10 +303,10 @@ function updateStats() {
     DOMCacheGetOrSet('stat17').textContent = `Average Knowlegg Egg Gain: ${format((data.stats.ascensions[0].add(data.stats.ascensions[1]).add(data.stats.ascensions[2]).div(3)))}`
 }
 
- function createAlert(a,b,c) {
-    DOMCacheGetOrSet('alertContainer').style.border = `2px solid ${c}`
-    DOMCacheGetOrSet('alertTitle').innerText = a
-    DOMCacheGetOrSet('alertContent').innerText = b
+ function createAlert(title,content,borderColor) {
+    DOMCacheGetOrSet('alertContainer').style.border = `2px solid ${borderColor}`
+    DOMCacheGetOrSet('alertTitle').innerText = title
+    DOMCacheGetOrSet('alertContent').innerText = content
     DOMCacheGetOrSet('alert').style.display = 'block'
     DOMCacheGetOrSet('alertContainer').style.display = 'block'
 }
