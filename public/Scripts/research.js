@@ -259,7 +259,7 @@ const legendaryResearches = [
   },
   {
     name: 'Upgraded Harvesters',
-    description: '+5 More Levels to Harvester Level Cap\nUnlock Tier II Artifacts & Tier I Gems',
+    description: '+5 More Levels to Harvester Level Cap\nUnlock Tier II Artifacts & Tier I Gems\nAnd Reliquary Loadouts & Statistics',
     max: Decimal.dOne,
     baseCost: D(15)
   },

@@ -24,7 +24,7 @@ const prestigeContracts = [
       name: 'Supreme Diets',
       desc: 'Dieting is back in fashion people need more Superfood Eggs.',
       eggIndex: 1,
-      baseGoal: D(1e17),
+      baseGoal: D(1e13),
       baseReward: D(0.25),
     },
     {
@@ -38,7 +38,7 @@ const prestigeContracts = [
       name: 'Supply Chain Crisis',
       desc: 'Supply Chain Issues have caused resource shortages, Supermaterial Eggs are needed to offset the shortage.',
       eggIndex: 4,
-      baseGoal: D(1e17),
+      baseGoal: D(1e16),
       baseReward: D(0.5),
     },
     {
