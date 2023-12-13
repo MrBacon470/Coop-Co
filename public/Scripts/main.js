@@ -86,7 +86,7 @@ function generateHTMLAndHandlers() {
     })
     
     for(let i = 0; i < data.harvesters.length; i++) {
-        DOMCacheGetOrSet(`harvesterHolder${i}`).addEventListener('mouseover',() => {updateHarvesterHoverText(i)})
+        DOMCacheGetOrSet(`harvesterHolder${i}`).addEventListener('click',() => {updateHarvesterHoverText(i)})
         DOMCacheGetOrSet(`harvesterButton${i}`).addEventListener('click', () => startHarvester(i))
     }
 
