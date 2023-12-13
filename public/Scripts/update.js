@@ -73,7 +73,8 @@ function updateHTML() {
             DOMCacheGetOrSet('help4').style.display = data.hasAscended ? 'block' : 'none'
             DOMCacheGetOrSet('help5').style.display = data.hasAscended ? 'block' : 'none'
             DOMCacheGetOrSet('help6').style.display = data.legendaryResearch[1].gte(legendaryResearches[1].max) ? 'block' : 'none'
-            DOMCacheGetOrSet('help7').style.display = data.legendaryResearch[3].gte(legendaryResearches[3].max) ? 'block' : 'none'
+            DOMCacheGetOrSet('help7').style.display = data.legendaryResearch[1].gte(legendaryResearches[1].max) ? 'block' : 'none'
+            DOMCacheGetOrSet('help8').style.display = data.legendaryResearch[3].gte(legendaryResearches[3].max) ? 'block' : 'none'
         }
     }
     else if(data.currentTab === 4) {

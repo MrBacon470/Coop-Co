@@ -11,7 +11,7 @@ const artifacts = [
         name: 'Eggcell \'85',
         img: '/Images/Artifacts/Eggcell-85.png',
         crafting: [],
-        effect: D(0.1)
+        effect: D(1.0)
     },
     {
         name: 'Quickeggn',
@@ -19,7 +19,7 @@ const artifacts = [
         crafting: [
             {id:0,type:'artifact',count:Decimal.dTen},
         ],
-        effect: D(0.35)
+        effect: D(1.5)
     },
     {
         name: 'Egg Books',
@@ -27,7 +27,7 @@ const artifacts = [
         crafting: [
             {id:1,type:'artifact',count:D(14)},
         ],
-        effect: D(0.75)
+        effect: D(2)
     },
     {
         name: 'Turbo Hatch',
@@ -35,7 +35,7 @@ const artifacts = [
         crafting: [
             {id:2,type:'artifact',count:D(18)},
         ],
-        effect: D(2.0)
+        effect: D(5)
     },
     {
         name: 'Tattered Scroll',
@@ -49,7 +49,7 @@ const artifacts = [
         crafting: [
             {id:4,type:'artifact',count:Decimal.dTen},
         ],
-        effect: D(1.2)
+        effect: D(1.25)
     },
     {
         name: 'Gilded Scroll',
@@ -57,7 +57,7 @@ const artifacts = [
         crafting: [
             {id:5,type:'artifact',count:D(14)},
         ],
-        effect: D(14)
+        effect: D(49)
     },
     {
         name: 'Enlightened Scroll',
@@ -65,13 +65,13 @@ const artifacts = [
         crafting: [
             {id:6,type:'artifact',count:D(18)},
         ],
-        effect: D(250)
+        effect: D(499)
     },
     {
         name: 'Prophetic Book',
         img: '/Images/Artifacts/Prophetic-Book.png',
         crafting: [],
-        effect: D(0.1)
+        effect: D(0.5)
     },
     {
         name: 'Gilded Book',
@@ -79,7 +79,7 @@ const artifacts = [
         crafting: [
             {id:8,type:'artifact',count:Decimal.dTen},
         ],
-        effect: D(0.25)
+        effect: D(0.75)
     },
     {
         name: 'Ascended Book',
@@ -87,7 +87,7 @@ const artifacts = [
         crafting: [
             {id:9,type:'artifact',count:D(14)},
         ],
-        effect: D(0.5)
+        effect: D(1)
     },
     {
         name: 'Knowlegg Book',
@@ -95,13 +95,13 @@ const artifacts = [
         crafting: [
             {id:10,type:'artifact',count:D(18)},
         ],
-        effect: D(0.85)
+        effect: D(2)
     },
     {
         name: 'Torn Lantern',
         img: '/Images/Artifacts/Torn-Lantern.png',
         crafting: [],
-        effect: D(0.25)
+        effect: D(1)
     },
     {
         name: 'Soul Lantern',
@@ -109,7 +109,7 @@ const artifacts = [
         crafting: [
             {id:12,type:'artifact',count:Decimal.dTen},
         ],
-        effect: Decimal.dOne
+        effect: D(2.5)
     },
     {
         name: 'Gilded Lantern',
@@ -131,7 +131,7 @@ const artifacts = [
         name: 'Hammer',
         img: '/Images/Artifacts/Hammer.png',
         crafting: [],
-        effect: D(0.1)
+        effect: D(1)
     },
     {
         name: 'Hammer & Pick',
@@ -139,7 +139,7 @@ const artifacts = [
         crafting: [
             {id:16,type:'artifact',count:Decimal.dTen},
         ],
-        effect: D(0.28)
+        effect: D(1.5)
     },
     {
         name: 'Hammer & Wrench',
@@ -147,7 +147,7 @@ const artifacts = [
         crafting: [
             {id:17,type:'artifact',count:D(14)},
         ],
-        effect: D(0.5)
+        effect: D(2)
     },
     {
         name: 'Crane',
@@ -155,13 +155,13 @@ const artifacts = [
         crafting: [
             {id:18,type:'artifact',count:D(18)},
         ],
-        effect: D(0.8)
+        effect: D(4)
     },
     {
         name: 'Ancient Analysis',
         img: '/Images/Artifacts/Alembic.png',
         crafting: [],
-        effect: D(0.1)
+        effect: D(0.5)
     },
     {
         name: 'Basic Analysis',
@@ -169,7 +169,7 @@ const artifacts = [
         crafting: [
             {id:20,type:'artifact',count:Decimal.dTen},
         ],
-        effect: D(0.3)
+        effect: D(1)
     },
     {
         name: 'Advanced Analysis',
@@ -177,15 +177,15 @@ const artifacts = [
         crafting: [
             {id:21,type:'artifact',count:D(14)},
         ],
-        effect: D(0.44)
+        effect: D(2)
     },
     {
         name: 'Superior Analysis',
         img: '/Images/Artifacts/Microscope.png',
         crafting: [
-            {id:2,type:'artifact',count:D(18)},
+            {id:22,type:'artifact',count:D(18)},
         ],
-        effect: D(1.2)
+        effect: D(4)
     }
 ]
 
@@ -206,97 +206,97 @@ const gems = [
         name: 'Knowledge Gem',
         img: '/Images/Gems/Knowledge-Gem.png',
         crafting: [{id:1,type:'gem',count:D(30)},{id:17,type:'gem',count:Decimal.dTwo}],
-        effect: Decimal.dOne
+        effect: D(1.0)
     },
     {
         name: 'Tachyon Fragment',
         img: '/Images/Gems/Tachyon-Fragment.png',
         crafting: [],
-        effect: D(0.02)
+        effect: D(0.40)
     },
     {
         name: 'Tachyon Shard',
         img: '/Images/Gems/Tachyon-Shard.png',
         crafting: [{id:3,type:'gem',count:D(20)}],
-        effect: D(0.03)
+        effect: D(0.60)
     },
     {
         name: 'Tachyon Gem',
         img: '/Images/Gems/Tachyon-Gem.png',
         crafting: [{id:4,type:'gem',count:D(12)}],
-        effect: D(0.04)
+        effect: D(0.80)
     },
     {
         name: 'Antimatter Fragment',
         img: '/Images/Gems/Antimatter-Fragment.png',
         crafting: [],
-        effect: D(0.05)
+        effect: D(0.20)
     },
     {
         name: 'Antimatter Shard',
         img: '/Images/Gems/Antimatter-Shard.png',
         crafting: [{id:6,type:'gem',count:D(20)}],
-        effect: D(0.08)
+        effect: D(0.64)
     },
     {
         name: 'Antimatter Gem',
         img: '/Images/Gems/Antimatter-Gem.png',
         crafting: [{id:7,type:'gem',count:D(30)}],
-        effect: D(0.1)
+        effect: D(0.85)
     },
     {
         name: 'Quantum Fragment',
         img: '/Images/Gems/Quantum-Fragment.png',
         crafting: [],
-        effect: D(0.02)
+        effect: D(0.2)
     },
     {
         name: 'Quantum Shard',
         img: '/Images/Gems/Quantum-Shard.png',
         crafting: [{id:9,type:'gem',count:D(20)}],
-        effect: D(0.04)
+        effect: D(0.40)
     },
     {
         name: 'Quantum Gem',
         img: '/Images/Gems/Quantum-Gem.png',
         crafting: [{id:10,type:'gem',count:D(15)}],
-        effect: D(0.05)
+        effect: D(0.85)
     },
     {
         name: 'Soul Fragment',
         img: '/Images/Gems/Soul-Fragment.png',
         crafting: [],
-        effect: D(0.05)
+        effect: D(0.25)
     },
     {
         name: 'Soul Shard',
         img: '/Images/Gems/Soul-Shard.png',
         crafting: [{id:12,type:'gem',count:D(20)}],
-        effect: D(0.1)
+        effect: D(0.75)
     },
     {
         name: 'Soul Gem',
         img: '/Images/Gems/Soul-Gem.png',
         crafting: [{id:13,type:'gem',count:D(15)}],
-        effect: D(0.25)
+        effect: D(1.0)
     },
     {
         name: 'Ascension Fragment',
         img: '/Images/Gems/Ascension-Fragment.png',
         crafting: [],
-        effect: D(0.0005)
+        effect: D(0.1)
     },
     {
         name: 'Ascension Shard',
         img: '/Images/Gems/Ascension-Shard.png',
         crafting: [{id:15,type:'gem',count:D(20)}],
-        effect: D(0.001)
+        effect: D(0.25)
     },
     {
         name: 'Ascension Gem',
         img: '/Images/Gems/Ascension-Gem.png',
         crafting: [{id:16,type:'gem',count:D(15)},{id:14,type:'gem',count:Decimal.dTwo}],
-        effect: D(0.0015)
+        effect: D(0.5)
     },
 ]
 
@@ -531,12 +531,14 @@ function activateArtifactSelect(slotID) {
         selectingArtifactGem.status = false
         selectingArtifactGem.type = null
         selectingArtifactGem.slotID = -1
+        DOMCacheGetOrSet('artifactSelectionText').innerText = 'Click on an Artifact or Gem Slot above to begin Selection'
         return
     }
     if(selectingArtifactGem.status) return
     selectingArtifactGem.status = true
     selectingArtifactGem.type = 'artifact'
     selectingArtifactGem.slotID = slotID
+    DOMCacheGetOrSet('artifactSelectionText').innerText = `Click on an Artifact to Insert or Click on the slot to Cancel`
 }
 
 function activateGemSelect(slotID) {
@@ -544,6 +546,7 @@ function activateGemSelect(slotID) {
         selectingArtifactGem.status = false
         selectingArtifactGem.type = null
         selectingArtifactGem.slotID = -1
+        DOMCacheGetOrSet('artifactSelectionText').innerText = 'Click on an Artifact or Gem Slot above to begin Selection'
         return
     }
     if(selectingArtifactGem.status) return
@@ -551,6 +554,7 @@ function activateGemSelect(slotID) {
     selectingArtifactGem.status = true
     selectingArtifactGem.type = 'gem'
     selectingArtifactGem.slotID = slotID
+    DOMCacheGetOrSet('artifactSelectionText').innerText = `Click on a Gem to Insert or Click on the slot to Cancel`
 }
 
 function selectArtifact(artifactID) {
