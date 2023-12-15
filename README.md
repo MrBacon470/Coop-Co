@@ -7,3 +7,4 @@ Coop Co 2.0 was rewritten in Astro<br>
 To code in this version use `npm run install` to install all packages.<br>
 Then use `npm run dev` to run the local development server.<br>
 **Note:** When changing javascript files you need to refresh the development server page in your browser to update the scripts.
+ 
