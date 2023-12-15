@@ -90,7 +90,8 @@ function load() {
     //Update 1.0.0 Saves to Current Version
     if(data.currentUpdate !== getDefaultObject().currentUpdate){
         createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details`,"812626")
-        data.currentUpdate = getDefaultObject().currentUpdate  
+        data.currentUpdate = getDefaultObject().currentUpdate 
+        data.generatedContracts = false 
     }
     for(let i = 0; i < data.buyAmounts.length; i++) {
         const numString = ['1','5','10','20']

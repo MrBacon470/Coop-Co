@@ -194,6 +194,8 @@ function mainLoop() {
     updatePrestige()
     updateAscension()
     updateAutomation()
+    if(data.chickens.lt(0))
+        data.chickens = Decimal.dZero
     if(data.chickens.lt(1) && data.epicResearch[8].gte(epicResearches[8].maxLevel))
         data.chickens = Decimal.dOne
     for(let i = 0; i < data.contractActive.length; i++) {
