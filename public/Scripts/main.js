@@ -237,13 +237,13 @@ function mainLoop() {
     }
 
     checkAchievements()
-    /*
+    
     if(Math.floor(getAchievementsCompleted()/data.achievements.length) === 1 && !data.stats.completedGame) {
         data.stats.completedGame = true
         data.stats.completionTime = data.stats.timePlayed
         createAlert('!!VICTORY!!',`Congratulations you beat Coop Co ${getDefaultObject().currentUpdate}\nin ${formatTime(data.stats.completionTime)}`,`var(--green)`)
     }
-    */
+    
     updateHTML()
     if(DOMCacheGetOrSet('faviconLink').getAttribute('href') !== `${eggImgPath}${eggData[data.currentEgg].id}.png`)
         DOMCacheGetOrSet('faviconLink').href = `${eggImgPath}${eggData[data.currentEgg].id}.png`
