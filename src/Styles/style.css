@@ -1,0 +1,332 @@
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('/Fonts/RobotoMono-Medium.ttf');
+}
+
+
+@font-face {
+    font-family: 'Martian Mono';
+    src: url('/Fonts/MartianMono-Medium.ttf');
+}
+
+:root {
+    --bg-color: #171b1b;
+    --header-color: lightgrey;
+    --gray: #999999;
+    --white: #e7e7e7;
+    --green: #65be67;
+    --red: #d74444;
+    --blue: #4481d7;
+    --purple: #a144d7;
+    --yellow: #d7d744;
+    --orange: #d77f44;
+}
+
+/*Globals*/
+* {
+    margin: 0%;
+    font-family: 'Martian Mono';
+    color: whitesmoke;
+}
+body {
+    user-select: none;
+    background-color: var(--bg-color);
+}
+button {
+    user-select: none;
+    background-color: var(--bg-color);
+    border-width: 2px;
+    border-color: whitesmoke;
+    border-style: solid;
+    border-radius: 5px;
+    transition-duration: 0.5s;
+}
+button:hover {
+    background-color: whitesmoke;
+    color: var(--bg-color);
+    
+    transition-duration: 0.5s;
+}
+img {height: 3.25em; width: 3.25em;}
+h1,h2,h3,h4 { margin-bottom: 1vh;}
+/*Classes*/
+.flexCol {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.flexRow {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.flexCol .flexEgg {
+    width: 300px;
+    height: 420px;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.modalContainer {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6969;
+    padding: 5px;
+    border: 4px solid;
+    background-color: var(--bg-color);
+}
+.tabHolder {padding:1vw 1vh 1vw 1vh;}
+
+.blueButton {border-color:var(--blue); background-color: var(--bg-color); color: var(--blue);}
+.blueButton:hover { border-color:var(--blue); background-color: var(--blue); color: var(--bg-color);}
+.redButton {border-color:var(--red); background-color: var(--bg-color); color: var(--red);}
+.redButton:hover { border-color:var(--red); background-color: var(--red); color: var(--bg-color);}
+.greenButton {border-color:var(--green); background-color: var(--bg-color); color: var(--green);}
+.greenButton:hover { border-color:var(--green); background-color: var(--green); color: var(--bg-color);}
+.purpleButton {border-color:var(--purple); background-color: var(--bg-color); color: var(--purple);}
+.purpleButton:hover { border-color:var(--purple); background-color: var(--purple); color: var(--bg-color);}
+.yellowButton {border-color:var(--yellow); background-color: var(--bg-color); color: var(--yellow);}
+.yellowButton:hover { border-color:var(--yellow); background-color: var(--yellow); color: var(--bg-color);}
+.orangeButton {border-color:var(--orange); background-color: var(--bg-color); color: var(--orange);}
+.orangeButton:hover { border-color:var(--orange); background-color: var(--orange); color: var(--bg-color);}
+
+.purpleButtonHeader {border-color:var(--purple); background-color: var(--header-color); color: var(--purple);}
+.purpleButtonHeader:hover { border-color:var(--purple); background-color: var(--purple); color: var(--header-color);}
+.redButtonHeader {border-color:var(--red); background-color: var(--header-color); color: var(--red);}
+.redButtonHeader:hover { border-color:var(--red); background-color: var(--red); color: var(--header-color);}
+.greenButtonHeader {border-color:var(--green); background-color: var(--header-color); color: var(--green);}
+.greenButtonHeader:hover { border-color:var(--green); background-color: var(--green); color: var(--header-color);}
+.orangeButtonHeader {border-color:var(--orange); background-color: var(--header-color); color: var(--orange);}
+.orangeButtonHeader:hover { border-color:var(--orange); background-color: var(--orange); color: var(--header-color);}
+
+.redButtonPromote {border-color:var(--red); color: var(--red);}
+.redButtonPromote:hover { border-color:var(--red); color: var(--red);}
+.greenButtonPromote {border-color:var(--green); color: var(--green);}
+.greenButtonPromote:hover { border-color:var(--green); color: var(--green);}
+
+.achUnlock {height: 2em; width: 2em; margin: .25em; padding: 2px; border: 2px solid var(--white); border-radius: 5px; background-color: var(--green);}
+.achLock {height: 2em; width: 2em; margin: .25em; padding: 2px; border: 2px solid var(--white); border-radius: 5px; background-color: var(--red);}
+.achPlaceholder {height: 2em; width: 2em; margin: .25em; padding: 2px; border: 2px solid var(--white); border-radius: 5px; background-color: var(--gray);}
+
+.credit {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.credit img {width: 1.5em; height: 1.5em; margin-right:1em;}
+.credit a {text-align: center; font-size: 1.2em;}
+
+.contractHolder {
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    width: 12em;
+    height: 25em;
+    text-align: center;
+}
+
+.gemSlot {
+    height: 2em;
+    width: 2em;
+    background-color: var(--orange);
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    margin:.25em;
+    padding: 5px;
+}
+
+.gemSlotSelected {
+    height: 2em;
+    width: 2em;
+    background-color: var(--green);
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    margin:.25em;
+    padding: 5px;
+}
+
+.gemSlotFailed {
+    height: 2em;
+    width: 2em;
+    background-color: var(--red);
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    margin:.25em;
+    padding: 5px;
+}
+
+.accordion {
+    background-color: var(--bg-color);
+    color: var(--white);
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    width: 50em;
+    padding: 18px;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    background-color: var(--white);
+    color: var(--bg-color)
+} 
+ 
+.panel {
+    padding: 0 18px;
+    width: 39em;
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    background-color: var(--bg-color);
+    display: none;
+}
+
+.accordion:after  {
+    content: '\25B2'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    float: right;
+    margin-left: 5px;
+  }
+  
+.active:after {
+    content: "\25BC"; /* Unicode character for "minus" sign (-) */
+}
+
+.notifyjs-bootstrap-base {
+	font-weight: bold;
+	padding: 8px 15px 8px 14px;
+	background-color: #fcf8e3;
+	border: 5px solid #fbeed5;
+    border-radius: 5px;
+	white-space: nowrap;
+	padding-left: 15px;
+	background-repeat: no-repeat;
+	background-position: 3px 7px;
+    color: var(--white)
+}
+.notifyjs-bootstrap-error {
+	color: whitesmoke;
+	background-color: var(--red);
+	border-color: #8b2d2d;
+}
+.notifyjs-bootstrap-success {
+	color: whitesmoke;
+	background-color: var(--green);
+	border-color: #2d8b40;
+}
+.notifyjs-bootstrap-info {
+	color: whitesmoke;
+	background-color: var(--blue);
+	border-color: #2d548b;
+}
+.notifyjs-bootstrap-warn {
+	color: whitesmoke;
+	background-color: var(--yellow);
+	border-color: #7a8b2d;
+}
+
+
+/*IDs*/
+#mainHeader {
+    width: 100%;
+    height: 7vh;
+    background-color: var(--header-color);
+    color:black;
+}
+#mainButton {
+    position: fixed;
+    width: 50%;
+    height: auto;
+    font-size: 1.5em;
+    top: 95%;
+}
+#researchCol {margin:4px;}
+#researchCol button {margin-bottom: 1vh;}
+@media only screen and (max-width: 480px) {
+    #researchHolder {
+        overflow: scroll;
+    }
+}
+#newsHolder {
+    border: 2px solid whitesmoke;
+    padding: 2px;
+    width: 45%;
+    overflow:hidden;
+    margin:auto;
+    margin-top: 0.5vh;
+    text-align: left;
+}
+
+#news {
+    color:inherit;
+    position: relative;
+    display:inline-block;
+    font-size:15px;
+    font-family:inherit;
+    white-space: nowrap;
+    font-weight: bold;
+}
+#eggPromoteButton{
+  --x: 0%;
+  --y: 0%;
+  background: linear-gradient(
+    90deg,
+    #c9ffc4 0%,
+    #c9ffc4 var(--x),
+    #fffec4 var(--x),
+    #fffec4 var(--y),
+    #ffc4c4 var(--y),
+    #ffc4c4 100% 
+  );
+}
+
+.notifyjs-corner, .notifyjs-hidable , .notifyjs-container, .notifyjs-container div span { background-color: rgba(0, 0, 0, 0); color:var(--white);}
+#planetRow img {width: 5em; height: 5em; margin:1em}
+
+#changelogHolder h4, #changelogHolder h3, #changelogHolder p {margin-bottom: 1vh;}
+#changelogHolder {max-width: 85%;}
+
+#mainHeader img, #mainHeader h2, #mainHeader div {background-color: var(--header-color);}
+#mainHeader h2, #mainHeader div {margin: 1vh; color:black}
+
+#promptInput {background-color: var(--bg-color); border: 2px solid;}
+#navBar button, #mainHeader button, #mainHeader img, #mainHeader h2, #mainHeader p {margin:1vh}
+#mainHeader p {color: black}
+
+#epicResearchRow button, #legendaryResearchRow button {margin-left: .25em; margin-right: .25em;}
+
+#gemOperations {
+    background-color: var(--bg-color);
+    border: 2px solid var(--orange);
+    border-radius: 5px;
+    color: var(--orange);
+    transition-duration: 0.5s;
+}
+
+#gemOperations:hover {
+    background-color: var(--orange);
+    color: var(--bg-color);
+    transition-duration: 0.5s;
+}
+
+#alert {
+    align-items: center;
+    text-align: center;
+}
+
+/*
+<div class="notifyjs-wrapper notifyjs-hidable">
+	<div class="notifyjs-arrow"></div>
+	<div class="notifyjs-container" style=""><div class="notifyjs-bootstrap-base notifyjs-bootstrap-info">
+<span data-notify-text="">Hello World</span>
+</div>
+*/

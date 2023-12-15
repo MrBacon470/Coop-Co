@@ -1,0 +1,343 @@
+---
+    // All Tabs & Major UI Components 
+    import Header from "../Components/Header.astro"
+    import NavBar from "../Components/NavBar.astro"
+    import EggTab from "../Components/Egg.astro"
+    import ResearchTab from "../Components/Research.astro"
+    import ContractsTab from "../Components/Contracts.astro"
+    import PrestigeTab from "../Components/Prestige.astro"
+    import EggspeditionsTab from "../Components/Eggspeditions.astro"
+    import AscensionTab from "../Components/Ascension.astro"
+    import AchievementsTab from "../Components/Achievements.astro"
+    import SettingsTab from "../Components/Settings.astro"
+---
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link id="faviconLink" rel="icon" type="image/png" href="Images/Eggs/egg.png">
+    <title>Coop Co</title>
+</head>
+
+<body>
+    <div id="notificationHolder">
+        
+    </div> 
+    <div id="promptContainer" class="modalContainer">
+        <div id="prompt">
+            <h3 id="promptTitle"></h3>
+            <input id="promptInput" type="text" placeholder="Enter text">
+            <button id="promptButton">Submit</button>
+        </div>
+    </div>
+    <div id="alertContainer" class="modalContainer">
+        <div id="alert">
+            <h3 id="alertTitle">Welcome back gamer!</h3>
+            <p id="alertContent">New things have been added since last time</p>
+            <button id="closeAlert" onclick="closeModal(0)">Thanks!</button>
+            <br>
+        </div>
+    </div>
+    <div id="confirmContainer" class="modalContainer">
+        <div id="confirm" class="flexCol">
+            <h3 id="confirmTitle">Are you sure?</h3>
+            <p id="confirmContent" style="margin-bottom:1vh">New things have been added since last time</p>
+            <div class="flexRow">
+                <button id="noConfirm" class="redButton" style="margin-right:0.5vw">No!</button>
+                <button id="yesConfirm" class="greenButton" style="margin-left:0.5vw">Yes!</button>
+            </div>
+            <br>
+        </div>
+    </div>
+    <Header />
+    <div id="newsHolder">
+        <div id="news">
+            
+        </div>
+    </div>
+    <div id="game" class="flexCol" style="margin-top:0.5vh;align-self: center;">
+        <NavBar />
+        <EggTab />
+        <ResearchTab />
+        <ContractsTab />
+        <PrestigeTab />
+        <EggspeditionsTab />
+        <AscensionTab />
+        <AchievementsTab />
+        <SettingsTab />
+    </div>
+</body>
+
+<!-- Internal Scripts -->
+<script is:inline src="/Scripts/Internal/BreakEternity.js"></script>
+<script is:inline src="/Scripts/Internal/Cache.js"></script>
+<script is:inline src="/Scripts/Internal/Formatting.js"></script>
+<script is:inline src="/Scripts/Internal/Utilities.js"></script>
+<script is:inline src="/Scripts/Internal/notifications.js"></script>
+<!-- Game Scripts -->
+<script is:inline src="/Scripts/data.js"></script>
+<script is:inline src="/Scripts/main.js"></script>
+<script is:inline src="/Scripts/update.js"></script>
+<script is:inline src="/Scripts/egghandler.js"></script>
+<script is:inline src="/Scripts/research.js"></script>
+<script is:inline src="/Scripts/prestige.js"></script>
+<script is:inline src="/Scripts/contracts.js"></script>
+<script is:inline src="/Scripts/automation.js"></script>
+<script is:inline src="/Scripts/newsticker.js"></script>
+<script is:inline src="/Scripts/achievements.js"></script>
+<script is:inline src="/Scripts/eggspeditions.js"></script>
+<script is:inline src="/Scripts/ascension.js"></script>
+
+<style is:inline>
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('/Fonts/RobotoMono-Medium.ttf');
+}
+
+
+@font-face {
+    font-family: 'Martian Mono';
+    src: url('/Fonts/MartianMono-Medium.ttf');
+}
+
+:root {
+    --bg-color: #171b1b;
+    --header-color: lightgrey;
+    --gray: #999999;
+    --darkgray: #444444;
+    --white: #e7e7e7;
+    --green: #65be67;
+    --red: #d74444;
+    --blue: #4481d7;
+    --purple: #a144d7;
+    --yellow: #d7d744;
+    --orange: #d77f44;
+}
+
+/*Globals*/
+* {
+    margin: 0%;
+    font-family: 'Martian Mono';
+    color: whitesmoke;
+}
+body {
+    user-select: none;
+    background-color: var(--bg-color);
+}
+button {
+    user-select: none;
+    background-color: var(--bg-color);
+    border-width: 2px;
+    border-color: whitesmoke;
+    border-style: solid;
+    border-radius: 5px;
+    transition-duration: 0.5s;
+}
+button:hover {
+    background-color: whitesmoke;
+    color: var(--bg-color);
+    
+    transition-duration: 0.5s;
+}
+img {height: 3.25em; width: 3.25em;}
+h1,h2,h3,h4 { margin-bottom: 1vh;}
+/*Classes*/
+.flexCol {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.flexRow {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+div .flexRow button, div .flexRow a {
+    margin: .25em;
+}
+
+.flexCol .flexEgg {
+    width: 300px;
+    height: 420px;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.modalContainer {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6969;
+    padding: 5px;
+    border: 4px solid;
+    background-color: var(--bg-color);
+}
+.tabHolder {padding:1vw 1vh 1vw 1vh;}
+
+.notification-info {
+    background-color: var(--blue);
+    border: 5px solid #1f539b;
+    border-radius: 5px;
+    color: var(--bg-color);
+    padding: .25em;
+    text-align: center;
+}
+.notification-success {
+    background-color: var(--green);
+    border: 5px solid #1f9b3a;
+    border-radius: 5px;
+    color: var(--bg-color);
+    padding: .25em;
+    text-align: center;
+}
+.notification-warn {
+    background-color: var(--yellow);
+    border: 5px solid #9b991f;
+    border-radius: 5px;
+    color: var(--bg-color);
+    padding: .25em;
+    text-align: center;
+}
+.notification-error {
+    background-color: var(--red);
+    border: 5px solid #9b1f1f;
+    border-radius: 5px;
+    color: var(--bg-color);
+    padding: .25em;
+    text-align: center;
+}
+
+.blueButton {border-color:var(--blue); background-color: var(--bg-color); color: var(--blue);}
+.blueButton:hover { border-color:var(--blue); background-color: var(--blue); color: var(--bg-color);}
+.redButton {border-color:var(--red); background-color: var(--bg-color); color: var(--red);}
+.redButton:hover { border-color:var(--red); background-color: var(--red); color: var(--bg-color);}
+.greenButton {border-color:var(--green); background-color: var(--bg-color); color: var(--green);}
+.greenButton:hover { border-color:var(--green); background-color: var(--green); color: var(--bg-color);}
+.purpleButton {border-color:var(--purple); background-color: var(--bg-color); color: var(--purple);}
+.purpleButton:hover { border-color:var(--purple); background-color: var(--purple); color: var(--bg-color);}
+.yellowButton {border-color:var(--yellow); background-color: var(--bg-color); color: var(--yellow);}
+.yellowButton:hover { border-color:var(--yellow); background-color: var(--yellow); color: var(--bg-color);}
+.orangeButton {border-color:var(--orange); background-color: var(--bg-color); color: var(--orange);}
+.orangeButton:hover { border-color:var(--orange); background-color: var(--orange); color: var(--bg-color);}
+.orangeButton-active { border-color:var(--orange); background-color: var(--orange); color: var(--bg-color);}
+.orangeButton-active:hover { border-color:var(--orange); background-color: var(--orange); color: var(--bg-color);}
+
+.purpleButtonHeader {border-color:var(--purple); background-color: var(--header-color); color: var(--purple);}
+.purpleButtonHeader:hover { border-color:var(--purple); background-color: var(--purple); color: var(--header-color);}
+.redButtonHeader {border-color:var(--red); background-color: var(--header-color); color: var(--red);}
+.redButtonHeader:hover { border-color:var(--red); background-color: var(--red); color: var(--header-color);}
+.greenButtonHeader {border-color:var(--green); background-color: var(--header-color); color: var(--green);}
+.greenButtonHeader:hover { border-color:var(--green); background-color: var(--green); color: var(--header-color);}
+.orangeButtonHeader {border-color:var(--orange); background-color: var(--header-color); color: var(--orange);}
+.orangeButtonHeader:hover { border-color:var(--orange); background-color: var(--orange); color: var(--header-color);}
+
+.redButtonPromote {border-color:var(--red); color: var(--red);}
+.redButtonPromote:hover { border-color:var(--red); color: var(--red);}
+.greenButtonPromote {border-color:var(--green); color: var(--green);}
+.greenButtonPromote:hover { border-color:var(--green); color: var(--green);}
+
+
+.contractHolder {
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    width: 12em;
+    height: 25em;
+    text-align: center;
+}
+
+/*IDs*/
+
+#notificationHolder {
+    position: fixed;
+    right: 0;
+    margin-top: .5em;
+    margin-right: .5em;
+}
+
+#mainHeader {
+    width: 100%;
+    height: 7vh;
+    background-color: var(--header-color);
+    color:black;
+}
+#mainButton {
+    position: fixed;
+    width: 50%;
+    height: auto;
+    font-size: 1.5em;
+    top: 95%;
+}
+
+#newsHolder {
+    border: 2px solid whitesmoke;
+    padding: 2px;
+    width: 45%;
+    overflow:hidden;
+    margin:auto;
+    margin-top: 0.5vh;
+    text-align: left;
+}
+
+#news {
+    color:inherit;
+    position: relative;
+    display:inline-block;
+    font-size:15px;
+    font-family:inherit;
+    white-space: nowrap;
+    font-weight: bold;
+}
+#eggPromoteButton{
+  --x: 0%;
+  --y: 0%;
+  background: linear-gradient(
+    90deg,
+    #c9ffc4 0%,
+    #c9ffc4 var(--x),
+    #fffec4 var(--x),
+    #fffec4 var(--y),
+    #ffc4c4 var(--y),
+    #ffc4c4 100% 
+  );
+}
+
+#planetRow img {width: 5em; height: 5em; margin:1em}
+
+#mainHeader img, #mainHeader h2, #mainHeader div {background-color: var(--header-color);}
+#mainHeader h2, #mainHeader div {margin: 1vh; color:black}
+
+#promptInput {background-color: var(--bg-color); border: 2px solid;}
+#navBar button, #mainHeader button, #mainHeader img, #mainHeader h2, #mainHeader p {margin:1vh}
+#mainHeader p {color: black}
+
+#epicResearchRow button, #legendaryResearchRow button {margin-left: .25em; margin-right: .25em;}
+
+#gemOperations {
+    background-color: var(--bg-color);
+    border: 2px solid var(--orange);
+    border-radius: 5px;
+    color: var(--orange);
+    transition-duration: 0.5s;
+}
+
+#alert {
+    align-items: center;
+    text-align: center;
+}
+
+/*
+<div class="notifyjs-wrapper notifyjs-hidable">
+	<div class="notifyjs-arrow"></div>
+	<div class="notifyjs-container" style=""><div class="notifyjs-bootstrap-base notifyjs-bootstrap-info">
+<span data-notify-text="">Hello World</span>
+</div>
+*/
+</style>

@@ -1,0 +1,17 @@
+{
+  "name": "coop-co",
+  "type": "module",
+  "version": "2.0.0",
+  "site": "https://mrbacon470.github.io/Coop-Co",
+  "base": "/Coop-Co",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^3.3.2"
+  }
+}
