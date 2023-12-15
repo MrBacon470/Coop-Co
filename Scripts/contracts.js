@@ -110,7 +110,7 @@ function generateContract(i) {
     */
     const contractBaseReward = Decimal.log(prestigeContracts[id].baseGoal,3).times(Decimal.sqrt(data.stats.contractsComplete))
     let goal = (prestigeContracts[id].baseGoal.times((eggData[prestigeContracts[id].eggIndex].value))).times(contractGoalBoost.times(soulEggBoost))
-    let reward = contractBaseReward.times(Decimal.log2(contractGoalBoost))
+    let reward = contractBaseReward.times(Decimal.dOne.add(Decimal.log2(contractGoalBoost)))
     data.contracts[i].id = id
     data.contracts[i].goal = goal
     data.contracts[i].reward = reward
