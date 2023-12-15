@@ -18,10 +18,10 @@ const achievementObjs = [
     { name: 'Nebulous', description: 'Unlock the 17th Egg', img: `${eggImgPath}${eggData[16].id}.png`},
     { name: 'Universal Problem', description: 'Unlock the 18th Egg', img: `${eggImgPath}${eggData[17].id}.png`},
     { name: 'Egglightenment', description: 'Unlock the 19th Egg', img: `${eggImgPath}${eggData[18].id}.png`},
-    { name: 'Contracted', description: 'Completed a Contract', img: '/Images/greencheck.png'},
-    { name: 'Contractual', description: 'Complete 10 Contracts', img: '/Images/greencheck.png'},
-    { name: 'Contractful', description: 'Complete 100 Contracts', img: '/Images/greencheck.png'},
-    { name: 'Contractor', description: 'Complete 250 Contracts', img: '/Images/greencheck.png'},
+    { name: 'Contracted', description: 'Completed a Contract', img: 'Images/greencheck.png'},
+    { name: 'Contractual', description: 'Complete 10 Contracts', img: 'Images/greencheck.png'},
+    { name: 'Contractful', description: 'Complete 100 Contracts', img: 'Images/greencheck.png'},
+    { name: 'Contractor', description: 'Complete 250 Contracts', img: 'Images/greencheck.png'},
     { name: 'You got a Soul', description: 'Get 1 Thousand Soul Eggs', img: `${eggImgPath}soul.png`},
     { name: 'Quite a few Souls', description: 'Get 1 Million Soul Eggs', img: `${eggImgPath}soul.png`},
     { name: 'Lotta Souls', description: 'Get 1 Billion Soul Eggs', img: `${eggImgPath}soul.png`},
@@ -30,23 +30,23 @@ const achievementObjs = [
     { name: 'Elisha', description: 'Get 100 Prophecy Eggs', img: `${eggImgPath}prophecy.png`},
     { name: 'Daniel', description: 'Get 1 Thousand Prophecy Eggs', img: `${eggImgPath}prophecy.png`},
     { name: 'Isaiah', description: 'Get 10 Thousand Prophecy Eggs', img: `${eggImgPath}prophecy.png`},
-    { name: 'Energy Too', description: 'Discover Arcturus', img: `/Images/planet1.png`},
-    { name: 'Outta Time', description: 'Discover Ravnar', img: `/Images/planet2.png`},
-    { name: 'At last. Peace', description: 'Discover Xylok', img: `/Images/planet3.png`},
-    { name: 'The Void', description: 'Discover Triton', img: `/Images/planet4.png`},
-    { name: 'Great Balls of Fire!', description: 'Discover Hereth', img: `/Images/planet5.png`},
-    { name: 'Aaaaa Light Mode', description: 'Discover Malak', img: `/Images/planet6.png`},
+    { name: 'Energy Too', description: 'Discover Arcturus', img: `Images/planet1.png`},
+    { name: 'Outta Time', description: 'Discover Ravnar', img: `Images/planet2.png`},
+    { name: 'At last. Peace', description: 'Discover Xylok', img: `Images/planet3.png`},
+    { name: 'The Void', description: 'Discover Triton', img: `Images/planet4.png`},
+    { name: 'Great Balls of Fire!', description: 'Discover Hereth', img: `Images/planet5.png`},
+    { name: 'Aaaaa Light Mode', description: 'Discover Malak', img: `Images/planet6.png`},
     { name: 'Ascendance', description: 'Obtain 1 Knowlegg', img: `${eggImgPath}knowlegg.png`},
     { name: 'Knowledge is the Key', description: 'Obtain 10 Knowleggs', img: `${eggImgPath}knowlegg.png`},
     { name: 'Lightbulb...', description: 'Obtain 25 Knowleggs', img: `${eggImgPath}knowlegg.png`},
     { name: 'Library of Alexandria', description: 'Obtain 50 Knowleggs', img: `${eggImgPath}knowlegg.png`},
-    { name: 'Dusty Garbage', description: 'Acquire your first Tier I Artifact', img: '/Images/Fragmented.png'},
-    { name: 'Restoration Expert', description: 'Acquire your first Tier II Artifact', img: '/Images/Restored.png'},
-    { name: 'Master Reforger', description: 'Acquire your first Tier III Artifact', img: '/Images/Upgraded.png'},
-    { name: 'Ultimate Craftsman', description: 'Acquire your first Tier IV Artifact', img: '/Images/Gilded.png'},
-    { name: 'Scrounger', description: 'Acquire a Gem Fragment', img: '/Images/Gems/Knowledge-Fragment.png'},
-    { name: 'Gemsmith', description: 'Acquire a Gem Shard', img: '/Images/Gems/Soul-Shard.png'},
-    { name: 'Gemologist', description: 'Acquire a Gemstone', img: '/Images/Gems/Ascension-Gem.png'},
+    { name: 'Dusty Garbage', description: 'Acquire your first Tier I Artifact', img: 'Images/Fragmented.png'},
+    { name: 'Restoration Expert', description: 'Acquire your first Tier II Artifact', img: 'Images/Restored.png'},
+    { name: 'Master Reforger', description: 'Acquire your first Tier III Artifact', img: 'Images/Upgraded.png'},
+    { name: 'Ultimate Craftsman', description: 'Acquire your first Tier IV Artifact', img: 'Images/Gilded.png'},
+    { name: 'Scrounger', description: 'Acquire a Gem Fragment', img: 'Images/Gems/Knowledge-Fragment.png'},
+    { name: 'Gemsmith', description: 'Acquire a Gem Shard', img: 'Images/Gems/Soul-Shard.png'},
+    { name: 'Gemologist', description: 'Acquire a Gemstone', img: 'Images/Gems/Ascension-Gem.png'},
 ]
 
 const achievementDisplayArr = new Array(achievementObjs.length+8).fill('blank')
@@ -179,7 +179,7 @@ function updateAchClass() {
     }
     for(let i = 19; i < achievementObjs.length; i++) {
         if(i >= 31 && i <= 36)
-            DOMCacheGetOrSet('ach'+i).src = !data.achievements[i] ? '/Images/questionplanet.png' : achievementObjs[i].img
+            DOMCacheGetOrSet('ach'+i).src = !data.achievements[i] ? 'Images/questionplanet.png' : achievementObjs[i].img
         else
             DOMCacheGetOrSet('ach'+i).src = achievementObjs[i].img
     }

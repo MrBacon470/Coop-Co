@@ -1,5 +1,5 @@
 let diff = 0;
-const eggImgPath = '/Images/Eggs/'
+const eggImgPath = 'Images/Eggs/'
 
 const subAmts = [4,4]
 const subIDs = ['set','asc']
@@ -45,7 +45,7 @@ function generateHTMLAndHandlers() {
         addHTML('artifactStorage',`<div id="artifactCol${i}" class="flexCol"></div>`)
         for(let j = 0; j < 8; j++) {
             if(count >= artifacts.length) break;
-            addHTML(`artifactCol${i}`,`<img id="artifactSlot${count}" class="artifactSlot" src="/Images/QuestionMark.png">`)
+            addHTML(`artifactCol${i}`,`<img id="artifactSlot${count}" class="artifactSlot" src="Images/QuestionMark.png">`)
             count++
         }
     }
@@ -61,7 +61,7 @@ function generateHTMLAndHandlers() {
         addHTML('artifactStorage',`<div id="gemCol${i}" class="flexCol"></div>`)
         for(let j = 0; j < 6; j++) {
             if(count >= gems.length) break;
-            addHTML(`gemCol${i}`,`<img id="gemSlot${count}" class="artifactSlot" src="/Images/QuestionMark.png">`)
+            addHTML(`gemCol${i}`,`<img id="gemSlot${count}" class="artifactSlot" src="Images/QuestionMark.png">`)
             count++
         }
     }
