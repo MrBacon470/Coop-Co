@@ -78,7 +78,7 @@ function updateContractsHTML() {
       DOMCacheGetOrSet(`infContractGoal${i}`).innerHTML = `Goal: <span style="color:var(--green)">$${format(data.contracts[i].goal)}</span>`
       DOMCacheGetOrSet(`infContractReward${i}`).innerHTML = `Reward: <span style="color:var(--yellow)">${format(data.contracts[i].reward)} Prophecy Eggs</span>`
     }
-    if(contractActive() || data.inPath || data.onPlanet || data.contracts[i].id === -1) {
+    if(contractActive() || data.onPlanet || data.contracts[i].id === -1) {
       DOMCacheGetOrSet(`infContractButton${i}`).innerText = !data.contractActive[i] ? 'Can\'t Start' : 'Exit Contract'
       DOMCacheGetOrSet(`infContractButton${i}`).classList = !data.contractActive[i] ? 'redButton' : 'greenButton'
     }
@@ -117,7 +117,7 @@ function generateContract(i) {
 }
 
 function startContract(i) {
-    if(data.inPath || data.onPlanet || data.contracts[i].id === -1 || (contractActive() && !data.contractActive[i])) return
+    if(data.onPlanet || data.contracts[i].id === -1 || (contractActive() && !data.contractActive[i])) return
     if(!data.contractActive[i]) {
       prestige()
       data.currentEgg = prestigeContracts[data.contracts[i].id].eggIndex

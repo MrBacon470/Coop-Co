@@ -23,7 +23,7 @@ function updatePrestige() {
     soulEggBoost = soulEggBoost.times(getActiveGemBoost(4))
     contractRewardBoost = Decimal.dOne.add(Decimal.sqrt(data.prophecyEggs.times(D(0.45))))
     contractGoalBoost = Decimal.dOne.add(Decimal.sqrt(data.prophecyEggs.times(D(0.5))))
-    if(data.inPath === true || (data.onPlanet === true && data.currentPlanetIndex === 3)) {
+    if((data.onPlanet === true && data.currentPlanetIndex === 3)) {
         soulEggBoost = Decimal.dOne
         prophecyEggBoost = Decimal.dOne
         contractRewardBoost = Decimal.dOne

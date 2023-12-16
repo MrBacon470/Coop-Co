@@ -36,10 +36,6 @@ function updateEggspeditionsUI() {
         DOMCacheGetOrSet('eggspeditionButton').innerText = `Return Home`
         DOMCacheGetOrSet('eggspeditionButton').classList = 'greenButton'
     }
-    if(data.inPath === true) {
-        DOMCacheGetOrSet('eggspeditionButton').innerText = `Leave the Path to Travel`
-        DOMCacheGetOrSet('eggspeditionButton').classList = 'redButton'
-    } 
     if(planetHoverIndex !== -1)
         DOMCacheGetOrSet('planetHoverText').innerText = data.planetsDiscovered[planetHoverIndex] === true ? `Planet ${planetNames[planetHoverIndex]}\n${planetDescs[planetHoverIndex]}\n\n$${format(data.planetData[planetHoverIndex].money)} | ${format(data.planetData[planetHoverIndex].chickens)} Chickens\nx${format(planetBoosts[planetHoverIndex])} ${planetBoostNames[planetHoverIndex]} Boost` : `Planet ???\n${planetDescs[planetHoverIndex]}\n\n??? | ??? Chickens\n${planetBoostNames[planetHoverIndex]}`
 }
@@ -57,7 +53,7 @@ function discoverPlanet() {
 }
 
 function journeyToPlanet() {
-    if(data.inPath === true || contractActive()) return
+    if(contractActive()) return
     if(data.onPlanet === false && data.planetsDiscovered[planetHoverIndex] === true) {
         data.currentPlanetIndex = planetHoverIndex
         data.research = data.planetData[data.currentPlanetIndex].research
