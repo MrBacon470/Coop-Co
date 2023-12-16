@@ -35,6 +35,8 @@ function prestige() {
     data.stats.prestiges[2] = data.stats.prestiges[1]
     data.stats.prestiges[1] = data.stats.prestiges[0]
     data.stats.prestiges[0] = soulEggGain
+    if(data.prophecyEggs.eq(0) && !data.achievements[48])
+        getAchievement(48)
     data.stats.timeInPrestige = Decimal.dZero
     data.soulEggs = data.soulEggs.add(soulEggGain)
     data.hasPrestiged = true

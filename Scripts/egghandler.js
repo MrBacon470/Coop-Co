@@ -162,7 +162,7 @@ function updateEggPage() {
   else {
       if(DOMCacheGetOrSet('currentEggImg').getAttribute('src') !== `${eggImgPath}${planetEggImgIDs[data.currentPlanetIndex]}.png`) 
         DOMCacheGetOrSet('currentEggImg').setAttribute('src', `${eggImgPath}${planetEggImgIDs[data.currentPlanetIndex]}.png`)
-      DOMCacheGetOrSet('currentEggText').innerText = `Current Egg: ${planetEggNames[data.currentPlanetIndex]}\nValue: $${format(planetEggValue[data.currentPlanetIndex])} (x${format(eggValueBonus)})\n$${format(((currentEggValue.times(soulEggBoost))).times(data.chickens.times(layRate)))}/s\nEgg Laying Rate: x${format((layRate))}\nChicken Gain: ${format(chickenGain)} Chickens/min`
+      DOMCacheGetOrSet('currentEggText').innerText = `Current Egg: ${planetEggNames[data.currentPlanetIndex]}\nValue: $${format(planetEggValue[data.currentPlanetIndex])} (x${format(eggValueBonus)})\n$${format(((data.currentPlanetIndex !== 2?currentEggValue.times(soulEggBoost) : currentEggValue)).times(data.chickens.times(layRate)))}/s\nEgg Laying Rate: x${format((layRate))}\nChicken Gain: ${format(chickenGain)} Chickens/min`
       if(DOMCacheGetOrSet('nextEggImg').getAttribute('src') !== `${eggImgPath}${planetEggImgIDs[data.currentPlanetIndex]}.png`) 
         DOMCacheGetOrSet('nextEggImg').setAttribute('src', `${eggImgPath}${planetEggImgIDs[data.currentPlanetIndex]}.png`)
       DOMCacheGetOrSet('nextEggText').innerText = `${planetEggNames[data.currentPlanetIndex]}`

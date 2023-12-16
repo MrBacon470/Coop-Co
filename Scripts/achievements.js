@@ -47,16 +47,21 @@ const achievementObjs = [
     { name: 'Scrounger', description: 'Acquire a Gem Fragment', img: 'Images/Gems/Knowledge-Fragment.png'},
     { name: 'Gemsmith', description: 'Acquire a Gem Shard', img: 'Images/Gems/Soul-Shard.png'},
     { name: 'Gemologist', description: 'Acquire a Gemstone', img: 'Images/Gems/Ascension-Gem.png'},
+    { name: 'Anti-Prophecy Club', description: 'Prestige with No Prophecy Eggs', img: 'Images/Achievements/Anti1.png'},
+    { name: 'Anti-Anti-Anti-Prophecy Club', description: 'Ascend with No Prophecy Eggs', img: 'Images/Achievements/Anti2.png'},
+    { name: 'Hoarder', description: 'Get your Artifact Collection Bonus to 100x', img: 'Images/Achievements/Hoarder.png'},
+    { name: 'Extraction Specialist', description: 'Get all Harvesters to Level 20', img:'Images/Achievements/Extractor.png'},
+    { name: 'The Collector', description: 'Collect All of the Max Tier Gems & Artifacts', img: 'Images/Achievements/Collector.png'}
 ]
 
-const achievementDisplayArr = new Array(achievementObjs.length+8).fill('blank')
+const achievementDisplayArr = new Array(achievementObjs.length+3).fill('blank')
 for(let i = 0; i < 19; i++)
     achievementDisplayArr[i] = 'ach'
 
 for(let i = 20; i < 38; i++)
     achievementDisplayArr[i] = 'ach'
 
-for(let i = 40; i < 51; i++)
+for(let i = 40; i < 56; i++)
     achievementDisplayArr[i] = 'ach'
 
 
@@ -166,6 +171,43 @@ function checkAchievements() {
                 getAchievement(47)
                 break
             }
+        }
+    }
+
+    if(!data.achievements[50]) {
+        if(collectionBoost.gte(100))
+            getAchievement(50)
+    }
+
+    if(!data.achievements[51]) {
+        let check = true
+        for(let i = 0; i < data.harvesters.length; i++) {
+            if(data.harvesters[i].level < 20) {
+                check = false
+                break
+            }
+        }
+        if(check) {
+            getAchievement(51)
+        }
+    }
+
+    if(!data.achievements[52]) {
+        let check = true
+        for(let i = 0; i < 6; i++) {
+            if(data.artifacts[3 + (i * 4)].lte(0)) {
+                check = false
+                break
+            }
+        }
+        for(let i = 0; i < 6; i++) {
+            if(data.gems[2 + (i * 3)].lte(0)) {
+                check = false
+                break
+            }
+        }
+        if(check) {
+            getAchievement(52)
         }
     }
 }

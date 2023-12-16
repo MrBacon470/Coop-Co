@@ -5,6 +5,7 @@ let harvesterMaxLevel = 0
 let selectedLoadout = -1
 let harvesterUpgradeCosts = new Array(6).fill(Decimal.dZero)
 let knowleggBoost = Decimal.dOne
+let collectionBoost = Decimal.dOne
 // Crafting Item Object {id,type,count}
 const artifacts = [
     {
@@ -404,6 +405,7 @@ function updateAscensionHTML() {
         `Soul Egg Boost: x${format((getActiveArtifactBoost(3).sub(Decimal.dOne)).times(100))}\n` + `Chicken Gain: x${format((getActiveArtifactBoost(4)))}\n` + `Research Cost: /${format((getActiveArtifactBoost(5)))}`
         DOMCacheGetOrSet('gemBoostStats').innerText = `Chicken Gain: x${format(getActiveGemBoost(1))}\n` + `Egg Value: x${format((getActiveGemBoost(2)))}\n` +
         `Egg Laying Rate: x${format(getActiveGemBoost(3))}\n` + `Soul Egg Bonus: x${format((getActiveGemBoost(4)))}\n` + `Prophecy Egg Bonus: x${format((getActiveGemBoost(5)))}`  
+        DOMCacheGetOrSet('collectionBonusText').innerText = `Your "Collected" Artifacts multiply all artifact boosts by: ${format(collectionBoost)}`
     }
 }
 
@@ -411,6 +413,7 @@ function updateAscension() {
     knowleggGain = data.money.gte(1e45) && data.currentEgg === 18 ? (data.bestRunMoney.div(1e45).log(20)).add(Decimal.dOne) : Decimal.dZero
     knowleggGain = knowleggGain.times(planetBoosts[2])
     knowleggBoost = ((data.knowlegg.add(data.bestKnowlegg)).div(2)).gt(0) ? D(1).add(Decimal.log((data.knowlegg.add(data.bestKnowlegg)).div(2),2)) : D(1)
+    collectionBoost = calculateCollectionBonus()
     harvesterMaxLevel = 0
     harvesterMaxLevel += data.legendaryResearch[0].gte(legendaryResearches[0].max) ? 5 : 0
     harvesterMaxLevel += data.legendaryResearch[3].gte(legendaryResearches[3].max) ? 5 : 0
@@ -431,7 +434,8 @@ function ascend() {
     data.stats.ascensions[1] = data.stats.ascensions[0]
     data.stats.ascensions[0] = knowleggGain
     data.stats.timeInAscension = data.stats.timeInPrestige = Decimal.dZero
-
+    if(data.prophecyEggs.eq(0) && !data.achievements[49])
+        getAchievement(49)
     data.knowlegg = data.knowlegg.add(knowleggGain)
     if(data.knowlegg.gt(data.bestKnowlegg)) data.bestKnowlegg = data.stats.bestKnowleggs = data.knowlegg
     data.soulEggs = Decimal.dZero
@@ -617,6 +621,27 @@ function calculateArtifactTier(artifactID) {
     } else {
         return 1; // Default to tier 1 if none of the conditions match
     }
+}
+
+function calculateCollectionBonus() {
+    let bonus = D(1)
+    for(let i = 0; i < data.artifacts.length; i++) {
+        switch(i % 4) {
+            case 0:
+                bonus = bonus.add(D(0.025).times(data.artifacts[i]))
+                break
+            case 1:
+                bonus = bonus.add(D(0.05).times(data.artifacts[i]))
+                break
+            case 2:
+                bonus = bonus.add(D(0.125).times(data.artifacts[i]))
+                break
+            case 3:
+                bonus = bonus.add(D(0.25).times(data.artifacts[i]))
+                break
+        }
+    }
+    return bonus
 }
 
 function artifactAlreadyActive(artifactID) {
@@ -860,7 +885,7 @@ function getActiveArtifactBoost(groupID) {
             boostSum = boostSum.add(currentArtifactBoost)
         }
     }
-    return boostSum
+    return boostSum.times(collectionBoost)
 }
 
 function getActiveGemBoost(groupID) {

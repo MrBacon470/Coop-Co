@@ -70,7 +70,7 @@ function getDefaultObject() {
         currentTab: 0,
         currentSubTab: new Array(3).fill(0),
         settingsToggles: new Array(7).fill(true),
-        currentUpdate: 'v2.0.0',
+        currentUpdate: 'v2.0.1',
         devSpeed: 1,
     }
 }
@@ -91,7 +91,13 @@ function load() {
     if(data.currentUpdate !== getDefaultObject().currentUpdate){
         createAlert("Welcome Back!",`The current version is ${getDefaultObject().currentUpdate}, View the Changelog (in settings) for details`,"812626")
         data.currentUpdate = getDefaultObject().currentUpdate 
-        data.generatedContracts = false 
+        for(let i = 0; i < 3; i++) {
+            if(data.contracts[i].reward.eq(Decimal.dZero)) {
+                data.generatedContracts = false 
+                data.contractActive[i] = false
+            }
+                
+        }
     }
     for(let i = 0; i < data.buyAmounts.length; i++) {
         const numString = ['1','5','10','20']

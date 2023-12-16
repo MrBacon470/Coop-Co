@@ -207,11 +207,19 @@ function mainLoop() {
     }
     currentEggValue = data.onPlanet === false ? eggData[data.currentEgg].value.times(eggValueBonus) : planetEggValue[data.currentPlanetIndex].times(eggValueBonus)
     data.chickens = data.onPlanet === true && data.currentPlanetIndex === 1 ? data.chickens.add(chickenGain.times(diff/60)) : data.chickens.add(chickenGain.times(diff/15))
-    if(data.onPlanet && data.currentPlanetIndex === 2)
-        data.money = data.money.add(((currentEggValue)).times(data.chickens.times(layRate)))
-    else
-        data.money = data.onPlanet && data.currentPlanetIndex === 1 ? data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff/4)).times(data.chickens.times(layRate))) : data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff)).times(data.chickens.times(layRate)))
-    
+
+    if(data.onPlanet && (data.currentPlanetIndex === 1 || data.currentPlanetIndex === 2)) {
+        if(data.currentPlanetIndex === 1) {
+            data.money = data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff/4)).times(data.chickens.times(layRate)))
+        }
+        else if(data.currentPlanetIndex === 2) {
+            data.money = data.money.add(((currentEggValue)).times(data.chickens.times(layRate)))
+        }
+    }
+    else {
+        data.money = data.money.add(((currentEggValue.times(soulEggBoost)).mul(diff)).times(data.chickens.times(layRate)))
+    }
+
     if(data.bestRunMoney.lt(data.money)) data.bestRunMoney = data.money
     //Stats Updates
     for(let i = data.unlockedEgg.length - 1; i > -1; i--) {
