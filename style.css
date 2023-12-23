@@ -181,7 +181,7 @@ div .flexRow button, div .flexRow a {
     width: 50%;
     height: auto;
     font-size: 1.5em;
-    top: 95%;
+    bottom: 1dvh;
 }
 
 #newsHolder {
