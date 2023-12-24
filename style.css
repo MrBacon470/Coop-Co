@@ -32,6 +32,7 @@
 body {
     user-select: none;
     background-color: var(--bg-color);
+    touch-action: pan-x pan-y;
 }
 button {
     user-select: none;
@@ -71,7 +72,6 @@ div .flexRow button, div .flexRow a {
 
 .flexCol .flexEgg {
     width: 300px;
-    height: 420px;
     align-items: flex-start;
     justify-content: flex-start;
 }
@@ -180,7 +180,7 @@ div .flexRow button, div .flexRow a {
     width: 50%;
     height: auto;
     font-size: 1.5em;
-    top: 95%;
+    bottom: 1dvh;
 }
 
 #newsHolder {
