@@ -311,9 +311,8 @@ function updateCommonResearchHTML() {
 }
 
 function purchaseResearch(i) {
-    const buyAmountNums = [1,5,10,20]
     updateResearch()
-    let buyAmount = data.research[i].add(buyAmountNums[data.buyAmounts[0]]).lte(commonResearches[i].maxLevel) ? buyAmountNums[data.buyAmounts[0]] : commonResearches[i].maxLevel.sub(data.research[i]);
+    let buyAmount = data.research[i].add(BUY_AMOUNT_NUMBERS[data.buyAmounts[0]]).lte(commonResearches[i].maxLevel) ? BUY_AMOUNT_NUMBERS[data.buyAmounts[0]] : commonResearches[i].maxLevel.sub(data.research[i]);
     // prevent going over max level
     let costMult = Decimal.pow(1.15, buyAmount).sub(Decimal.dOne).div(0.15);
     //calculate cost of buying buyAmount researches
@@ -326,10 +325,9 @@ function purchaseResearch(i) {
     data.research[i] = data.research[i].add(buyAmount);
 }
 function updateResearch() {
-    const buyAmountNums = [1,5,10,20]
     for(let i = 0; i < commonResearches.length; i++) {
       commonResearchCost[i] = ((commonResearches[i].baseCost).sub(commonResearches[i].baseCost.times(D(0.05).times(data.epicResearch[1])))) //Base Cost Calc
-      commonResearchCostDisplay[i] = getTotalCost(commonResearchCost[i],data.onPlanet === true && data.currentPlanetIndex === 0 ? D(1.35) : D(1.15),data.research[i],commonResearches[i].maxLevel,D(buyAmountNums[data.buyAmounts[0]]))
+      commonResearchCostDisplay[i] = getTotalCost(commonResearchCost[i],data.onPlanet === true && data.currentPlanetIndex === 0 ? D(1.35) : D(1.15),data.research[i],commonResearches[i].maxLevel,D(BUY_AMOUNT_NUMBERS[data.buyAmounts[0]]))
       if(data.onPlanet === false)
         commonResearchCost[i] = commonResearchCost[i].times(Decimal.pow(1.15, data.research[i]))
       else if(data.onPlanet === true && data.currentPlanetIndex === 0)
@@ -340,12 +338,12 @@ function updateResearch() {
         
     for(let i = 0; i < epicResearches.length; i++) {
         epicResearchCost[i] = epicResearches[i].baseCost.times(Decimal.pow(1.25, data.epicResearch[i]))
-        epicResearchCostDisplay[i] = getTotalCost(epicResearches[i].baseCost,D(1.25),data.epicResearch[i],epicResearches[i].maxLevel,D(buyAmountNums[data.buyAmounts[1]]))
+        epicResearchCostDisplay[i] = getTotalCost(epicResearches[i].baseCost,D(1.25),data.epicResearch[i],epicResearches[i].maxLevel,D(BUY_AMOUNT_NUMBERS[data.buyAmounts[1]]))
     }
     
     for(let i = 0; i < legendaryResearches.length; i++) {
         legendaryResearchCost[i] = legendaryResearches[i].baseCost.times(Decimal.pow(1.45,data.legendaryResearch[i]))
-        legendaryResearchCostDisplay[i] = getTotalCost(legendaryResearches[i].baseCost,D(1.45),data.legendaryResearch[i],legendaryResearches[i].max,D(buyAmountNums[data.buyAmounts[2]]))
+        legendaryResearchCostDisplay[i] = getTotalCost(legendaryResearches[i].baseCost,D(1.45),data.legendaryResearch[i],legendaryResearches[i].max,D(BUY_AMOUNT_NUMBERS[data.buyAmounts[2]]))
     }
 }
 //Epic Section
@@ -356,8 +354,7 @@ for(let i = 0; i < epicResearches.length; i++) {
     Cost: ${format(epicResearchCost[i])} Soul Eggs`
 }
 function purchaseEpicResearch(i) {
-    const buyAmountNums = [1,5,10,20]
-    for(let j = 0; j < buyAmountNums[data.buyAmounts[1]]; j++) {
+    for(let j = 0; j < BUY_AMOUNT_NUMBERS[data.buyAmounts[1]]; j++) {
         updateResearch()
         if(data.soulEggs.gte(epicResearchCost[i]) && data.epicResearch[i].lt(epicResearches[i].maxLevel)) {
             data.soulEggs = data.soulEggs.sub(epicResearchCost[i])
@@ -370,9 +367,8 @@ function purchaseEpicResearch(i) {
 }
 
 function purchaseLegendaryResearch(i) {
-  const buyAmountNums = [1,5,10,20]
   if(data.legendaryResearch[i].gte(legendaryResearches[i].max)) return
-    for(let j = 0; j < buyAmountNums[data.buyAmounts[2]]; j++) {
+    for(let j = 0; j < BUY_AMOUNT_NUMBERS[data.buyAmounts[2]]; j++) {
         updateResearch()
         if(data.knowlegg.gte(legendaryResearchCost[i]) && data.legendaryResearch[i].lt(legendaryResearches[i].max)) {
             data.knowlegg = data.knowlegg.sub(legendaryResearchCost[i])

@@ -83,6 +83,8 @@ function save(){
     window.localStorage.setItem(saveName, JSON.stringify(data))
     generateNotification('Game Saved','info')
 }
+const BUY_AMOUNT_LABELS = ['1', '5', '10', '20', 'Max'];
+const BUY_AMOUNT_NUMBERS = [1, 5, 10, 20, 9999];
 function load() {
     let savedata = JSON.parse(window.localStorage.getItem(saveName))
     if(savedata === null || savedata === undefined) savedata = getDefaultObject()
@@ -100,7 +102,7 @@ function load() {
         }
     }
     for(let i = 0; i < data.buyAmounts.length; i++) {
-        const numString = ['1','5','10','20']
+        const numString = BUY_AMOUNT_LABELS
         DOMCacheGetOrSet(`ba${i}`).innerText = `Buy Amount: ${numString[data.buyAmounts[i]]}`
     }
 }

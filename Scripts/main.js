@@ -284,9 +284,8 @@ function toggle(i) {
         DOMCacheGetOrSet(`setTog${i}`).classList = data.settingsToggles[i] ? 'greenButton' : 'redButton'
 }
 function toggleBA(i) {
-    const numString = ['1','5','10','20']
-    data.buyAmounts[i] = data.buyAmounts[i] + 1 === 4 ? 0 : data.buyAmounts[i] + 1
-    DOMCacheGetOrSet(`ba${i}`).innerText = `Buy Amount: ${numString[data.buyAmounts[i]]}`
+    data.buyAmounts[i] = data.buyAmounts[i] + 1 === BUY_AMOUNT_LABELS.length ? 0 : data.buyAmounts[i] + 1
+    DOMCacheGetOrSet(`ba${i}`).innerText = `Buy Amount: ${BUY_AMOUNT_LABELS[data.buyAmounts[i]]}`
 }
 
 function updateStats() {
